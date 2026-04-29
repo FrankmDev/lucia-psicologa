@@ -1,0 +1,218 @@
+---
+const steps = [
+  {
+    num: '01',
+    title: 'Primera toma de contacto',
+    desc: 'Me escribes o llamas. Respondemos juntas a tus dudas iniciales, hablamos de qué te trae aquí y buscamos el mejor momento para empezar.',
+    shape: 'shape-1',
+  },
+  {
+    num: '02',
+    title: 'Evaluación y objetivos',
+    desc: 'En las primeras sesiones conocemos tu historia, identificamos qué te duele y definimos juntas hacia dónde queremos dirigir el trabajo.',
+    shape: 'shape-2',
+  },
+  {
+    num: '03',
+    title: 'El trabajo terapéutico',
+    desc: 'Avanzamos a tu ritmo. Utilizo técnicas de la terapia cognitivo-conductual y EMDR cuando es necesario, siempre desde una escucha activa.',
+    shape: 'shape-3',
+  },
+  {
+    num: '04',
+    title: 'Cierre y seguimiento',
+    desc: 'Cuando sientas que has alcanzado tus objetivos, cerramos el proceso de forma conjunta. La puerta siempre está abierta.',
+    shape: 'shape-4',
+  },
+];
+---
+
+<section id="proceso" class="proceso">
+  <div class="proceso-header reveal">
+    <span class="type-eyebrow">Proceso</span>
+    <h2 class="proceso-title">
+      <span class="type-display">Cómo funciona</span>
+      <span class="type-display accent">la terapia</span>
+    </h2>
+  </div>
+
+  <div class="journey-wrapper">
+    <!-- Curved SVG path -->
+    <svg class="journey-path" viewBox="0 0 1000 1200" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M500,0 C200,150 800,300 500,450 C200,600 800,750 500,900 C200,1050 800,1200 500,1200" 
+            fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="8 6" id="journeyLine"/>
+      <path d="M500,0 C200,150 800,300 500,450 C200,600 800,750 500,900 C200,1050 800,1200 500,1200" 
+            fill="none" stroke="var(--taupe)" stroke-width="1.5" id="journeyProgress" 
+            stroke-dasharray="2400" stroke-dashoffset="2400"/>
+    </svg>
+
+    <div class="journey-steps">
+      {steps.map((step, i) => (
+        <div class={`step-card ${step.shape} ${i % 2 === 0 ? 'step-left' : 'step-right'} reveal`} style={`transition-delay: ${i * 100}ms`}>
+          <div class="step-inner">
+            <span class="step-num">{step.num}</span>
+            <h3 class="step-title">{step.title}</h3>
+            <p class="step-desc">{step.desc}</p>
+          </div>
+          <div class="step-watermark" aria-hidden="true">{step.num}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const line = document.getElementById('journeyProgress');
+  const section = document.querySelector('.proceso');
+
+  function drawPath() {
+    const rect = section.getBoundingClientRect();
+    const viewportH = window.innerHeight;
+    const total = section.offsetHeight;
+    const scrolled = viewportH - rect.top;
+    const progress = Math.max(0, Math.min(1, scrolled / total));
+    const length = 2400;
+    line.style.strokeDashoffset = length - (progress * length);
+  }
+
+  window.addEventListener('scroll', drawPath, { passive: true });
+  window.addEventListener('resize', drawPath);
+</script>
+
+<style>
+  .proceso {
+    position: relative;
+    background: var(--cream);
+    padding: 10rem 0 14rem;
+    overflow: hidden;
+  }
+
+  .proceso-header {
+    text-align: center;
+    margin-bottom: 8rem;
+    padding: 0 6vw;
+  }
+  .proceso-header .type-eyebrow {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .proceso-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05em;
+  }
+  .proceso-title .type-display {
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    color: var(--ink);
+  }
+  .proceso-title .accent {
+    color: var(--taupe);
+  }
+
+  .journey-wrapper {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 6vw;
+    min-height: 1000px;
+  }
+
+  .journey-path {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .journey-steps {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    padding-top: 2rem;
+  }
+
+  .step-card {
+    position: relative;
+    max-width: 420px;
+    padding: 3rem;
+    background: var(--white-warm);
+    border: 0.5px solid var(--line);
+    transition: all 0.5s var(--ease-out-expo);
+    overflow: hidden;
+  }
+  .step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(42,31,26,0.08);
+    border-color: var(--taupe);
+  }
+
+  .step-left { align-self: flex-start; margin-left: 5%; }
+  .step-right { align-self: flex-end; margin-right: 5%; }
+
+  /* Unique shapes via border-radius */
+  .shape-1 { border-radius: 40px 4px 40px 4px; }
+  .shape-2 { border-radius: 4px 40px 4px 40px; }
+  .shape-3 { border-radius: 4px 4px 40px 40px; }
+  .shape-4 { border-radius: 40px 40px 4px 4px; }
+
+  .step-inner {
+    position: relative;
+    z-index: 2;
+  }
+  .step-num {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--taupe);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+  .step-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .step-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .step-watermark {
+    position: absolute;
+    bottom: -1.5rem;
+    right: -0.5rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 8rem;
+    font-weight: 300;
+    color: var(--taupe);
+    opacity: 0.04;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @media (max-width: 768px) {
+    .journey-wrapper { min-height: auto; }
+    .journey-path { display: none; }
+    .step-left, .step-right {
+      align-self: center;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .journey-steps { gap: 4rem; }
+    .step-card { max-width: 100%; padding: 2rem; }
+  }
+</style>

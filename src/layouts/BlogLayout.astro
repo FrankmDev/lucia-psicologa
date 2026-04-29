@@ -1,0 +1,172 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  metaTitle: string;
+  metaDescription: string;
+  slug: string;
+  publishDate: string;
+  category: string;
+  keywords: string[];
+}
+
+const {
+  title,
+  metaTitle,
+  metaDescription,
+  slug,
+  publishDate,
+  category,
+  keywords
+} = Astro.props;
+
+const relatedArticles = [
+  {
+    title: 'Ansiedad en Córdoba: cómo reconocerla y cuándo pedir ayuda',
+    slug: 'ansiedad-cordoba',
+    description: 'Descubre cómo reconocer los signos de la ansiedad y cuándo es el momento de buscar ayuda psicológica en Córdoba.'
+  },
+  {
+    title: 'Terapia psicológica en Córdoba: qué esperar de tu primera consulta',
+    slug: 'primera-consulta-cordoba',
+    description: 'Resolvemos los miedos más comunes y explicamos qué ocurre realmente en una primera sesión de terapia.'
+  },
+  {
+    title: 'Autoestima y bienestar emocional en Córdoba: trabajarlos desde la terapia',
+    slug: 'autoestima-cordoba',
+    description: 'Entiende qué es la autoestima real y cómo la terapia puede ayudarte a mejorar tu bienestar emocional.'
+  }
+].filter(article => article.slug !== slug);
+
+const formattedDate = new Date(publishDate).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<Layout title={metaTitle} description={metaDescription}>
+  <Navigation />
+
+  <main class="flex-1">
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="pt-32 md:pt-36 pb-0 max-w-[860px] mx-auto px-6 sm:px-10">
+      <ol class="flex items-center gap-2 font-body text-caption uppercase tracking-[0.12em]">
+        <li><a href="/" class="hover:text-accent transition-colors duration-500">Inicio</a></li>
+        <li aria-hidden="true" class="text-text-muted">/</li>
+        <li><a href="/blog" class="hover:text-accent transition-colors duration-500">Blog</a></li>
+        <li aria-hidden="true" class="text-text-muted">/</li>
+        <li aria-current="page" class="text-text-secondary truncate max-w-[200px]">{title}</li>
+      </ol>
+    </nav>
+
+    <article class="max-w-[860px] mx-auto px-6 sm:px-10 lg:px-0 py-12 md:py-16">
+      <header class="mb-14 md:mb-18">
+        <p class="section-label mb-6 flex items-center gap-3">
+          <span class="px-2.5 py-0.5 bg-accent-soft text-accent text-caption font-medium tracking-[0.14em]">{category}</span>
+          <time datetime={publishDate} class="text-text-muted">{formattedDate}</time>
+        </p>
+        <h1 class="font-display text-[2.4rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] tracking-[-0.02em] text-text-primary text-balance font-light">
+          {title}
+        </h1>
+      </header>
+
+      <div class="blog-content">
+        <slot />
+      </div>
+
+      <!-- CTA Final -->
+      <aside class="mt-20 p-8 md:p-10 bg-surface border border-border-light text-center" aria-labelledby="cta-heading">
+        <h2 id="cta-heading" class="font-display text-[1.4rem] md:text-[1.6rem] font-light text-text-primary mb-3">¿Te gustaría dar el siguiente paso?</h2>
+        <p class="font-body text-body-sm text-text-secondary font-light leading-relaxed max-w-md mx-auto mb-7">
+          Si algo de lo que has leído resuena contigo, estaré encantada de acompañarte.
+        </p>
+        <a href="/#contacto" class="btn-primary">Ir a contacto</a>
+      </aside>
+
+      <!-- Related Articles -->
+      <aside class="mt-16" aria-labelledby="related-heading">
+        <h2 id="related-heading" class="font-display text-[1.6rem] md:text-[1.9rem] text-text-primary mb-8 font-light">Artículos relacionados</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {relatedArticles.slice(0, 2).map(article => (
+            <a href={`/blog/${article.slug}`} class="block p-6 bg-surface-elevated border border-border-light hover:border-accent-light/50 hover:shadow-soft transition-all duration-500 group">
+              <h3 class="font-body text-[0.95rem] font-medium text-text-primary mb-2 group-hover:text-accent transition-colors duration-500">{article.title}</h3>
+              <p class="font-body text-[0.8rem] text-text-secondary font-light leading-relaxed">{article.description}</p>
+            </a>
+          ))}
+        </div>
+      </aside>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style is:global>
+  .blog-content {
+    font-family: var(--font-body);
+    color: var(--text-secondary);
+    line-height: 1.85;
+    font-weight: 400;
+  }
+
+  .blog-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.02rem;
+    line-height: 1.85;
+  }
+
+  .blog-content h2 {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-top: 3rem;
+    margin-bottom: 1.1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .blog-content h3 {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-top: 2.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .blog-content a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: var(--accent-light);
+    transition: text-decoration-color 0.4s ease;
+  }
+
+  .blog-content a:hover {
+    text-decoration-color: var(--accent);
+  }
+
+  .blog-content strong {
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 720px) {
+    .blog-content p {
+      font-size: 0.95rem;
+    }
+    .blog-content h2 {
+      font-size: 1.4rem;
+    }
+    .blog-content h3 {
+      font-size: 1rem;
+    }
+  }
+</style>

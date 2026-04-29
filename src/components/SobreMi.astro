@@ -1,0 +1,269 @@
+---
+const aboutImage = "https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=900&auto=format&fit=crop";
+---
+
+<section id="sobre-mi" class="sobre">
+  <div class="sobre-inner">
+    <!-- Sticky image column -->
+    <div class="sobre-visual">
+      <div class="visual-frame">
+        <img src={aboutImage} alt="Lucía en su consulta" decoding="async" loading="lazy" />
+      </div>
+      <div class="visual-offset" aria-hidden="true"></div>
+      <!-- Floating chapter indicator -->
+      <div class="chapter-ring" aria-hidden="true">
+        <span>01</span>
+      </div>
+    </div>
+
+    <!-- Scrolling text column -->
+    <div class="sobre-content">
+      <span class="type-eyebrow reveal">Sobre mí</span>
+
+      <h2 class="sobre-title reveal">
+        <span class="type-display">No estás rota,</span>
+        <span class="type-display accent">estás respondiendo</span>
+        <span class="type-display">a lo que te pasó.</span>
+      </h2>
+
+      <div class="sobre-chapters">
+        <div class="chapter reveal">
+          <span class="chapter-num">I.</span>
+          <p class="text-lead">
+            Soy psicóloga colegiada y especialista en trauma y procesos de cambio. Mi trabajo consiste en acompañarte a sanar lo que duele, entender lo que confunde y recuperar el rumbo cuando todo parece fragmentado.
+          </p>
+        </div>
+        <div class="chapter reveal">
+          <span class="chapter-num">II.</span>
+          <p>
+            Formada en terapia cognitivo-conductual y certificada en EMDR —una de las terapias con mayor evidencia científica para el tratamiento del trauma—, combino técnicas estructuradas con un abordaje profundamente humano y cercano.
+          </p>
+        </div>
+        <div class="chapter reveal">
+          <span class="chapter-num">III.</span>
+          <p>
+            Creo firmemente en la capacidad de recuperación de cada persona. No busco "arreglarte", sino ayudarte a reconectar con tus propios recursos.
+          </p>
+          <a href="#contacto" class="btn-ghost">Hablemos de ti →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scattered floating stats -->
+  <div class="floating-stats">
+    <div class="f-stat stat-a reveal">
+      <span class="f-num">8+</span>
+      <span class="f-label">Años de<br/>experiencia</span>
+    </div>
+    <div class="f-stat stat-b reveal">
+      <span class="f-num">500+</span>
+      <span class="f-label">Pacientes<br/>acompañadas</span>
+    </div>
+    <div class="f-stat stat-c reveal">
+      <span class="f-num">EMDR</span>
+      <span class="f-label">Certificación<br/>internacional</span>
+    </div>
+    <!-- Decorative line -->
+    <div class="f-line" aria-hidden="true"></div>
+  </div>
+</section>
+
+<style>
+  .sobre {
+    position: relative;
+    background: var(--cream);
+    padding: 10rem 0 12rem;
+    overflow: hidden;
+  }
+  .sobre-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 6vw;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Sticky visual */
+  .sobre-visual {
+    position: sticky;
+    top: 120px;
+    height: fit-content;
+    align-self: start;
+  }
+  .visual-frame {
+    position: relative;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(42,31,26,0.1);
+    z-index: 2;
+  }
+  .visual-frame img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-out-expo);
+  }
+  .visual-frame:hover img {
+    transform: scale(1.03);
+  }
+  .visual-offset {
+    position: absolute;
+    top: 18px; left: 18px;
+    right: -18px; bottom: -18px;
+    border: 1px solid var(--mint);
+    border-radius: 3px;
+    opacity: 0.25;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .chapter-ring {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 80px; height: 80px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    background: var(--cream);
+  }
+  .chapter-ring span {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--taupe);
+  }
+
+  /* Content */
+  .sobre-content {
+    padding-top: 1rem;
+  }
+  .sobre-content .type-eyebrow {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .sobre-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+    margin-bottom: 4rem;
+  }
+  .sobre-title .type-display {
+    font-size: clamp(2rem, 3.8vw, 3.5rem);
+    color: var(--ink);
+  }
+  .sobre-title .accent {
+    color: var(--taupe);
+  }
+
+  .sobre-chapters {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .chapter {
+    position: relative;
+    padding-left: 3.5rem;
+  }
+  .chapter-num {
+    position: absolute;
+    left: 0; top: 0;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--taupe);
+    opacity: 0.35;
+    line-height: 1;
+  }
+  .text-lead {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .chapter p:not(.text-lead) {
+    font-size: 0.93rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+  }
+
+  /* Floating stats */
+  .floating-stats {
+    position: relative;
+    max-width: 1200px;
+    margin: 8rem auto 0;
+    padding: 0 6vw;
+    height: 300px;
+  }
+  .f-stat {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+  .stat-a { top: 0; left: 6vw; }
+  .stat-b { top: 60px; left: 35%; }
+  .stat-c { top: 20px; right: 6vw; }
+  .f-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    color: var(--taupe);
+    line-height: 1;
+  }
+  .f-label {
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.6;
+    line-height: 1.5;
+  }
+  .f-line {
+    position: absolute;
+    bottom: 80px;
+    left: 15%;
+    right: 15%;
+    height: 1px;
+    background: var(--line);
+  }
+
+  @media (max-width: 900px) {
+    .sobre-inner {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+    .sobre-visual {
+      position: relative;
+      top: auto;
+      max-width: 400px;
+    }
+    .floating-stats {
+      height: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 5rem;
+    }
+    .f-stat {
+      position: relative;
+      top: auto; left: auto; right: auto;
+      align-items: center;
+      text-align: center;
+    }
+    .f-line { display: none; }
+  }
+</style>

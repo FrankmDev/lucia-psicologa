@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+
+const articles = [
+  {
+    title: 'Ansiedad en Córdoba: cómo reconocerla y cuándo pedir ayuda',
+    slug: 'ansiedad-cordoba',
+    description: 'Descubre cómo reconocer los signos reales de la ansiedad, cuándo es el momento de buscar ayuda psicológica en Córdoba y cómo puede ayudarte la terapia a recuperar tu bienestar.',
+    date: '24 de abril de 2025',
+    category: 'ansiedad'
+  },
+  {
+    title: 'Terapia psicológica en Córdoba: qué esperar de tu primera consulta',
+    slug: 'primera-consulta-cordoba',
+    description: 'Resolvemos los miedos más comunes antes de la primera sesión y te contamos exactamente qué ocurre cuando acudes a una consulta de psicología en Córdoba.',
+    date: '24 de abril de 2025',
+    category: 'terapia'
+  },
+  {
+    title: 'Autoestima y bienestar emocional en Córdoba: trabajarlos desde la terapia',
+    slug: 'autoestima-cordoba',
+    description: 'Entiende qué es la autoestima real, cómo afecta a tu vida cotidiana y cómo la terapia puede ayudarte a reconstruir una relación sana contigo mismo.',
+    date: '24 de abril de 2025',
+    category: 'autoestima'
+  }
+];
+---
+
+<Layout
+  title="Blog | Lucía Martínez | Psicología en Córdoba"
+  description="Artículos sobre psicología, ansiedad, terapia y bienestar emocional en Córdoba. Información útil y cercana para cuidar tu salud mental."
+>
+  <Navigation />
+
+  <main class="flex-1">
+    <!-- Header -->
+    <header class="pt-36 md:pt-40 pb-20 md:pb-24 max-w-[860px] mx-auto px-6 sm:px-10 text-center">
+      <p class="section-label mb-6">Blog</p>
+      <hr class="divider-draw mb-10 reveal" />
+      <h1 class="font-display text-[2.8rem] md:text-[4rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.02em] text-text-primary mb-7 font-light">
+        Psicología en Córdoba
+      </h1>
+      <p class="font-body text-body-lg text-text-secondary font-light leading-relaxed max-w-xl mx-auto">
+        Un espacio para hablar de salud mental de forma clara, cercana y sin jerga.
+        Información útil sobre ansiedad, terapia, autoestima y bienestar emocional.
+      </p>
+    </header>
+
+    <!-- Articles Grid -->
+    <section class="max-w-[900px] mx-auto px-6 sm:px-10 pb-32 md:pb-40" aria-label="Artículos del blog">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {articles.map(article => (
+          <article class="group bg-surface-elevated border border-border-light overflow-hidden hover:border-accent-light/50 hover:shadow-soft transition-all duration-500 flex flex-col">
+            <div class="p-6 md:p-7 flex flex-col flex-1">
+              <header class="mb-3">
+                <p class="section-label mb-3 flex items-center gap-2">
+                  <span class="px-2 py-0.5 bg-accent-soft text-accent text-[0.55rem] font-medium tracking-[0.12em]">{article.category}</span>
+                  <time class="text-text-muted">{article.date}</time>
+                </p>
+                <h2 class="font-body text-[1rem] font-medium text-text-primary leading-snug group-hover:text-accent transition-colors duration-500">
+                  <a href={`/blog/${article.slug}`} class="hover:underline decoration-accent-light underline-offset-2">
+                    {article.title}
+                  </a>
+                </h2>
+              </header>
+              <p class="font-body text-[0.82rem] text-text-secondary font-light leading-relaxed flex-1">{article.description}</p>
+              <a href={`/blog/${article.slug}`} class="inline-flex items-center gap-1.5 mt-4 font-body text-[0.75rem] font-medium text-accent hover:text-accent-deep transition-colors duration-500">
+                Leer artículo
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

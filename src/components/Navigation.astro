@@ -1,0 +1,230 @@
+---
+const links = [
+  { label: 'Sobre mí', href: '#sobre-mi' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Proceso', href: '#proceso' },
+  { label: 'Contacto', href: '#contacto' },
+];
+---
+
+<header class="nav-bar" id="navBar">
+  <a href="#inicio" class="nav-mark" aria-label="Inicio">
+    <span class="mark-letter">L</span>
+  </a>
+
+  <button class="nav-trigger" id="menuTrigger" aria-label="Abrir menú" aria-expanded="false">
+    <span class="trigger-line"></span>
+    <span class="trigger-line"></span>
+  </button>
+
+  <div class="nav-overlay" id="menuOverlay" aria-hidden="true">
+    <div class="overlay-bg" aria-hidden="true"></div>
+    <nav class="overlay-nav" aria-label="Principal">
+      {links.map((l, i) => (
+        <a href={l.href} class="overlay-link" style={`transition-delay: ${i * 60}ms`}>
+          <span class="link-num">0{i + 1}</span>
+          <span class="link-label">{l.label}</span>
+        </a>
+      ))}
+    </nav>
+    <div class="overlay-meta">
+      <span>Psicología Clínica</span>
+      <span class="meta-dot">·</span>
+      <span>Granada</span>
+    </div>
+  </div>
+</header>
+
+<script>
+  const trigger = document.getElementById('menuTrigger');
+  const overlay = document.getElementById('menuOverlay');
+  const links = overlay.querySelectorAll('.overlay-link');
+
+  trigger.addEventListener('click', () => {
+    const isOpen = overlay.classList.contains('open');
+    if (isOpen) {
+      overlay.classList.remove('open');
+      trigger.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    } else {
+      overlay.classList.add('open');
+      trigger.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  links.forEach(l => l.addEventListener('click', () => {
+    overlay.classList.remove('open');
+    trigger.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }));
+</script>
+
+<style>
+  .nav-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4vw;
+    z-index: 900;
+    mix-blend-mode: difference;
+  }
+
+  .nav-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    border: 1px solid rgba(255,255,255,0.5);
+    transition: border-color 0.4s ease, transform 0.5s var(--ease-out-expo);
+  }
+  .nav-mark:hover {
+    border-color: rgba(255,255,255,0.9);
+    transform: rotate(8deg);
+  }
+  .mark-letter {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .nav-trigger {
+    position: relative;
+    width: 44px; height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    cursor: pointer;
+    z-index: 902;
+    background: none;
+    border: none;
+  }
+  .trigger-line {
+    display: block;
+    width: 28px; height: 1px;
+    background: #fff;
+    transition: transform 0.5s var(--ease-out-expo), opacity 0.3s ease;
+  }
+  .nav-trigger.open .trigger-line:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+  .nav-trigger.open .trigger-line:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 901;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    clip-path: circle(0% at calc(100% - 4vw - 22px) 36px);
+    transition: clip-path 0.9s var(--ease-out-expo);
+    pointer-events: none;
+  }
+  .nav-overlay.open {
+    clip-path: circle(150% at calc(100% - 4vw - 22px) 36px);
+    pointer-events: all;
+  }
+
+  .overlay-bg {
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    z-index: -1;
+  }
+  .overlay-bg::before {
+    content: 'L';
+    position: absolute;
+    bottom: -10vh;
+    right: -5vw;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 50vw;
+    color: rgba(255,255,255,0.02);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .overlay-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .overlay-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 0.6rem 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo), color 0.3s ease;
+  }
+  .nav-overlay.open .overlay-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .overlay-link:hover {
+    color: var(--earth);
+  }
+  .link-num {
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+  .link-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: rgba(255,255,255,0.9);
+    line-height: 1.1;
+    position: relative;
+  }
+  .link-label::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--earth);
+    transition: width 0.5s var(--ease-out-expo);
+  }
+  .overlay-link:hover .link-label::after {
+    width: 100%;
+  }
+
+  .overlay-meta {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+  }
+  .meta-dot { opacity: 0.5; }
+</style>

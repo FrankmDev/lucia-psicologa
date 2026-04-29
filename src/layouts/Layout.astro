@@ -1,23 +1,127 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import '../styles/global.css';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Psicóloga colegiada en Granada. Terapia individual, EMDR y acompañamiento emocional." } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://luciapsicologia.es");
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalURL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%239E8272'/%3E%3Ctext x='50' y='68' font-family='serif' font-style='italic' font-size='55' fill='%23fff' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <slot />
+
+  <script>
+    // ── Cursor ──────────────────────────────────────────
+    const dot = document.getElementById('cursorDot');
+    const ring = document.getElementById('cursorRing');
+    if (dot && ring && window.matchMedia('(pointer: fine)').matches) {
+      let mx = 0, my = 0, dx = 0, dy = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+      function loop() {
+        dx += (mx - dx) * 0.15;
+        dy += (my - dy) * 0.15;
+        rx += (mx - rx) * 0.08;
+        ry += (my - ry) * 0.08;
+        dot.style.transform = `translate(${dx}px, ${dy}px) translate(-50%,-50%)`;
+        ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
+        requestAnimationFrame(loop);
+      }
+      loop();
+      document.querySelectorAll('a, button, [data-cursor-expand]').forEach(el => {
+        el.addEventListener('mouseenter', () => ring.classList.add('expanded'));
+        el.addEventListener('mouseleave', () => ring.classList.remove('expanded'));
+      });
+    }
+
+    // ── Scroll Progress ─────────────────────────────────
+    const bar = document.getElementById('scrollProgress');
+    if (bar) {
+      window.addEventListener('scroll', () => {
+        const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        bar.style.width = (pct * 100) + '%';
+      }, { passive: true });
+    }
+
+    // ── Scroll Reveal ───────────────────────────────────
+    const revealEls = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right, .reveal-rotate, .stagger-children');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealEls.forEach(el => io.observe(el));
+
+    // ── Header scroll state ─────────────────────────────
+    const navBar = document.getElementById('navBar');
+    if (navBar) {
+      window.addEventListener('scroll', () => {
+        navBar.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.8);
+      }, { passive: true });
+    }
+
+    // ── Smooth anchors ──────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 20;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ── FAQ Accordion ───────────────────────────────────
+    document.querySelectorAll('.faq-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.faq-item');
+        const answer = item?.querySelector('.faq-answer') as HTMLElement | null;
+        const vLine = trigger.querySelector('.icon-v') as HTMLElement | null;
+        const isOpen = answer?.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(sibling => {
+          if (sibling !== item) {
+            const sa = sibling.querySelector('.faq-answer') as HTMLElement | null;
+            const sv = sibling.querySelector('.icon-v') as HTMLElement | null;
+            sa?.classList.remove('open');
+            if (sv) sv.style.opacity = '1';
+          }
+        });
+        answer?.classList.toggle('open');
+        if (vLine) vLine.style.opacity = isOpen ? '1' : '0';
+      });
+    });
+  </script>
+</body>
+</html>

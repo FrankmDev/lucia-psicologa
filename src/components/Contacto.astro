@@ -1,0 +1,239 @@
+---
+const contactImage = "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop";
+---
+
+<section id="contacto" class="contacto">
+  <div class="contacto-inner">
+    <!-- Left: Image + info -->
+    <div class="contacto-left">
+      <div class="left-content">
+        <div class="portrait-wrap reveal-scale">
+          <div class="portrait-blob">
+            <img src={contactImage} alt="Lucía" decoding="async" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="info-cards reveal stagger-children">
+          <div class="info-card">
+            <span class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 5L10 11L18 5M2 5V15H18V5" stroke="currentColor" stroke-width="1.2"/></svg>
+            </span>
+            <div class="info-text">
+              <span class="info-label">Email</span>
+              <a href="mailto:hola@luciapsicologia.es" class="info-val">hola@luciapsicologia.es</a>
+            </div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 4C3 2.5 4.5 2 5 2H6L8 6L6 7C6 7 7.5 9.5 9 11C10.5 12.5 13 14 13 14L14 12L18 14V15C18 15.5 17.5 17 16 17C12 17 3 8 3 4Z" stroke="currentColor" stroke-width="1.2"/></svg>
+            </span>
+            <div class="info-text">
+              <span class="info-label">Teléfono</span>
+              <a href="tel:+34600123456" class="info-val">+34 600 123 456</a>
+            </div>
+          </div>
+          <div class="info-card">
+            <span class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C6 2 3 5 3 8C3 12 10 18 10 18C10 18 17 12 17 8C17 5 14 2 10 2Z" stroke="currentColor" stroke-width="1.2"/><circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.2"/></svg>
+            </span>
+            <div class="info-text">
+              <span class="info-label">Ubicación</span>
+              <span class="info-val">Granada · Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="contacto-right">
+      <div class="form-block reveal">
+        <span class="type-eyebrow">Contacto</span>
+        <h2 class="form-title">
+          <span class="type-display">Hablemos</span>
+          <span class="type-display accent">juntas</span>
+        </h2>
+        <p class="form-sub">
+          Cuéntame brevemente qué te trae aquí. Te responderé en menos de 24 horas.
+        </p>
+
+        <form class="contacto-form" onsubmit="event.preventDefault(); alert('Formulario de demostración.');">
+          <div class="form-field">
+            <input type="text" id="nombre" name="nombre" placeholder=" " required />
+            <label for="nombre">Nombre</label>
+          </div>
+          <div class="form-field">
+            <input type="email" id="email" name="email" placeholder=" " required />
+            <label for="email">Email</label>
+          </div>
+          <div class="form-field">
+            <input type="tel" id="telefono" name="telefono" placeholder=" " />
+            <label for="telefono">Teléfono</label>
+          </div>
+          <div class="form-field">
+            <textarea id="mensaje" name="mensaje" placeholder=" " rows="3" required></textarea>
+            <label for="mensaje">¿Qué te gustaría contarme?</label>
+          </div>
+          <button type="submit" class="btn-solid form-submit">
+            <span>Enviar mensaje</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacto {
+    position: relative;
+    background: linear-gradient(160deg, var(--cream) 0%, var(--cream-warm) 100%);
+    z-index: 1;
+  }
+  .contacto-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 750px;
+  }
+
+  /* Left */
+  .contacto-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vw;
+  }
+  .left-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    max-width: 360px;
+  }
+
+  .portrait-wrap {
+    position: relative;
+  }
+  .portrait-blob {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(42,31,26,0.1);
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .portrait-blob:hover {
+    transform: scale(1.05);
+  }
+  .portrait-blob img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+
+  .info-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  .info-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--white-warm);
+    border: 0.5px solid var(--line);
+    border-radius: 10px;
+    transition: all 0.4s var(--ease-out-expo);
+  }
+  .info-card:hover {
+    transform: translateX(6px);
+    border-color: var(--taupe);
+    box-shadow: 0 8px 24px rgba(42,31,26,0.05);
+  }
+  .info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: var(--mint-soft);
+    border-radius: 50%;
+    color: var(--taupe);
+    flex-shrink: 0;
+  }
+  .info-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .info-label {
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.6;
+  }
+  .info-val {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--ink);
+    transition: color 0.3s ease;
+  }
+  .info-val:hover {
+    color: var(--taupe);
+  }
+
+  /* Right */
+  .contacto-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vw;
+  }
+  .form-block {
+    width: 100%;
+    max-width: 420px;
+  }
+  .form-block .type-eyebrow {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .form-title {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05em;
+    margin-bottom: 0.8rem;
+  }
+  .form-title .type-display {
+    font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+    color: var(--ink);
+  }
+  .form-title .accent {
+    color: var(--taupe);
+  }
+  .form-sub {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+
+  .contacto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+  .form-submit {
+    margin-top: 1.5rem;
+    width: 100%;
+    padding: 16px;
+  }
+
+  @media (max-width: 900px) {
+    .contacto-inner { grid-template-columns: 1fr; }
+    .contacto-left { padding: 4rem 6vw; }
+    .contacto-right { padding: 4rem 6vw; }
+  }
+</style>

@@ -1,0 +1,283 @@
+---
+const heroImage = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=900&auto=format&fit=crop";
+---
+
+<section id="inicio" class="hero">
+  <!-- Large portrait on left with arch mask -->
+  <div class="hero-visual">
+    <div class="portrait-arch">
+      <img src={heroImage} alt="Lucía, psicóloga clínica" decoding="async" loading="eager" />
+    </div>
+    <!-- Offset mint frame behind portrait -->
+    <div class="portrait-offset" aria-hidden="true"></div>
+    <!-- Floating thin line decor -->
+    <div class="line-decor line-1" aria-hidden="true"></div>
+    <div class="line-decor line-2" aria-hidden="true"></div>
+  </div>
+
+  <!-- Text content, top-right aligned -->
+  <div class="hero-text">
+    <div class="hero-meta reveal">
+      <span>Psicología Clínica</span>
+      <span class="meta-sep">—</span>
+      <span>Granada · Online</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="title-line reveal">Un espacio</span>
+      <span class="title-line reveal">para <em>sanar</em></span>
+      <span class="title-line reveal">y crecer.</span>
+    </h1>
+
+    <p class="hero-desc reveal">
+      Terapia individual basada en evidencia para mujeres que buscan reconectar con su bienestar emocional.
+    </p>
+
+    <div class="hero-cta reveal">
+      <a href="#contacto" class="btn-solid"><span>Pedir cita</span></a>
+      <a href="#sobre-mi" class="btn-ghost">Conóceme</a>
+    </div>
+  </div>
+
+  <!-- Marquee at bottom -->
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="marquee-item">Terapia</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Bienestar</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Sanación</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Crecimiento</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Ansiedad</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Trauma</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Terapia</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Bienestar</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Sanación</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Crecimiento</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Ansiedad</span>
+      <span class="marquee-dot">·</span>
+      <span class="marquee-item">Trauma</span>
+      <span class="marquee-dot">·</span>
+    </div>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-line"><div class="scroll-fill"></div></div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100dvh;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    padding: 100px 6vw 0;
+    overflow: hidden;
+  }
+
+  /* Left visual area */
+  .hero-visual {
+    position: relative;
+    grid-row: 1;
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+  .portrait-arch {
+    position: relative;
+    width: clamp(280px, 32vw, 420px);
+    aspect-ratio: 3/4;
+    border-radius: 200px 200px 8px 8px;
+    overflow: hidden;
+    z-index: 2;
+    box-shadow: 0 30px 80px rgba(42,31,26,0.12);
+  }
+  .portrait-arch img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 8s ease;
+  }
+  .portrait-arch:hover img {
+    transform: scale(1.06);
+  }
+
+  .portrait-offset {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: clamp(280px, 32vw, 420px);
+    aspect-ratio: 3/4;
+    border: 1px solid var(--mint);
+    border-radius: 200px 200px 8px 8px;
+    transform: translate(calc(-50% + 18px), calc(-50% + 18px));
+    z-index: 1;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .line-decor {
+    position: absolute;
+    background: var(--line);
+    pointer-events: none;
+  }
+  .line-1 {
+    width: 1px; height: 120px;
+    top: 10%; right: 15%;
+    animation: float-slow 7s ease-in-out infinite;
+  }
+  .line-2 {
+    width: 80px; height: 1px;
+    bottom: 20%; left: 8%;
+    animation: float 6s ease-in-out infinite 1s;
+  }
+
+  /* Right text area */
+  .hero-text {
+    grid-row: 1;
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 3vw;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+  .hero-meta span {
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+  }
+  .meta-sep { opacity: 0.4; }
+
+  .hero-title {
+    margin-bottom: 2rem;
+  }
+  .title-line {
+    display: block;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(3rem, 6vw, 6.5rem);
+    line-height: 1.05;
+    color: var(--ink);
+  }
+  .title-line em {
+    color: var(--taupe);
+    font-style: italic;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-soft);
+    max-width: 380px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  /* Marquee */
+  .hero-marquee {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    border-top: 0.5px solid var(--line);
+    padding: 1.2rem 0;
+    margin-top: 2rem;
+    overflow: hidden;
+    opacity: 0.4;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--taupe);
+    white-space: nowrap;
+    padding: 0 1.5rem;
+  }
+  .marquee-dot {
+    color: var(--taupe);
+    opacity: 0.3;
+  }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    bottom: 100px;
+    right: 6vw;
+    z-index: 2;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: var(--line);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-fill {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--taupe);
+    animation: scroll-down 2.5s ease-in-out infinite;
+  }
+
+  @media (max-width: 1024px) {
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto auto;
+      padding-top: 90px;
+    }
+    .hero-visual {
+      grid-row: 2;
+      grid-column: 1;
+      padding: 2rem 0 0;
+    }
+    .portrait-arch { width: 240px; }
+    .portrait-offset { width: 240px; }
+    .hero-text {
+      grid-row: 1;
+      grid-column: 1;
+      padding-left: 0;
+      padding-top: 1rem;
+    }
+    .title-line { font-size: clamp(2.6rem, 10vw, 4rem); }
+    .hero-marquee { grid-row: 3; margin-top: 1rem; }
+    .scroll-hint { display: none; }
+    .line-decor { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 80px 6vw 0; }
+    .hero-cta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .portrait-arch { width: 200px; }
+    .portrait-offset { width: 200px; }
+  }
+</style>

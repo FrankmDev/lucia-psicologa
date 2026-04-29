@@ -1,0 +1,116 @@
+---
+const pasos = [
+  {
+    numero: "01",
+    titulo: "Primer contacto",
+    descripcion: "Comenzamos con una primera sesión para entender a fondo la topografía de tu malestar y valorar tu caso. Es un espacio mutuo de testeo, sin compromiso clínico inmediato."
+  },
+  {
+    numero: "02",
+    titulo: "Evaluación específica",
+    descripcion: "Trazamos el mapa. Identificamos el origen y los mantenedores de tu problema actual utilizando herramientas diagnósticas precisas y validadas científicamente."
+  },
+  {
+    numero: "03",
+    titulo: "Intervención y trabajo",
+    descripcion: "Deconstruimos el bloqueo. Trabajamos de forma estructurada con tu fisiología y cognición hasta que puedas navegar solo, sin depender de la terapia indefinidamente."
+  }
+];
+---
+
+<section id="como-trabajo" class="relative py-32 md:py-40 lg:py-52 bg-base overflow-hidden paper-texture">
+  <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
+
+    <!-- Section Header -->
+    <div class="mb-20 md:mb-28 reveal">
+      <p class="section-label mb-6">El proceso</p>
+      <hr class="divider-draw mb-14 reveal" />
+      <h2 class="text-text-primary">
+        <span class="block font-body font-light text-[5vw] md:text-[2.4vw] lg:text-[1.9vw] leading-[1.15] tracking-[-0.01em]">
+          Una ruta clara hacia el
+        </span>
+        <span class="block font-display italic text-[9vw] md:text-[5vw] lg:text-[4vw] leading-[1.05] tracking-[-0.02em] text-accent mt-1" style="font-weight: 400;">
+          bienestar
+        </span>
+      </h2>
+    </div>
+
+    <!-- Steps Grid -->
+    <div class="relative grid md:grid-cols-3 gap-12 md:gap-8 lg:gap-12">
+      <!-- Connector line (desktop) -->
+      <div class="hidden md:block absolute top-[5rem] left-[16%] right-[16%] h-px bg-border" aria-hidden="true"></div>
+
+      {pasos.map((paso, i) => (
+        <div class="relative group reveal" style={`transition-delay: ${0.1 + i * 0.14}s`}>
+          <!-- Giant decorative number -->
+          <span class="step-giant-num" aria-hidden="true">{paso.numero}</span>
+
+          <!-- Content -->
+          <div class="relative z-10 md:pt-4">
+            <span class="step-label">Paso {paso.numero}</span>
+            <h3 class="step-title">{paso.titulo}</h3>
+            <p class="step-desc">{paso.descripcion}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .step-giant-num {
+    position: absolute;
+    top: -1.5rem;
+    left: -0.5rem;
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 12vw, 10rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.045;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .step-label {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    transition: color 0.4s ease;
+  }
+  .group:hover .step-title {
+    color: var(--accent);
+  }
+
+  .step-desc {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .step-giant-num {
+      top: -1rem;
+      left: -0.25rem;
+      font-size: 5rem;
+    }
+  }
+</style>
