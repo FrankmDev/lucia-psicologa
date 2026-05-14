@@ -1,26 +1,31 @@
 ---
+import Container from './ui/Container.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import DustParticles from './ui/DustParticles.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+
 const servicios = [
   {
     titulo: "Ansiedad y Estrés",
-    descripcion: "Abordaje fisiológico y cognitivo para desactivar el bucle de miedo. Pautas claras para recuperar el control de tu sistema nervioso.",
+    descripcion: "Trabajamos juntos para reducir la ansiedad y recuperar la calma. Te ofrezco herramientas claras para gestionar el estrés y sentirte de nuevo en control.",
     num: "01",
     img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop"
   },
   {
     titulo: "Trauma y EMDR",
-    descripcion: "Procesamiento de memorias dolorosas que quedaron bloqueadas. Una metodología veloz y validada para resolver el origen del dolor.",
+    descripcion: "Procesamos de forma segura las memorias que quedaron bloqueadas. El EMDR es una metodología validada científicamente para aliviar el origen del dolor.",
     num: "02",
     img: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=800&auto=format&fit=crop"
   },
   {
     titulo: "Autoestima y Autoconocimiento",
-    descripcion: "Reconstruye tu monólogo interno. Entiende por qué tu mente generó esas creencias para poder reescribirlas.",
+    descripcion: "Reconstruimos tu diálogo interno para que sea más sano y compasivo. Entenderemos juntos el origen de las creencias que te limitan y trabajaremos para transformarlas.",
     num: "03",
     img: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=800&auto=format&fit=crop"
   },
   {
     titulo: "Duelo y Pérdida",
-    descripcion: "Un contenedor seguro donde depositar la pena inmensa, sin plazos artificiales ni mensajes de falsa positividad.",
+    descripcion: "Un espacio seguro donde acompañar tu pena sin prisas ni juicios. El duelo necesita su tiempo, y aquí lo respetamos.",
     num: "04",
     img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=800&auto=format&fit=crop"
   }
@@ -28,17 +33,19 @@ const servicios = [
 ---
 
 <section id="especialidades" class="relative py-32 md:py-40 lg:py-52 bg-surface overflow-hidden paper-texture">
-  <div class="relative z-10 max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
-
+  <GrainOverlay opacity={0.02} />
+  <AmbientLight color="rgba(196,170,148,0.04)" />
+  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
+  <Container maxWidth="1240px">
     <!-- Section Header -->
     <div class="mb-20 md:mb-28 reveal">
       <p class="section-label mb-6">Servicios</p>
       <hr class="divider-draw mb-14 reveal" />
-      <h2 class="text-text-primary">
-        <span class="block font-body font-light text-[5vw] md:text-[2.4vw] lg:text-[1.9vw] leading-[1.15] tracking-[-0.01em]">
+      <h2 class="section-title text-text-primary">
+        <span class="section-title__kicker block font-body font-light">
           Cómo puedo
         </span>
-        <span class="block font-display italic text-[9vw] md:text-[5vw] lg:text-[4vw] leading-[1.05] tracking-[-0.02em] text-accent mt-1" style="font-weight: 400;">
+        <span class="section-title__main block font-display italic text-accent mt-1">
           ayudarte
         </span>
       </h2>
@@ -67,13 +74,24 @@ const servicios = [
     <div id="service-hover-img" class="service-hover-img" aria-hidden="true">
       <img src="" alt="" />
     </div>
-
-  </div>
+  </Container>
 </section>
 
 <style>
   .services-list {
     position: relative;
+  }
+
+  .section-title__kicker {
+    font-size: var(--type-section-kicker);
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+  .section-title__main {
+    font-size: var(--type-section-title);
+    font-weight: 400;
+    line-height: var(--leading-title);
+    letter-spacing: 0;
   }
 
   .service-item {
@@ -116,7 +134,7 @@ const servicios = [
   }
   .service-title {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-size: var(--type-card-title);
     font-weight: 400;
     letter-spacing: -0.01em;
     color: var(--text-primary);
@@ -128,7 +146,7 @@ const servicios = [
   }
   .service-desc {
     font-family: var(--font-body);
-    font-size: 0.82rem;
+    font-size: var(--type-card-body);
     font-weight: 300;
     color: var(--text-secondary);
     line-height: 1.6;
@@ -199,7 +217,7 @@ const servicios = [
       font-size: 1.1rem;
     }
     .service-title {
-      font-size: 1.15rem;
+      font-size: var(--type-card-title-sm);
     }
     .service-hover-img {
       display: none;

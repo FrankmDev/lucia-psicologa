@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { getRelatedArticles } from '../data/blog';
 
 interface Props {
   title: string;
@@ -20,26 +21,10 @@ const {
   slug,
   publishDate,
   category,
-  keywords
+  keywords,
 } = Astro.props;
 
-const relatedArticles = [
-  {
-    title: 'Ansiedad en Córdoba: cómo reconocerla y cuándo pedir ayuda',
-    slug: 'ansiedad-cordoba',
-    description: 'Descubre cómo reconocer los signos de la ansiedad y cuándo es el momento de buscar ayuda psicológica en Córdoba.'
-  },
-  {
-    title: 'Terapia psicológica en Córdoba: qué esperar de tu primera consulta',
-    slug: 'primera-consulta-cordoba',
-    description: 'Resolvemos los miedos más comunes y explicamos qué ocurre realmente en una primera sesión de terapia.'
-  },
-  {
-    title: 'Autoestima y bienestar emocional en Córdoba: trabajarlos desde la terapia',
-    slug: 'autoestima-cordoba',
-    description: 'Entiende qué es la autoestima real y cómo la terapia puede ayudarte a mejorar tu bienestar emocional.'
-  }
-].filter(article => article.slug !== slug);
+const related = getRelatedArticles(slug, 2);
 
 const formattedDate = new Date(publishDate).toLocaleDateString('es-ES', {
   year: 'numeric',
@@ -48,57 +33,78 @@ const formattedDate = new Date(publishDate).toLocaleDateString('es-ES', {
 });
 ---
 
-<Layout title={metaTitle} description={metaDescription}>
+<Layout title={metaTitle} description={metaDescription} keywords={keywords}>
   <Navigation />
 
-  <main class="flex-1">
+  <main class="blog-post">
     <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" class="pt-32 md:pt-36 pb-0 max-w-[860px] mx-auto px-6 sm:px-10">
-      <ol class="flex items-center gap-2 font-body text-caption uppercase tracking-[0.12em]">
-        <li><a href="/" class="hover:text-accent transition-colors duration-500">Inicio</a></li>
-        <li aria-hidden="true" class="text-text-muted">/</li>
-        <li><a href="/blog" class="hover:text-accent transition-colors duration-500">Blog</a></li>
-        <li aria-hidden="true" class="text-text-muted">/</li>
-        <li aria-current="page" class="text-text-secondary truncate max-w-[200px]">{title}</li>
+    <nav aria-label="Breadcrumb" class="blog-breadcrumb">
+      <ol class="breadcrumb-list">
+        <li><a href="/" class="breadcrumb-link">Inicio</a></li>
+        <li aria-hidden="true" class="breadcrumb-sep">/</li>
+        <li><a href="/blog" class="breadcrumb-link">Blog</a></li>
+        <li aria-hidden="true" class="breadcrumb-sep">/</li>
+        <li aria-current="page" class="breadcrumb-current">{title}</li>
       </ol>
     </nav>
 
-    <article class="max-w-[860px] mx-auto px-6 sm:px-10 lg:px-0 py-12 md:py-16">
-      <header class="mb-14 md:mb-18">
-        <p class="section-label mb-6 flex items-center gap-3">
-          <span class="px-2.5 py-0.5 bg-accent-soft text-accent text-caption font-medium tracking-[0.14em]">{category}</span>
-          <time datetime={publishDate} class="text-text-muted">{formattedDate}</time>
-        </p>
-        <h1 class="font-display text-[2.4rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] tracking-[-0.02em] text-text-primary text-balance font-light">
-          {title}
-        </h1>
+    <article class="blog-article">
+      <!-- Header -->
+      <header class="blog-article__header">
+        <div class="blog-article__meta">
+          <span class="blog-article__category">{category}</span>
+          <span class="blog-article__sep" aria-hidden="true">·</span>
+          <time datetime={publishDate} class="blog-article__date">{formattedDate}</time>
+        </div>
+        <h1 class="blog-article__title">{title}</h1>
       </header>
 
+      <!-- Content -->
       <div class="blog-content">
         <slot />
       </div>
 
+      <!-- Divider -->
+      <div class="blog-divider" aria-hidden="true">
+        <span class="blog-divider__line"></span>
+        <span class="blog-divider__ornament">&#10086;</span>
+        <span class="blog-divider__line"></span>
+      </div>
+
       <!-- CTA Final -->
-      <aside class="mt-20 p-8 md:p-10 bg-surface border border-border-light text-center" aria-labelledby="cta-heading">
-        <h2 id="cta-heading" class="font-display text-[1.4rem] md:text-[1.6rem] font-light text-text-primary mb-3">¿Te gustaría dar el siguiente paso?</h2>
-        <p class="font-body text-body-sm text-text-secondary font-light leading-relaxed max-w-md mx-auto mb-7">
+      <aside class="blog-cta" aria-labelledby="cta-heading">
+        <h2 id="cta-heading" class="blog-cta__title">¿Te gustaría dar el siguiente paso?</h2>
+        <p class="blog-cta__text">
           Si algo de lo que has leído resuena contigo, estaré encantada de acompañarte.
         </p>
-        <a href="/#contacto" class="btn-primary">Ir a contacto</a>
+        <a href="/#contacto" class="blog-cta__button">
+          <span>Ir a contacto</span>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </aside>
 
       <!-- Related Articles -->
-      <aside class="mt-16" aria-labelledby="related-heading">
-        <h2 id="related-heading" class="font-display text-[1.6rem] md:text-[1.9rem] text-text-primary mb-8 font-light">Artículos relacionados</h2>
-        <div class="grid sm:grid-cols-2 gap-4">
-          {relatedArticles.slice(0, 2).map(article => (
-            <a href={`/blog/${article.slug}`} class="block p-6 bg-surface-elevated border border-border-light hover:border-accent-light/50 hover:shadow-soft transition-all duration-500 group">
-              <h3 class="font-body text-[0.95rem] font-medium text-text-primary mb-2 group-hover:text-accent transition-colors duration-500">{article.title}</h3>
-              <p class="font-body text-[0.8rem] text-text-secondary font-light leading-relaxed">{article.description}</p>
-            </a>
-          ))}
-        </div>
-      </aside>
+      {related.length > 0 && (
+        <aside class="blog-related" aria-labelledby="related-heading">
+          <h2 id="related-heading" class="blog-related__title">Artículos relacionados</h2>
+          <div class="blog-related__grid">
+            {related.map(article => (
+              <a href={`/blog/${article.slug}`} class="blog-related__card">
+                <span class="blog-related__category">{article.categoryLabel}</span>
+                <h3 class="blog-related__card-title">{article.title}</h3>
+                <p class="blog-related__card-desc">{article.excerpt}</p>
+                <span class="blog-related__card-arrow" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            ))}
+          </div>
+        </aside>
+      )}
     </article>
   </main>
 
@@ -106,67 +112,462 @@ const formattedDate = new Date(publishDate).toLocaleDateString('es-ES', {
 </Layout>
 
 <style is:global>
+  /* ═══════════════════════════════════════════════════════════
+     BLOG POST — Layout & Typography (Organic Editorial)
+     ═══════════════════════════════════════════════════════════ */
+
+  .blog-post {
+    position: relative;
+    background: var(--parchment);
+    min-height: 100vh;
+    padding: 8rem 0 6rem;
+  }
+
+  /* Breadcrumb */
+  .blog-breadcrumb {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 6vw;
+    margin-bottom: 2rem;
+  }
+  .breadcrumb-list {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--taupe);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .breadcrumb-link {
+    color: var(--taupe);
+    opacity: 0.6;
+    text-decoration: none;
+    transition: opacity 0.4s ease, color 0.4s ease;
+  }
+  .breadcrumb-link:hover {
+    opacity: 1;
+    color: var(--earth);
+  }
+  .breadcrumb-sep {
+    opacity: 0.2;
+  }
+  .breadcrumb-current {
+    color: var(--ink-soft);
+    opacity: 0.7;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Article container */
+  .blog-article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+
+  /* Header */
+  .blog-article__header {
+    margin-bottom: 3.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .blog-article__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.2rem;
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .blog-article__category {
+    display: inline-block;
+    padding: 0.25rem 0.7rem;
+    background: var(--sage-muted);
+    color: var(--sage-dark);
+    border-radius: 2px;
+    font-size: var(--type-meta);
+    letter-spacing: 0.14em;
+  }
+  .blog-article__sep {
+    color: var(--taupe);
+    opacity: 0.3;
+  }
+  .blog-article__date {
+    color: var(--taupe);
+    opacity: 0.55;
+  }
+  .blog-article__title {
+    font-family: var(--font-display);
+    font-size: var(--type-section-title);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  /* ── Content Typography ─────────────────────────────────── */
   .blog-content {
     font-family: var(--font-body);
-    color: var(--text-secondary);
+    color: var(--ink-soft);
     line-height: 1.85;
     font-weight: 400;
+    font-size: var(--type-section-subtitle);
   }
 
   .blog-content p {
     margin-bottom: 1.5rem;
-    font-size: 1.02rem;
+    font-size: var(--type-section-subtitle);
     line-height: 1.85;
   }
 
   .blog-content h2 {
     font-family: var(--font-display);
-    font-size: 1.7rem;
+    font-size: var(--type-card-title);
     font-weight: 400;
+    font-style: italic;
     line-height: 1.15;
-    color: var(--text-primary);
-    margin-top: 3rem;
-    margin-bottom: 1.1rem;
+    color: var(--ink);
+    margin-top: 3.5rem;
+    margin-bottom: 1.2rem;
     letter-spacing: -0.01em;
   }
 
   .blog-content h3 {
     font-family: var(--font-body);
-    font-size: 1.05rem;
+    font-size: var(--type-card-title-sm);
     font-weight: 500;
     line-height: 1.4;
-    color: var(--text-primary);
-    margin-top: 2.2rem;
-    margin-bottom: 0.8rem;
+    color: var(--ink);
+    margin-top: 2.5rem;
+    margin-bottom: 0.9rem;
   }
 
   .blog-content a {
-    color: var(--accent);
+    color: var(--earth);
     text-decoration: underline;
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
-    text-decoration-color: var(--accent-light);
-    transition: text-decoration-color 0.4s ease;
+    text-decoration-color: var(--earth-light);
+    transition: text-decoration-color 0.4s ease, color 0.4s ease;
   }
-
   .blog-content a:hover {
-    text-decoration-color: var(--accent);
+    text-decoration-color: var(--earth);
+    color: var(--sage-dark);
   }
 
   .blog-content strong {
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--ink);
   }
 
-  @media (max-width: 720px) {
-    .blog-content p {
-      font-size: 0.95rem;
+  /* Lead paragraph */
+  .blog-content .lead {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--type-section-subtitle);
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--ink);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Blockquote */
+  .blog-content blockquote {
+    margin: 2.5rem 0;
+    padding: 1.8rem 2.2rem;
+    border-left: 2px solid var(--earth);
+    background: linear-gradient(90deg, var(--sage-muted) 0%, transparent 100%);
+    position: relative;
+    border-radius: 0 2px 2px 0;
+  }
+  .blog-content blockquote::before {
+    content: '"';
+    position: absolute;
+    top: 0.6rem;
+    left: 1.2rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 3.2rem;
+    color: var(--earth);
+    opacity: 0.12;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .blog-content blockquote p {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--type-section-subtitle);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+  .blog-content blockquote cite {
+    display: block;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-size: var(--type-caption);
+    font-weight: 400;
+    color: var(--taupe);
+    opacity: 0.7;
+    letter-spacing: 0.02em;
+  }
+
+  /* Lists */
+  .blog-content ul {
+    margin: 1.5rem 0 2rem;
+    padding-left: 0;
+    list-style: none;
+  }
+  .blog-content ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.9rem;
+    font-size: var(--type-section-subtitle);
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .blog-content ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--earth);
+    opacity: 0.4;
+  }
+  .blog-content ul li strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* Divider */
+  .blog-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 4rem 0;
+  }
+  .blog-divider__line {
+    display: block;
+    flex: 1;
+    max-width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--earth), transparent);
+    opacity: 0.15;
+  }
+  .blog-divider__ornament {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--type-caption);
+    color: var(--earth);
+    opacity: 0.3;
+  }
+
+  /* CTA Section */
+  .blog-cta {
+    padding: 3rem 2.5rem;
+    background: linear-gradient(165deg, rgba(255,253,249,0.78) 0%, rgba(250,247,240,0.45) 50%, rgba(252,249,243,0.22) 100%);
+    border-top: 1px solid rgba(196,170,148,0.09);
+    border-radius: 2px;
+    text-align: center;
+    box-shadow:
+      0 0.5px 0.8px rgba(44,44,44,0.012),
+      inset 0 1px 0 rgba(255,255,255,0.55);
+  }
+  .blog-cta__title {
+    font-family: var(--font-display);
+    font-size: var(--type-card-title);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    margin: 0 0 0.6rem;
+    line-height: 1.2;
+  }
+  .blog-cta__text {
+    font-family: var(--font-body);
+    font-size: var(--type-card-body);
+    font-weight: 300;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    line-height: 1.7;
+    max-width: 45ch;
+    margin: 0 auto 1.5rem;
+  }
+  .blog-cta__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 16px 36px;
+    background: rgba(107,125,106,0.06);
+    color: var(--earth);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--type-meta);
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(107,125,106,0.15);
+    border-radius: 100px;
+    transition:
+      background 0.6s ease,
+      border-color 0.6s ease,
+      color 0.5s ease,
+      transform 0.5s var(--ease-out-expo);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .blog-cta__button:hover {
+    background: rgba(107,125,106,0.12);
+    border-color: rgba(107,125,106,0.3);
+    color: var(--sage-dark);
+    transform: translateY(-2px);
+  }
+  .blog-cta__button svg {
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .blog-cta__button:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* Related Articles */
+  .blog-related {
+    margin-top: 4rem;
+  }
+  .blog-related__title {
+    font-family: var(--font-display);
+    font-size: var(--type-card-title);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--ink);
+    margin: 0 0 1.5rem;
+    line-height: 1.2;
+  }
+  .blog-related__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .blog-related__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.8rem 2rem;
+    background: linear-gradient(165deg, rgba(255,253,249,0.78) 0%, rgba(250,247,240,0.45) 50%, rgba(252,249,243,0.22) 100%);
+    border-top: 1px solid rgba(196,170,148,0.09);
+    border-radius: 2px;
+    text-decoration: none;
+    color: inherit;
+    box-shadow:
+      0 0.5px 0.8px rgba(44,44,44,0.012),
+      inset 0 1px 0 rgba(255,255,255,0.55);
+    transition:
+      transform 0.9s var(--ease-out-expo),
+      box-shadow 0.9s var(--ease-out-expo),
+      background 0.9s ease;
+  }
+  .blog-related__card:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(165deg, rgba(255,254,252,0.92) 0%, rgba(253,250,245,0.6) 50%, rgba(254,252,248,0.35) 100%);
+    box-shadow:
+      0 2px 4px rgba(44,44,44,0.015),
+      0 8px 16px rgba(44,44,44,0.02);
+  }
+  .blog-related__category {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.2rem 0.5rem;
+    background: var(--sage-muted);
+    color: var(--sage-dark);
+    border-radius: 2px;
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .blog-related__card-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: var(--type-card-title-sm);
+    line-height: 1.3;
+    color: var(--ink);
+    margin: 0;
+    transition: color 0.5s ease;
+  }
+  .blog-related__card:hover .blog-related__card-title {
+    color: var(--earth);
+  }
+  .blog-related__card-desc {
+    font-family: var(--font-body);
+    font-size: var(--type-card-body);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    margin: 0;
+  }
+  .blog-related__card-arrow {
+    color: var(--taupe);
+    opacity: 0.25;
+    margin-top: 0.5rem;
+    transition: all 0.5s var(--ease-out-expo);
+    transform: translateX(-4px);
+  }
+  .blog-related__card:hover .blog-related__card-arrow {
+    opacity: 0.6;
+    transform: translateX(0);
+    color: var(--earth);
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .blog-post { padding: 7rem 0 5rem; }
+    .blog-article { padding: 0 5vw; }
+    .blog-content h2 { font-size: var(--type-card-title); margin-top: 3rem; }
+    .blog-related__grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 640px) {
+    .blog-post { padding: 6rem 0 4rem; }
+    .blog-breadcrumb { padding: 0 5vw; margin-bottom: 1.5rem; }
+    .blog-article { padding: 0 5vw; }
+    .blog-article__header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; }
+    .blog-article__title { font-size: var(--type-section-title); }
+    .blog-content p,
+    .blog-content ul li { font-size: var(--type-section-subtitle); }
+    .blog-content h2 { font-size: var(--type-card-title); margin-top: 2.5rem; }
+    .blog-content h3 { font-size: var(--type-card-title-sm); margin-top: 2rem; }
+    .blog-content .lead { font-size: var(--type-section-subtitle); }
+    .blog-content blockquote {
+      padding: 1.2rem 1.4rem;
+      margin: 2rem 0;
     }
-    .blog-content h2 {
-      font-size: 1.4rem;
-    }
-    .blog-content h3 {
-      font-size: 1rem;
-    }
+    .blog-content blockquote p { font-size: var(--type-section-subtitle); }
+    .blog-content blockquote::before { font-size: 2.2rem; }
+    .blog-cta { padding: 2rem 1.5rem; }
+    .blog-related__card { padding: 1.4rem 1.6rem; }
   }
 </style>

@@ -1,0 +1,61 @@
+---
+interface Props {
+  count?: number;
+  class?: string;
+  color?: string;
+}
+
+const { count = 10, class: className = '', color = 'rgba(245, 240, 232, 0.3)' } = Astro.props;
+
+const particles = Array.from({ length: count }, (_, i) => ({
+  x: [10, 80, 30, 65, 20, 85, 45, 55, 75, 15][i % 10],
+  y: [20, 15, 70, 40, 80, 55, 35, 85, 25, 50][i % 10],
+  d: [24, 30, 20, 26, 22, 28, 18, 32, 25, 35][i % 10],
+  delay: [-2, -8, -5, -12, -15, -10, -7, -18, -3, -20][i % 10],
+  size: [2, 1.5, 2.5, 1.5, 2, 1.5, 2, 1, 2, 1.5][i % 10],
+}));
+---
+
+<div class:list={['dust-layer', className]} aria-hidden="true">
+  {particles.map(p => (
+    <div
+      class="dust-particle"
+      style={`--x:${p.x}%;--y:${p.y}%;--d:${p.d}s;--delay:${p.delay}s;--size:${p.size}px;--color:${color};`}
+    />
+  ))}
+</div>
+
+<style>
+  .dust-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .dust-particle {
+    position: absolute;
+    left: var(--x);
+    top: var(--y);
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: var(--color);
+    box-shadow: 0 0 6px 1px var(--color);
+    animation: dust-drift var(--d) ease-in-out infinite;
+    animation-delay: var(--delay);
+    will-change: transform, opacity;
+  }
+  @keyframes dust-drift {
+    0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+    25% { transform: translate(10px, -14px); opacity: 0.4; }
+    50% { transform: translate(-6px, -22px); opacity: 0.25; }
+    75% { transform: translate(12px, -10px); opacity: 0.35; }
+  }
+
+  @media (max-width: 768px) {
+    .dust-layer {
+      display: none;
+    }
+  }
+</style>

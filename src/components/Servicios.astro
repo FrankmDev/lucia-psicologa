@@ -1,268 +1,1021 @@
 ---
+import SectionHeader from './ui/SectionHeader.astro';
+import CardSurface from './ui/CardSurface.astro';
+import PageNumber from './ui/PageNumber.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+import FloatOrb from './ui/FloatOrb.astro';
+import InkBlob from './ui/InkBlob.astro';
+import BotanicalSVG from './ui/BotanicalSVG.astro';
+import Container from './ui/Container.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import DustParticles from './ui/DustParticles.astro';
+
 const servicios = [
   {
     num: '01',
     title: 'Terapia Individual',
-    desc: 'Un espacio seguro y confidencial para explorar tus emociones, sanar heridas y construir una vida más plena. Adaptado a tu ritmo y a tus necesidades.',
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1200&auto=format&fit=crop',
+    desc: 'Un espacio seguro y confidencial para explorar tus emociones, sanar experiencias dificiles y construir una vida con mayor bienestar. Cada sesion se adapta a tu ritmo.',
+    tags: ['Presencial', 'Online'],
+    icon: 'person',
+    featured: true,
+    duration: '50 min',
   },
   {
     num: '02',
     title: 'EMDR',
-    desc: 'Terapia especializada para procesar recuerdos traumáticos mediante estimulación bilateral. Una de las intervenciones con mayor evidencia científica para el trauma.',
-    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=1200&auto=format&fit=crop',
+    desc: 'Terapia especializada para procesar recuerdos dificiles de forma segura. Amplia evidencia cientifica para aliviar el impacto de experiencias dolorosas.',
+    tags: ['Trauma', 'Panico'],
+    icon: 'eye',
+    featured: false,
+    duration: '60-90 min',
   },
   {
     num: '03',
-    title: 'Ansiedad y Estrés',
-    desc: 'Aprende a gestionar la ansiedad, el estrés crónico y el agotamiento emocional. Herramientas concretas para recuperar tu equilibrio interior.',
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop',
+    title: 'Ansiedad y Estres',
+    desc: 'Aprende a gestionar la ansiedad y el agotamiento. Herramientas practicas adaptadas para recuperar tu equilibrio.',
+    tags: ['Ansiedad', 'Burnout'],
+    icon: 'brain',
+    featured: false,
+    duration: '50 min',
   },
   {
     num: '04',
     title: 'Crecimiento Personal',
-    desc: 'Acompañamiento para quienes buscan un cambio consciente: claridad de propósito, autoestima sólida y una relación más auténtica contigo misma.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop',
+    desc: 'Acompanamiento para quienes buscan cambio consciente: claridad, autoestima fortalecida y relaciones mas autenticas.',
+    tags: ['Autoestima', 'Proposito'],
+    icon: 'flower',
+    featured: false,
+    duration: '50 min',
   },
 ];
+
+const iconSvgs: Record<string, string> = {
+  person: `<svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="service-icon">
+    <circle cx="32" cy="20" r="8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 54V46C20 40 24 36 32 36C40 36 44 40 44 46V54" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 36V44" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="32" cy="32" r="24" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 5" opacity="0.25"/>
+  </svg>`,
+  eye: `<svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="service-icon">
+    <path d="M8 32C8 32 16 14 32 14C48 14 56 32 56 32C56 32 48 50 32 50C16 50 8 32 8 32Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="32" cy="32" r="7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12 26L6 24" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+    <path d="M12 38L6 40" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+    <path d="M52 26L58 24" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+    <path d="M52 38L58 40" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+    <circle cx="32" cy="32" r="2.5" fill="currentColor" opacity="0.3"/>
+  </svg>`,
+  brain: `<svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="service-icon">
+    <path d="M22 18C18 20 14 26 14 34C14 44 22 50 32 50C42 50 50 44 50 34C50 26 46 20 42 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 14V50" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+    <path d="M22 18C26 22 28 28 28 34" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+    <path d="M42 18C38 22 36 28 36 34" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+    <path d="M18 30H24" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M40 30H46" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M20 40H26" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+    <path d="M38 40H44" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+    <circle cx="32" cy="34" r="3" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+  </svg>`,
+  flower: `<svg viewBox="0 0 64 64" fill="none" aria-hidden="true" class="service-icon">
+    <circle cx="32" cy="26" r="6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 20C32 14 28 10 22 10C16 10 14 16 14 20C14 26 20 28 32 20Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 20C32 14 36 10 42 10C48 10 50 16 50 20C50 26 44 28 32 20Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 32C32 38 28 42 22 42C16 42 14 36 14 32C14 26 20 24 32 32Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 32C32 38 36 42 42 42C48 42 50 36 50 32C50 26 44 24 32 32Z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M32 42V56" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <path d="M26 50C26 50 28 54 32 54C36 54 38 50 38 50" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+    <path d="M32 14V10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.3"/>
+  </svg>`,
+};
 ---
 
-<section id="servicios" class="servicios">
-  <div class="servicios-sticky">
-    <div class="servicios-header reveal">
-      <span class="type-eyebrow">Servicios</span>
-      <h2 class="servicios-title">
-        <span class="type-display">Cómo puedo</span>
-        <span class="type-display accent">ayudarte</span>
-      </h2>
-    </div>
+<section id="servicios" class="servicios" data-servicios>
+  <GrainOverlay opacity={0.02} />
+  <AmbientLight color="rgba(196,170,148,0.04)" />
+  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
+  <FloatOrb size={550} top="-18%" right="-12%" color="var(--sage-muted)" blur={120} animation="float-1" />
+  <FloatOrb size={420} bottom="-12%" left="-10%" color="var(--gold-soft)" opacity={0.35} animation="float-2" />
+  <FloatOrb size={220} top="55%" right="4%" color="var(--sage-muted)" opacity={0.25} animation="float-3" />
 
-    <div class="servicios-track" id="serviciosTrack">
-      {servicios.map((s, i) => (
-        <div class="service-panel" data-index={i}>
-          <div class="panel-visual">
-            <img src={s.image} alt={s.title} loading="lazy" decoding="async" />
-            <div class="panel-overlay"></div>
-          </div>
-          <div class="panel-content">
-            <span class="panel-num">{s.num}</span>
-            <h3 class="panel-title">{s.title}</h3>
-            <p class="panel-desc">{s.desc}</p>
-            <a href="#contacto" class="panel-link">Saber más →</a>
-          </div>
-          <div class="panel-watermark" aria-hidden="true">{s.num}</div>
-        </div>
-      ))}
-    </div>
+  <InkBlob width={420} height={340} top="-10%" left="-8%" color="var(--sage)" opacity={0.03} animation="morph-2" />
+  <InkBlob width={340} height={280} bottom="-8%" right="-6%" color="var(--gold)" opacity={0.025} animation="morph-blob" />
 
-    <!-- Progress bar -->
-    <div class="track-progress">
-      <div class="track-bar" id="trackBar"></div>
-    </div>
+  <BotanicalSVG variant="left" color="var(--sage-dark)" opacity={0.06} width={70} style="left: 2%; top: 15%;" />
+  <BotanicalSVG variant="right" color="var(--gold)" opacity={0.1} width={90} style="right: 3%; top: 60%; animation-delay: -6s;" />
+
+  <!-- Section watermark -->
+  <div class="servicios-watermark" aria-hidden="true">
+    <span class="watermark-text">Areas</span>
   </div>
+
+  <!-- Decorative grid lines -->
+  <div class="grid-lines" aria-hidden="true">
+    <div class="grid-line grid-line--v1"></div>
+    <div class="grid-line grid-line--v2"></div>
+    <div class="grid-line grid-line--h1"></div>
+  </div>
+
+  <Container maxWidth="1200px">
+    <SectionHeader
+      eyebrow="Servicios"
+      title={['Areas de', 'trabajo']}
+      subtitle="Aqui puedes venir tal como eres. Exploramos juntas tu experiencia para encontrar el camino hacia la calma y la claridad."
+      variant="ornamented"
+      index="03"
+      class="reveal-blur"
+    />
+
+    <!-- Bento grid -->
+    <div class="servicios-bento">
+      <!-- Featured card: spans full width on top -->
+      <article class="service-card service-card--featured reveal-up" data-index={0}>
+        <CardSurface watermark={servicios[0].num} class="service-card__surface service-card__surface--featured" hoverable={true}>
+          <div class="featured-accent-line" aria-hidden="true"></div>
+          <div class="featured-badge" aria-hidden="true">
+            <span class="featured-badge-text">Mas solicitado</span>
+          </div>
+          <div class="featured-layout">
+            <div class="featured-visual">
+              <div class="featured-icon-wrap">
+                <Fragment set:html={iconSvgs[servicios[0].icon]} />
+              </div>
+              <div class="featured-num" aria-hidden="true">{servicios[0].num}</div>
+            </div>
+            <div class="featured-content">
+              <div class="card-meta">
+                {servicios[0].tags.map((tag, ti) => (
+                  <>
+                    <span class="card-meta-item">{tag}</span>
+                    {ti < servicios[0].tags.length - 1 && <span class="card-meta-sep" aria-hidden="true">·</span>}
+                  </>
+                ))}
+                <span class="card-meta-divider" aria-hidden="true"></span>
+                <span class="card-meta-duration">{servicios[0].duration}</span>
+              </div>
+              <h3 class="featured-title">{servicios[0].title}</h3>
+              <p class="featured-desc">{servicios[0].desc}</p>
+              <a href="#contacto" class="card-cta card-cta--featured">
+                <span class="cta-bg" aria-hidden="true"></span>
+                <span class="cta-text">Reservar sesion</span>
+                <span class="cta-arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </CardSurface>
+      </article>
+
+      <!-- Bottom row: 3 cards aligned -->
+      <div class="servicios-subgrid">
+        {servicios.slice(1).map((s, i) => (
+          <article class="service-card reveal-up" data-index={i + 1}>
+            <CardSurface watermark={s.num} class="service-card__surface" hoverable={true}>
+              <div class="card-accent-line" aria-hidden="true"></div>
+              <div class="card-glow" aria-hidden="true"></div>
+              <div class="card-top">
+                <div class="card-icon-wrap">
+                  <Fragment set:html={iconSvgs[s.icon]} />
+                </div>
+                <div class="card-top-right">
+                  <span class="card-num" aria-hidden="true">{s.num}</span>
+                  <span class="card-duration">{s.duration}</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="card-meta">
+                  {s.tags.map((tag, ti) => (
+                    <>
+                      <span class="card-meta-item">{tag}</span>
+                      {ti < s.tags.length - 1 && <span class="card-meta-sep" aria-hidden="true">·</span>}
+                    </>
+                  ))}
+                </div>
+                <h3 class="card-title">{s.title}</h3>
+                <p class="card-desc">{s.desc}</p>
+              </div>
+              <div class="card-footer">
+                <a href="#contacto" class="card-cta">
+                  <span class="cta-bg" aria-hidden="true"></span>
+                  <span class="cta-text">Consultar</span>
+                  <span class="cta-arrow" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+            </CardSurface>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <!-- Trust statement -->
+    <div class="servicios-trust reveal-up" data-delay="600">
+      <div class="trust-line" aria-hidden="true"></div>
+      <p class="trust-text">
+        Todas las sesiones se adaptan a tus necesidades. Puedes combinar modalidades
+        o cambiar de enfoque durante el proceso.
+      </p>
+      <div class="trust-ornament" aria-hidden="true">
+        <span class="ornament-line"></span>
+        <span class="ornament-fleur">&#10086;</span>
+        <span class="ornament-line"></span>
+      </div>
+    </div>
+  </Container>
+
+  <PageNumber number="03" />
 </section>
-
-<script>
-  const section = document.querySelector('.servicios');
-  const track = document.getElementById('serviciosTrack');
-  const bar = document.getElementById('trackBar');
-
-  function updateScroll() {
-    const rect = section.getBoundingClientRect();
-    const sectionHeight = section.offsetHeight;
-    const viewportHeight = window.innerHeight;
-    const scrollable = sectionHeight - viewportHeight;
-    const scrolled = -rect.top;
-    const progress = Math.max(0, Math.min(1, scrolled / scrollable));
-    const translate = progress * (track.scrollWidth - window.innerWidth);
-    track.style.transform = `translateX(-${translate}px)`;
-    bar.style.transform = `scaleX(${progress})`;
-  }
-
-  window.addEventListener('scroll', updateScroll, { passive: true });
-  window.addEventListener('resize', updateScroll);
-</script>
 
 <style>
   .servicios {
     position: relative;
-    height: 400vh;
-    background: var(--ink);
-    color: #fff;
-  }
-  .servicios-sticky {
-    position: sticky;
-    top: 0;
-    height: 100dvh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .servicios-header {
-    position: absolute;
-    top: 6vh;
-    left: 6vw;
-    z-index: 10;
-  }
-  .servicios-header .type-eyebrow {
-    color: rgba(255,255,255,0.3);
-    display: block;
-    margin-bottom: 1rem;
-  }
-  .servicios-title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.05em;
-  }
-  .servicios-title .type-display {
-    font-size: clamp(1.8rem, 3.5vw, 3rem);
-    color: #fff;
-  }
-  .servicios-title .accent {
-    color: var(--earth);
-  }
-
-  .servicios-track {
-    display: flex;
-    gap: 0;
-    will-change: transform;
-    padding-left: 6vw;
-    padding-top: 10vh;
-  }
-
-  .service-panel {
-    position: relative;
-    flex-shrink: 0;
-    width: 85vw;
-    max-width: 1100px;
-    height: 65vh;
-    margin-right: 4vw;
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    gap: 3rem;
-    padding: 3rem;
-    border: 0.5px solid rgba(255,255,255,0.08);
-    background: rgba(255,255,255,0.02);
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(196,170,148,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(107,125,106,0.04) 0%, transparent 40%),
+      var(--cream-warm);
+    padding: 10rem 0 12rem;
     overflow: hidden;
   }
-
-  .panel-visual {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .panel-visual img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    filter: grayscale(30%);
-    transition: filter 0.8s ease, transform 0.8s var(--ease-out-expo);
-  }
-  .service-panel:hover .panel-visual img {
-    filter: grayscale(0%);
-    transform: scale(1.04);
-  }
-  .panel-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(42,31,26,0.3), transparent 60%);
-  }
-
-  .panel-content {
-    position: relative;
-    z-index: 2;
-  }
-  .panel-num {
-    display: block;
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
-    margin-bottom: 1.5rem;
-  }
-  .panel-title {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(2rem, 3.5vw, 3.5rem);
-    color: #fff;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-  }
-  .panel-desc {
-    font-size: 0.92rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.45);
-    margin-bottom: 2rem;
-    max-width: 380px;
-  }
-  .panel-link {
-    font-size: 0.65rem;
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--earth);
-    position: relative;
-    padding-bottom: 4px;
-  }
-  .panel-link::after {
+  .servicios::before {
     content: '';
     position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 1px;
-    background: var(--earth);
-    transition: width 0.5s var(--ease-out-expo);
-  }
-  .panel-link:hover::after {
-    width: 100%;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(70vw, 800px);
+    height: min(70vw, 800px);
+    border-radius: 50%;
+    border: 1px solid rgba(107,125,106,0.025);
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .panel-watermark {
+  /* Watermark */
+  .servicios-watermark {
     position: absolute;
-    bottom: -4vh;
-    right: -2vw;
+    top: 8%;
+    right: -2%;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+    transform: rotate(-90deg);
+    transform-origin: right top;
+  }
+  .watermark-text {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 20vw;
     font-weight: 300;
-    color: rgba(255,255,255,0.015);
+    font-size: clamp(6rem, 12vw, 10rem);
+    color: var(--earth);
+    opacity: 0.02;
     line-height: 1;
-    pointer-events: none;
-    user-select: none;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
-  .track-progress {
+  /* Grid lines */
+  .grid-lines {
     position: absolute;
-    bottom: 6vh;
-    left: 6vw;
-    right: 6vw;
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-    z-index: 10;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
   }
-  .track-bar {
-    height: 100%;
+  .grid-line {
+    position: absolute;
     background: var(--earth);
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: transform 0.1s linear;
+    opacity: 0;
+    transition: opacity 2s ease, height 2s var(--ease-out-expo), width 2s var(--ease-out-expo);
+  }
+  .grid-line--v1 {
+    left: 20%;
+    top: 0;
+    width: 1px;
+    height: 0;
+    opacity: 0.04;
+  }
+  .servicios.visible .grid-line--v1 {
+    height: 100%;
+    opacity: 0.04;
+    transition-delay: 0.3s;
+  }
+  .grid-line--v2 {
+    right: 25%;
+    top: 0;
+    width: 1px;
+    height: 0;
+    opacity: 0.03;
+  }
+  .servicios.visible .grid-line--v2 {
+    height: 100%;
+    opacity: 0.03;
+    transition-delay: 0.6s;
+  }
+  .grid-line--h1 {
+    top: 55%;
+    left: 0;
+    width: 0;
+    height: 1px;
+    opacity: 0.03;
+  }
+  .servicios.visible .grid-line--h1 {
+    width: 100%;
+    opacity: 0.03;
+    transition-delay: 0.9s;
   }
 
-  @media (max-width: 900px) {
-    .service-panel {
-      width: 90vw;
-      grid-template-columns: 1fr;
-      height: auto;
-      min-height: 55vh;
-      padding: 2rem;
+  /* Bento layout */
+  .servicios-bento {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 5rem;
+  }
+
+  .servicios-subgrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  /* Card base */
+  .service-card {
+    position: relative;
+    height: 100%;
+  }
+  .service-card__surface {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Accent line - left border glow */
+  .card-accent-line {
+    position: absolute;
+    left: 0;
+    top: 12%;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--sage-muted), transparent);
+    opacity: 0;
+    transition: height 0.8s var(--ease-out-expo), opacity 0.6s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .service-card:hover .card-accent-line {
+    height: 76%;
+    opacity: 0.35;
+  }
+
+  .featured-accent-line {
+    position: absolute;
+    left: 0;
+    top: 8%;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(to bottom, var(--sage-muted), transparent);
+    opacity: 0;
+    transition: height 0.9s var(--ease-out-expo), opacity 0.6s ease;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .service-card--featured:hover .featured-accent-line {
+    height: 84%;
+    opacity: 0.35;
+  }
+
+  /* Featured card */
+  .service-card--featured {
+    margin-bottom: 0.5rem;
+  }
+  .service-card__surface--featured {
+    padding: 3rem 3.2rem 2.8rem;
+    min-height: 280px;
+    border-left: 2px solid rgba(107,125,106,0.12);
+    transition: border-color 0.6s ease;
+  }
+  .service-card--featured:hover .service-card__surface--featured {
+    border-left-color: rgba(107,125,106,0.3);
+  }
+  .featured-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(107, 125, 106, 0.08), rgba(168, 169, 158, 0.05));
+    border: 1px solid rgba(107, 125, 106, 0.12);
+    padding: 4px 12px;
+    border-radius: 100px;
+    backdrop-filter: blur(4px);
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+  }
+  .service-card--featured:hover .featured-badge {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(107, 125, 106, 0.08);
+  }
+  .featured-badge-text {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    opacity: 0.7;
+  }
+  .featured-layout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .featured-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+  }
+  .featured-icon-wrap {
+    width: 88px;
+    height: 88px;
+    position: relative;
+    color: var(--sage-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .featured-icon-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -14px;
+    background: var(--sage-muted);
+    border-radius: 60% 40% 55% 65% / 55% 60% 45% 55%;
+    filter: blur(26px);
+    opacity: 0.22;
+    z-index: -1;
+    transition: opacity 0.7s ease, transform 0.7s var(--ease-out-expo);
+    transform: scale(0.9);
+  }
+  .service-card--featured:hover .featured-icon-wrap::before {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  .featured-icon-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border: 1.5px solid var(--sage-muted);
+    border-radius: 50%;
+    opacity: 0.12;
+    transition: opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
+  }
+  .service-card--featured:hover .featured-icon-wrap::after {
+    opacity: 0.28;
+    transform: scale(1.06);
+  }
+  .featured-icon-wrap :global(.service-icon) {
+    width: 48px;
+    height: 48px;
+    position: relative;
+    z-index: 1;
+  }
+  .featured-icon-wrap :global(.service-icon path),
+  .featured-icon-wrap :global(.service-icon circle) {
+    opacity: 0.6;
+    transition: opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
+    transform-origin: center;
+  }
+  .service-card--featured:hover .featured-icon-wrap :global(.service-icon path),
+  .service-card--featured:hover .featured-icon-wrap :global(.service-icon circle) {
+    opacity: 0.95;
+  }
+  .service-card--featured:hover .featured-icon-wrap :global(.service-icon) {
+    transform: scale(1.06);
+  }
+  .featured-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--taupe);
+    opacity: 0.25;
+    letter-spacing: 0.05em;
+  }
+  .featured-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .featured-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+    color: var(--ink);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    transition: color 0.5s ease;
+    margin: 0;
+  }
+  .service-card--featured:hover .featured-title {
+    color: var(--earth);
+  }
+  .featured-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    color: var(--ink-soft);
+    line-height: 1.8;
+    opacity: 0.88;
+    max-width: 50ch;
+    margin: 0;
+  }
+
+  /* Subgrid cards - aligned and equal height */
+  .servicios-subgrid .service-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .servicios-subgrid .service-card__surface {
+    padding: 2.4rem 2rem 2rem;
+    flex: 1;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.8rem;
+    position: relative;
+    z-index: 1;
+  }
+  .card-icon-wrap {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    color: var(--sage-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-icon-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    background: var(--sage-muted);
+    border-radius: 60% 40% 55% 65% / 55% 60% 45% 55%;
+    filter: blur(18px);
+    opacity: 0.18;
+    z-index: -1;
+    transition: opacity 0.7s ease, transform 0.7s var(--ease-out-expo);
+    transform: scale(0.9);
+  }
+  .service-card:hover .card-icon-wrap::before {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+  .card-icon-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border: 1.5px solid var(--sage-muted);
+    border-radius: 50%;
+    opacity: 0.1;
+    transition: opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
+  }
+  .service-card:hover .card-icon-wrap::after {
+    opacity: 0.22;
+    transform: scale(1.06);
+  }
+  .card-icon-wrap :global(.service-icon) {
+    width: 36px;
+    height: 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .card-icon-wrap :global(.service-icon path),
+  .card-icon-wrap :global(.service-icon circle) {
+    opacity: 0.55;
+    transition: opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
+    transform-origin: center;
+  }
+  .service-card:hover .card-icon-wrap :global(.service-icon path),
+  .service-card:hover .card-icon-wrap :global(.service-icon circle) {
+    opacity: 0.95;
+  }
+  .service-card:hover .card-icon-wrap :global(.service-icon) {
+    transform: scale(1.06);
+  }
+
+  .card-top-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+  }
+  .card-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: var(--taupe);
+    opacity: 0.2;
+    letter-spacing: 0.05em;
+    transition: opacity 0.4s ease;
+  }
+  .service-card:hover .card-num {
+    opacity: 0.4;
+  }
+  .card-duration {
+    font-family: var(--font-body);
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.35;
+    transition: opacity 0.4s ease;
+  }
+  .service-card:hover .card-duration {
+    opacity: 0.6;
+  }
+
+  .card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(196,170,148,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .service-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.6rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+  }
+  .card-meta-item {
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.45;
+    transition: opacity 0.4s ease, color 0.4s ease;
+    padding: 0 0.5rem;
+  }
+  .card-meta-item:first-child {
+    padding-left: 0;
+  }
+  .card-meta-item:last-child {
+    padding-right: 0;
+  }
+  .service-card:hover .card-meta-item {
+    opacity: 0.75;
+    color: var(--sage-dark);
+  }
+  .card-meta-sep {
+    width: 1px;
+    height: 8px;
+    background: var(--earth);
+    opacity: 0.08;
+    align-self: center;
+  }
+  .card-meta-divider {
+    width: 1px;
+    height: 8px;
+    background: var(--earth);
+    opacity: 0.06;
+    align-self: center;
+    margin: 0 0.4rem;
+  }
+  .card-meta-duration,
+  .featured-content .card-meta-duration {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.35;
+    transition: opacity 0.4s ease;
+    padding-left: 0.2rem;
+  }
+  .service-card:hover .card-meta-duration {
+    opacity: 0.6;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: var(--type-card-title);
+    color: var(--ink);
+    line-height: 1.12;
+    margin-bottom: 0.85rem;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    transition: color 0.5s ease;
+  }
+  .service-card:hover .card-title {
+    color: var(--earth);
+  }
+  .card-desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.87rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    opacity: 0.85;
+    max-width: 42ch;
+    flex: 1;
+  }
+
+  .card-footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid rgba(196,170,148,0.06);
+    padding-top: 1.2rem;
+    margin-top: auto;
+  }
+
+  /* ===== CTA BUTTON ===== */
+  .card-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.4rem;
+    border-radius: 100px;
+    border: 1.5px solid rgba(107, 125, 106, 0.18);
+    background: transparent;
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color 0.5s ease, transform 0.4s var(--ease-out-expo), box-shadow 0.5s ease;
+    width: fit-content;
+  }
+  .card-cta:hover {
+    border-color: rgba(107, 125, 106, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(107, 125, 106, 0.1);
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(107, 125, 106, 0.08), rgba(168, 169, 158, 0.04));
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
+    border-radius: 100px;
+  }
+  .card-cta:hover .cta-bg {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  .cta-text {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    transition: color 0.4s ease;
+  }
+  .card-cta:hover .cta-text {
+    color: var(--ink);
+  }
+  .cta-arrow {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    color: var(--sage-dark);
+    opacity: 0.5;
+    transform: translateX(-4px);
+    transition: opacity 0.4s ease, transform 0.5s var(--ease-out-expo), color 0.4s ease;
+  }
+  .card-cta:hover .cta-arrow {
+    opacity: 0.85;
+    transform: translateX(0);
+    color: var(--ink);
+  }
+  .card-cta--featured {
+    padding: 0.75rem 1.6rem;
+    border-color: rgba(107, 125, 106, 0.22);
+  }
+  .card-cta--featured .cta-text {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+  }
+  .card-cta--featured .cta-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Trust section */
+  .servicios-trust {
+    text-align: center;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+  .trust-line {
+    width: 0;
+    height: 1px;
+    background: var(--line);
+    margin: 0 auto 1.2rem;
+    opacity: 0.6;
+    transition: width 1.2s var(--ease-out-expo);
+  }
+  .servicios-trust.visible .trust-line {
+    width: 30px;
+  }
+  .trust-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    color: var(--taupe);
+    line-height: 1.7;
+    opacity: 0.65;
+    margin-bottom: 1.5rem;
+  }
+  .trust-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .ornament-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--earth);
+    opacity: 0.15;
+    transition: width 1s var(--ease-out-expo);
+  }
+  .servicios-trust.visible .ornament-line {
+    width: 24px;
+  }
+  .ornament-fleur {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: var(--type-caption);
+    color: var(--sage);
+    opacity: 0;
+    transition: opacity 0.8s ease 0.6s;
+  }
+  .servicios-trust.visible .ornament-fleur {
+    opacity: 0.35;
+  }
+
+  @media (max-width: 1024px) {
+    .servicios-subgrid {
+      grid-template-columns: repeat(2, 1fr);
     }
-    .panel-visual { height: 200px; }
-    .panel-watermark { font-size: 30vw; }
+    .servicios-subgrid .service-card:nth-child(3) {
+      grid-column: span 2;
+      max-width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .featured-layout {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .servicios {
+      padding: 7rem 0 9rem;
+    }
+    .servicios-bento {
+      gap: 1.25rem;
+      margin-bottom: 4rem;
+    }
+    .servicios-subgrid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    .servicios-subgrid .service-card:nth-child(3) {
+      grid-column: auto;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .service-card--featured .service-card__surface {
+      padding: 2.2rem 1.8rem 2rem;
+      min-height: auto;
+    }
+    .featured-layout {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    .featured-visual {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .featured-badge {
+      top: 1rem;
+      right: 1rem;
+      padding: 3px 10px;
+    }
+    .featured-title {
+      font-size: var(--type-card-title);
+    }
+    .featured-desc {
+      font-size: 0.87rem;
+    }
+    .servicios-subgrid .service-card__surface {
+      padding: 2.2rem 1.8rem 2rem;
+    }
+    .grid-lines { display: none; }
+    .servicios-watermark { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .service-card--featured .service-card__surface {
+      padding: 2rem 1.5rem 1.8rem;
+    }
+    .featured-icon-wrap {
+      width: 72px;
+      height: 72px;
+    }
+    .featured-icon-wrap :global(.service-icon) {
+      width: 40px;
+      height: 40px;
+    }
+    .card-icon-wrap {
+      width: 54px;
+      height: 54px;
+    }
+    .card-icon-wrap :global(.service-icon) {
+      width: 32px;
+      height: 32px;
+    }
+    .card-title {
+      font-size: var(--type-card-title-sm);
+    }
+    .card-desc {
+      font-size: 0.84rem;
+    }
+    .card-meta-item {
+      font-size: var(--type-meta);
+      letter-spacing: 0.18em;
+      padding: 0 0.4rem;
+    }
+    .card-footer {
+      padding-top: 1rem;
+    }
+    .card-cta {
+      padding: 0.55rem 1.2rem;
+    }
+    .cta-text {
+      font-size: 0.68rem;
+    }
+    .card-cta--featured {
+      padding: 0.65rem 1.3rem;
+    }
   }
 </style>
+
+<script>
+  const serviciosSection = document.querySelector('.servicios');
+  if (serviciosSection) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    io.observe(serviciosSection);
+  }
+</script>

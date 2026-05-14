@@ -2,77 +2,72 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
+import { getSortedArticles } from '../data/blog';
 
-const articles = [
-  {
-    title: 'Ansiedad en Córdoba: cómo reconocerla y cuándo pedir ayuda',
-    slug: 'ansiedad-cordoba',
-    description: 'Descubre cómo reconocer los signos reales de la ansiedad, cuándo es el momento de buscar ayuda psicológica en Córdoba y cómo puede ayudarte la terapia a recuperar tu bienestar.',
-    date: '24 de abril de 2025',
-    category: 'ansiedad'
-  },
-  {
-    title: 'Terapia psicológica en Córdoba: qué esperar de tu primera consulta',
-    slug: 'primera-consulta-cordoba',
-    description: 'Resolvemos los miedos más comunes antes de la primera sesión y te contamos exactamente qué ocurre cuando acudes a una consulta de psicología en Córdoba.',
-    date: '24 de abril de 2025',
-    category: 'terapia'
-  },
-  {
-    title: 'Autoestima y bienestar emocional en Córdoba: trabajarlos desde la terapia',
-    slug: 'autoestima-cordoba',
-    description: 'Entiende qué es la autoestima real, cómo afecta a tu vida cotidiana y cómo la terapia puede ayudarte a reconstruir una relación sana contigo mismo.',
-    date: '24 de abril de 2025',
-    category: 'autoestima'
-  }
-];
+const sortedArticles = getSortedArticles();
 ---
 
 <Layout
   title="Blog | Lucía Martínez | Psicología en Córdoba"
-  description="Artículos sobre psicología, ansiedad, terapia y bienestar emocional en Córdoba. Información útil y cercana para cuidar tu salud mental."
+  description="Artículos sobre psicología, ansiedad, terapia EMDR, duelo, mindfulness y bienestar emocional en Córdoba. Información útil y cercana para cuidar tu salud mental."
 >
   <Navigation />
 
-  <main class="flex-1">
+  <main class="blog-page">
     <!-- Header -->
-    <header class="pt-36 md:pt-40 pb-20 md:pb-24 max-w-[860px] mx-auto px-6 sm:px-10 text-center">
-      <p class="section-label mb-6">Blog</p>
-      <hr class="divider-draw mb-10 reveal" />
-      <h1 class="font-display text-[2.8rem] md:text-[4rem] lg:text-[4.5rem] leading-[0.95] tracking-[-0.02em] text-text-primary mb-7 font-light">
-        Psicología en Córdoba
+    <header class="blog-page__header">
+      <div class="blog-page__eyebrow-wrap reveal">
+        <span class="eyebrow-line" aria-hidden="true"></span>
+        <span class="type-eyebrow blog-page__eyebrow">Blog</span>
+        <span class="eyebrow-line" aria-hidden="true"></span>
+      </div>
+      <h1 class="blog-page__title reveal">
+        <span class="title-word">Reflexiones desde</span>
+        <span class="title-word title-word--accent">la consulta</span>
       </h1>
-      <p class="font-body text-body-lg text-text-secondary font-light leading-relaxed max-w-xl mx-auto">
-        Un espacio para hablar de salud mental de forma clara, cercana y sin jerga.
-        Información útil sobre ansiedad, terapia, autoestima y bienestar emocional.
+      <p class="blog-page__subtitle reveal">
+        Artículos sobre salud mental, terapia y bienestar emocional escritos desde mi práctica clínica en Córdoba.
       </p>
     </header>
 
     <!-- Articles Grid -->
-    <section class="max-w-[900px] mx-auto px-6 sm:px-10 pb-32 md:pb-40" aria-label="Artículos del blog">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {articles.map(article => (
-          <article class="group bg-surface-elevated border border-border-light overflow-hidden hover:border-accent-light/50 hover:shadow-soft transition-all duration-500 flex flex-col">
-            <div class="p-6 md:p-7 flex flex-col flex-1">
-              <header class="mb-3">
-                <p class="section-label mb-3 flex items-center gap-2">
-                  <span class="px-2 py-0.5 bg-accent-soft text-accent text-[0.55rem] font-medium tracking-[0.12em]">{article.category}</span>
-                  <time class="text-text-muted">{article.date}</time>
-                </p>
-                <h2 class="font-body text-[1rem] font-medium text-text-primary leading-snug group-hover:text-accent transition-colors duration-500">
-                  <a href={`/blog/${article.slug}`} class="hover:underline decoration-accent-light underline-offset-2">
-                    {article.title}
-                  </a>
-                </h2>
-              </header>
-              <p class="font-body text-[0.82rem] text-text-secondary font-light leading-relaxed flex-1">{article.description}</p>
-              <a href={`/blog/${article.slug}`} class="inline-flex items-center gap-1.5 mt-4 font-body text-[0.75rem] font-medium text-accent hover:text-accent-deep transition-colors duration-500">
-                Leer artículo
-                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </a>
-            </div>
+    <section class="blog-page__grid" aria-label="Artículos del blog">
+      <div class="blog-grid">
+        {sortedArticles.map((article, i) => (
+          <article class="blog-grid-card" style={`transition-delay: ${i * 80}ms`}>
+            <a href={`/blog/${article.slug}`} class="blog-grid-card__link">
+              <!-- Number watermark -->
+              <span class="blog-grid-card__number" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+
+              <!-- Category badge -->
+              <div class="blog-grid-card__top">
+                <span class="blog-grid-card__category">{article.categoryLabel}</span>
+                <span class="blog-grid-card__read">{article.readTime}</span>
+              </div>
+
+              <!-- Content -->
+              <div class="blog-grid-card__body">
+                <h2 class="blog-grid-card__title">{article.title}</h2>
+                <p class="blog-grid-card__excerpt">{article.excerpt}</p>
+              </div>
+
+              <!-- Footer -->
+              <div class="blog-grid-card__footer">
+                <time datetime={article.dateISO} class="blog-grid-card__date">
+                  {article.date}
+                </time>
+                <span class="blog-grid-card__arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+
+              <!-- Hover line -->
+              <div class="blog-grid-card__hover-line" aria-hidden="true"></div>
+            </a>
           </article>
         ))}
       </div>
@@ -81,3 +76,262 @@ const articles = [
 
   <Footer />
 </Layout>
+
+<style>
+  .blog-page {
+    position: relative;
+    background: var(--parchment);
+    padding: 10rem 0 8rem;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .blog-page__header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 5rem;
+    padding: 0 6vw;
+  }
+  .blog-page__eyebrow-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .eyebrow-line {
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--earth);
+    opacity: 0.2;
+  }
+  .blog-page__eyebrow {
+    font-size: var(--type-meta);
+    letter-spacing: 0.35em;
+    color: var(--taupe);
+    opacity: 0.7;
+  }
+  .blog-page__title {
+    margin: 0 0 1rem;
+    line-height: 1.0;
+  }
+  .title-word {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-style: italic;
+    font-size: var(--type-section-title);
+    line-height: var(--leading-title);
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .title-word--accent {
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  .blog-page__subtitle {
+    font-family: var(--font-body);
+    font-size: var(--type-section-subtitle);
+    font-weight: 300;
+    color: var(--taupe);
+    opacity: 0.7;
+    letter-spacing: 0.02em;
+    margin: 0 auto;
+    max-width: 50ch;
+  }
+
+  /* Grid */
+  .blog-page__grid {
+    max-width: 1060px;
+    margin: 0 auto;
+    padding: 0 6vw;
+  }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Card */
+  .blog-grid-card {
+    position: relative;
+    background: linear-gradient(165deg, rgba(255,253,249,0.78) 0%, rgba(250,247,240,0.45) 50%, rgba(252,249,243,0.22) 100%);
+    border-top: 1px solid rgba(196,170,148,0.09);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow:
+      0 0.5px 0.8px rgba(44,44,44,0.012),
+      0 1.5px 2.2px rgba(44,44,44,0.012),
+      inset 0 1px 0 rgba(255,255,255,0.55);
+    transition:
+      transform 0.9s var(--ease-out-expo),
+      box-shadow 0.9s var(--ease-out-expo),
+      background 0.9s ease;
+  }
+  .blog-grid-card:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(165deg, rgba(255,254,252,0.92) 0%, rgba(253,250,245,0.6) 50%, rgba(254,252,248,0.35) 100%);
+    box-shadow:
+      0 2px 4px rgba(44,44,44,0.015),
+      0 8px 16px rgba(44,44,44,0.02),
+      0 20px 40px rgba(44,44,44,0.025);
+  }
+
+  .blog-grid-card__link {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2.2rem;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    min-height: 100%;
+  }
+
+  .blog-grid-card__number {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.6rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 2rem;
+    color: var(--earth);
+    opacity: 0.08;
+    line-height: 1;
+    user-select: none;
+    transition: opacity 0.6s ease, transform 0.6s var(--ease-out-expo);
+  }
+  .blog-grid-card:hover .blog-grid-card__number {
+    opacity: 0.18;
+    transform: translateY(-2px);
+  }
+
+  .blog-grid-card__top {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1.2rem;
+  }
+  .blog-grid-card__category {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    background: var(--sage-muted);
+    color: var(--sage-dark);
+    border-radius: 2px;
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .blog-grid-card__read {
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.5;
+  }
+
+  .blog-grid-card__body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .blog-grid-card__title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: var(--type-card-title-sm);
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0;
+    transition: color 0.5s ease;
+  }
+  .blog-grid-card:hover .blog-grid-card__title {
+    color: var(--earth);
+  }
+  .blog-grid-card__excerpt {
+    font-family: var(--font-body);
+    font-size: var(--type-card-body);
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    margin: 0;
+  }
+
+  .blog-grid-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(196,170,148,0.06);
+  }
+  .blog-grid-card__date {
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.5;
+  }
+  .blog-grid-card__arrow {
+    color: var(--taupe);
+    opacity: 0.25;
+    transition: all 0.5s var(--ease-out-expo);
+    transform: translateX(-4px);
+  }
+  .blog-grid-card:hover .blog-grid-card__arrow {
+    opacity: 0.6;
+    transform: translateX(0);
+    color: var(--earth);
+  }
+
+  .blog-grid-card__hover-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--earth), transparent);
+    opacity: 0.25;
+    transition: width 1s var(--ease-out-expo);
+  }
+  .blog-grid-card:hover .blog-grid-card__hover-line {
+    width: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .blog-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+  }
+  @media (max-width: 640px) {
+    .blog-page {
+      padding: 8rem 0 6rem;
+    }
+    .blog-page__header {
+      margin-bottom: 3.5rem;
+    }
+    .blog-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .blog-grid-card__link {
+      padding: 1.6rem 1.8rem;
+    }
+    .blog-grid-card__number {
+      font-size: 1.6rem;
+    }
+    .blog-grid-card__title {
+      font-size: var(--type-card-title-sm);
+    }
+  }
+</style>

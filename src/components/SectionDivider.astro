@@ -1,0 +1,205 @@
+---
+interface Props {
+  variant?: 'wave' | 'ink' | 'torn' | 'hill' | 'organic' | 'valley' | 'arch' | 'peaks';
+  fromColor?: string;
+  toColor?: string;
+  flip?: boolean;
+  animated?: boolean;
+  height?: string;
+}
+
+const {
+  variant = 'wave',
+  fromColor = 'transparent',
+  toColor = 'var(--cream)',
+  flip = false,
+  animated = true,
+  height,
+} = Astro.props;
+
+const dividerPaths: Record<string, string> = {
+  wave: "M0,64 C200,0 400,128 600,64 C800,0 1000,128 1200,64 L1200,128 L0,128 Z",
+  ink: "M0,48 Q150,80 300,48 T600,56 T900,40 T1200,52 L1200,128 L0,128 Z",
+  hill: "M0,96 Q300,0 600,64 T1200,32 L1200,128 L0,128 Z",
+  torn: "M0,64 Q30,72 60,60 T120,68 T180,56 T240,64 T300,52 T360,66 T420,58 T480,64 T540,54 T600,62 T660,56 T720,66 T780,58 T840,64 T900,52 T960,60 T1020,66 T1080,56 T1140,64 T1200,60 L1200,128 L0,128 Z",
+  organic: "M0,80 C100,60 200,100 300,70 C400,40 500,90 600,65 C700,40 800,85 900,60 C1000,35 1100,75 1200,55 L1200,128 L0,128 Z",
+  valley: "M0,32 Q200,96 400,48 T800,80 T1200,40 L1200,128 L0,128 Z",
+  arch: "M0,128 Q150,20 300,48 Q450,76 600,48 Q750,20 900,48 Q1050,76 1200,48 L1200,128 L0,128 Z",
+  peaks: "M0,80 L150,32 L300,72 L450,24 L600,64 L750,28 L900,68 L1050,36 L1200,76 L1200,128 L0,128 Z",
+};
+
+const path = dividerPaths[variant] || dividerPaths.wave;
+const h = height || 'clamp(48px, 6vw, 96px)';
+---
+
+<div
+  class:list={['section-divider', `section-divider--${variant}`, { flip, 'is-animated': animated }]}
+  aria-hidden="true"
+  style={`height: ${h};`}
+>
+  <svg viewBox="0 0 1200 128" preserveAspectRatio="none" class="divider-svg" data-parallax="0.02">
+    <defs>
+      <filter id={`blur-${variant}`}>
+        <feGaussianBlur stdDeviation="2" />
+      </filter>
+      <linearGradient id={`grad-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color={toColor} stop-opacity="0" />
+        <stop offset="20%" stop-color={toColor} stop-opacity="1" />
+        <stop offset="80%" stop-color={toColor} stop-opacity="1" />
+        <stop offset="100%" stop-color={toColor} stop-opacity="0" />
+      </linearGradient>
+    </defs>
+
+    <!-- Deep shadow layer -->
+    <path
+      d={path}
+      fill={toColor}
+      opacity="0.04"
+      filter={`url(#blur-${variant})`}
+      transform="translate(0, 6)"
+      class="divider-layer divider-layer--shadow"
+    />
+
+    <!-- Mid shadow layer -->
+    <path
+      d={path}
+      fill={toColor}
+      opacity="0.07"
+      filter={`url(#blur-${variant})`}
+      transform="translate(0, 2)"
+      class="divider-layer divider-layer--mid"
+    />
+
+    <!-- Main shape -->
+    <path
+      d={path}
+      fill={`url(#grad-${variant})`}
+      class="divider-layer divider-layer--main"
+    />
+
+    <!-- Accent line on edge -->
+    <path
+      d={path}
+      fill="none"
+      stroke="currentColor"
+      stroke-width="0.5"
+      opacity="0.06"
+      class="divider-layer divider-layer--stroke"
+    />
+  </svg>
+
+  <!-- Organic ink wash accent -->
+  <div class="divider-wash" style={`background: ${toColor};`}></div>
+
+  <!-- Floating decorative dots -->
+  <div class="divider-dots" aria-hidden="true">
+    <span class="divider-dot divider-dot--1"></span>
+    <span class="divider-dot divider-dot--2"></span>
+    <span class="divider-dot divider-dot--3"></span>
+  </div>
+</div>
+
+<style>
+  .section-divider {
+    position: relative;
+    width: 100%;
+    margin-top: -1px;
+    line-height: 0;
+    z-index: 2;
+    pointer-events: none;
+    color: var(--earth);
+  }
+  .flip {
+    transform: rotate(180deg);
+  }
+  .divider-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .divider-layer {
+    transition: transform 0.8s var(--ease-out-expo);
+  }
+
+  /* Animated drift for organic feel */
+  .is-animated .divider-layer--shadow {
+    animation: divider-drift-1 20s ease-in-out infinite alternate;
+  }
+  .is-animated .divider-layer--mid {
+    animation: divider-drift-2 16s ease-in-out infinite alternate-reverse;
+  }
+  .is-animated .divider-layer--main {
+    animation: divider-drift-3 24s ease-in-out infinite alternate;
+  }
+
+  @keyframes divider-drift-1 {
+    0% { transform: translate(0, 6px); }
+    100% { transform: translate(-8px, 8px); }
+  }
+  @keyframes divider-drift-2 {
+    0% { transform: translate(0, 2px); }
+    100% { transform: translate(6px, 3px); }
+  }
+  @keyframes divider-drift-3 {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-4px, 1px); }
+  }
+
+  .divider-wash {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    opacity: 0.5;
+    filter: blur(20px);
+    transform: translateY(30%);
+  }
+
+  /* Floating dots on divider */
+  .divider-dots {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+  .divider-dot {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--earth);
+    will-change: transform;
+  }
+  .divider-dot--1 {
+    width: 4px; height: 4px;
+    top: 30%; left: 15%;
+    opacity: 0.08;
+    animation: float-gentle 10s ease-in-out infinite;
+  }
+  .divider-dot--2 {
+    width: 3px; height: 3px;
+    top: 60%; right: 20%;
+    opacity: 0.06;
+    animation: float-gentle-reverse 12s ease-in-out infinite;
+    animation-delay: -3s;
+  }
+  .divider-dot--3 {
+    width: 5px; height: 5px;
+    top: 45%; left: 60%;
+    opacity: 0.05;
+    animation: float-gentle 14s ease-in-out infinite;
+    animation-delay: -6s;
+  }
+
+  /* Variant-specific adjustments */
+  .section-divider--arch {
+    height: clamp(64px, 8vw, 120px) !important;
+  }
+  .section-divider--peaks {
+    height: clamp(40px, 5vw, 72px) !important;
+  }
+  .section-divider--organic {
+    height: clamp(56px, 7vw, 104px) !important;
+  }
+</style>

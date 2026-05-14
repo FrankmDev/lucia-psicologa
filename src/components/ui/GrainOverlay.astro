@@ -1,0 +1,43 @@
+---
+interface Props {
+  opacity?: number;
+  blur?: number;
+  zIndex?: number;
+  animated?: boolean;
+}
+
+const { opacity = 0.025, blur = 0, zIndex = 0, animated = false } = Astro.props;
+---
+
+<div
+  class:list={['grain-overlay', { 'grain-overlay--animated': animated }]}
+  aria-hidden="true"
+  style={`opacity: ${opacity}; filter: blur(${blur}px); z-index: ${zIndex};`}
+></div>
+
+<style>
+  .grain-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+  }
+  .grain-overlay--animated {
+    animation: grain-shift 0.4s steps(8) infinite;
+    will-change: transform;
+  }
+  @keyframes grain-shift {
+    0%, 100% { transform: translate(0, 0) scale(1.01); }
+    10% { transform: translate(-1%, -1%) scale(1.02); }
+    20% { transform: translate(1%, 0.5%) scale(1.01); }
+    30% { transform: translate(-0.5%, 1%) scale(1.02); }
+    40% { transform: translate(0.5%, -0.5%) scale(1.01); }
+    50% { transform: translate(-1%, 0.5%) scale(1.02); }
+    60% { transform: translate(1%, -1%) scale(1.01); }
+    70% { transform: translate(-0.5%, -0.5%) scale(1.02); }
+    80% { transform: translate(0.5%, 1%) scale(1.01); }
+    90% { transform: translate(-1%, -0.5%) scale(1.02); }
+  }
+</style>

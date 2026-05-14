@@ -1,36 +1,104 @@
 ---
+import GrainOverlay from './ui/GrainOverlay.astro';
+
 const links = [
   { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Servicios', href: '#servicios' },
   { label: 'Proceso', href: '#proceso' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Contacto', href: '#contacto' },
 ];
 ---
 
-<header class="nav-bar" id="navBar">
-  <a href="#inicio" class="nav-mark" aria-label="Inicio">
-    <span class="mark-letter">L</span>
-  </a>
+<header class="nav-root" id="navRoot">
+  <div class="nav-island" id="navIsland">
+    <!-- Ambient halo behind island -->
+    <div class="island-halo" aria-hidden="true"></div>
 
-  <button class="nav-trigger" id="menuTrigger" aria-label="Abrir menú" aria-expanded="false">
-    <span class="trigger-line"></span>
-    <span class="trigger-line"></span>
-  </button>
+    <!-- Logo -->
+    <a href="#inicio" class="nav-mark" aria-label="Inicio" data-nav-reveal>
+      <span class="mark-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+          <path d="M14 2C14 2 9 7 9 13c0 3 2 5.5 5 6.5V26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 2C14 2 19 7 19 13c0 3-2 5.5-5 6.5V26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14 19.5c-2-1.5-4.5-3-4.5-6.5 0-2.5 2-5 2-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+          <path d="M14 19.5c2-1.5 4.5-3 4.5-6.5 0-2.5-2-5-2-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </span>
+      <span class="mark-text">Lucía</span>
+    </a>
 
-  <div class="nav-overlay" id="menuOverlay" aria-hidden="true">
-    <div class="overlay-bg" aria-hidden="true"></div>
-    <nav class="overlay-nav" aria-label="Principal">
+    <!-- Desktop Links -->
+    <nav class="nav-links" aria-label="Principal" id="navLinks">
       {links.map((l, i) => (
-        <a href={l.href} class="overlay-link" style={`transition-delay: ${i * 60}ms`}>
-          <span class="link-num">0{i + 1}</span>
-          <span class="link-label">{l.label}</span>
+        <a href={l.href} class="nav-link" data-nav-link data-nav-reveal style={`transition-delay: ${i * 60 + 200}ms`}>
+          <span class="link-text">{l.label}</span>
+          <span class="link-track" aria-hidden="true">
+            <span class="link-fill"></span>
+          </span>
         </a>
       ))}
     </nav>
-    <div class="overlay-meta">
-      <span>Psicología Clínica</span>
-      <span class="meta-dot">·</span>
-      <span>Granada</span>
+
+    <!-- CTA -->
+    <a href="#contacto" class="nav-cta" data-nav-reveal style="transition-delay: 500ms">
+      <span class="cta-text">Reservar</span>
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+
+    <!-- Mobile Trigger -->
+    <button class="nav-trigger" id="menuTrigger" aria-label="Abrir menú" aria-expanded="false" data-nav-reveal>
+      <span class="trigger-line"></span>
+      <span class="trigger-line"></span>
+    </button>
+  </div>
+
+  <!-- Scroll progress (micro hairline at top) -->
+  <div class="scroll-hairline" aria-hidden="true">
+    <div class="hairline-fill" id="hairlineFill"></div>
+  </div>
+
+  <!-- Mobile Overlay -->
+  <div class="nav-overlay" id="menuOverlay" aria-hidden="true">
+    <div class="overlay-bg" aria-hidden="true">
+      <div class="overlay-bg__layer"></div>
+      <div class="overlay-bg__layer"></div>
+      <div class="overlay-bg__layer"></div>
+    </div>
+    <div class="overlay-vignette" aria-hidden="true"></div>
+    <GrainOverlay opacity={0.02} zIndex={1} />
+
+    <div class="overlay-content">
+      <nav class="overlay-nav" aria-label="Principal">
+        {links.map((l, i) => (
+          <a href={l.href} class="overlay-link" style={`transition-delay: ${i * 80 + 350}ms`}>
+            <span class="link-num">0{i + 1}</span>
+            <span class="link-label">{l.label}</span>
+            <span class="link-arrow" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </a>
+        ))}
+      </nav>
+
+      <div class="overlay-footer">
+        <a href="#contacto" class="footer-cta-btn">
+          <span>Pide tu primera sesión</span>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div class="footer-line" aria-hidden="true"></div>
+        <div class="footer-meta">
+          <span>lucia@psicologia.es</span>
+          <span class="meta-sep">·</span>
+          <span>+34 600 000 000</span>
+        </div>
+      </div>
     </div>
   </div>
 </header>
@@ -38,93 +106,396 @@ const links = [
 <script>
   const trigger = document.getElementById('menuTrigger');
   const overlay = document.getElementById('menuOverlay');
-  const links = overlay.querySelectorAll('.overlay-link');
+  const navLinks = overlay.querySelectorAll('.overlay-link');
+  const navRoot = document.getElementById('navRoot');
+  const navIsland = document.getElementById('navIsland');
+  const navDesktopLinks = document.querySelectorAll('[data-nav-link]');
+  const hairlineFill = document.getElementById('hairlineFill');
 
-  trigger.addEventListener('click', () => {
-    const isOpen = overlay.classList.contains('open');
-    if (isOpen) {
-      overlay.classList.remove('open');
-      trigger.classList.remove('open');
-      trigger.setAttribute('aria-expanded', 'false');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    } else {
-      overlay.classList.add('open');
-      trigger.classList.add('open');
-      trigger.setAttribute('aria-expanded', 'true');
-      overlay.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  links.forEach(l => l.addEventListener('click', () => {
+  // Menu toggle
+  function openMenu() {
+    overlay.classList.add('open');
+    trigger.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    navRoot.classList.add('menu-open');
+  }
+  function closeMenu() {
     overlay.classList.remove('open');
     trigger.classList.remove('open');
     trigger.setAttribute('aria-expanded', 'false');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-  }));
+    navRoot.classList.remove('menu-open');
+  }
+  trigger.addEventListener('click', () => {
+    overlay.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  navLinks.forEach(l => l.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+  });
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target.classList.contains('overlay-bg')) closeMenu();
+  });
+
+  // ── Smart hide / show on scroll direction ──────────────────
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+  const topThreshold = 100;
+  const hideThreshold = 160;
+
+  function handleScroll() {
+    const currentScrollY = window.scrollY;
+    const scrollingDown = currentScrollY > lastScrollY;
+    const scrollingUp = currentScrollY < lastScrollY;
+    const pastTop = currentScrollY > topThreshold;
+
+    // At top: island is transparent and always visible
+    if (!pastTop) {
+      navRoot.classList.remove('is-hidden', 'is-visible');
+    } else {
+      if (scrollingDown && currentScrollY > hideThreshold) {
+        navRoot.classList.add('is-hidden');
+        navRoot.classList.remove('is-visible');
+      }
+      if (scrollingUp) {
+        navRoot.classList.add('is-visible');
+        navRoot.classList.remove('is-hidden');
+      }
+    }
+
+    // Hairline progress
+    if (hairlineFill) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? (currentScrollY / docHeight) * 100 : 0;
+      hairlineFill.style.width = progress + '%';
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+  handleScroll();
+
+  // Active section tracking
+  const sections = ['#inicio', '#sobre-mi', '#servicios', '#proceso', '#blog', '#contacto'];
+  const sectionElements = sections.map(s => document.querySelector(s)).filter(Boolean);
+
+  function updateActiveLink() {
+    const scrollPos = window.scrollY + 200;
+    let activeSection = '#inicio';
+    sectionElements.forEach(section => {
+      if (section.offsetTop <= scrollPos) {
+        activeSection = '#' + section.id;
+      }
+    });
+    navDesktopLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      link.classList.toggle('active', href === activeSection);
+    });
+  }
+  window.addEventListener('scroll', updateActiveLink, { passive: true });
+  updateActiveLink();
+
+  // Entrance reveal
+  const revealEls = document.querySelectorAll('[data-nav-reveal]');
+  revealEls.forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(10px)';
+    const delay = parseFloat(el.style.transitionDelay) || (i * 60);
+    setTimeout(() => {
+      el.style.transition = 'opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo)';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 300 + delay);
+  });
 </script>
 
 <style>
-  .nav-bar {
+  /* ═══════════════════════════════════════════════════════════
+     NAVIGATION — Floating Island
+     Wide bar at top. Glass pill on scroll-up. Gone on scroll-down.
+     ═══════════════════════════════════════════════════════════ */
+
+  .nav-root {
     position: fixed;
     top: 0; left: 0; right: 0;
-    height: 72px;
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    padding: 20px 3vw;
+    pointer-events: none;
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+  .nav-root.is-hidden {
+    transform: translateY(calc(-100% - 30px));
+  }
+  .nav-root.is-visible {
+    transform: translateY(0);
+  }
+
+  /* ── Island (the visible bar) ─────────────────────────────── */
+  .nav-island {
+    pointer-events: auto;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 4vw;
-    z-index: 900;
-    mix-blend-mode: difference;
+    gap: 2rem;
+    width: min(1280px, 94vw);
+    min-height: 68px;
+    padding: 0.6rem 2.5rem;
+    border-radius: 24px;
+    transition:
+      background 0.7s ease,
+      backdrop-filter 0.7s ease,
+      box-shadow 0.7s ease,
+      border-color 0.7s ease,
+      min-height 0.55s var(--ease-out-expo),
+      padding 0.55s var(--ease-out-expo),
+      gap 0.55s var(--ease-out-expo),
+      width 0.6s var(--ease-out-expo),
+      border-radius 0.6s var(--ease-out-expo);
   }
 
+  /* At top: completely transparent — content floats over hero */
+  .nav-root:not(.is-visible) .nav-island {
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* Scrolled up visible: compact dark glass pill with balanced padding */
+  .nav-root.is-visible .nav-island {
+    width: min(720px, 90vw);
+    min-height: 0;
+    padding: 0.6rem;
+    gap: 1.2rem;
+    border-radius: 100px;
+    background: rgba(13, 10, 8, 0.82);
+    backdrop-filter: blur(24px) saturate(1.2);
+    -webkit-backdrop-filter: blur(24px) saturate(1.2);
+    border: 1px solid rgba(196, 170, 148, 0.16);
+    box-shadow:
+      0 20px 60px rgba(0,0,0,0.35),
+      0 6px 16px rgba(0,0,0,0.2),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+
+  /* Ambient halo behind island */
+  .island-halo {
+    position: absolute;
+    inset: -50% -35%;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(196,170,148,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    z-index: -1;
+  }
+  .nav-root.is-visible .island-halo {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* ── Logo ─────────────────────────────────────────────────── */
   .nav-mark {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 40px; height: 40px;
-    border: 1px solid rgba(255,255,255,0.5);
-    transition: border-color 0.4s ease, transform 0.5s var(--ease-out-expo);
+    gap: 0.65rem;
+    text-decoration: none;
+    transition: opacity 0.35s ease;
+    flex-shrink: 0;
   }
-  .nav-mark:hover {
-    border-color: rgba(255,255,255,0.9);
-    transform: rotate(8deg);
+  .nav-mark:hover { opacity: 0.75; }
+  .mark-icon {
+    color: rgba(245,240,232,0.8);
+    transition: color 0.45s ease, transform 0.5s var(--ease-out-expo);
   }
-  .mark-letter {
+  .nav-mark:hover .mark-icon {
+    color: rgba(245,240,232,0.95);
+    transform: rotate(8deg) scale(1.08);
+  }
+  .nav-root.is-visible .mark-icon {
+    color: rgba(245,240,232,0.5);
+  }
+  .mark-text {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 1.2rem;
-    color: #fff;
+    font-weight: 300;
+    font-size: var(--type-card-title-sm);
+    color: rgba(245,240,232,0.95);
+    letter-spacing: 0.03em;
     line-height: 1;
+    transition: color 0.45s ease;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.25);
+  }
+  .nav-root.is-visible .mark-text {
+    color: rgba(245,240,232,0.78);
+    text-shadow: none;
   }
 
-  .nav-trigger {
-    position: relative;
-    width: 44px; height: 44px;
+  /* ── Links ────────────────────────────────────────────────── */
+  .nav-links {
     display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    transition: gap 0.55s var(--ease-out-expo);
+  }
+  .nav-root.is-visible .nav-links {
+    gap: 1.3rem;
+  }
+  .nav-link {
+    position: relative;
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.65);
+    padding: 6px 0;
+    text-decoration: none;
+    transition: color 0.4s ease;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  }
+  .nav-link:hover,
+  .nav-link.active {
+    color: rgba(245,240,232,0.95);
+  }
+  .nav-root.is-visible .nav-link {
+    text-shadow: none;
+  }
+
+  /* Elegant underline track */
+  .link-track {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(196,170,148,0.08);
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .nav-link:hover .link-track,
+  .nav-link.active .link-track {
+    opacity: 1;
+  }
+  .link-fill {
+    display: block;
+    width: 100%; height: 100%;
+    background: rgba(196,170,148,0.5);
+    transform: translateX(-101%);
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+  .nav-link:hover .link-fill,
+  .nav-link.active .link-fill {
+    transform: translateX(0);
+  }
+  .nav-link.active .link-fill {
+    background: var(--sage);
+  }
+
+  /* ── CTA ──────────────────────────────────────────────────── */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 10px 22px;
+    background: rgba(245,240,232,0.06);
+    border: 1px solid rgba(196,170,148,0.18);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.9);
+    text-decoration: none;
+    transition: all 0.5s var(--ease-out-expo);
+    flex-shrink: 0;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.15);
+  }
+  .nav-cta:hover {
+    background: rgba(245,240,232,0.11);
+    border-color: rgba(196,170,148,0.35);
+    color: rgba(245,240,232,0.95);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+  }
+  .nav-root.is-visible .nav-cta {
+    text-shadow: none;
+  }
+  .nav-cta svg {
+    transition: transform 0.4s var(--ease-out-expo);
+    color: rgba(196,170,148,0.45);
+  }
+  .nav-cta:hover svg {
+    transform: translateX(2px);
+    color: rgba(196,170,148,0.7);
+  }
+
+  /* ── Scroll hairline ──────────────────────────────────────── */
+  .scroll-hairline {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 1px;
+    background: rgba(196,170,148,0.03);
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .nav-root.is-visible .scroll-hairline {
+    opacity: 1;
+  }
+  .hairline-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, rgba(196,170,148,0.35), rgba(196,170,148,0.1));
+    transition: width 0.1s linear;
+  }
+
+  /* ── Mobile Trigger ───────────────────────────────────────── */
+  .nav-trigger {
+    display: none;
+    width: 40px; height: 40px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 7px;
+    gap: 6px;
     cursor: pointer;
     z-index: 902;
     background: none;
     border: none;
+    flex-shrink: 0;
   }
   .trigger-line {
     display: block;
-    width: 28px; height: 1px;
-    background: #fff;
-    transition: transform 0.5s var(--ease-out-expo), opacity 0.3s ease;
+    width: 22px; height: 1.2px;
+    background: rgba(245,240,232,0.7);
+    transition: transform 0.45s var(--ease-out-expo), opacity 0.25s ease;
+    border-radius: 1px;
   }
   .nav-trigger.open .trigger-line:first-child {
-    transform: translateY(4px) rotate(45deg);
+    transform: translateY(3.6px) rotate(45deg);
   }
   .nav-trigger.open .trigger-line:last-child {
-    transform: translateY(-4px) rotate(-45deg);
+    transform: translateY(-3.6px) rotate(-45deg);
   }
 
+  /* ── Mobile Overlay ───────────────────────────────────────── */
   .nav-overlay {
     position: fixed;
     inset: 0;
@@ -133,98 +504,200 @@ const links = [
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    clip-path: circle(0% at calc(100% - 4vw - 22px) 36px);
-    transition: clip-path 0.9s var(--ease-out-expo);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.85s ease, visibility 0.85s ease;
     pointer-events: none;
+    overflow: hidden;
   }
   .nav-overlay.open {
-    clip-path: circle(150% at calc(100% - 4vw - 22px) 36px);
+    opacity: 1;
+    visibility: visible;
     pointer-events: all;
   }
 
   .overlay-bg {
     position: absolute;
     inset: 0;
-    background: var(--ink);
-    z-index: -1;
+    z-index: 0;
   }
-  .overlay-bg::before {
-    content: 'L';
+  .overlay-bg__layer {
     position: absolute;
-    bottom: -10vh;
-    right: -5vw;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 50vw;
-    color: rgba(255,255,255,0.02);
-    line-height: 1;
+    inset: 0;
+    background: #0d0a08;
+    transform: translateY(-101%);
+    transition: transform 0.85s var(--ease-out-expo);
+  }
+  .overlay-bg__layer:nth-child(2) { background: rgba(13,10,8,0.96); transition-delay: 0.04s; }
+  .overlay-bg__layer:nth-child(3) { background: rgba(42,31,26,0.9); transition-delay: 0.08s; }
+  .nav-overlay.open .overlay-bg__layer { transform: translateY(0); }
+  .nav-overlay.open .overlay-bg__layer:nth-child(2) { transition-delay: 0.08s; }
+  .nav-overlay.open .overlay-bg__layer:nth-child(3) { transition-delay: 0.16s; }
+
+  .overlay-vignette {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 150px 60px rgba(13,10,8,0.5);
+    z-index: 1;
     pointer-events: none;
-    user-select: none;
+  }
+
+  .overlay-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 100px 5vw 60px;
   }
 
   .overlay-nav {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
+    align-items: center;
+    gap: 0.05rem;
+    margin-bottom: auto;
   }
   .overlay-link {
     display: flex;
-    align-items: baseline;
-    gap: 1.5rem;
+    align-items: center;
+    gap: 1rem;
     padding: 0.6rem 0;
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo), color 0.3s ease;
+    text-decoration: none;
   }
   .nav-overlay.open .overlay-link {
     opacity: 1;
     transform: translateY(0);
   }
-  .overlay-link:hover {
-    color: var(--earth);
-  }
+  .overlay-link:hover .link-label { color: rgba(196,170,148,0.8); }
+  .overlay-link:hover .link-arrow { opacity: 1; transform: translateX(0); }
   .link-num {
-    font-size: 0.55rem;
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
     font-weight: 400;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
+    color: rgba(245,240,232,0.15);
+    transform: translateY(-0.3em);
+    min-width: 18px;
   }
   .link-label {
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    color: rgba(255,255,255,0.9);
-    line-height: 1.1;
-    position: relative;
+    font-size: var(--type-section-title);
+    color: rgba(245,240,232,0.88);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    transition: color 0.35s ease;
   }
-  .link-label::after {
-    content: '';
-    position: absolute;
-    bottom: 4px; left: 0;
-    width: 0; height: 1px;
-    background: var(--earth);
-    transition: width 0.5s var(--ease-out-expo);
-  }
-  .overlay-link:hover .link-label::after {
-    width: 100%;
+  .link-arrow {
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: all 0.35s var(--ease-out-expo);
+    color: rgba(245,240,232,0.3);
   }
 
-  .overlay-meta {
-    position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    transform: translateX(-50%);
+  /* Overlay Footer */
+  .overlay-footer {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    font-size: 0.55rem;
+    gap: 1.2rem;
+    margin-top: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    transition-delay: 0s;
+  }
+  .nav-overlay.open .overlay-footer {
+    opacity: 1;
+    transition-delay: 0.6s;
+  }
+  .footer-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 16px 36px;
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(196,170,148,0.12);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.25);
+    color: rgba(245,240,232,0.85);
+    transition: all 0.45s var(--ease-out-expo);
+    text-decoration: none;
   }
-  .meta-dot { opacity: 0.5; }
+  .footer-cta-btn:hover {
+    background: rgba(245,240,232,0.08);
+    border-color: rgba(196,170,148,0.25);
+    transform: translateY(-1px);
+  }
+  .footer-line {
+    width: 32px;
+    height: 1px;
+    background: rgba(196,170,148,0.1);
+  }
+  .footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+  }
+  .meta-sep { opacity: 0.4; }
+
+  /* ── Responsive ───────────────────────────────────────────── */
+  @media (max-width: 1024px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .nav-trigger { display: flex; }
+    .nav-island {
+      width: min(1280px, 96vw);
+      min-height: 60px;
+      padding: 0.55rem 1.8rem;
+      gap: 1.5rem;
+      border-radius: 20px;
+    }
+    .nav-root.is-visible .nav-island {
+      width: auto;
+      min-width: 280px;
+      min-height: 0;
+      padding: 0.5rem;
+    }
+    .mark-text { font-size: var(--type-card-title-sm); }
+    .mark-icon svg { width: 20px; height: 20px; }
+  }
+
+  @media (max-width: 768px) {
+    .nav-root { padding: 14px 3vw; }
+    .nav-island {
+      width: min(1280px, 96vw);
+      min-height: 54px;
+      padding: 0.5rem 1.5rem;
+      gap: 1.2rem;
+      border-radius: 18px;
+    }
+    .nav-root.is-visible .nav-island {
+      width: auto;
+      min-width: 240px;
+      min-height: 0;
+      padding: 0.45rem;
+    }
+    .mark-text { font-size: var(--type-card-title-sm); }
+    .link-label { font-size: var(--type-section-title); }
+    .overlay-footer { gap: 1rem; }
+    .footer-cta-btn { padding: 14px 28px; }
+  }
 </style>

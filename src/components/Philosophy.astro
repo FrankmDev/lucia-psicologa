@@ -1,0 +1,1086 @@
+---
+import SectionHeader from './ui/SectionHeader.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+import FloatOrb from './ui/FloatOrb.astro';
+import InkBlob from './ui/InkBlob.astro';
+import PageNumber from './ui/PageNumber.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import DustParticles from './ui/DustParticles.astro';
+
+const bgImage = "https://images.unsplash.com/photo-1518495973542-4542c8a5843?q=80&w=1600&auto=format&fit=crop";
+const portraitImage = "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop";
+
+const values = [
+  { title: 'Empatia', desc: 'Te escucho sin juicios y respeto tu ritmo. Cada persona es unica y merece un acompanamiento adaptado a sus necesidades.', icon: 'heart' },
+  { title: 'Evidencia', desc: 'Tecnicas con respaldo cientifico y validadas. El EMDR y la terapia cognitivo-conductual son herramientas probadas.', icon: 'compass' },
+  { title: 'Acompanamiento', desc: 'No estas sola. Acompano tu proceso con dedicacion, paciencia y un compromiso real con tu bienestar.', icon: 'path' },
+];
+
+const valueIcons: Record<string, string> = {
+  heart: 'M20 36 C20 36 8 26 8 18 C8 13 11 10 15 10 C17 10 20 12 20 15 C20 12 23 10 25 10 C29 10 32 13 32 18 C32 26 20 36 20 36Z',
+  compass: 'M20 8 L22 18 L32 20 L22 22 L20 32 L18 22 L8 20 L18 18Z M20 20',
+  path: 'M12 28 Q20 20 20 16 Q20 12 24 12 Q28 12 28 16 M16 32 Q24 24 28 20',
+};
+---
+
+<section id="filosofia" class="philosophy" data-philosophy>
+  <!-- Background layers -->
+  <div class="phi-bg">
+    <img src={bgImage} alt="" decoding="async" loading="lazy" class="phi-bg-img" aria-hidden="true" />
+    <div class="phi-overlay"></div>
+    <div class="phi-vignette" aria-hidden="true"></div>
+    <div class="phi-noise" aria-hidden="true"></div>
+  </div>
+
+  <GrainOverlay animated opacity={0.025} zIndex={2} />
+  <AmbientLight />
+  <DustParticles count={15} />
+
+  <!-- Ambient orbs -->
+  <FloatOrb size={400} top="-10%" right="-8%" color="rgba(107,125,106,0.12)" blur={100} animation="float-1" />
+  <FloatOrb size={280} bottom="15%" left="-5%" color="rgba(196,170,148,0.08)" blur={90} animation="float-2" />
+  <FloatOrb size={200} top="55%" right="12%" color="rgba(168,146,124,0.06)" blur={80} animation="float-3" />
+  <FloatOrb size={150} top="30%" left="20%" color="rgba(125,212,204,0.05)" blur={60} animation="float-1" />
+
+  <!-- Ink blobs -->
+  <InkBlob width={500} height={400} top="-8%" right="-5%" color="var(--sage)" opacity={0.04} blur={100} />
+  <InkBlob width={380} height={320} bottom="-10%" left="-6%" color="var(--gold)" opacity={0.03} animation="morph-2" blur={90} />
+  <InkBlob width={280} height={220} top="45%" left="35%" color="var(--mint)" opacity={0.02} animation="morph-blob" blur={70} />
+
+  <!-- Decorative botanicals -->
+  <svg class="phi-botanical phi-botanical--right" viewBox="0 0 120 300" fill="none" aria-hidden="true">
+    <g stroke="rgba(196,170,148,0.07)" stroke-width="0.7" stroke-linecap="round" fill="none">
+      <path d="M60 300 Q58 250 60 200 Q62 150 60 100 Q59 50 60 0" />
+      <path d="M60 260 Q45 250 40 230 Q35 210 60 220" />
+      <path d="M60 180 Q80 170 85 150 Q90 130 60 140" />
+      <path d="M60 110 Q42 102 38 85 Q34 68 60 78" />
+      <path d="M60 50 Q72 42 74 28 Q76 14 60 24" />
+    </g>
+  </svg>
+  <svg class="phi-botanical phi-botanical--left" viewBox="0 0 120 300" fill="none" aria-hidden="true">
+    <g stroke="rgba(196,170,148,0.05)" stroke-width="0.7" stroke-linecap="round" fill="none">
+      <path d="M60 300 Q62 250 60 200 Q58 150 60 100 Q61 50 60 0" />
+      <path d="M60 260 Q75 250 80 230 Q85 210 60 220" />
+      <path d="M60 180 Q40 170 35 150 Q30 130 60 140" />
+      <path d="M60 110 Q78 102 82 85 Q86 68 60 78" />
+    </g>
+  </svg>
+
+  <!-- Watermark -->
+  <div class="phi-watermark" aria-hidden="true">
+    <span class="watermark-text">Filosofia</span>
+  </div>
+
+  <div class="philosophy-inner" data-phi-content>
+
+    <!-- ═══ EDITORIAL HERO: asymmetric split layout ═══ -->
+    <div class="phi-editorial">
+      <!-- Left: text -->
+      <div class="phi-editorial__text">
+        <SectionHeader
+          eyebrow="Filosofia"
+          title={['Mi enfoque', 'terapeutico']}
+          light={true}
+          variant="ornamented"
+          align="start"
+          index="04"
+          class="reveal-blur"
+        />
+
+        <p class="phi-lead reveal-up" data-delay="300">
+          Exploramos juntas el origen de lo que te sucede, entendemos los patrones que se repiten y construimos un camino hacia una vida mas autentica y en calma.
+        </p>
+
+        <div class="phi-accent-line reveal-up" data-delay="500" aria-hidden="true">
+          <span class="accent-line__track"></span>
+          <span class="accent-line__glow"></span>
+        </div>
+      </div>
+
+      <!-- Right: image with elegant arch frame -->
+      <div class="phi-editorial__visual reveal-scale" data-delay="400">
+        <div class="visual-frame" data-spotlight>
+          <div class="visual-frame__spotlight" aria-hidden="true"></div>
+          <div class="visual-frame__corner visual-frame__corner--tl" aria-hidden="true"></div>
+          <div class="visual-frame__corner visual-frame__corner--tr" aria-hidden="true"></div>
+          <div class="visual-frame__corner visual-frame__corner--bl" aria-hidden="true"></div>
+          <div class="visual-frame__corner visual-frame__corner--br" aria-hidden="true"></div>
+          <img src={portraitImage} alt="Espacio terapeutico de calma y conexion" decoding="async" loading="lazy" />
+        </div>
+        <div class="visual-caption reveal-up" data-delay="700">
+          <span class="caption-line" aria-hidden="true"></span>
+          <span class="caption-text">Un espacio seguro para crecer</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ VALUES: staggered editorial grid ═══ -->
+    <div class="phi-values" data-values>
+      {values.map((v, i) => (
+        <div class="value-card reveal-up" style={`transition-delay: ${400 + i * 180}ms`}>
+          <!-- Glass card surface -->
+          <div class="value-card__surface">
+            <div class="value-card__shine" aria-hidden="true"></div>
+            <div class="value-card__border" aria-hidden="true"></div>
+
+            <div class="value-card__top">
+              <div class="value-icon-wrap">
+                <div class="value-icon__ring" aria-hidden="true"></div>
+                <div class="value-icon__glow" aria-hidden="true"></div>
+                <svg class="value-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+                  <path d={valueIcons[v.icon]} stroke="currentColor" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" fill="none" class="icon-path"/>
+                </svg>
+              </div>
+              <span class="value-num" aria-hidden="true">0{i + 1}</span>
+            </div>
+
+            <div class="value-card__divider" aria-hidden="true">
+              <span class="divider-line"></span>
+              <span class="divider-dot"></span>
+            </div>
+
+            <div class="value-content">
+              <h3 class="value-title">{v.title}</h3>
+              <p class="value-desc">{v.desc}</p>
+            </div>
+
+            <div class="value-watermark" aria-hidden="true">{v.title.charAt(0)}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- ═══ CENTRAL QUOTE: dramatic, cinematic ═══ -->
+    <div class="phi-quote-wrap reveal-blur" data-delay="600">
+      <div class="quote-deco open" aria-hidden="true">
+        <svg viewBox="0 0 120 100" fill="none" aria-hidden="true">
+          <text x="8" y="88" font-family="var(--font-display)" font-style="italic" font-weight="300" font-size="110" fill="rgba(196,170,148,0.07)">“</text>
+        </svg>
+      </div>
+
+      <blockquote class="phi-quote">
+        <span class="quote-line quote-line--top" aria-hidden="true"></span>
+        <span class="quote-text">Cada persona tiene dentro de si la capacidad de sanar</span>
+        <span class="quote-line quote-line--bottom" aria-hidden="true"></span>
+      </blockquote>
+
+      <div class="quote-deco close" aria-hidden="true">
+        <svg viewBox="0 0 120 100" fill="none" aria-hidden="true">
+          <text x="8" y="88" font-family="var(--font-display)" font-style="italic" font-weight="300" font-size="110" fill="rgba(196,170,148,0.07)">”</text>
+        </svg>
+      </div>
+
+      <div class="quote-signature reveal-up" data-delay="900">
+        <span class="signature-line" aria-hidden="true"></span>
+        <span class="signature-text">Mi compromiso contigo</span>
+        <span class="signature-line" aria-hidden="true"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <PageNumber number="04" light={true} />
+</section>
+
+<style>
+  /* ════════════════════════════════════════════════
+     BASE & BACKGROUND
+     ════════════════════════════════════════════════ */
+  .philosophy {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #0c0907;
+    padding: 0 0 14rem;
+    min-height: 100vh;
+    isolation: isolate;
+  }
+
+  .phi-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .phi-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+    filter: grayscale(25%) brightness(0.35) saturate(0.6) contrast(1.15);
+    transform: scale(1.05);
+    animation: phi-breathe 30s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  @keyframes phi-breathe {
+    0%   { transform: scale(1.05) translateY(0); }
+    100% { transform: scale(1.12) translateY(-10px); }
+  }
+  .phi-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(13,10,8,0.2) 0%, transparent 55%),
+      radial-gradient(ellipse at 25% 80%, rgba(42,31,26,0.4) 0%, transparent 45%),
+      radial-gradient(ellipse at 75% 60%, rgba(13,10,8,0.3) 0%, transparent 50%),
+      linear-gradient(180deg, rgba(13,10,8,0.7) 0%, rgba(13,10,8,0.3) 40%, rgba(13,10,8,0.35) 60%, rgba(13,10,8,0.75) 100%);
+    z-index: 1;
+  }
+  .phi-vignette {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 300px 120px rgba(13,10,8,0.6);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .phi-noise {
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Watermark */
+  .phi-watermark {
+    position: absolute;
+    bottom: 8%;
+    left: -3%;
+    pointer-events: none;
+    z-index: 1;
+    user-select: none;
+  }
+  .watermark-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(8rem, 16vw, 14rem);
+    color: rgba(196,170,148,0.025);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+  }
+
+  /* Botanicals */
+  .phi-botanical {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    animation: botanical-sway 22s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+  }
+  .phi-botanical--right {
+    right: 1.5%;
+    bottom: 15%;
+    width: 100px;
+  }
+  .phi-botanical--left {
+    left: 1.5%;
+    top: 20%;
+    width: 80px;
+    animation-delay: -8s;
+    animation-direction: alternate-reverse;
+  }
+  @keyframes botanical-sway {
+    0%   { transform: rotate(-1.5deg); }
+    100% { transform: rotate(1.5deg); }
+  }
+
+  /* ════════════════════════════════════════════════
+     INNER CONTAINER
+     ════════════════════════════════════════════════ */
+  .philosophy-inner {
+    position: relative;
+    z-index: 5;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 7rem 6vw 0;
+    will-change: transform;
+  }
+
+  /* ════════════════════════════════════════════════
+     EDITORIAL HERO: asymmetric split
+     ════════════════════════════════════════════════ */
+  .phi-editorial {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-bottom: 8rem;
+  }
+
+  .phi-editorial__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 2rem;
+    align-items: flex-start;
+  }
+
+  .phi-lead {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    line-height: 1.75;
+    color: rgba(245,240,232,0.6);
+    max-width: 44ch;
+    letter-spacing: 0.01em;
+    border-left: 1px solid rgba(196,170,148,0.12);
+    padding-left: 1.4rem;
+    margin-left: 0.2rem;
+  }
+
+  .phi-accent-line {
+    position: relative;
+    width: 60px;
+    height: 2px;
+    margin-top: 0.5rem;
+  }
+  .accent-line__track {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(196,170,148,0.25), transparent);
+    border-radius: 1px;
+  }
+  .accent-line__glow {
+    position: absolute;
+    inset: -4px -20px -4px -10px;
+    background: linear-gradient(90deg, rgba(196,170,148,0.08), transparent);
+    filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .phi-editorial__text:hover .accent-line__glow {
+    opacity: 1;
+  }
+
+  /* Elegant arch frame */
+  .phi-editorial__visual {
+    position: relative;
+    justify-self: end;
+  }
+  .phi-editorial__visual::before {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 15%;
+    width: 1px;
+    height: 40%;
+    background: linear-gradient(180deg, transparent, rgba(196,170,148,0.12), transparent);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .visual-frame {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 3/4;
+    padding: 12px;
+    background: rgba(196,170,148,0.02);
+    border: 1px solid rgba(196,170,148,0.07);
+    border-radius: 52% 52% 6px 6px / 18% 18% 6px 6px;
+    overflow: hidden;
+    transition: border-color 0.7s ease, background 0.7s ease, box-shadow 0.7s ease;
+    box-shadow:
+      inset 0 0 20px rgba(0,0,0,0.15),
+      0 20px 50px rgba(0,0,0,0.2);
+  }
+  .visual-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50% 50% 3px 3px / 18% 18% 3px 3px;
+    filter: grayscale(8%) brightness(0.83) contrast(1.03);
+    transition: transform 10s ease, filter 0.8s ease;
+  }
+  .visual-frame:hover {
+    border-color: rgba(196,170,148,0.2);
+    background: rgba(196,170,148,0.035);
+    box-shadow:
+      inset 0 0 30px rgba(0,0,0,0.1),
+      0 28px 70px rgba(0,0,0,0.3),
+      inset 0 0 0 1px rgba(196,170,148,0.08);
+  }
+  .visual-frame:hover img {
+    transform: scale(1.04);
+    filter: grayscale(0%) brightness(0.88) contrast(1.03);
+  }
+
+  /* Photo corners */
+  .visual-frame__corner {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0;
+    transition: all 0.6s var(--ease-out-expo);
+  }
+  .visual-frame__corner--tl {
+    top: 5px; left: 5px;
+    border-top: 1px solid rgba(196,170,148,0.35);
+    border-left: 1px solid rgba(196,170,148,0.35);
+  }
+  .visual-frame__corner--tr {
+    top: 5px; right: 5px;
+    border-top: 1px solid rgba(196,170,148,0.35);
+    border-right: 1px solid rgba(196,170,148,0.35);
+  }
+  .visual-frame__corner--bl {
+    bottom: 5px; left: 5px;
+    border-bottom: 1px solid rgba(196,170,148,0.35);
+    border-left: 1px solid rgba(196,170,148,0.35);
+  }
+  .visual-frame__corner--br {
+    bottom: 5px; right: 5px;
+    border-bottom: 1px solid rgba(196,170,148,0.35);
+    border-right: 1px solid rgba(196,170,148,0.35);
+  }
+  .visual-frame:hover .visual-frame__corner {
+    opacity: 0.6;
+    width: 22px;
+    height: 22px;
+  }
+
+  /* Spotlight follow */
+  .visual-frame__spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(196,170,148,0.04), transparent 40%);
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .visual-frame:hover .visual-frame__spotlight {
+    opacity: 1;
+  }
+
+  /* Caption */
+  .visual-caption {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+    padding-left: 0.5rem;
+    justify-content: flex-start;
+  }
+  .caption-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: rgba(196,170,148,0.15);
+    transition: width 1s var(--ease-out-expo);
+  }
+  .phi-editorial__visual.visible .caption-line {
+    width: 32px;
+  }
+  .caption-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.04em;
+  }
+
+  /* ════════════════════════════════════════════════
+     VALUES: editorial glass cards
+     ════════════════════════════════════════════════ */
+  .phi-values {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 8rem;
+    width: 100%;
+    position: relative;
+    align-items: stretch;
+  }
+  /* Subtle connector line behind cards */
+  .phi-values::before {
+    content: '';
+    position: absolute;
+    top: 3.5rem;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196,170,148,0.06), transparent);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .value-card {
+    position: relative;
+    perspective: 1000px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .value-card__surface {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+    padding: 2.8rem 2rem 2.4rem;
+    background: rgba(245,240,232,0.02);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(196,170,148,0.07);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: transform 0.7s var(--ease-out-expo), border-color 0.5s ease, background 0.5s ease, box-shadow 0.7s ease;
+    cursor: default;
+    flex: 1;
+  }
+  .value-card__surface::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(196,170,148,0.03), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .value-card:hover .value-card__surface {
+    transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) translateY(-6px);
+    border-color: rgba(196,170,148,0.18);
+    background: rgba(245,240,232,0.035);
+    box-shadow:
+      0 24px 64px rgba(0,0,0,0.35),
+      0 0 0 1px rgba(196,170,148,0.05) inset;
+  }
+  .value-card:hover .value-card__surface::before {
+    opacity: 1;
+  }
+
+  /* Animated border gradient on hover */
+  .value-card__border {
+    position: absolute;
+    inset: 0;
+    border-radius: 3px;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(196,170,148,0.15), transparent 40%, transparent 60%, rgba(196,170,148,0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .value-card:hover .value-card__border {
+    opacity: 1;
+  }
+
+  /* Shine effect */
+  .value-card__shine {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(196,170,148,0.03) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .value-card:hover .value-card__shine {
+    opacity: 1;
+  }
+
+  /* Top row: icon + number */
+  .value-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .value-icon-wrap {
+    width: 56px;
+    height: 56px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(196,170,148,0.5);
+    transition: color 0.5s ease, transform 0.5s var(--ease-out-expo);
+  }
+  .value-card:hover .value-icon-wrap {
+    color: rgba(196,170,148,0.9);
+    transform: scale(1.1) rotate(-4deg);
+  }
+
+  .value-icon__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(196,170,148,0.1);
+    transition: all 0.6s var(--ease-out-expo);
+  }
+  .value-card:hover .value-icon__ring {
+    border-color: rgba(196,170,148,0.25);
+    transform: scale(1.15);
+  }
+
+  .value-icon__glow {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: rgba(196,170,148,0.06);
+    filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  .value-card:hover .value-icon__glow {
+    opacity: 1;
+  }
+
+  .value-icon {
+    width: 28px;
+    height: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  .icon-path {
+    opacity: 0.8;
+    transition: opacity 0.4s ease;
+  }
+  .value-card:hover .icon-path {
+    opacity: 1;
+  }
+
+  .value-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: rgba(196,170,148,0.12);
+    letter-spacing: 0.08em;
+    transition: opacity 0.4s ease, color 0.4s ease;
+  }
+  .value-card:hover .value-num {
+    color: rgba(196,170,148,0.3);
+  }
+
+  /* Divider between icon and content */
+  .value-card__divider {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    position: relative;
+    z-index: 1;
+  }
+  .divider-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(196,170,148,0.2), transparent);
+    transition: width 0.8s var(--ease-out-expo);
+  }
+  .value-card:hover .divider-line {
+    width: 36px;
+  }
+  .divider-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(196,170,148,0.15);
+    opacity: 0;
+    transform: scale(0);
+    transition: opacity 0.5s ease 0.2s, transform 0.5s var(--ease-out-expo) 0.2s;
+  }
+  .value-card:hover .divider-dot {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Content */
+  .value-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    position: relative;
+    z-index: 1;
+    flex: 1;
+  }
+
+  .value-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: rgba(245,240,232,0.9);
+    line-height: 1.15;
+    letter-spacing: 0.01em;
+    margin: 0;
+    transition: color 0.4s ease;
+  }
+  .value-card:hover .value-title {
+    color: #F5F0E8;
+  }
+
+  .value-desc {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(245,240,232,0.4);
+    margin: 0;
+    max-width: 30ch;
+    transition: color 0.4s ease;
+    flex: 1;
+  }
+  .value-card:hover .value-desc {
+    color: rgba(245,240,232,0.65);
+  }
+
+  .value-watermark {
+    position: absolute;
+    bottom: 0.8rem;
+    right: 1rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: rgba(196,170,148,0.04);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.7s ease;
+  }
+  .value-card:hover .value-watermark {
+    opacity: 0.1;
+  }
+
+  /* ════════════════════════════════════════════════
+     QUOTE: cinematic, editorial
+     ════════════════════════════════════════════════ */
+  .phi-quote-wrap {
+    position: relative;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+    background: rgba(245,240,232,0.015);
+    border: 1px solid rgba(196,170,148,0.05);
+    border-radius: 2px;
+  }
+  .phi-quote-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(196,170,148,0.03);
+    border-radius: 1px;
+    pointer-events: none;
+  }
+
+  .quote-deco {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+    width: 100px;
+    height: 84px;
+    transition: transform 0.8s var(--ease-out-expo), opacity 0.8s ease;
+  }
+  .quote-deco.open {
+    top: 0.5rem;
+    left: -2rem;
+    transform: rotate(-6deg);
+  }
+  .quote-deco.close {
+    bottom: 0.5rem;
+    right: -2rem;
+    transform: rotate(6deg);
+  }
+  .quote-deco svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .phi-quote-wrap:hover .quote-deco.open {
+    transform: rotate(-10deg) translateY(-4px);
+    opacity: 0.15;
+  }
+  .phi-quote-wrap:hover .quote-deco.close {
+    transform: rotate(10deg) translateY(-4px);
+    opacity: 0.15;
+  }
+
+  .phi-quote {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    margin: 0;
+  }
+
+  .quote-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196,170,148,0.15), transparent);
+    transition: width 1.2s var(--ease-out-expo);
+  }
+  .phi-quote-wrap.visible .quote-line--top {
+    width: 80px;
+    transition-delay: 0.3s;
+  }
+  .phi-quote-wrap.visible .quote-line--bottom {
+    width: 120px;
+    transition-delay: 0.6s;
+  }
+
+  .quote-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.6rem, 3.2vw, 2.6rem);
+    line-height: 1.25;
+    color: rgba(245,240,232,0.75);
+    display: block;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+
+  /* Signature below quote */
+  .quote-signature {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .signature-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: rgba(196,170,148,0.12);
+    transition: width 1s var(--ease-out-expo);
+  }
+  .phi-quote-wrap.visible .signature-line {
+    width: 20px;
+  }
+  .signature-text {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.3);
+    opacity: 0;
+    transition: opacity 0.8s ease 0.8s;
+  }
+  .phi-quote-wrap.visible .signature-text {
+    opacity: 1;
+  }
+
+  /* ════════════════════════════════════════════════
+     RESPONSIVE
+     ════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .phi-editorial {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      text-align: left;
+    }
+    .phi-editorial__text {
+      align-items: flex-start;
+      padding-top: 0;
+    }
+    .phi-lead {
+      max-width: 50ch;
+    }
+    .phi-editorial__visual {
+      justify-self: center;
+    }
+    .visual-frame {
+      max-width: 340px;
+    }
+    .phi-values {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+      margin: 0 auto 6rem;
+      gap: 1.25rem;
+    }
+    .value-card--0,
+    .value-card--1,
+    .value-card--2 {
+      margin-top: 0;
+    }
+    .value-card__surface {
+      padding: 2.2rem 1.8rem 2rem;
+      flex-direction: row;
+      text-align: left;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+    .value-card__top {
+      flex-direction: column;
+      align-items: center;
+      min-width: 60px;
+    }
+    .value-card__divider {
+      display: none;
+    }
+    .value-content {
+      align-items: flex-start;
+    }
+    .value-icon-wrap {
+      width: 48px;
+      height: 48px;
+    }
+    .value-icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .philosophy {
+      padding: 0 0 10rem;
+    }
+    .philosophy-inner {
+      padding-top: 8rem;
+    }
+
+    .phi-editorial {
+      margin-bottom: 5rem;
+    }
+    .phi-editorial__visual::before {
+      display: none;
+    }
+    .phi-botanical {
+      display: none;
+    }
+    .quote-deco {
+      width: 60px;
+      height: 50px;
+    }
+    .quote-deco.open { left: -0.5rem; }
+    .quote-deco.close { right: -0.5rem; }
+    .phi-quote-wrap {
+      padding: 3rem 1rem;
+    }
+    .quote-text {
+      font-size: 1.4rem;
+    }
+    .watermark-text {
+      font-size: 5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .philosophy-inner {
+      padding: 7rem 5vw 0;
+    }
+    .visual-frame {
+      max-width: 280px;
+    }
+    .value-card__surface {
+      padding: 1.8rem 1.4rem 1.6rem;
+    }
+    .value-title {
+      font-size: 1.1rem;
+    }
+    .value-desc {
+      font-size: 0.78rem;
+    }
+    .phi-lead {
+      font-size: 1rem;
+    }
+    .quote-text {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  const phiSection = document.querySelector('[data-philosophy]');
+  const phiBg = document.querySelector('.phi-bg-img');
+  if (phiBg && phiSection && !window.matchMedia('(pointer: coarse)').matches) {
+    window.addEventListener('scroll', () => {
+      const rect = phiSection.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, -rect.top / rect.height));
+      (phiBg as HTMLElement).style.transform = `scale(1.05) translateY(${progress * 30}px)`;
+    }, { passive: true });
+  }
+
+  const phiContent = document.querySelector('[data-phi-content]');
+  if (phiContent && phiSection && !window.matchMedia('(pointer: coarse)').matches) {
+    phiSection.addEventListener('mousemove', (e) => {
+      const rect = phiSection.getBoundingClientRect();
+      const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
+      const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
+      (phiContent as HTMLElement).style.transform = `translate(${x * -5}px, ${y * -3}px)`;
+    });
+    phiSection.addEventListener('mouseleave', () => {
+      (phiContent as HTMLElement).style.transform = 'translate(0, 0)';
+    });
+  }
+
+  // Values container observer
+  const valuesContainer = document.querySelector('[data-values]');
+  if (valuesContainer) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    io.observe(valuesContainer);
+  }
+
+  // Quote observer for line animations
+  const quoteWrap = document.querySelector('.phi-quote-wrap');
+  if (quoteWrap) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    io.observe(quoteWrap);
+  }
+
+  // Visual caption observer
+  const visualEl = document.querySelector('.phi-editorial__visual');
+  if (visualEl) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    io.observe(visualEl);
+  }
+
+  // Spotlight follow on image frame
+  const spotFrame = document.querySelector('[data-spotlight]');
+  if (spotFrame && !window.matchMedia('(pointer: coarse)').matches) {
+    spotFrame.addEventListener('mousemove', (e) => {
+      const rect = spotFrame.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      spotFrame.style.setProperty('--mouse-x', `${x}%`);
+      spotFrame.style.setProperty('--mouse-y', `${y}%`);
+    });
+  }
+</script>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  class?: string;
+  color?: string;
+}
+
+const { class: className = '', color = 'rgba(196,170,148,0.06)' } = Astro.props;
+---
+
+<div class:list={['ambient-light', className]} aria-hidden="true" style={`--light-color: ${color}`}></div>
+
+<style>
+  .ambient-light {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--light-color) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    transition: left 0.4s ease-out, top 0.4s ease-out;
+    will-change: left, top;
+  }
+</style>
+
+<script>
+  (function() {
+    const lights = document.querySelectorAll('.ambient-light');
+    const isTouch = window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
+    lights.forEach(light => {
+      const parent = light.closest('section, footer, .hero');
+      if (!parent) return;
+      parent.addEventListener('mousemove', (e) => {
+        const rect = parent.getBoundingClientRect();
+        (light as HTMLElement).style.left = (e.clientX - rect.left) + 'px';
+        (light as HTMLElement).style.top = (e.clientY - rect.top) + 'px';
+      });
+    });
+  })();
+</script>

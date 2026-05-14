@@ -1,218 +1,910 @@
 ---
+import SectionHeader from './ui/SectionHeader.astro';
+import CardSurface from './ui/CardSurface.astro';
+import PageNumber from './ui/PageNumber.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+import InkBlob from './ui/InkBlob.astro';
+import BotanicalSVG from './ui/BotanicalSVG.astro';
+import FloatOrb from './ui/FloatOrb.astro';
+import Container from './ui/Container.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import DustParticles from './ui/DustParticles.astro';
+
 const steps = [
   {
     num: '01',
     title: 'Primera toma de contacto',
-    desc: 'Me escribes o llamas. Respondemos juntas a tus dudas iniciales, hablamos de qué te trae aquí y buscamos el mejor momento para empezar.',
-    shape: 'shape-1',
+    desc: 'Me escribes o llamas. Resolvemos juntas tus dudas iniciales y buscamos el mejor momento para empezar. Sin compromiso, solo una conversacion honesta.',
+    expect: ['Respuesta en 24h', 'Primera sesion en 1-2 semanas'],
+    detail: 'Puedes contactarme por email, telefono o WhatsApp.',
   },
   {
     num: '02',
-    title: 'Evaluación y objetivos',
-    desc: 'En las primeras sesiones conocemos tu historia, identificamos qué te duele y definimos juntas hacia dónde queremos dirigir el trabajo.',
-    shape: 'shape-2',
+    title: 'Evaluacion y objetivos',
+    desc: 'Conocemos tu historia, identificamos que te resulta dificil y definimos juntas hacia donde dirigir el trabajo. Cada persona necesita un enfoque adaptado.',
+    expect: ['Historia personal', 'Mapa de objetivos'],
+    detail: 'Evaluacion completa en las primeras sesiones.',
   },
   {
     num: '03',
-    title: 'El trabajo terapéutico',
-    desc: 'Avanzamos a tu ritmo. Utilizo técnicas de la terapia cognitivo-conductual y EMDR cuando es necesario, siempre desde una escucha activa.',
-    shape: 'shape-3',
+    title: 'El trabajo terapeutico',
+    desc: 'Avanzamos a tu ritmo con tecnicas cognitivo-conductuales y EMDR cuando es necesario, siempre desde una escucha activa y sin juicios.',
+    expect: ['Sesiones semanales', 'Tecnicas adaptadas', 'Progreso continuo'],
+    detail: 'Duracion de 50-55 minutos por sesion.',
   },
   {
     num: '04',
     title: 'Cierre y seguimiento',
-    desc: 'Cuando sientas que has alcanzado tus objetivos, cerramos el proceso de forma conjunta. La puerta siempre está abierta.',
-    shape: 'shape-4',
+    desc: 'Cuando sientas que has alcanzado tus objetivos, cerramos el proceso de forma conjunta. La puerta siempre esta abierta para futuras etapas.',
+    expect: ['Revision de logros', 'Herramientas para el futuro'],
+    detail: 'Sesion de cierre para consolidar aprendizajes.',
   },
 ];
+
+const stepIcons: Record<string, string> = {
+  '01': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8v32M8 24h32"/><circle cx="24" cy="24" r="16" opacity="0.15"/></svg>`,
+  '02': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 36c0-8 6-14 12-14s12 6 12 14"/><circle cx="24" cy="18" r="6"/><circle cx="24" cy="24" r="20" opacity="0.15"/></svg>`,
+  '03': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 36l8-16 8 10 8-14"/><path d="M36 16v8" opacity="0.4"/><circle cx="24" cy="24" r="20" opacity="0.15"/></svg>`,
+  '04': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l16 16M16 32l16-16"/><circle cx="24" cy="24" r="20" opacity="0.15"/></svg>`,
+};
 ---
 
-<section id="proceso" class="proceso">
-  <div class="proceso-header reveal">
-    <span class="type-eyebrow">Proceso</span>
-    <h2 class="proceso-title">
-      <span class="type-display">Cómo funciona</span>
-      <span class="type-display accent">la terapia</span>
-    </h2>
+<section id="proceso" class="proceso" data-proceso>
+  <GrainOverlay opacity={0.02} />
+  <AmbientLight color="rgba(196,170,148,0.04)" />
+  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
+
+  <!-- Ambient orbs -->
+  <FloatOrb size={480} top="-16%" left="-10%" color="var(--sage-muted)" blur={130} opacity={0.3} animation="float-1" />
+  <FloatOrb size={360} bottom="8%" right="-8%" color="var(--gold-soft)" opacity={0.28} animation="float-2" />
+  <FloatOrb size={200} top="50%" right="4%" color="var(--sage-muted)" opacity={0.22} animation="float-3" />
+  <FloatOrb size={140} top="20%" left="8%" color="var(--earth)" opacity={0.12} animation="float-slow" />
+
+  <!-- Ink blobs -->
+  <InkBlob width={400} height={320} bottom="4%" left="-12%" color="var(--earth)" opacity={0.03} animation="morph-2" />
+  <InkBlob width={300} height={240} top="8%" right="-8%" color="var(--sage)" opacity={0.025} animation="morph-blob" />
+
+  <!-- Botanical accents -->
+  <BotanicalSVG variant="right" opacity={0.03} width={85} />
+  <BotanicalSVG variant="left" color="var(--sage-muted)" opacity={0.04} width={75} />
+
+  <!-- Giant watermark -->
+  <div class="proceso-watermark" aria-hidden="true">
+    <span class="watermark-text">Pasos</span>
   </div>
 
-  <div class="journey-wrapper">
-    <!-- Curved SVG path -->
-    <svg class="journey-path" viewBox="0 0 1000 1200" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M500,0 C200,150 800,300 500,450 C200,600 800,750 500,900 C200,1050 800,1200 500,1200" 
-            fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="8 6" id="journeyLine"/>
-      <path d="M500,0 C200,150 800,300 500,450 C200,600 800,750 500,900 C200,1050 800,1200 500,1200" 
-            fill="none" stroke="var(--taupe)" stroke-width="1.5" id="journeyProgress" 
-            stroke-dasharray="2400" stroke-dashoffset="2400"/>
-    </svg>
+  <!-- Decorative grid lines (like Servicios) -->
+  <div class="grid-lines" aria-hidden="true">
+    <div class="grid-line grid-line--v1"></div>
+    <div class="grid-line grid-line--v2"></div>
+  </div>
 
-    <div class="journey-steps">
+  <Container maxWidth="1140px">
+    <SectionHeader
+      eyebrow="Proceso"
+      title={['Como', 'funciona']}
+      subtitle="Cuatro pasos claros hacia el cambio. Un camino disenado para que te sientas acompanada en cada momento."
+      variant="ornamented"
+      index="05"
+      class="reveal-blur"
+    />
+
+    <!-- Process Grid -->
+    <div class="process-grid">
       {steps.map((step, i) => (
-        <div class={`step-card ${step.shape} ${i % 2 === 0 ? 'step-left' : 'step-right'} reveal`} style={`transition-delay: ${i * 100}ms`}>
-          <div class="step-inner">
-            <span class="step-num">{step.num}</span>
-            <h3 class="step-title">{step.title}</h3>
-            <p class="step-desc">{step.desc}</p>
-          </div>
-          <div class="step-watermark" aria-hidden="true">{step.num}</div>
-        </div>
+        <article class={`process-card process-card--${i}`} data-step={i}>
+          <CardSurface watermark={step.num} class="process-card__surface" hoverable={true}>
+            <!-- Decorative corner bracket -->
+            <div class="process-card__bracket" aria-hidden="true"></div>
+
+            <!-- Top row: number + icon -->
+            <div class="process-card__top">
+              <span class="process-card__num" aria-hidden="true">{step.num}</span>
+              <div class="process-card__icon" aria-hidden="true">
+                <Fragment set:html={stepIcons[step.num]} />
+              </div>
+            </div>
+
+            <!-- Meta label -->
+            <div class="process-card__meta">
+              <span class="meta-label">Paso {step.num}</span>
+              <span class="meta-sep" aria-hidden="true"></span>
+              <span class="meta-count">0{i + 1} / 04</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="process-card__title">{step.title}</h3>
+            <div class="process-card__title-sep" aria-hidden="true"></div>
+
+            <!-- Description -->
+            <p class="process-card__desc">{step.desc}</p>
+
+            <!-- Detail -->
+            <div class="process-card__detail">
+              <span class="detail-accent" aria-hidden="true"></span>
+              <p class="detail-text">{step.detail}</p>
+            </div>
+
+            <!-- Tags -->
+            <div class="process-card__tags">
+              {step.expect.map(item => (
+                <span class="process-tag">
+                  <span class="tag-dot" aria-hidden="true"></span>
+                  {item}
+                </span>
+              ))}
+            </div>
+          </CardSurface>
+        </article>
       ))}
     </div>
-  </div>
+
+    <!-- Connector line between cards and footer -->
+    <div class="process-connector" aria-hidden="true">
+      <div class="connector-track"></div>
+      <div class="connector-dot connector-dot--start"></div>
+      <div class="connector-dot connector-dot--end"></div>
+    </div>
+
+    <!-- Footer / CTA -->
+    <div class="proceso-footer reveal-up" data-delay="400">
+      <div class="footer-label">Comienza hoy</div>
+      <a href="#contacto" class="proceso-cta">
+        <span class="cta-bg" aria-hidden="true"></span>
+        <span class="cta-text">Da el primer paso</span>
+        <span class="cta-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+      <p class="proceso-cta-note">Respuesta en menos de 24 horas</p>
+
+      <div class="footer-ornament" aria-hidden="true">
+        <span class="orn-line"></span>
+        <span class="orn-fleur">&#10086;</span>
+        <span class="orn-line"></span>
+      </div>
+    </div>
+  </Container>
+
+  <PageNumber number="05" />
 </section>
 
-<script>
-  const line = document.getElementById('journeyProgress');
-  const section = document.querySelector('.proceso');
-
-  function drawPath() {
-    const rect = section.getBoundingClientRect();
-    const viewportH = window.innerHeight;
-    const total = section.offsetHeight;
-    const scrolled = viewportH - rect.top;
-    const progress = Math.max(0, Math.min(1, scrolled / total));
-    const length = 2400;
-    line.style.strokeDashoffset = length - (progress * length);
-  }
-
-  window.addEventListener('scroll', drawPath, { passive: true });
-  window.addEventListener('resize', drawPath);
-</script>
-
 <style>
+  /* ═══════════════════════════════════════════════════════════
+     SECTION BASE
+     ═══════════════════════════════════════════════════════════ */
   .proceso {
     position: relative;
-    background: var(--cream);
-    padding: 10rem 0 14rem;
+    width: 100%;
     overflow: hidden;
+    background:
+      radial-gradient(ellipse at 40% 25%, rgba(196,170,148,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 75% 65%, rgba(107,125,106,0.04) 0%, transparent 45%),
+      var(--parchment);
+    padding: clamp(6rem, 10vw, 10rem) 0 clamp(7rem, 12vw, 12rem);
   }
 
-  .proceso-header {
-    text-align: center;
-    margin-bottom: 8rem;
-    padding: 0 6vw;
-  }
-  .proceso-header .type-eyebrow {
-    display: block;
-    margin-bottom: 1.5rem;
-  }
-  .proceso-title {
-    display: flex;
-    flex-direction: column;
-    gap: 0.05em;
-  }
-  .proceso-title .type-display {
-    font-size: clamp(2.2rem, 4.5vw, 4rem);
-    color: var(--ink);
-  }
-  .proceso-title .accent {
-    color: var(--taupe);
-  }
-
-  .journey-wrapper {
-    position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 6vw;
-    min-height: 1000px;
-  }
-
-  .journey-path {
+  /* ═══════════════════════════════════════════════════════════
+     WATERMARK
+     ═══════════════════════════════════════════════════════════ */
+  .proceso-watermark {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 0;
+    user-select: none;
+  }
+  .watermark-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(9rem, 22vw, 18rem);
+    color: var(--earth);
+    opacity: 0.012;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
   }
 
-  .journey-steps {
-    position: relative;
+  /* ═══════════════════════════════════════════════════════════
+     GRID LINES (decorative, like Servicios)
+     ═══════════════════════════════════════════════════════════ */
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8rem;
-    padding-top: 2rem;
+  }
+  .grid-line {
+    position: absolute;
+    background: var(--earth);
+    opacity: 0;
+    transition: opacity 2s ease, height 2s var(--ease-out-expo), width 2s var(--ease-out-expo);
+  }
+  .grid-line--v1 {
+    left: 18%;
+    top: 0;
+    width: 1px;
+    height: 0;
+    opacity: 0.03;
+  }
+  .proceso.visible .grid-line--v1 {
+    height: 100%;
+    opacity: 0.03;
+    transition-delay: 0.3s;
+  }
+  .grid-line--v2 {
+    right: 22%;
+    top: 0;
+    width: 1px;
+    height: 0;
+    opacity: 0.025;
+  }
+  .proceso.visible .grid-line--v2 {
+    height: 100%;
+    opacity: 0.025;
+    transition-delay: 0.6s;
   }
 
-  .step-card {
-    position: relative;
-    max-width: 420px;
-    padding: 3rem;
-    background: var(--white-warm);
-    border: 0.5px solid var(--line);
-    transition: all 0.5s var(--ease-out-expo);
-    overflow: hidden;
-  }
-  .step-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 60px rgba(42,31,26,0.08);
-    border-color: var(--taupe);
-  }
-
-  .step-left { align-self: flex-start; margin-left: 5%; }
-  .step-right { align-self: flex-end; margin-right: 5%; }
-
-  /* Unique shapes via border-radius */
-  .shape-1 { border-radius: 40px 4px 40px 4px; }
-  .shape-2 { border-radius: 4px 40px 4px 40px; }
-  .shape-3 { border-radius: 4px 4px 40px 40px; }
-  .shape-4 { border-radius: 40px 40px 4px 4px; }
-
-  .step-inner {
+  /* ═══════════════════════════════════════════════════════════
+     PROCESS GRID — editorial 2x2
+     ═══════════════════════════════════════════════════════════ */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
     position: relative;
     z-index: 2;
   }
-  .step-num {
-    display: block;
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--taupe);
-    opacity: 0.5;
-    margin-bottom: 1rem;
-    letter-spacing: 0.1em;
+
+  /* ── Card wrapper ── */
+  .process-card {
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo);
+    will-change: opacity, transform;
   }
-  .step-title {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 1.5rem;
-    color: var(--ink);
-    margin-bottom: 1rem;
-    line-height: 1.2;
-  }
-  .step-desc {
-    font-size: 0.88rem;
-    font-weight: 300;
-    line-height: 1.7;
-    color: var(--ink-soft);
+  .process-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .step-watermark {
+  /* Staggered delays */
+  .process-card--0 { transition-delay: 0ms; }
+  .process-card--1 { transition-delay: 120ms; }
+  .process-card--2 { transition-delay: 240ms; }
+  .process-card--3 { transition-delay: 360ms; }
+
+  /* ── Card surface overrides ── */
+  .process-card__surface {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 2.4rem 2.2rem 2rem;
+    overflow: hidden;
+    border-left: 2px solid transparent;
+    transition: border-color 0.5s ease;
+  }
+  .process-card:hover .process-card__surface {
+    border-left-color: rgba(107,125,106,0.18);
+  }
+  .process-card__surface :global(.card-surface__watermark) {
+    font-size: 4.5rem;
+    opacity: 0.015;
+    transition: opacity 1s ease, transform 1s var(--ease-out-expo);
+  }
+  .process-card:hover .process-card__surface :global(.card-surface__watermark) {
+    opacity: 0.035;
+    transform: translateY(-6px);
+  }
+
+  /* ── Decorative bracket ── */
+  .process-card__bracket {
     position: absolute;
-    bottom: -1.5rem;
-    right: -0.5rem;
+    top: 1.6rem;
+    right: 1.6rem;
+    width: 12px;
+    height: 12px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .process-card__bracket::before,
+  .process-card__bracket::after {
+    content: '';
+    position: absolute;
+    background: var(--earth);
+    transition: opacity 0.6s ease;
+  }
+  .process-card__bracket::before {
+    top: 0; right: 0;
+    width: 12px; height: 1px;
+    opacity: 0.06;
+  }
+  .process-card__bracket::after {
+    top: 0; right: 0;
+    width: 1px; height: 12px;
+    opacity: 0.06;
+  }
+  .process-card:hover .process-card__bracket {
+    opacity: 1;
+  }
+  .process-card:hover .process-card__bracket::before,
+  .process-card:hover .process-card__bracket::after {
+    opacity: 0.14;
+  }
+
+  /* ── Top row: number + icon ── */
+  .process-card__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.4rem;
+  }
+  .process-card__num {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 8rem;
+    font-weight: 300;
+    font-size: 0.8rem;
+    color: var(--taupe);
+    opacity: 0.2;
+    letter-spacing: 0.05em;
+    transition: opacity 0.5s ease, color 0.5s ease;
+  }
+  .process-card:hover .process-card__num {
+    opacity: 0.5;
+    color: var(--sage-dark);
+  }
+
+  .process-card__icon {
+    width: 44px;
+    height: 44px;
+    color: var(--sage-dark);
+    opacity: 0.25;
+    transition: opacity 0.6s ease, transform 0.6s var(--ease-out-expo);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .process-card:hover .process-card__icon {
+    opacity: 0.55;
+    transform: scale(1.08);
+  }
+  .process-card__icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── Meta ── */
+  .process-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 0.7rem;
+  }
+  .meta-label {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--taupe);
+    opacity: 0.35;
+    transition: opacity 0.4s ease;
+  }
+  .process-card:hover .meta-label {
+    opacity: 0.6;
+  }
+  .meta-sep {
+    width: 1px;
+    height: 8px;
+    background: var(--earth);
+    opacity: 0.06;
+    margin: 0 0.55rem;
+  }
+  .meta-count {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.25;
+    transition: opacity 0.4s ease;
+  }
+  .process-card:hover .meta-count {
+    opacity: 0.45;
+  }
+
+  /* ── Title ── */
+  .process-card__title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.15rem, 1.5vw, 1.45rem);
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    transition: color 0.5s ease;
+  }
+  .process-card:hover .process-card__title {
+    color: var(--earth);
+  }
+
+  /* ── Title separator ── */
+  .process-card__title-sep {
+    width: 0;
+    height: 1px;
+    background: var(--earth);
+    opacity: 0.1;
+    margin-bottom: 1.1rem;
+    transition: width 0.9s var(--ease-out-expo) 0.15s, opacity 0.4s ease;
+  }
+  .process-card.is-visible .process-card__title-sep {
+    width: 28px;
+    opacity: 0.2;
+  }
+  .process-card:hover .process-card__title-sep {
+    opacity: 0.35;
+  }
+
+  /* ── Description ── */
+  .process-card__desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    line-height: 1.75;
+    opacity: 0.82;
+    max-width: 46ch;
+    margin-bottom: 1.2rem;
+  }
+
+  /* ── Detail ── */
+  .process-card__detail {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.4rem;
+    padding-left: 0.1rem;
+  }
+  .detail-accent {
+    width: 2px;
+    height: 0;
+    background: var(--sage-muted);
+    opacity: 0.25;
+    flex-shrink: 0;
+    margin-top: 0.35rem;
+    border-radius: 1px;
+    transition: height 0.8s var(--ease-out-expo) 0.3s;
+  }
+  .process-card.is-visible .detail-accent {
+    height: 28px;
+  }
+  .detail-text {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--taupe);
+    opacity: 0.6;
+    margin: 0;
+    font-style: italic;
+    max-width: 40ch;
+  }
+
+  /* ── Tags ── */
+  .process-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+  .process-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.42;
+    background: rgba(196,170,148,0.03);
+    padding: 0.32rem 0.65rem;
+    border-radius: 2px;
+    border: 1px solid rgba(196,170,148,0.06);
+    transition: opacity 0.4s ease, border-color 0.4s ease, background 0.4s ease, transform 0.4s var(--ease-out-expo);
+  }
+  .process-card:hover .process-tag {
+    opacity: 0.7;
+    border-color: rgba(196,170,148,0.12);
+    background: rgba(196,170,148,0.06);
+  }
+  .process-tag:hover {
+    transform: translateY(-1px);
+  }
+  .tag-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--sage-light);
+    flex-shrink: 0;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     CONNECTOR (between grid and footer)
+     ═══════════════════════════════════════════════════════════ */
+  .process-connector {
+    position: relative;
+    height: 60px;
+    width: 1px;
+    margin: 0 auto 2rem;
+    pointer-events: none;
+  }
+  .connector-track {
+    position: absolute;
+    inset: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--earth) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 1s ease 0.5s, height 1s var(--ease-out-expo) 0.5s;
+    height: 0;
+  }
+  .proceso-footer.visible + .process-connector .connector-track,
+  .process-connector.is-visible .connector-track {
+    opacity: 0.1;
+    height: 100%;
+  }
+  .connector-dot {
+    position: absolute;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--sage-dark);
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+    transition: opacity 0.5s ease, transform 0.5s var(--ease-out-expo);
+  }
+  .connector-dot--start {
+    top: 0;
+  }
+  .connector-dot--end {
+    bottom: 0;
+    transition-delay: 0.3s;
+  }
+  .process-connector.is-visible .connector-dot {
+    opacity: 0.25;
+    transform: translateX(-50%) scale(1);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FOOTER / CTA
+     ═══════════════════════════════════════════════════════════ */
+  .proceso-footer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .footer-label {
+    font-family: var(--font-body);
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.35;
+  }
+
+  .proceso-cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    border: 1.5px solid rgba(107, 125, 106, 0.18);
+    background: transparent;
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color 0.5s ease, transform 0.4s var(--ease-out-expo), box-shadow 0.5s ease;
+    cursor: pointer;
+  }
+  .proceso-cta:hover {
+    border-color: rgba(107, 125, 106, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(107, 125, 106, 0.08);
+  }
+  .proceso-cta:focus-visible {
+    outline: 2px solid var(--sage-dark);
+    outline-offset: 3px;
+  }
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(107, 125, 106, 0.06), rgba(168, 169, 158, 0.03));
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
+    border-radius: 100px;
+  }
+  .proceso-cta:hover .cta-bg {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  .cta-text {
+    position: relative;
+    z-index: 1;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    transition: color 0.4s ease;
+  }
+  .proceso-cta:hover .cta-text {
+    color: var(--ink);
+  }
+  .cta-arrow {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    color: var(--sage-dark);
+    opacity: 0.45;
+    transform: translateX(-3px);
+    transition: opacity 0.4s ease, transform 0.5s var(--ease-out-expo), color 0.4s ease;
+  }
+  .proceso-cta:hover .cta-arrow {
+    opacity: 0.8;
+    transform: translateX(0);
+    color: var(--ink);
+  }
+
+  .proceso-cta-note {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
     font-weight: 300;
     color: var(--taupe);
-    opacity: 0.04;
-    line-height: 1;
-    pointer-events: none;
-    user-select: none;
+    opacity: 0.4;
+    margin: 0;
+  }
+
+  .footer-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 0.5rem;
+  }
+  .orn-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: var(--earth);
+    opacity: 0.12;
+    transition: width 1s var(--ease-out-expo);
+  }
+  .proceso-footer.visible .orn-line {
+    width: 20px;
+  }
+  .orn-fleur {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--sage);
+    opacity: 0;
+    transition: opacity 0.6s ease 0.5s;
+  }
+  .proceso-footer.visible .orn-fleur {
+    opacity: 0.3;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .process-grid {
+      gap: 1.25rem;
+    }
+    .process-card__surface {
+      padding: 2rem 1.8rem 1.8rem;
+    }
+    .process-card__surface :global(.card-surface__watermark) {
+      font-size: 3.8rem;
+    }
   }
 
   @media (max-width: 768px) {
-    .journey-wrapper { min-height: auto; }
-    .journey-path { display: none; }
-    .step-left, .step-right {
-      align-self: center;
-      margin-left: 0;
-      margin-right: 0;
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-bottom: 3rem;
     }
-    .journey-steps { gap: 4rem; }
-    .step-card { max-width: 100%; padding: 2rem; }
+    .process-card__surface {
+      padding: 2rem 1.6rem 1.8rem;
+    }
+    .process-card__surface :global(.card-surface__watermark) {
+      font-size: 3.2rem;
+    }
+    .process-card__icon {
+      width: 40px;
+      height: 40px;
+    }
+    .process-card__title {
+      font-size: 1.2rem;
+    }
+    .process-card__desc {
+      font-size: 0.85rem;
+    }
+    .grid-lines { display: none; }
+    .proceso-watermark { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    .process-card__surface {
+      padding: 1.8rem 1.4rem 1.6rem;
+    }
+    .process-card__surface :global(.card-surface__watermark) {
+      font-size: 2.8rem;
+    }
+    .process-card__icon {
+      width: 36px;
+      height: 36px;
+    }
+    .process-card__title {
+      font-size: 1.1rem;
+    }
+    .process-card__desc {
+      font-size: 0.82rem;
+      line-height: 1.7;
+    }
+    .detail-text {
+      font-size: 0.78rem;
+    }
+    .process-tag {
+      font-size: 0.58rem;
+      padding: 0.28rem 0.55rem;
+    }
+    .proceso-cta {
+      padding: 0.75rem 1.6rem;
+    }
+    .proceso {
+      padding: 5rem 0 7rem;
+    }
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     REDUCED MOTION
+     ═══════════════════════════════════════════════════════════ */
+  @media (prefers-reduced-motion: reduce) {
+    .process-card {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .process-card__title-sep,
+    .detail-accent,
+    .orn-line,
+    .orn-fleur,
+    .connector-track,
+    .connector-dot {
+      transition: none !important;
+      animation: none !important;
+    }
+    .process-card.is-visible .process-card__title-sep {
+      width: 28px;
+      opacity: 0.2;
+    }
+    .process-card.is-visible .detail-accent {
+      height: 28px;
+    }
+    .process-connector.is-visible .connector-track {
+      opacity: 0.1;
+      height: 100%;
+    }
+    .process-connector.is-visible .connector-dot {
+      opacity: 0.25;
+      transform: translateX(-50%) scale(1);
+    }
+    .grid-line {
+      transition: none !important;
+    }
+    .proceso.visible .grid-line--v1 {
+      height: 100%;
+      opacity: 0.03;
+    }
+    .proceso.visible .grid-line--v2 {
+      height: 100%;
+      opacity: 0.025;
+    }
   }
 </style>
+
+<script>
+  (function() {
+    'use strict';
+
+    /* ── Section visibility for grid lines ── */
+    const section = document.querySelector('.proceso');
+    if (section) {
+      const ioSection = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            ioSection.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.05 });
+      ioSection.observe(section);
+    }
+
+    /* ── Staggered card reveal ── */
+    const cards = document.querySelectorAll('.process-card');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    cards.forEach((card) => {
+      if (prefersReduced) {
+        card.classList.add('is-visible');
+        return;
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+
+      io.observe(card);
+    });
+
+    /* ── Connector reveal ── */
+    const connector = document.querySelector('.process-connector');
+    if (connector) {
+      const ioConn = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            ioConn.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      ioConn.observe(connector);
+    }
+
+    /* ── Footer reveal ── */
+    const footer = document.querySelector('.proceso-footer');
+    if (footer) {
+      const ioFooter = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            ioFooter.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      ioFooter.observe(footer);
+    }
+  })();
+</script>

@@ -1,0 +1,35 @@
+---
+interface Props {
+  number: string;
+  light?: boolean;
+}
+
+const { number, light = false } = Astro.props;
+---
+
+<span class:list={['page-number', { 'page-number--light': light }]} aria-hidden="true">{number}</span>
+
+<style>
+  .page-number {
+    position: absolute;
+    bottom: 3rem;
+    right: 6vw;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--taupe);
+    opacity: 0.2;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+  }
+  .page-number--light {
+    color: rgba(245, 240, 232, 0.12);
+  }
+
+  @media (max-width: 640px) {
+    .page-number {
+      display: none;
+    }
+  }
+</style>

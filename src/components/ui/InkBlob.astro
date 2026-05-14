@@ -1,0 +1,78 @@
+---
+interface Props {
+  width?: number;
+  height?: number;
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+  color?: string;
+  opacity?: number;
+  blur?: number;
+  animation?: 'morph-1' | 'morph-2';
+  class?: string;
+}
+
+const {
+  width = 400,
+  height = 320,
+  top,
+  bottom,
+  left,
+  right,
+  color = 'var(--sage)',
+  opacity = 0.05,
+  blur = 80,
+  animation = 'morph-1',
+  class: className = ''
+} = Astro.props;
+
+const animClass = `ink-blob--${animation}`;
+---
+
+<div
+  class:list={['ink-blob', animClass, className]}
+  aria-hidden="true"
+  style={`
+    width: ${width}px;
+    height: ${height}px;
+    background: ${color};
+    ${top !== undefined ? `top: ${top};` : ''}
+    ${bottom !== undefined ? `bottom: ${bottom};` : ''}
+    ${left !== undefined ? `left: ${left};` : ''}
+    ${right !== undefined ? `right: ${right};` : ''}
+    opacity: ${opacity};
+    filter: blur(${blur}px);
+  `}
+></div>
+
+<style>
+  .ink-blob {
+    position: absolute;
+    border-radius: 60% 40% 55% 65% / 55% 60% 45% 55%;
+    pointer-events: none;
+    z-index: 0;
+    will-change: transform;
+  }
+  .ink-blob--morph-1 {
+    animation: blob-morph-1 22s ease-in-out infinite alternate;
+  }
+  .ink-blob--morph-2 {
+    animation: blob-morph-2 24s ease-in-out infinite alternate-reverse;
+  }
+
+  @keyframes blob-morph-1 {
+    0%   { border-radius: 60% 40% 50% 70% / 50% 60% 40% 50%; transform: translate(0,0) rotate(0deg); }
+    100% { border-radius: 40% 60% 70% 50% / 60% 40% 60% 50%; transform: translate(20px,-15px) rotate(6deg); }
+  }
+  @keyframes blob-morph-2 {
+    0%   { border-radius: 50% 60% 40% 70% / 60% 50% 70% 40%; transform: translate(0,0) rotate(0deg); }
+    100% { border-radius: 70% 40% 60% 50% / 40% 70% 50% 60%; transform: translate(-15px,10px) rotate(-5deg); }
+  }
+
+  @media (max-width: 768px) {
+    .ink-blob {
+      opacity: 0.03;
+    }
+  }
+</style>

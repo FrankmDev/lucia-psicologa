@@ -1,0 +1,196 @@
+---
+interface Props {
+  watermark?: string;
+  class?: string;
+  hoverable?: boolean;
+}
+
+const { watermark, class: className = '', hoverable = true } = Astro.props;
+---
+
+<div class:list={['card-surface', { 'card-surface--hoverable': hoverable }, className]}>
+  <div class="card-surface__glow" aria-hidden="true"></div>
+  <div class="card-surface__bracket" aria-hidden="true"></div>
+  <div class="card-surface__blob" aria-hidden="true"></div>
+  {watermark && <div class="card-surface__watermark" aria-hidden="true">{watermark}</div>}
+  <div class="card-surface__texture" aria-hidden="true"></div>
+  <div class="card-surface__content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .card-surface {
+    position: relative;
+    background: linear-gradient(165deg, rgba(255,253,249,0.78) 0%, rgba(250,247,240,0.45) 50%, rgba(252,249,243,0.22) 100%);
+    border-top: 1px solid rgba(196,170,148,0.09);
+    border-radius: 2px;
+    padding: 2.6rem 2.4rem 2.2rem;
+    overflow: hidden;
+    box-shadow:
+      0 0.5px 0.8px rgba(44,44,44,0.012),
+      0 1.5px 2.2px rgba(44,44,44,0.012),
+      inset 0 1px 0 rgba(255,255,255,0.55);
+    transition:
+      transform 0.9s var(--ease-out-expo),
+      box-shadow 0.9s var(--ease-out-expo),
+      background 0.9s ease;
+  }
+  .card-surface--hoverable:hover {
+    transform: translateY(-6px);
+    background: linear-gradient(165deg, rgba(255,254,252,0.92) 0%, rgba(253,250,245,0.6) 50%, rgba(254,252,248,0.35) 100%);
+    box-shadow:
+      0 2px 4px rgba(44,44,44,0.015),
+      0 8px 16px rgba(44,44,44,0.02),
+      0 20px 40px rgba(44,44,44,0.025),
+      0 40px 60px rgba(44,44,44,0.018);
+  }
+
+  /* Glow */
+  .card-surface__glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 20%, rgba(196,170,148,0.06) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .card-surface--hoverable:hover .card-surface__glow {
+    opacity: 1;
+  }
+
+  /* Corner bracket */
+  .card-surface__bracket {
+    position: absolute;
+    top: 1.4rem;
+    left: 1.4rem;
+    width: 14px;
+    height: 14px;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .card-surface__bracket::before,
+  .card-surface__bracket::after {
+    content: '';
+    position: absolute;
+    background: var(--earth);
+    transition: opacity 0.6s ease;
+  }
+  .card-surface__bracket::before {
+    top: 0; left: 0;
+    width: 14px; height: 1px;
+    opacity: 0.06;
+  }
+  .card-surface__bracket::after {
+    top: 0; left: 0;
+    width: 1px; height: 14px;
+    opacity: 0.06;
+  }
+  .card-surface--hoverable:hover .card-surface__bracket {
+    opacity: 1;
+  }
+  .card-surface--hoverable:hover .card-surface__bracket::before,
+  .card-surface--hoverable:hover .card-surface__bracket::after {
+    opacity: 0.14;
+  }
+
+  /* Watercolor blob */
+  .card-surface__blob {
+    position: absolute;
+    top: 1.6rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    background: var(--sage-muted);
+    border-radius: 60% 40% 55% 65% / 55% 60% 45% 55%;
+    filter: blur(20px);
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.7s ease, transform 0.7s var(--ease-out-expo);
+    transform: scale(0.9);
+  }
+  .card-surface--hoverable:hover .card-surface__blob {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  /* Watermark */
+  .card-surface__watermark {
+    position: absolute;
+    top: -0.3rem;
+    right: -0.2rem;
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 3.8rem;
+    color: var(--earth);
+    opacity: 0.018;
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.9s ease, transform 0.9s var(--ease-out-expo);
+  }
+  .card-surface--hoverable:hover .card-surface__watermark {
+    opacity: 0.04;
+    transform: translateY(-4px);
+  }
+
+  /* Paper texture */
+  .card-surface__texture {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 150px 150px;
+    mix-blend-mode: multiply;
+  }
+
+  /* Content wrapper */
+  .card-surface__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (max-width: 768px) {
+    .card-surface {
+      padding: 2rem 1.6rem 1.8rem;
+    }
+    .card-surface__bracket {
+      top: 1.1rem;
+      left: 1.1rem;
+      width: 11px;
+      height: 11px;
+    }
+    .card-surface__bracket::before {
+      width: 11px;
+    }
+    .card-surface__bracket::after {
+      height: 11px;
+    }
+    .card-surface__watermark {
+      font-size: 3rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .card-surface {
+      padding: 1.8rem 1.4rem 1.6rem;
+    }
+    .card-surface__watermark {
+      font-size: 2.8rem;
+    }
+    .card-surface__blob {
+      width: 50px;
+      height: 50px;
+      filter: blur(18px);
+    }
+  }
+</style>

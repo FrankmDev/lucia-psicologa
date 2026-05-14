@@ -1,0 +1,83 @@
+---
+interface Props {
+  size?: number;
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+  color?: string;
+  opacity?: number;
+  blur?: number;
+  animation?: 'float-1' | 'float-2' | 'float-3';
+  class?: string;
+}
+
+const {
+  size = 300,
+  top,
+  bottom,
+  left,
+  right,
+  color = 'rgba(107,125,106,0.12)',
+  opacity = 1,
+  blur = 60,
+  animation = 'float-1',
+  class: className = ''
+} = Astro.props;
+
+const animClass = `float-orb--${animation}`;
+---
+
+<div
+  class:list={['float-orb', animClass, className]}
+  aria-hidden="true"
+  style={`
+    width: ${size}px;
+    height: ${size}px;
+    background: ${color};
+    ${top !== undefined ? `top: ${top};` : ''}
+    ${bottom !== undefined ? `bottom: ${bottom};` : ''}
+    ${left !== undefined ? `left: ${left};` : ''}
+    ${right !== undefined ? `right: ${right};` : ''}
+    opacity: ${opacity};
+    filter: blur(${blur}px);
+  `}
+></div>
+
+<style>
+  .float-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+  }
+  .float-orb--float-1 {
+    animation: orb-float-1 16s ease-in-out infinite alternate;
+  }
+  .float-orb--float-2 {
+    animation: orb-float-2 20s ease-in-out infinite alternate-reverse;
+  }
+  .float-orb--float-3 {
+    animation: orb-float-3 14s ease-in-out infinite alternate;
+  }
+
+  @keyframes orb-float-1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-30px, 20px) scale(1.2); }
+  }
+  @keyframes orb-float-2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(20px, -30px) scale(1.15); }
+  }
+  @keyframes orb-float-3 {
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-15px, -15px) scale(1.25); }
+  }
+
+  @media (max-width: 768px) {
+    .float-orb {
+      display: none;
+    }
+  }
+</style>

@@ -2,28 +2,65 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
+import QuoteSection from '../components/QuoteSection.astro';
 import SobreMi from '../components/SobreMi.astro';
 import Servicios from '../components/Servicios.astro';
+import Philosophy from '../components/Philosophy.astro';
 import Proceso from '../components/Proceso.astro';
-import Testimonios from '../components/Testimonios.astro';
 import FAQ from '../components/FAQ.astro';
 import Contacto from '../components/Contacto.astro';
+import BlogSection from '../components/BlogSection.astro';
 import Footer from '../components/Footer.astro';
+import SectionDivider from '../components/SectionDivider.astro';
 ---
 
 <Layout
-  title="Lucía | Psicología Clínica en Granada"
-  description="Psicóloga colegiada en Granada. Terapia individual presencial y online. EMDR, ansiedad, trauma y crecimiento personal."
+  title="Lucía Martínez | Psicología Clínica en Córdoba"
+  description="Psicóloga colegiada en Córdoba. Terapia individual presencial y online especializada en EMDR, ansiedad, trauma y crecimiento personal. Un espacio seguro para tu bienestar emocional."
 >
   <Navigation />
   <main>
     <Hero />
+
+    <!-- Dark to light: organic ink bleed -->
+    <SectionDivider variant="ink" toColor="var(--white-warm)" />
+
     <SobreMi />
+
+    <!-- Warm to parchment: gentle wave -->
+    <SectionDivider variant="wave" toColor="var(--parchment)" />
+
+    <QuoteSection />
+
+    <!-- Parchment to cream-warm: soft hill -->
+    <SectionDivider variant="hill" toColor="var(--cream-warm)" />
+
     <Servicios />
+
+    <!-- Cream-warm to dark: ink bleed separator -->
+    <SectionDivider variant="ink" toColor="#0c0907" height="clamp(56px, 7vw, 96px)" />
+
+    <Philosophy />
+
+    <!-- Cream-warm to parchment: gentle hill -->
+    <SectionDivider variant="hill" toColor="var(--parchment)" />
+
     <Proceso />
-    <Testimonios />
+
+    <!-- Paper to white-warm: gentle wave -->
+    <SectionDivider variant="wave" toColor="var(--white-warm)" />
+
     <FAQ />
+
+    <!-- White-warm to cream: valley divider -->
+    <SectionDivider variant="valley" toColor="var(--cream)" />
+
     <Contacto />
+
+    <!-- Cream to parchment: arch divider -->
+    <SectionDivider variant="arch" toColor="var(--parchment)" />
+
+    <BlogSection />
   </main>
   <Footer />
 </Layout>

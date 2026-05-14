@@ -1,0 +1,24 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import { articles } from '../../data/blog';
+
+export const getStaticPaths = (() => articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }))) satisfies GetStaticPaths;
+
+const { article } = Astro.props;
+---
+
+<BlogLayout
+  title={article.title}
+  metaTitle={article.metaTitle}
+  metaDescription={article.metaDescription}
+  slug={article.slug}
+  publishDate={article.dateISO}
+  category={article.categoryLabel}
+  keywords={article.keywords}
+>
+  <div set:html={article.content} />
+</BlogLayout>

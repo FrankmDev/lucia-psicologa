@@ -1,0 +1,63 @@
+---
+interface Props {
+  variant?: 'left' | 'right';
+  color?: string;
+  opacity?: number;
+  width?: number;
+  class?: string;
+}
+
+const { variant = 'left', color = 'var(--earth)', opacity = 0.07, width = 90, class: className = '' } = Astro.props;
+
+const paths = {
+  right: [
+    'M60 300 Q58 250 60 200 Q62 150 60 100 Q59 50 60 0',
+    'M60 260 Q45 250 40 230 Q35 210 60 220',
+    'M60 180 Q80 170 85 150 Q90 130 60 140',
+    'M60 110 Q42 102 38 85 Q34 68 60 78',
+    'M60 50 Q72 42 74 28 Q76 14 60 24',
+  ],
+  left: [
+    'M40 200 Q42 150 40 100 Q38 50 40 0',
+    'M40 160 Q25 150 20 130 Q15 110 40 120',
+    'M40 90 Q58 80 62 60 Q66 40 40 50',
+    'M40 40 Q30 32 27 18 Q24 4 40 14',
+  ],
+};
+
+const position = variant === 'right'
+  ? { right: '2%', bottom: '15%' }
+  : { left: '1.5%', top: '20%' };
+---
+
+<svg
+  class:list={['botanical-svg', className]}
+  viewBox={variant === 'right' ? '0 0 120 300' : '0 0 80 200'}
+  fill="none"
+  aria-hidden="true"
+  style={`width: ${width}px; ${Object.entries(position).map(([k,v]) => `${k}:${v}`).join(';')}`}
+>
+  <g stroke={color} stroke-width="0.7" stroke-linecap="round" fill="none" opacity={opacity}>
+    {paths[variant].map(d => <path d={d} />)}
+  </g>
+</svg>
+
+<style>
+  .botanical-svg {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    animation: botanical-sway 24s ease-in-out infinite alternate;
+    transform-origin: bottom center;
+  }
+  @keyframes botanical-sway {
+    0%   { transform: rotate(-1.5deg); }
+    100% { transform: rotate(1.5deg); }
+  }
+
+  @media (max-width: 768px) {
+    .botanical-svg {
+      display: none;
+    }
+  }
+</style>

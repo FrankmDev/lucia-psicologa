@@ -1,35 +1,42 @@
 ---
+import Container from './ui/Container.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import DustParticles from './ui/DustParticles.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+
 const pasos = [
   {
     numero: "01",
     titulo: "Primer contacto",
-    descripcion: "Comenzamos con una primera sesión para entender a fondo la topografía de tu malestar y valorar tu caso. Es un espacio mutuo de testeo, sin compromiso clínico inmediato."
+    descripcion: "Comenzamos con una primera sesión para conocerte, entender qué te preocupa y ver cómo puedo ayudarte. Es un espacio sin compromiso, donde tú decides si quieres continuar."
   },
   {
     numero: "02",
     titulo: "Evaluación específica",
-    descripcion: "Trazamos el mapa. Identificamos el origen y los mantenedores de tu problema actual utilizando herramientas diagnósticas precisas y validadas científicamente."
+    descripcion: "Exploramos juntos el origen de lo que te sucede. Utilizo herramientas diagnósticas validadas para entender mejor tu situación y definir el camino a seguir."
   },
   {
     numero: "03",
     titulo: "Intervención y trabajo",
-    descripcion: "Deconstruimos el bloqueo. Trabajamos de forma estructurada con tu fisiología y cognición hasta que puedas navegar solo, sin depender de la terapia indefinidamente."
+    descripcion: "Trabajamos de forma estructurada para que puedas gestionar lo que te resulta difícil. Mi objetivo es que adquieras las herramientas que necesitas para sentirte mejor y seguir adelante con autonomía."
   }
 ];
 ---
 
 <section id="como-trabajo" class="relative py-32 md:py-40 lg:py-52 bg-base overflow-hidden paper-texture">
-  <div class="max-w-[1240px] mx-auto px-6 sm:px-10 lg:px-16">
-
+  <GrainOverlay opacity={0.02} />
+  <AmbientLight color="rgba(196,170,148,0.04)" />
+  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
+  <Container maxWidth="1240px">
     <!-- Section Header -->
     <div class="mb-20 md:mb-28 reveal">
       <p class="section-label mb-6">El proceso</p>
       <hr class="divider-draw mb-14 reveal" />
-      <h2 class="text-text-primary">
-        <span class="block font-body font-light text-[5vw] md:text-[2.4vw] lg:text-[1.9vw] leading-[1.15] tracking-[-0.01em]">
+      <h2 class="section-title text-text-primary">
+        <span class="section-title__kicker block font-body font-light">
           Una ruta clara hacia el
         </span>
-        <span class="block font-display italic text-[9vw] md:text-[5vw] lg:text-[4vw] leading-[1.05] tracking-[-0.02em] text-accent mt-1" style="font-weight: 400;">
+        <span class="section-title__main block font-display italic text-accent mt-1">
           bienestar
         </span>
       </h2>
@@ -54,8 +61,7 @@ const pasos = [
         </div>
       ))}
     </div>
-
-  </div>
+  </Container>
 </section>
 
 <style>
@@ -74,10 +80,22 @@ const pasos = [
     z-index: 0;
   }
 
+  .section-title__kicker {
+    font-size: var(--type-section-kicker);
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+  .section-title__main {
+    font-size: var(--type-section-title);
+    font-weight: 400;
+    line-height: var(--leading-title);
+    letter-spacing: 0;
+  }
+
   .step-label {
     display: block;
     font-family: var(--font-body);
-    font-size: 0.6rem;
+    font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -87,7 +105,7 @@ const pasos = [
 
   .step-title {
     font-family: var(--font-display);
-    font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+    font-size: var(--type-card-title);
     font-weight: 400;
     letter-spacing: -0.01em;
     color: var(--text-primary);
@@ -100,7 +118,7 @@ const pasos = [
 
   .step-desc {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: var(--type-card-body);
     font-weight: 300;
     line-height: 1.7;
     color: var(--text-secondary);

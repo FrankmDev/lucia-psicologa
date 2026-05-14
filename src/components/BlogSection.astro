@@ -1,0 +1,394 @@
+---
+import SectionHeader from './ui/SectionHeader.astro';
+import PageNumber from './ui/PageNumber.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+import BotanicalSVG from './ui/BotanicalSVG.astro';
+import FloatOrb from './ui/FloatOrb.astro';
+import InkBlob from './ui/InkBlob.astro';
+import Container from './ui/Container.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import DustParticles from './ui/DustParticles.astro';
+import { getLatestArticles } from '../data/blog';
+
+const articles = getLatestArticles(3);
+---
+
+<section id="blog" class="blog-section" data-blog-section>
+  <GrainOverlay opacity={0.02} />
+  <AmbientLight color="rgba(196,170,148,0.04)" />
+  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
+  <FloatOrb size={300} top="-8%" left="-5%" color="var(--sage-muted)" blur={100} animation="float-1" />
+  <FloatOrb size={200} bottom="10%" right="-3%" color="var(--gold-soft)" opacity={0.4} animation="float-2" />
+
+  <InkBlob width={280} height={220} top="15%" right="-4%" color="var(--earth)" opacity={0.03} animation="morph-2" />
+
+  <BotanicalSVG variant="left" color="var(--earth)" opacity={0.04} width={65} />
+  <BotanicalSVG variant="right" color="var(--sage-muted)" opacity={0.05} width={55} style="right: 3%; bottom: 20%;" />
+
+  <!-- Decorative corner accents -->
+  <svg class="blog-deco blog-deco--tr" viewBox="0 0 60 60" fill="none" aria-hidden="true">
+    <path d="M60 60V15C60 6.716 53.284 0 45 0H0" stroke="var(--earth)" stroke-width="0.5" opacity="0.05"/>
+  </svg>
+
+  <Container maxWidth="1060px">
+    <SectionHeader
+      eyebrow="Blog"
+      title={['Reflexiones', 'desde la consulta']}
+      subtitle="Artículos sobre salud mental, terapia y bienestar emocional escritos desde mi práctica clínica en Córdoba."
+      variant="ornamented"
+      index="08"
+      class="reveal-blur"
+    />
+
+    <div class="blog-articles stagger-children" data-delay="400">
+      {articles.map((article, i) => (
+        <article class="blog-card reveal-up" style={`transition-delay: ${i * 100}ms`}>
+          <a href={`/blog/${article.slug}`} class="blog-card-link">
+            <div class="card-glow" aria-hidden="true"></div>
+            <div class="card-number">{String(i + 1).padStart(2, '0')}</div>
+            <div class="card-content">
+              <div class="card-meta">
+                <span class="card-category">{article.categoryLabel}</span>
+                <span class="card-sep" aria-hidden="true">·</span>
+                <span class="card-read">{article.readTime}</span>
+              </div>
+              <h3 class="card-title">{article.title}</h3>
+              <p class="card-excerpt">{article.excerpt}</p>
+              <div class="card-footer">
+                <time datetime={article.dateISO} class="card-date">{article.date}</time>
+                <span class="card-arrow" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </div>
+            </div>
+            <div class="card-hover-line" aria-hidden="true"></div>
+            <div class="card-hover-glow" aria-hidden="true"></div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    <div class="blog-cta reveal-up" data-delay="700">
+      <a href="/blog" class="btn-blog">
+        <span class="btn-blog-text">Ver todos los artículos</span>
+        <span class="btn-blog-arrow" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </Container>
+
+  <PageNumber number="08" />
+</section>
+
+<style>
+  .blog-section {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(196,170,148,0.05) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(107,125,106,0.04) 0%, transparent 45%),
+      var(--parchment);
+    padding: 10rem 0 12rem;
+  }
+
+  /* Decorative corner */
+  .blog-deco {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .blog-deco--tr { top: 6%; right: 3%; transform: rotate(90deg); }
+
+  .blog-articles {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 4rem;
+  }
+
+  .blog-card {
+    position: relative;
+    background: linear-gradient(165deg, rgba(255,253,249,0.78) 0%, rgba(250,247,240,0.45) 50%, rgba(252,249,243,0.22) 100%);
+    border-top: 1px solid rgba(196,170,148,0.09);
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow:
+      0 0.5px 0.8px rgba(44,44,44,0.012),
+      0 1.5px 2.2px rgba(44,44,44,0.012),
+      inset 0 1px 0 rgba(255,255,255,0.55);
+    transition:
+      transform 0.9s var(--ease-out-expo),
+      box-shadow 0.9s var(--ease-out-expo),
+      background 0.9s ease;
+  }
+  .blog-card:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(165deg, rgba(255,254,252,0.92) 0%, rgba(253,250,245,0.6) 50%, rgba(254,252,248,0.35) 100%);
+    box-shadow:
+      0 2px 4px rgba(44,44,44,0.015),
+      0 8px 16px rgba(44,44,44,0.02),
+      0 20px 40px rgba(44,44,44,0.025);
+  }
+
+  .blog-card-link {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    padding: 2.4rem 2.8rem;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+    border-left: 2px solid transparent;
+    transition: border-color 0.5s ease;
+  }
+  .blog-card:hover .blog-card-link {
+    border-color: rgba(107,125,106,0.2);
+  }
+
+  .card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 0% 50%, rgba(196,170,148,0.04) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blog-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  .card-number {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 2.8rem;
+    color: var(--earth);
+    opacity: 0.08;
+    line-height: 1;
+    align-self: start;
+    transition: opacity 0.6s ease, transform 0.6s var(--ease-out-expo), color 0.6s ease;
+    user-select: none;
+    min-width: 44px;
+    position: relative;
+    z-index: 1;
+  }
+  .blog-card:hover .card-number {
+    opacity: 0.22;
+    transform: translateY(-3px) scale(1.05);
+    color: var(--sage-dark);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.55;
+  }
+  .card-category {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    background: var(--sage-muted);
+    color: var(--sage-dark);
+    border-radius: 2px;
+    font-size: 0.5rem;
+    letter-spacing: 0.14em;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .blog-card:hover .card-category {
+    background: rgba(107,125,106,0.12);
+    color: var(--earth);
+  }
+  .card-sep {
+    opacity: 0.3;
+  }
+
+  .card-title {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+    line-height: 1.2;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin: 0;
+    transition: color 0.5s ease;
+  }
+  .blog-card:hover .card-title {
+    color: var(--earth);
+  }
+
+  .card-excerpt {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    opacity: 0.75;
+    margin: 0;
+    max-width: 70ch;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.3rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(196,170,148,0.06);
+  }
+  .card-date {
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    opacity: 0.5;
+  }
+  .card-arrow {
+    color: var(--taupe);
+    opacity: 0.3;
+    transition: all 0.5s var(--ease-out-expo);
+    transform: translateX(-4px);
+  }
+  .blog-card:hover .card-arrow {
+    opacity: 0.7;
+    transform: translateX(0);
+    color: var(--earth);
+  }
+
+  .card-hover-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--earth), transparent);
+    opacity: 0.25;
+    transition: width 1s var(--ease-out-expo);
+    z-index: 2;
+  }
+  .blog-card:hover .card-hover-line {
+    width: 100%;
+  }
+  .card-hover-glow {
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 20px;
+    background: radial-gradient(ellipse at 50% 50%, rgba(196,170,148,0.06) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .blog-card:hover .card-hover-glow {
+    opacity: 1;
+  }
+
+  .blog-cta {
+    display: flex;
+    justify-content: center;
+  }
+  .btn-blog {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 18px 44px;
+    background: rgba(107,125,106,0.06);
+    color: var(--earth);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(107,125,106,0.15);
+    border-radius: 100px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition:
+      background 0.6s ease,
+      border-color 0.6s ease,
+      color 0.5s ease,
+      transform 0.5s var(--ease-out-expo),
+      box-shadow 0.6s ease;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.04),
+      inset 0 1px 0 rgba(255,255,255,0.5);
+    overflow: hidden;
+    position: relative;
+  }
+  .btn-blog:hover {
+    background: rgba(107,125,106,0.14);
+    border-color: rgba(107,125,106,0.35);
+    color: var(--sage-dark);
+    transform: translateY(-3px);
+    box-shadow:
+      0 10px 36px rgba(0,0,0,0.07),
+      0 0 0 1px rgba(107,125,106,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.5);
+  }
+  .btn-blog-text {
+    position: relative;
+    z-index: 1;
+  }
+  .btn-blog-arrow {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .btn-blog:hover .btn-blog-arrow {
+    transform: translateX(4px);
+  }
+
+  @media (max-width: 900px) {
+    .blog-section { padding: 8rem 0 10rem; }
+    .blog-card-link {
+      padding: 2rem 2rem;
+      gap: 1.5rem;
+    }
+    .card-number { font-size: 2rem; min-width: 34px; }
+  }
+
+  @media (max-width: 640px) {
+    .blog-section { padding: 6rem 0 8rem; }
+    .blog-card-link {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+      padding: 1.8rem 1.6rem;
+    }
+    .card-number {
+      font-size: 1.6rem;
+      order: -1;
+    }
+    .card-title { font-size: 1.2rem; }
+    .card-excerpt { font-size: 0.85rem; }
+  }
+</style>

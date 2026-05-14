@@ -1,0 +1,210 @@
+---
+interface Props {
+  href: string;
+  variant?: 'solid' | 'ghost' | 'hero' | 'nav' | 'footer';
+  class?: string;
+}
+
+const { href, variant = 'solid', class: className = '' } = Astro.props;
+---
+
+<a href={href} class:list={['btn', `btn--${variant}`, className]}>
+  <span class="btn__text"><slot /></span>
+  {variant !== 'ghost' && (
+    <span class="btn__arrow" aria-hidden="true">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+  )}
+</a>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════
+     BASE BUTTON
+     ═══════════════════════════════════════════════════════════ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--type-meta);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.5s var(--ease-out-expo);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border: none;
+  }
+  .btn__text {
+    position: relative;
+    z-index: 1;
+  }
+  .btn__arrow {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    transition: transform 0.5s var(--ease-out-expo), color 0.4s ease;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     SOLID — Earth tone with ink wipe
+     ═══════════════════════════════════════════════════════════ */
+  .btn--solid {
+    background: var(--earth);
+    color: #fff;
+    padding: 16px 36px;
+    transition: all 0.5s var(--ease-out-expo);
+  }
+  .btn--solid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .btn--solid:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  .btn--solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(44, 44, 44, 0.12);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     GHOST — Underline reveal
+     ═══════════════════════════════════════════════════════════ */
+  .btn--ghost {
+    color: var(--ink);
+    padding: 14px 0;
+    background: none;
+  }
+  .btn--ghost::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .btn--ghost:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     HERO — Dark glass pill
+     ═══════════════════════════════════════════════════════════ */
+  .btn--hero {
+    background: rgba(245, 240, 232, 0.05);
+    color: rgba(245, 240, 232, 0.88);
+    padding: 18px 40px;
+    border: 1px solid rgba(196, 170, 148, 0.18);
+    border-radius: 100px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .btn--hero:hover {
+    background: rgba(245, 240, 232, 0.11);
+    border-color: rgba(196, 170, 148, 0.4);
+    color: #F5F0E8;
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.12),
+      0 0 0 1px rgba(196, 170, 148, 0.1),
+      inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .btn--hero:hover .btn__arrow {
+    transform: translateX(3px);
+    color: rgba(196, 170, 148, 0.9);
+  }
+  .btn--hero .btn__arrow {
+    color: rgba(196, 170, 148, 0.6);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     NAV — Compact dark glass
+     ═══════════════════════════════════════════════════════════ */
+  .btn--nav {
+    background: rgba(245, 240, 232, 0.06);
+    color: rgba(245, 240, 232, 0.9);
+    padding: 10px 22px;
+    border: 1px solid rgba(196, 170, 148, 0.18);
+    border-radius: 100px;
+    font-size: var(--type-meta);
+    letter-spacing: 0.2em;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.15);
+  }
+  .btn--nav:hover {
+    background: rgba(245, 240, 232, 0.11);
+    border-color: rgba(196, 170, 148, 0.35);
+    color: rgba(245, 240, 232, 0.95);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FOOTER — Dark glass pill (slightly larger)
+     ═══════════════════════════════════════════════════════════ */
+  .btn--footer {
+    background: rgba(245, 240, 232, 0.04);
+    color: rgba(245, 240, 232, 0.88);
+    padding: 18px 44px;
+    border: 1px solid rgba(196, 170, 148, 0.15);
+    border-radius: 100px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.06),
+      inset 0 1px 0 rgba(255,255,255,0.03);
+    margin-top: 0.6rem;
+  }
+  .btn--footer:hover {
+    background: rgba(245, 240, 232, 0.09);
+    border-color: rgba(196, 170, 148, 0.35);
+    color: #F5F0E8;
+    transform: translateY(-2px);
+    box-shadow:
+      0 8px 32px rgba(0,0,0,0.1),
+      0 0 0 1px rgba(196, 170, 148, 0.08),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .btn--footer:hover .btn__arrow {
+    transform: translateX(3px);
+    color: rgba(196, 170, 148, 0.85);
+  }
+  .btn--footer .btn__arrow {
+    color: rgba(196, 170, 148, 0.5);
+  }
+
+  @media (max-width: 768px) {
+    .btn--hero {
+      padding: 16px 28px;
+      font-size: var(--type-meta);
+      letter-spacing: 0.18em;
+    }
+    .btn--solid {
+      padding: 14px 28px;
+    }
+    .btn--footer {
+      padding: 16px 32px;
+      font-size: var(--type-meta);
+      letter-spacing: 0.2em;
+    }
+  }
+</style>

@@ -1,0 +1,155 @@
+---
+import InkBlob from './ui/InkBlob.astro';
+import Container from './ui/Container.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import DustParticles from './ui/DustParticles.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+import FloatOrb from './ui/FloatOrb.astro';
+
+const lines = [
+  { text: 'El cambio que buscas', accent: false },
+  { text: 'empieza por un espacio', accent: false },
+  { text: 'de comprensión y cuidado.', accent: false },
+  { text: 'No se trata de aparentar,', accent: true },
+  { text: 'sino de sentirte bien.', accent: true },
+];
+---
+
+<section class="quote-section torn-edge-top torn-edge-bottom">
+  <GrainOverlay opacity={0.02} />
+  <AmbientLight color="rgba(196,170,148,0.04)" />
+  <DustParticles count={12} color="rgba(196,170,148,0.15)" />
+  <FloatOrb size={300} top="20%" right="5%" color="var(--sage-muted)" opacity={0.15} animation="float-3" />
+  <InkBlob width={400} height={320} top="-10%" left="-5%" color="var(--sage)" opacity={0.06} />
+  <InkBlob width={350} height={280} bottom="-5%" right="-8%" color="var(--gold)" opacity={0.06} animation="morph-2" />
+  <InkBlob width={250} height={200} top="30%" right="10%" color="var(--earth)" opacity={0.03} animation="morph-blob" />
+
+  <div class="quote-dots" aria-hidden="true">
+    <span class="quote-dot"></span>
+    <span class="quote-dot"></span>
+    <span class="quote-dot"></span>
+    <span class="quote-dot"></span>
+  </div>
+
+  <Container maxWidth="800px">
+    <div class="quote-inner">
+      <div class="quote-mark open" aria-hidden="true" data-parallax="0.04">&#8220;</div>
+      <blockquote class="quote-text reveal-blur" data-word-reveal>
+        {lines.map(({ text, accent }) => (
+          <span class:list={['line', { accent }]}>
+            {text.split(/\s+/).map((word, i, arr) => (
+              <>
+                <span class="word">{word}</span>
+                {i < arr.length - 1 && ' '}
+              </>
+            ))}
+          </span>
+        ))}
+      </blockquote>
+      <div class="quote-mark close" aria-hidden="true" data-parallax="-0.03">&#8221;</div>
+      <div class="quote-attribution reveal-up" data-delay="400">
+        <span class="attr-line" aria-hidden="true"></span>
+        <span class="attr-text">Filosofía de trabajo</span>
+        <span class="attr-line" aria-hidden="true"></span>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .quote-section {
+    position: relative;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(196,170,148,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(107,125,106,0.04) 0%, transparent 40%),
+      var(--parchment);
+    padding: 10rem 0;
+    overflow: hidden;
+    text-align: center;
+    &::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(70vw, 600px);
+      height: min(70vw, 600px);
+      border-radius: 50%;
+      border: 1px solid rgba(107,125,106,0.04);
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  .quote-dots { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+  .quote-dot {
+    position: absolute; border-radius: 50%; background: var(--earth); will-change: transform;
+    &:nth-child(1) { width: 4px; height: 4px; top: 15%; left: 12%; opacity: 0.08; animation: float-gentle 10s ease-in-out infinite; }
+    &:nth-child(2) { width: 3px; height: 3px; top: 60%; right: 15%; opacity: 0.06; animation: float-gentle-reverse 12s ease-in-out infinite; animation-delay: -3s; }
+    &:nth-child(3) { width: 5px; height: 5px; bottom: 20%; left: 25%; opacity: 0.05; animation: float-gentle 14s ease-in-out infinite; animation-delay: -6s; }
+    &:nth-child(4) { width: 3px; height: 3px; top: 35%; right: 30%; opacity: 0.07; animation: float-gentle-reverse 9s ease-in-out infinite; animation-delay: -2s; }
+  }
+
+  .quote-inner { position: relative; z-index: 2; }
+
+  .quote-mark {
+    font-family: var(--font-display); font-style: italic; font-size: clamp(6rem, 14vw, 11rem);
+    font-weight: 300; color: var(--earth); line-height: 0.5; opacity: 0; user-select: none;
+    display: block; transition: opacity 1.2s ease, transform 1.2s var(--ease-out-expo);
+    will-change: transform; text-shadow: 0 4px 20px rgba(107,125,106,0.08);
+    &.open { text-align: left; margin-bottom: -0.2rem; transform: translateY(30px); }
+    &.close { text-align: right; margin-top: -0.5rem; transform: translateY(-30px); }
+    &.visible { opacity: 0.14; transform: translateY(0); }
+    .quote-section:hover & { opacity: 0.22; }
+    .quote-section:hover &.open { transform: translateY(-4px); }
+    .quote-section:hover &.close { transform: translateY(4px); }
+    .quote-section:hover &.visible { opacity: 0.24; }
+  }
+
+  .quote-text {
+    font-family: var(--font-display); font-style: italic; font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.45; color: var(--ink); margin: 1.5rem 0;
+    .line { display: block; width: max-content; margin-inline: auto; overflow: hidden; padding: 0.1em 0; }
+    .word { display: inline-block; opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo); }
+    &.visible .word { opacity: 1; transform: translateY(0); }
+    .accent { color: var(--earth); }
+  }
+
+  .quote-attribution {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 3rem;
+    .attr-line {
+      display: block; width: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--earth), transparent);
+      opacity: 0.2; transition: width 1.4s var(--ease-out-expo);
+      &:last-child { display: none; }
+    }
+    &.visible .attr-line { width: 60px; }
+    .attr-text {
+      font-family: var(--font-body); font-size: var(--type-meta); font-weight: 400;
+      letter-spacing: 0.24em; text-transform: uppercase; color: var(--taupe);
+      opacity: 0; transition: opacity 0.8s ease 0.4s;
+    }
+    &.visible .attr-text { opacity: 0.55; }
+  }
+
+  @media (max-width: 768px) {
+    .quote-section { padding: 5rem 0; }
+    .quote-mark { font-size: 5rem; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-word-reveal]').forEach(el => {
+    const words = el.querySelectorAll('.word');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        words.forEach((w, i) => w.style.transitionDelay = `${i * 55}ms`);
+        entry.target.classList.add('visible');
+        entry.target.closest('.quote-section')?.querySelectorAll('.quote-mark').forEach((m, i) => {
+          setTimeout(() => m.classList.add('visible'), 300 + i * 200);
+        });
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.3 });
+    io.observe(el);
+  });
+</script>
