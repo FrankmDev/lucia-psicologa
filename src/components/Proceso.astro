@@ -1,169 +1,74 @@
 ---
-import SectionHeader from './ui/SectionHeader.astro';
-import CardSurface from './ui/CardSurface.astro';
 import PageNumber from './ui/PageNumber.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
-import InkBlob from './ui/InkBlob.astro';
-import BotanicalSVG from './ui/BotanicalSVG.astro';
-import FloatOrb from './ui/FloatOrb.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
-import DustParticles from './ui/DustParticles.astro';
+import FloatOrb from './ui/FloatOrb.astro';
 
 const steps = [
   {
-    num: '01',
-    title: 'Primera toma de contacto',
-    desc: 'Me escribes o llamas. Resolvemos juntas tus dudas iniciales y buscamos el mejor momento para empezar. Sin compromiso, solo una conversacion honesta.',
-    expect: ['Respuesta en 24h', 'Primera sesion en 1-2 semanas'],
-    detail: 'Puedes contactarme por email, telefono o WhatsApp.',
+    title: 'Hablamos',
+    text: 'Resolvemos tus dudas y vemos juntas si este es el momento adecuado para empezar.',
   },
   {
-    num: '02',
-    title: 'Evaluacion y objetivos',
-    desc: 'Conocemos tu historia, identificamos que te resulta dificil y definimos juntas hacia donde dirigir el trabajo. Cada persona necesita un enfoque adaptado.',
-    expect: ['Historia personal', 'Mapa de objetivos'],
-    detail: 'Evaluacion completa en las primeras sesiones.',
+    title: 'Ordenamos',
+    text: 'Comprendemos qué está ocurriendo y definimos objetivos sencillos, realistas y compartidos.',
   },
   {
-    num: '03',
-    title: 'El trabajo terapeutico',
-    desc: 'Avanzamos a tu ritmo con tecnicas cognitivo-conductuales y EMDR cuando es necesario, siempre desde una escucha activa y sin juicios.',
-    expect: ['Sesiones semanales', 'Tecnicas adaptadas', 'Progreso continuo'],
-    detail: 'Duracion de 50-55 minutos por sesion.',
+    title: 'Trabajamos',
+    text: 'Avanzamos con herramientas clínicas, escucha activa y un ritmo que puedas sostener.',
   },
   {
-    num: '04',
-    title: 'Cierre y seguimiento',
-    desc: 'Cuando sientas que has alcanzado tus objetivos, cerramos el proceso de forma conjunta. La puerta siempre esta abierta para futuras etapas.',
-    expect: ['Revision de logros', 'Herramientas para el futuro'],
-    detail: 'Sesion de cierre para consolidar aprendizajes.',
+    title: 'Integramos',
+    text: 'Revisamos lo aprendido y cerramos el proceso cuando sientas más estabilidad y autonomía.',
   },
 ];
-
-const stepIcons: Record<string, string> = {
-  '01': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8v32M8 24h32"/><circle cx="24" cy="24" r="16" opacity="0.15"/></svg>`,
-  '02': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 36c0-8 6-14 12-14s12 6 12 14"/><circle cx="24" cy="18" r="6"/><circle cx="24" cy="24" r="20" opacity="0.15"/></svg>`,
-  '03': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 36l8-16 8 10 8-14"/><path d="M36 16v8" opacity="0.4"/><circle cx="24" cy="24" r="20" opacity="0.15"/></svg>`,
-  '04': `<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 16l16 16M16 32l16-16"/><circle cx="24" cy="24" r="20" opacity="0.15"/></svg>`,
-};
 ---
 
 <section id="proceso" class="proceso" data-proceso>
-  <GrainOverlay opacity={0.02} />
-  <AmbientLight color="rgba(196,170,148,0.04)" />
-  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
+  <GrainOverlay opacity={0.012} />
+  <AmbientLight color="rgba(255,255,255,0.24)" />
+  <FloatOrb size={340} top="-16%" right="-10%" color="rgba(141,151,132,0.12)" blur={145} opacity={0.34} animation="float-1" />
+  <FloatOrb size={240} bottom="4%" left="-8%" color="rgba(216,211,200,0.24)" blur={120} opacity={0.28} animation="float-2" />
 
-  <!-- Ambient orbs -->
-  <FloatOrb size={480} top="-16%" left="-10%" color="var(--sage-muted)" blur={130} opacity={0.3} animation="float-1" />
-  <FloatOrb size={360} bottom="8%" right="-8%" color="var(--gold-soft)" opacity={0.28} animation="float-2" />
-  <FloatOrb size={200} top="50%" right="4%" color="var(--sage-muted)" opacity={0.22} animation="float-3" />
-  <FloatOrb size={140} top="20%" left="8%" color="var(--earth)" opacity={0.12} animation="float-slow" />
+  <Container maxWidth="1180px" padding="0 clamp(1rem, 4vw, 4rem)">
+    <div class="process-shell">
+      <header class="process-header reveal-blur" data-delay="80">
+        <span class="process-eyebrow">Proceso</span>
+        <h2>Un camino claro, sereno y a tu ritmo.</h2>
+        <p>
+          La terapia no tiene por qué sentirse confusa. Desde el primer contacto cuidamos que sepas qué esperar y hacia dónde estamos caminando.
+        </p>
+      </header>
 
-  <!-- Ink blobs -->
-  <InkBlob width={400} height={320} bottom="4%" left="-12%" color="var(--earth)" opacity={0.03} animation="morph-2" />
-  <InkBlob width={300} height={240} top="8%" right="-8%" color="var(--sage)" opacity={0.025} animation="morph-blob" />
-
-  <!-- Botanical accents -->
-  <BotanicalSVG variant="right" opacity={0.03} width={85} />
-  <BotanicalSVG variant="left" color="var(--sage-muted)" opacity={0.04} width={75} />
-
-  <!-- Giant watermark -->
-  <div class="proceso-watermark" aria-hidden="true">
-    <span class="watermark-text">Pasos</span>
-  </div>
-
-  <!-- Decorative grid lines (like Servicios) -->
-  <div class="grid-lines" aria-hidden="true">
-    <div class="grid-line grid-line--v1"></div>
-    <div class="grid-line grid-line--v2"></div>
-  </div>
-
-  <Container maxWidth="1140px">
-    <SectionHeader
-      eyebrow="Proceso"
-      title={['Como', 'funciona']}
-      subtitle="Cuatro pasos claros hacia el cambio. Un camino disenado para que te sientas acompanada en cada momento."
-      variant="ornamented"
-      index="05"
-      class="reveal-blur"
-    />
-
-    <!-- Process Grid -->
-    <div class="process-grid">
-      {steps.map((step, i) => (
-        <article class={`process-card process-card--${i}`} data-step={i}>
-          <CardSurface watermark={step.num} class="process-card__surface" hoverable={true}>
-            <!-- Decorative corner bracket -->
-            <div class="process-card__bracket" aria-hidden="true"></div>
-
-            <!-- Top row: number + icon -->
-            <div class="process-card__top">
-              <span class="process-card__num" aria-hidden="true">{step.num}</span>
-              <div class="process-card__icon" aria-hidden="true">
-                <Fragment set:html={stepIcons[step.num]} />
-              </div>
+      <div class="process-flow" aria-label="Fases del proceso terapéutico">
+        <div class="process-track" aria-hidden="true">
+          {steps.map((_, index) => (
+            <div class="process-track__item">
+              <span>0{index + 1}</span>
             </div>
+          ))}
+        </div>
 
-            <!-- Meta label -->
-            <div class="process-card__meta">
-              <span class="meta-label">Paso {step.num}</span>
-              <span class="meta-sep" aria-hidden="true"></span>
-              <span class="meta-count">0{i + 1} / 04</span>
-            </div>
+        <div class="process-steps">
+          {steps.map((step, index) => (
+            <article class="process-step reveal-up" style={`transition-delay: ${160 + index * 70}ms`}>
+              <span class="process-step__num" aria-hidden="true">0{index + 1}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
 
-            <!-- Title -->
-            <h3 class="process-card__title">{step.title}</h3>
-            <div class="process-card__title-sep" aria-hidden="true"></div>
-
-            <!-- Description -->
-            <p class="process-card__desc">{step.desc}</p>
-
-            <!-- Detail -->
-            <div class="process-card__detail">
-              <span class="detail-accent" aria-hidden="true"></span>
-              <p class="detail-text">{step.detail}</p>
-            </div>
-
-            <!-- Tags -->
-            <div class="process-card__tags">
-              {step.expect.map(item => (
-                <span class="process-tag">
-                  <span class="tag-dot" aria-hidden="true"></span>
-                  {item}
-                </span>
-              ))}
-            </div>
-          </CardSurface>
-        </article>
-      ))}
-    </div>
-
-    <!-- Connector line between cards and footer -->
-    <div class="process-connector" aria-hidden="true">
-      <div class="connector-track"></div>
-      <div class="connector-dot connector-dot--start"></div>
-      <div class="connector-dot connector-dot--end"></div>
-    </div>
-
-    <!-- Footer / CTA -->
-    <div class="proceso-footer reveal-up" data-delay="400">
-      <div class="footer-label">Comienza hoy</div>
-      <a href="#contacto" class="proceso-cta">
-        <span class="cta-bg" aria-hidden="true"></span>
-        <span class="cta-text">Da el primer paso</span>
-        <span class="cta-arrow" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <div class="process-close reveal-up" data-delay="420">
+        <p>Si necesitas preguntarme algo antes, puedes escribirme sin compromiso.</p>
+        <a href="#contacto" class="process-link">
+          <span>Contactar</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-        </span>
-      </a>
-      <p class="proceso-cta-note">Respuesta en menos de 24 horas</p>
-
-      <div class="footer-ornament" aria-hidden="true">
-        <span class="orn-line"></span>
-        <span class="orn-fleur">&#10086;</span>
-        <span class="orn-line"></span>
+        </a>
       </div>
     </div>
   </Container>
@@ -172,739 +77,377 @@ const stepIcons: Record<string, string> = {
 </section>
 
 <style>
-  /* ═══════════════════════════════════════════════════════════
-     SECTION BASE
-     ═══════════════════════════════════════════════════════════ */
   .proceso {
+    --pr-ink: #2f2d28;
+    --pr-text: rgba(47, 45, 40, 0.72);
+    --pr-muted: rgba(47, 45, 40, 0.52);
+    --pr-sage: #6f7d67;
+    --pr-sage-deep: #56645a;
+    --pr-line: rgba(111, 125, 103, 0.17);
+    --pr-warm-line: rgba(184, 168, 138, 0.2);
+    --pr-paper: #fffdf8;
+    --pr-cream: #faf8f2;
+
     position: relative;
-    width: 100%;
+    isolation: isolate;
     overflow: hidden;
+    padding: clamp(5.6rem, 7.5vw, 8rem) 0 clamp(5.8rem, 8vw, 8.4rem);
     background:
-      radial-gradient(ellipse at 40% 25%, rgba(196,170,148,0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 75% 65%, rgba(107,125,106,0.04) 0%, transparent 45%),
-      var(--parchment);
-    padding: clamp(6rem, 10vw, 10rem) 0 clamp(7rem, 12vw, 12rem);
+      radial-gradient(circle at 16% 8%, rgba(255, 255, 255, 0.9), transparent 30%),
+      radial-gradient(circle at 82% 16%, rgba(223, 228, 216, 0.46), transparent 30%),
+      linear-gradient(180deg, var(--parchment) 0%, var(--pr-cream) 68%, #f3efe7 100%);
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     WATERMARK
-     ═══════════════════════════════════════════════════════════ */
-  .proceso-watermark {
-    position: absolute;
-    top: 42%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 0;
-    user-select: none;
-  }
-  .watermark-text {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: clamp(9rem, 22vw, 18rem);
-    color: var(--earth);
-    opacity: 0.012;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    white-space: nowrap;
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     GRID LINES (decorative, like Servicios)
-     ═══════════════════════════════════════════════════════════ */
-  .grid-lines {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .grid-line {
-    position: absolute;
-    background: var(--earth);
-    opacity: 0;
-    transition: opacity 2s ease, height 2s var(--ease-out-expo), width 2s var(--ease-out-expo);
-  }
-  .grid-line--v1 {
-    left: 18%;
-    top: 0;
-    width: 1px;
-    height: 0;
-    opacity: 0.03;
-  }
-  .proceso.visible .grid-line--v1 {
-    height: 100%;
-    opacity: 0.03;
-    transition-delay: 0.3s;
-  }
-  .grid-line--v2 {
-    right: 22%;
-    top: 0;
-    width: 1px;
-    height: 0;
-    opacity: 0.025;
-  }
-  .proceso.visible .grid-line--v2 {
-    height: 100%;
-    opacity: 0.025;
-    transition-delay: 0.6s;
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     PROCESS GRID — editorial 2x2
-     ═══════════════════════════════════════════════════════════ */
-  .process-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-    position: relative;
-    z-index: 2;
-  }
-
-  /* ── Card wrapper ── */
-  .process-card {
-    position: relative;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo);
-    will-change: opacity, transform;
-  }
-  .process-card.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Staggered delays */
-  .process-card--0 { transition-delay: 0ms; }
-  .process-card--1 { transition-delay: 120ms; }
-  .process-card--2 { transition-delay: 240ms; }
-  .process-card--3 { transition-delay: 360ms; }
-
-  /* ── Card surface overrides ── */
-  .process-card__surface {
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 2.4rem 2.2rem 2rem;
-    overflow: hidden;
-    border-left: 2px solid transparent;
-    transition: border-color 0.5s ease;
-  }
-  .process-card:hover .process-card__surface {
-    border-left-color: rgba(107,125,106,0.18);
-  }
-  .process-card__surface :global(.card-surface__watermark) {
-    font-size: 4.5rem;
-    opacity: 0.015;
-    transition: opacity 1s ease, transform 1s var(--ease-out-expo);
-  }
-  .process-card:hover .process-card__surface :global(.card-surface__watermark) {
-    opacity: 0.035;
-    transform: translateY(-6px);
-  }
-
-  /* ── Decorative bracket ── */
-  .process-card__bracket {
-    position: absolute;
-    top: 1.6rem;
-    right: 1.6rem;
-    width: 12px;
-    height: 12px;
-    pointer-events: none;
-    z-index: 2;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-  }
-  .process-card__bracket::before,
-  .process-card__bracket::after {
+  .proceso::before {
     content: '';
     position: absolute;
-    background: var(--earth);
-    transition: opacity 0.6s ease;
-  }
-  .process-card__bracket::before {
-    top: 0; right: 0;
-    width: 12px; height: 1px;
-    opacity: 0.06;
-  }
-  .process-card__bracket::after {
-    top: 0; right: 0;
-    width: 1px; height: 12px;
-    opacity: 0.06;
-  }
-  .process-card:hover .process-card__bracket {
-    opacity: 1;
-  }
-  .process-card:hover .process-card__bracket::before,
-  .process-card:hover .process-card__bracket::after {
-    opacity: 0.14;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(78, 74, 66, 0.01) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 74, 66, 0.008) 1px, transparent 1px);
+    background-size: 8.5rem 8.5rem;
+    mask-image: radial-gradient(circle at 50% 44%, #000 0%, transparent 72%);
+    opacity: 0.72;
   }
 
-  /* ── Top row: number + icon ── */
-  .process-card__top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1.4rem;
+  .process-shell {
+    position: relative;
+    z-index: 2;
   }
-  .process-card__num {
+
+  .process-header {
+    max-width: 48rem;
+    margin: 0 auto clamp(2.8rem, 4.5vw, 4rem);
+    text-align: center;
+  }
+
+  .process-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.78rem;
+    color: var(--pr-sage);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .process-eyebrow::before,
+  .process-eyebrow::after {
+    content: '';
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(111, 125, 103, 0.34);
+  }
+
+  .process-header h2 {
+    max-width: 48rem;
+    margin: 1rem auto 1rem;
+    color: var(--pr-ink);
     font-family: var(--font-display);
+    font-size: clamp(2.8rem, 5.8vw, 5.2rem);
     font-style: italic;
     font-weight: 300;
-    font-size: 0.8rem;
-    color: var(--taupe);
-    opacity: 0.2;
-    letter-spacing: 0.05em;
-    transition: opacity 0.5s ease, color 0.5s ease;
-  }
-  .process-card:hover .process-card__num {
-    opacity: 0.5;
-    color: var(--sage-dark);
+    line-height: 1;
+    letter-spacing: 0;
+    text-wrap: balance;
   }
 
-  .process-card__icon {
-    width: 44px;
-    height: 44px;
-    color: var(--sage-dark);
-    opacity: 0.25;
-    transition: opacity 0.6s ease, transform 0.6s var(--ease-out-expo);
+  .process-header p {
+    max-width: 39rem;
+    margin: 0 auto;
+    color: var(--pr-text);
+    font-size: clamp(1rem, 1.25vw, 1.08rem);
+    line-height: 1.78;
+    text-wrap: pretty;
+  }
+
+  .process-flow {
+    position: relative;
+    padding: clamp(1.2rem, 2vw, 1.5rem);
+    border: 1px solid rgba(111, 125, 103, 0.14);
+    border-radius: 1.55rem;
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.72), rgba(250, 248, 242, 0.52)),
+      radial-gradient(circle at 50% 0%, rgba(223, 228, 216, 0.3), transparent 54%);
+    box-shadow: 0 1.4rem 3rem rgba(57, 54, 48, 0.045);
+    backdrop-filter: blur(10px);
+  }
+
+  .process-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    margin: 0 clamp(0.25rem, 1vw, 0.7rem) clamp(1rem, 1.8vw, 1.35rem);
+    min-height: 2.8rem;
+  }
+
+  .process-track::before {
+    content: '';
+    position: absolute;
+    left: calc(12.5% + 1.25rem);
+    right: calc(12.5% + 1.25rem);
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(111, 125, 103, 0.08), rgba(111, 125, 103, 0.34), rgba(111, 125, 103, 0.08));
+    transform: translateY(-50%);
+  }
+
+  .process-track__item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .process-track__item span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border: 1px solid rgba(111, 125, 103, 0.28);
+    border-radius: 999px;
+    background: #fffdf8;
+    color: var(--pr-sage-deep);
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    font-style: italic;
+    line-height: 1;
+    box-shadow: 0 0 0 0.45rem rgba(255, 253, 248, 0.84);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(0.8rem, 1.4vw, 1.05rem);
+  }
+
+  .process-step {
+    position: relative;
+    min-height: clamp(12.5rem, 15vw, 14.4rem);
+    overflow: hidden;
+    padding: clamp(1.3rem, 1.8vw, 1.6rem);
+    border: 1px solid rgba(111, 125, 103, 0.11);
+    border-radius: 1.2rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(251, 248, 241, 0.9)),
+      radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.28), transparent 38%);
+    box-shadow: 0 1rem 2rem rgba(57, 54, 48, 0.045);
+    transition:
+      transform 0.45s var(--ease-out-expo),
+      border-color 0.35s ease,
+      box-shadow 0.45s ease,
+      background 0.35s ease;
+  }
+
+  .process-step::after {
+    content: '';
+    position: absolute;
+    right: -2.8rem;
+    bottom: -3rem;
+    width: 8rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(111, 125, 103, 0.08), transparent 68%);
+    opacity: 0.58;
+    transition: transform 0.7s var(--ease-out-expo), opacity 0.45s ease;
+    pointer-events: none;
+  }
+
+  .process-step:hover {
+    transform: translateY(-4px);
+    border-color: rgba(111, 125, 103, 0.24);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 246, 239, 0.96)),
+      radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.38), transparent 36%);
+    box-shadow: 0 1.4rem 2.6rem rgba(57, 54, 48, 0.07);
+  }
+
+  .process-step:hover::after {
+    opacity: 0.84;
+    transform: scale(1.08);
+  }
+
+  .process-step__num {
+    display: inline-flex;
+    margin-bottom: clamp(1.25rem, 2vw, 1.7rem);
+    color: rgba(184, 168, 138, 0.92);
+    font-family: var(--font-display);
+    font-size: 1.08rem;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1;
+  }
+
+  .process-step h3 {
+    margin: 0 0 0.75rem;
+    color: var(--pr-ink);
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: 0;
+  }
+
+  .process-step p {
+    max-width: 25ch;
+    margin: 0;
+    color: var(--pr-muted);
+    font-size: 0.92rem;
+    line-height: 1.68;
+    text-wrap: pretty;
+  }
+
+  .process-close {
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  .process-card:hover .process-card__icon {
-    opacity: 0.55;
-    transform: scale(1.08);
-  }
-  .process-card__icon :global(svg) {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* ── Meta ── */
-  .process-card__meta {
-    display: flex;
-    align-items: center;
-    gap: 0;
-    margin-bottom: 0.7rem;
-  }
-  .meta-label {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    color: var(--taupe);
-    opacity: 0.35;
-    transition: opacity 0.4s ease;
-  }
-  .process-card:hover .meta-label {
-    opacity: 0.6;
-  }
-  .meta-sep {
-    width: 1px;
-    height: 8px;
-    background: var(--earth);
-    opacity: 0.06;
-    margin: 0 0.55rem;
-  }
-  .meta-count {
-    font-family: var(--font-body);
-    font-size: 0.55rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--taupe);
-    opacity: 0.25;
-    transition: opacity 0.4s ease;
-  }
-  .process-card:hover .meta-count {
-    opacity: 0.45;
-  }
-
-  /* ── Title ── */
-  .process-card__title {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 400;
-    font-size: clamp(1.15rem, 1.5vw, 1.45rem);
-    color: var(--ink);
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.01em;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-    transition: color 0.5s ease;
-  }
-  .process-card:hover .process-card__title {
-    color: var(--earth);
-  }
-
-  /* ── Title separator ── */
-  .process-card__title-sep {
-    width: 0;
-    height: 1px;
-    background: var(--earth);
-    opacity: 0.1;
-    margin-bottom: 1.1rem;
-    transition: width 0.9s var(--ease-out-expo) 0.15s, opacity 0.4s ease;
-  }
-  .process-card.is-visible .process-card__title-sep {
-    width: 28px;
-    opacity: 0.2;
-  }
-  .process-card:hover .process-card__title-sep {
-    opacity: 0.35;
-  }
-
-  /* ── Description ── */
-  .process-card__desc {
-    font-family: var(--font-body);
-    font-weight: 300;
-    font-size: 0.86rem;
-    color: var(--ink-soft);
-    line-height: 1.75;
-    opacity: 0.82;
-    max-width: 46ch;
-    margin-bottom: 1.2rem;
-  }
-
-  /* ── Detail ── */
-  .process-card__detail {
-    display: flex;
-    gap: 0.75rem;
-    margin-bottom: 1.4rem;
-    padding-left: 0.1rem;
-  }
-  .detail-accent {
-    width: 2px;
-    height: 0;
-    background: var(--sage-muted);
-    opacity: 0.25;
-    flex-shrink: 0;
-    margin-top: 0.35rem;
-    border-radius: 1px;
-    transition: height 0.8s var(--ease-out-expo) 0.3s;
-  }
-  .process-card.is-visible .detail-accent {
-    height: 28px;
-  }
-  .detail-text {
-    font-family: var(--font-body);
-    font-weight: 300;
-    font-size: 0.8rem;
-    line-height: 1.65;
-    color: var(--taupe);
-    opacity: 0.6;
-    margin: 0;
-    font-style: italic;
-    max-width: 40ch;
-  }
-
-  /* ── Tags ── */
-  .process-card__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: auto;
-  }
-  .process-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-body);
-    font-size: 0.6rem;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--taupe);
-    opacity: 0.42;
-    background: rgba(196,170,148,0.03);
-    padding: 0.32rem 0.65rem;
-    border-radius: 2px;
-    border: 1px solid rgba(196,170,148,0.06);
-    transition: opacity 0.4s ease, border-color 0.4s ease, background 0.4s ease, transform 0.4s var(--ease-out-expo);
-  }
-  .process-card:hover .process-tag {
-    opacity: 0.7;
-    border-color: rgba(196,170,148,0.12);
-    background: rgba(196,170,148,0.06);
-  }
-  .process-tag:hover {
-    transform: translateY(-1px);
-  }
-  .tag-dot {
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    background: var(--sage-light);
-    flex-shrink: 0;
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     CONNECTOR (between grid and footer)
-     ═══════════════════════════════════════════════════════════ */
-  .process-connector {
-    position: relative;
-    height: 60px;
-    width: 1px;
-    margin: 0 auto 2rem;
-    pointer-events: none;
-  }
-  .connector-track {
-    position: absolute;
-    inset: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--earth) 0%, transparent 100%);
-    opacity: 0;
-    transition: opacity 1s ease 0.5s, height 1s var(--ease-out-expo) 0.5s;
-    height: 0;
-  }
-  .proceso-footer.visible + .process-connector .connector-track,
-  .process-connector.is-visible .connector-track {
-    opacity: 0.1;
-    height: 100%;
-  }
-  .connector-dot {
-    position: absolute;
-    left: 50%;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--sage-dark);
-    opacity: 0;
-    transform: translateX(-50%) scale(0);
-    transition: opacity 0.5s ease, transform 0.5s var(--ease-out-expo);
-  }
-  .connector-dot--start {
-    top: 0;
-  }
-  .connector-dot--end {
-    bottom: 0;
-    transition-delay: 0.3s;
-  }
-  .process-connector.is-visible .connector-dot {
-    opacity: 0.25;
-    transform: translateX(-50%) scale(1);
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     FOOTER / CTA
-     ═══════════════════════════════════════════════════════════ */
-  .proceso-footer {
+    gap: clamp(1rem, 2.5vw, 2rem);
+    max-width: 48rem;
+    margin: clamp(2rem, 4vw, 3rem) auto 0;
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    position: relative;
-    z-index: 2;
   }
 
-  .footer-label {
-    font-family: var(--font-body);
-    font-size: 0.58rem;
-    font-weight: 400;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--taupe);
-    opacity: 0.35;
+  .process-close p {
+    margin: 0;
+    color: var(--pr-text);
+    font-size: 0.98rem;
+    line-height: 1.7;
   }
 
-  .proceso-cta {
-    position: relative;
+  .process-link {
     display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.9rem 2rem;
-    border-radius: 100px;
-    border: 1.5px solid rgba(107, 125, 106, 0.18);
-    background: transparent;
-    text-decoration: none;
-    overflow: hidden;
-    transition: border-color 0.5s ease, transform 0.4s var(--ease-out-expo), box-shadow 0.5s ease;
-    cursor: pointer;
-  }
-  .proceso-cta:hover {
-    border-color: rgba(107, 125, 106, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(107, 125, 106, 0.08);
-  }
-  .proceso-cta:focus-visible {
-    outline: 2px solid var(--sage-dark);
-    outline-offset: 3px;
-  }
-  .cta-bg {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(107, 125, 106, 0.06), rgba(168, 169, 158, 0.03));
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
-    border-radius: 100px;
-  }
-  .proceso-cta:hover .cta-bg {
-    opacity: 1;
-    transform: scaleX(1);
-  }
-  .cta-text {
-    position: relative;
-    z-index: 1;
-    font-family: var(--font-body);
+    justify-content: center;
+    gap: 0.58rem;
+    min-height: 2.9rem;
+    padding: 0.76rem 1.15rem;
+    border: 1px solid rgba(86, 100, 90, 0.26);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(111, 125, 103, 0.96), rgba(86, 100, 90, 0.96));
+    color: #fbf8f1;
     font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--sage-dark);
-    transition: color 0.4s ease;
-  }
-  .proceso-cta:hover .cta-text {
-    color: var(--ink);
-  }
-  .cta-arrow {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    color: var(--sage-dark);
-    opacity: 0.45;
-    transform: translateX(-3px);
-    transition: opacity 0.4s ease, transform 0.5s var(--ease-out-expo), color 0.4s ease;
-  }
-  .proceso-cta:hover .cta-arrow {
-    opacity: 0.8;
-    transform: translateX(0);
-    color: var(--ink);
+    box-shadow: 0 0.9rem 1.6rem rgba(86, 100, 90, 0.14);
+    transition: transform 0.45s var(--ease-out-expo), box-shadow 0.45s ease, background 0.35s ease;
   }
 
-  .proceso-cta-note {
-    font-family: var(--font-body);
-    font-size: 0.72rem;
-    font-weight: 300;
-    color: var(--taupe);
-    opacity: 0.4;
-    margin: 0;
+  .process-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1.1rem 1.9rem rgba(86, 100, 90, 0.17);
   }
 
-  .footer-ornament {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.8rem;
-    margin-top: 0.5rem;
-  }
-  .orn-line {
-    display: block;
-    width: 0;
-    height: 1px;
-    background: var(--earth);
-    opacity: 0.12;
-    transition: width 1s var(--ease-out-expo);
-  }
-  .proceso-footer.visible .orn-line {
-    width: 20px;
-  }
-  .orn-fleur {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--sage);
-    opacity: 0;
-    transition: opacity 0.6s ease 0.5s;
-  }
-  .proceso-footer.visible .orn-fleur {
-    opacity: 0.3;
+  .process-link svg {
+    transition: transform 0.45s var(--ease-out-expo);
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     RESPONSIVE
-     ═══════════════════════════════════════════════════════════ */
-  @media (max-width: 1024px) {
-    .process-grid {
-      gap: 1.25rem;
+  .process-link:hover svg {
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 920px) {
+    .process-track,
+    .process-steps {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .process-card__surface {
-      padding: 2rem 1.8rem 1.8rem;
+
+    .process-track {
+      row-gap: 0.9rem;
+      margin-bottom: 1.2rem;
     }
-    .process-card__surface :global(.card-surface__watermark) {
-      font-size: 3.8rem;
+
+    .process-track::before {
+      display: none;
+    }
+
+    .process-track__item::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      right: -50%;
+      top: 50%;
+      height: 1px;
+      background: rgba(111, 125, 103, 0.2);
+      transform: translateY(-50%);
+    }
+
+    .process-track__item:nth-child(2n)::before {
+      display: none;
     }
   }
 
-  @media (max-width: 768px) {
-    .process-grid {
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin-bottom: 3rem;
-    }
-    .process-card__surface {
-      padding: 2rem 1.6rem 1.8rem;
-    }
-    .process-card__surface :global(.card-surface__watermark) {
-      font-size: 3.2rem;
-    }
-    .process-card__icon {
-      width: 40px;
-      height: 40px;
-    }
-    .process-card__title {
-      font-size: 1.2rem;
-    }
-    .process-card__desc {
-      font-size: 0.85rem;
-    }
-    .grid-lines { display: none; }
-    .proceso-watermark { display: none; }
-  }
-
-  @media (max-width: 480px) {
-    .process-card__surface {
-      padding: 1.8rem 1.4rem 1.6rem;
-    }
-    .process-card__surface :global(.card-surface__watermark) {
-      font-size: 2.8rem;
-    }
-    .process-card__icon {
-      width: 36px;
-      height: 36px;
-    }
-    .process-card__title {
-      font-size: 1.1rem;
-    }
-    .process-card__desc {
-      font-size: 0.82rem;
-      line-height: 1.7;
-    }
-    .detail-text {
-      font-size: 0.78rem;
-    }
-    .process-tag {
-      font-size: 0.58rem;
-      padding: 0.28rem 0.55rem;
-    }
-    .proceso-cta {
-      padding: 0.75rem 1.6rem;
-    }
+  @media (max-width: 640px) {
     .proceso {
-      padding: 5rem 0 7rem;
+      padding: 5rem 0 6.2rem;
+    }
+
+    .process-header {
+      text-align: left;
+    }
+
+    .process-eyebrow {
+      justify-content: flex-start;
+    }
+
+    .process-eyebrow::after {
+      display: none;
+    }
+
+    .process-flow {
+      padding: 0.85rem;
+      border-radius: 1.2rem;
+    }
+
+    .process-track {
+      display: none;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+    }
+
+    .process-step {
+      min-height: auto;
+      padding: 1.25rem;
+    }
+
+    .process-step__num {
+      margin-bottom: 0.85rem;
+    }
+
+    .process-step p {
+      max-width: none;
+    }
+
+    .process-close {
+      display: block;
+      text-align: left;
+    }
+
+    .process-link {
+      width: 100%;
+      margin-top: 1.2rem;
     }
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     REDUCED MOTION
-     ═══════════════════════════════════════════════════════════ */
   @media (prefers-reduced-motion: reduce) {
-    .process-card {
-      opacity: 1 !important;
+    .process-step,
+    .process-step::after,
+    .process-link,
+    .process-link svg {
+      transition: none !important;
       transform: none !important;
-      transition: none !important;
-    }
-    .process-card__title-sep,
-    .detail-accent,
-    .orn-line,
-    .orn-fleur,
-    .connector-track,
-    .connector-dot {
-      transition: none !important;
-      animation: none !important;
-    }
-    .process-card.is-visible .process-card__title-sep {
-      width: 28px;
-      opacity: 0.2;
-    }
-    .process-card.is-visible .detail-accent {
-      height: 28px;
-    }
-    .process-connector.is-visible .connector-track {
-      opacity: 0.1;
-      height: 100%;
-    }
-    .process-connector.is-visible .connector-dot {
-      opacity: 0.25;
-      transform: translateX(-50%) scale(1);
-    }
-    .grid-line {
-      transition: none !important;
-    }
-    .proceso.visible .grid-line--v1 {
-      height: 100%;
-      opacity: 0.03;
-    }
-    .proceso.visible .grid-line--v2 {
-      height: 100%;
-      opacity: 0.025;
     }
   }
 </style>
-
-<script>
-  (function() {
-    'use strict';
-
-    /* ── Section visibility for grid lines ── */
-    const section = document.querySelector('.proceso');
-    if (section) {
-      const ioSection = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            ioSection.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.05 });
-      ioSection.observe(section);
-    }
-
-    /* ── Staggered card reveal ── */
-    const cards = document.querySelectorAll('.process-card');
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    cards.forEach((card) => {
-      if (prefersReduced) {
-        card.classList.add('is-visible');
-        return;
-      }
-
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            io.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-      io.observe(card);
-    });
-
-    /* ── Connector reveal ── */
-    const connector = document.querySelector('.process-connector');
-    if (connector) {
-      const ioConn = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            ioConn.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      ioConn.observe(connector);
-    }
-
-    /* ── Footer reveal ── */
-    const footer = document.querySelector('.proceso-footer');
-    if (footer) {
-      const ioFooter = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            ioFooter.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      ioFooter.observe(footer);
-    }
-  })();
-</script>

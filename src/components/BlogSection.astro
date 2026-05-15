@@ -1,5 +1,4 @@
 ---
-import SectionHeader from './ui/SectionHeader.astro';
 import PageNumber from './ui/PageNumber.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
 import BotanicalSVG from './ui/BotanicalSVG.astro';
@@ -11,74 +10,137 @@ import DustParticles from './ui/DustParticles.astro';
 import { getLatestArticles } from '../data/blog';
 
 const articles = getLatestArticles(3);
+
+const imageSeeds: Record<string, string> = {
+  'emdr-cordoba': 'quiet-therapy-room',
+  'duelo-perdida-cordoba': 'soft-window-light',
+  'ansiedad-cordoba': 'calm-breathing-space',
+  'mindfulness-cordoba': 'mediterranean-stillness',
+  'terapia-psicologica-cordoba': 'warm-consultation',
+  'autoestima-cordoba': 'gentle-portrait-light',
+};
+
+const getArticleImage = (slug: string) =>
+  `https://picsum.photos/seed/${imageSeeds[slug] ?? slug}/1400/980`;
 ---
 
 <section id="blog" class="blog-section" data-blog-section>
-  <GrainOverlay opacity={0.02} />
-  <AmbientLight color="rgba(196,170,148,0.04)" />
-  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
-  <FloatOrb size={300} top="-8%" left="-5%" color="var(--sage-muted)" blur={100} animation="float-1" />
-  <FloatOrb size={200} bottom="10%" right="-3%" color="var(--gold-soft)" opacity={0.4} animation="float-2" />
+  <GrainOverlay opacity={0.025} />
+  <AmbientLight color="rgba(196,170,148,0.055)" />
+  <DustParticles count={12} color="rgba(196,170,148,0.15)" />
+  <FloatOrb size={360} top="-12%" left="-8%" color="var(--sage-muted)" blur={120} animation="float-1" />
+  <FloatOrb size={240} bottom="8%" right="-4%" color="var(--gold-soft)" opacity={0.48} animation="float-2" />
+  <InkBlob width={320} height={240} top="12%" right="-5%" color="var(--earth)" opacity={0.035} animation="morph-2" />
+  <BotanicalSVG variant="left" color="var(--earth)" opacity={0.04} width={70} />
+  <BotanicalSVG variant="right" color="var(--sage-muted)" opacity={0.05} width={58} style="right: 3%; bottom: 18%;" />
 
-  <InkBlob width={280} height={220} top="15%" right="-4%" color="var(--earth)" opacity={0.03} animation="morph-2" />
+  <div class="blog-section__wash" aria-hidden="true"></div>
 
-  <BotanicalSVG variant="left" color="var(--earth)" opacity={0.04} width={65} />
-  <BotanicalSVG variant="right" color="var(--sage-muted)" opacity={0.05} width={55} style="right: 3%; bottom: 20%;" />
+  <Container maxWidth="1160px">
+    <div class="blog-intro">
+      <header class="blog-header reveal-blur" data-delay="80">
+        <span class="blog-eyebrow">Blog</span>
+        <h2>Lecturas para volver a ti.</h2>
+        <p>
+          Artículos sobre trauma, duelo, ansiedad y bienestar emocional escritos desde la práctica clínica, con calma y rigor.
+        </p>
+      </header>
+    </div>
 
-  <!-- Decorative corner accents -->
-  <svg class="blog-deco blog-deco--tr" viewBox="0 0 60 60" fill="none" aria-hidden="true">
-    <path d="M60 60V15C60 6.716 53.284 0 45 0H0" stroke="var(--earth)" stroke-width="0.5" opacity="0.05"/>
-  </svg>
-
-  <Container maxWidth="1060px">
-    <SectionHeader
-      eyebrow="Blog"
-      title={['Reflexiones', 'desde la consulta']}
-      subtitle="Artículos sobre salud mental, terapia y bienestar emocional escritos desde mi práctica clínica en Córdoba."
-      variant="ornamented"
-      index="08"
-      class="reveal-blur"
-    />
-
-    <div class="blog-articles stagger-children" data-delay="400">
+    <div class="blog-grid stagger-children" data-delay="300">
       {articles.map((article, i) => (
-        <article class="blog-card reveal-up" style={`transition-delay: ${i * 100}ms`}>
-          <a href={`/blog/${article.slug}`} class="blog-card-link">
-            <div class="card-glow" aria-hidden="true"></div>
-            <div class="card-number">{String(i + 1).padStart(2, '0')}</div>
-            <div class="card-content">
-              <div class="card-meta">
-                <span class="card-category">{article.categoryLabel}</span>
-                <span class="card-sep" aria-hidden="true">·</span>
-                <span class="card-read">{article.readTime}</span>
+        <article class="blog-card reveal-up" style={`transition-delay: ${i * 120}ms`}>
+          <a href={`/blog/${article.slug}`} class="blog-card__link" aria-label={`Leer artículo: ${article.title}`}>
+            <!-- Number watermark -->
+            <span class="blog-card__number" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+
+            <!-- Image -->
+            <figure class="blog-card__media">
+              <img
+                src={getArticleImage(article.slug)}
+                alt={`Imagen editorial para ${article.title}`}
+                loading={i === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+              <span class="blog-card__image-scrim" aria-hidden="true"></span>
+            </figure>
+
+            <!-- Body -->
+            <div class="blog-card__body">
+              <!-- Top: category + read time -->
+              <div class="blog-card__top">
+                <span class="blog-card__category">{article.categoryLabel}</span>
+                <span class="blog-card__read">{article.readTime}</span>
               </div>
-              <h3 class="card-title">{article.title}</h3>
-              <p class="card-excerpt">{article.excerpt}</p>
-              <div class="card-footer">
-                <time datetime={article.dateISO} class="card-date">{article.date}</time>
-                <span class="card-arrow" aria-hidden="true">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+
+              <!-- Title -->
+              <h3 class="blog-card__title">{article.title}</h3>
+
+              <!-- Excerpt -->
+              <p class="blog-card__excerpt">{article.excerpt}</p>
+
+              <!-- Footer -->
+              <div class="blog-card__footer">
+                <time datetime={article.dateISO}>{article.date}</time>
+                <span class="blog-card__arrow" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M3.5 9h10.4M10.1 5.2 13.9 9l-3.8 3.8" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
                 </span>
               </div>
             </div>
-            <div class="card-hover-line" aria-hidden="true"></div>
-            <div class="card-hover-glow" aria-hidden="true"></div>
+
+            <!-- Hover line -->
+            <div class="blog-card__hover-line" aria-hidden="true"></div>
           </a>
         </article>
       ))}
     </div>
 
-    <div class="blog-cta reveal-up" data-delay="700">
-      <a href="/blog" class="btn-blog">
-        <span class="btn-blog-text">Ver todos los artículos</span>
-        <span class="btn-blog-arrow" aria-hidden="true">
-          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="blog-footer reveal-up" data-delay="650">
+      <!-- Marquee -->
+      <div class="blog-marquee" aria-hidden="true">
+        <div class="blog-marquee__track">
+          <span class="blog-marquee__item">EMDR</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Duelo</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Ansiedad</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Mindfulness</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Autoestima</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Terapia</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">EMDR</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Duelo</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Ansiedad</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Mindfulness</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Autoestima</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+          <span class="blog-marquee__item">Terapia</span>
+          <span class="blog-marquee__dot" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="blog-cta">
+        <a href="/blog" class="btn-blog">
+          <span class="btn-blog__text">Ver todos los artículos</span>
+          <span class="btn-blog__line" aria-hidden="true"></span>
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-        </span>
-      </a>
+        </a>
+        <p class="blog-cta__note">Escritura pausada, sin ruido. Lo que necesitas, cuando lo necesitas.</p>
+      </div>
     </div>
   </Container>
 
@@ -91,304 +153,557 @@ const articles = getLatestArticles(3);
     width: 100%;
     overflow: hidden;
     background:
-      radial-gradient(ellipse at 30% 20%, rgba(196,170,148,0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 70%, rgba(107,125,106,0.04) 0%, transparent 45%),
-      var(--parchment);
+      radial-gradient(ellipse at 22% 18%, var(--gold-soft) 0%, transparent 42%),
+      radial-gradient(ellipse at 82% 76%, rgba(107,125,106,0.075) 0%, transparent 48%),
+      linear-gradient(180deg, var(--parchment) 0%, var(--cream) 100%);
     padding: 10rem 0 12rem;
+    isolation: isolate;
   }
 
-  /* Decorative corner */
-  .blog-deco {
+  .blog-section__wash {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .blog-deco--tr { top: 6%; right: 3%; transform: rotate(90deg); }
-
-  .blog-articles {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin-bottom: 4rem;
-  }
-
-  .blog-card {
-    position: relative;
-    background: linear-gradient(165deg, rgba(255,253,249,0.78) 0%, rgba(250,247,240,0.45) 50%, rgba(252,249,243,0.22) 100%);
-    border-top: 1px solid rgba(196,170,148,0.09);
-    border-radius: 2px;
-    overflow: hidden;
-    box-shadow:
-      0 0.5px 0.8px rgba(44,44,44,0.012),
-      0 1.5px 2.2px rgba(44,44,44,0.012),
-      inset 0 1px 0 rgba(255,255,255,0.55);
-    transition:
-      transform 0.9s var(--ease-out-expo),
-      box-shadow 0.9s var(--ease-out-expo),
-      background 0.9s ease;
-  }
-  .blog-card:hover {
-    transform: translateY(-5px);
-    background: linear-gradient(165deg, rgba(255,254,252,0.92) 0%, rgba(253,250,245,0.6) 50%, rgba(254,252,248,0.35) 100%);
-    box-shadow:
-      0 2px 4px rgba(44,44,44,0.015),
-      0 8px 16px rgba(44,44,44,0.02),
-      0 20px 40px rgba(44,44,44,0.025);
-  }
-
-  .blog-card-link {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2rem;
-    padding: 2.4rem 2.8rem;
-    text-decoration: none;
-    color: inherit;
-    position: relative;
-    overflow: hidden;
-    border-left: 2px solid transparent;
-    transition: border-color 0.5s ease;
-  }
-  .blog-card:hover .blog-card-link {
-    border-color: rgba(107,125,106,0.2);
-  }
-
-  .card-glow {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 0% 50%, rgba(196,170,148,0.04) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.7s ease;
+    inset: 12% 3% auto;
+    height: 48%;
     pointer-events: none;
     z-index: 0;
-  }
-  .blog-card:hover .card-glow {
-    opacity: 1;
+    background:
+      linear-gradient(115deg, rgba(253,251,247,0.54), transparent 58%),
+      radial-gradient(circle at 58% 42%, var(--sage-muted), transparent 45%);
+    filter: blur(10px);
+    opacity: 0.9;
   }
 
-  .card-number {
+  .blog-intro {
+    position: relative;
+    z-index: 2;
+    max-width: 920px;
+    margin: 0 auto 4.5rem;
+  }
+
+  .blog-header {
+    max-width: 54rem;
+    margin: 0 auto clamp(2.25rem, 4vw, 3.4rem);
+    text-align: center;
+  }
+
+  .blog-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.78rem;
+    color: var(--earth);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+
+  .blog-eyebrow::before,
+  .blog-eyebrow::after {
+    content: '';
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(107, 125, 106, 0.34);
+  }
+
+  .blog-header h2 {
+    max-width: 52rem;
+    margin: 1rem auto 1rem;
+    font-family: var(--font-display);
+    font-size: clamp(2.75rem, 6.5vw, 5.35rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  .blog-header p {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: var(--ink-soft);
+    font-size: clamp(1rem, 1.35vw, 1.12rem);
+    line-height: 1.78;
+    text-wrap: pretty;
+  }
+
+  /* ===== 3-COLUMN GRID ===== */
+  .blog-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  /* ===== CARD ===== */
+  .blog-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
+
+  /* Per-card accent colors */
+  .blog-card:nth-child(1) {
+    --blog-accent: rgba(107, 125, 106, 0.85);
+    --blog-accent-soft: rgba(107, 125, 106, 0.12);
+    --blog-accent-glow: rgba(107, 125, 106, 0.06);
+  }
+
+  .blog-card:nth-child(2) {
+    --blog-accent: var(--gold);
+    --blog-accent-soft: var(--gold-soft);
+    --blog-accent-glow: rgba(184, 168, 138, 0.06);
+  }
+
+  .blog-card:nth-child(3) {
+    --blog-accent: rgba(138, 154, 137, 0.92);
+    --blog-accent-soft: rgba(138, 154, 137, 0.14);
+    --blog-accent-glow: rgba(138, 154, 137, 0.06);
+  }
+
+  .blog-card__link {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: inherit;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(253, 251, 247, 0.92)),
+      radial-gradient(circle at 0% 0%, rgba(229, 223, 212, 0.28), transparent 35%);
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 32px rgba(44, 44, 44, 0.035);
+    transition:
+      transform 0.48s var(--ease-out-expo),
+      border-color 0.35s ease,
+      box-shadow 0.45s var(--ease-out-expo);
+  }
+
+  /* Inner border highlight */
+  .blog-card__link::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    opacity: 0.6;
+  }
+
+  /* Radial glow decoration */
+  .blog-card__link::after {
+    content: '';
+    position: absolute;
+    inset: auto -12% -16% auto;
+    width: 9rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--blog-accent-soft), transparent 68%);
+    pointer-events: none;
+    opacity: 0.45;
+    transform: scale(0.84);
+    transition: transform 0.7s var(--ease-out-expo), opacity 0.45s ease;
+  }
+
+  .blog-card__link:hover {
+    transform: translateY(-0.3rem);
+    border-color: var(--blog-accent);
+    box-shadow: 0 1.2rem 2.4rem rgba(44, 44, 44, 0.07);
+  }
+
+  .blog-card__link:hover::after {
+    transform: scale(1.08);
+    opacity: 0.72;
+  }
+
+  /* ===== NUMBER WATERMARK ===== */
+  .blog-card__number {
+    position: absolute;
+    top: 0.75rem;
+    right: 1rem;
+    z-index: 3;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: 2.8rem;
-    color: var(--earth);
-    opacity: 0.08;
+    font-size: 1.4rem;
+    color: var(--parchment);
+    opacity: 0.7;
     line-height: 1;
-    align-self: start;
-    transition: opacity 0.6s ease, transform 0.6s var(--ease-out-expo), color 0.6s ease;
     user-select: none;
-    min-width: 44px;
-    position: relative;
-    z-index: 1;
-  }
-  .blog-card:hover .card-number {
-    opacity: 0.22;
-    transform: translateY(-3px) scale(1.05);
-    color: var(--sage-dark);
+    transition: opacity 0.6s ease, transform 0.6s var(--ease-out-expo);
   }
 
-  .card-content {
+  .blog-card__link:hover .blog-card__number {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  /* ===== IMAGE ===== */
+  .blog-card__media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--cream-warm);
+  }
+
+  .blog-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(12%) sepia(8%) saturate(0.82) contrast(1.04) brightness(0.96);
+    transform: scale(1.02);
+    transition: transform 0.85s var(--ease-out-expo), filter 0.85s ease;
+  }
+
+  .blog-card__link:hover .blog-card__media img {
+    transform: scale(1.06);
+    filter: grayscale(4%) sepia(4%) saturate(0.92) contrast(1.08) brightness(1);
+  }
+
+  .blog-card__image-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(42, 31, 26, 0.18) 100%);
+    pointer-events: none;
+  }
+
+  /* ===== BODY ===== */
+  .blog-card__body {
     display: flex;
     flex-direction: column;
-    gap: 0.7rem;
+    gap: 0.65rem;
+    padding: clamp(1rem, 1.4vw, 1.35rem);
+    flex: 1;
     position: relative;
     z-index: 1;
   }
 
-  .card-meta {
+  /* Top: category + read time */
+  .blog-card__top {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.05rem;
+  }
+
+  .blog-card__category {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.5rem;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid rgba(107, 125, 106, 0.14);
+    border-radius: 999px;
+    color: rgba(44, 44, 44, 0.62);
+    background: rgba(255, 255, 255, 0.65);
+    font-size: 0.55rem;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    transition:
+      transform 0.35s var(--ease-out-expo),
+      border-color 0.35s ease,
+      background 0.35s ease,
+      color 0.35s ease;
+  }
+
+  .blog-card__link:hover .blog-card__category {
+    transform: translateY(-1px);
+    border-color: var(--blog-accent);
+    background: var(--blog-accent-soft);
+    color: rgba(44, 44, 44, 0.78);
+  }
+
+  .blog-card__read {
     font-size: 0.55rem;
     font-weight: 400;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--taupe);
-    opacity: 0.55;
+    opacity: 0.45;
   }
-  .card-category {
-    display: inline-block;
-    padding: 0.2rem 0.6rem;
-    background: var(--sage-muted);
-    color: var(--sage-dark);
-    border-radius: 2px;
-    font-size: 0.5rem;
-    letter-spacing: 0.14em;
-    transition: background 0.4s ease, color 0.4s ease;
-  }
-  .blog-card:hover .card-category {
-    background: rgba(107,125,106,0.12);
-    color: var(--earth);
-  }
-  .card-sep {
-    opacity: 0.3;
-  }
-
-  .card-title {
+  .blog-card__title {
+    margin: 0;
+    max-width: 14ch;
     font-family: var(--font-display);
-    font-weight: 400;
+    font-size: clamp(1.15rem, 1.5vw, 1.5rem);
     font-style: italic;
-    font-size: clamp(1.3rem, 2.5vw, 1.7rem);
-    line-height: 1.2;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
     color: var(--ink);
-    letter-spacing: -0.01em;
-    margin: 0;
-    transition: color 0.5s ease;
-  }
-  .blog-card:hover .card-title {
-    color: var(--earth);
+    transition: transform 0.45s var(--ease-out-expo), color 0.35s ease;
   }
 
-  .card-excerpt {
+  /* Excerpt */
+  .blog-card__excerpt {
+    flex: 1;
+    margin: 0;
     font-family: var(--font-body);
-    font-size: 0.88rem;
+    font-size: clamp(0.8rem, 0.9vw, 0.88rem);
     font-weight: 300;
-    line-height: 1.7;
+    line-height: 1.65;
     color: var(--ink-soft);
-    opacity: 0.75;
-    margin: 0;
-    max-width: 70ch;
+    opacity: 0.68;
+    transition: color 0.35s ease, transform 0.45s var(--ease-out-expo);
   }
 
-  .card-footer {
+  .blog-card__link:hover .blog-card__title,
+  .blog-card__link:hover .blog-card__excerpt {
+    transform: translateY(-1px);
+  }
+
+  /* Footer */
+  .blog-card__footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 0.3rem;
-    padding-top: 0.8rem;
-    border-top: 1px solid rgba(196,170,148,0.06);
-  }
-  .card-date {
+    gap: 1rem;
+    margin-top: auto;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--line);
     font-size: 0.55rem;
     font-weight: 400;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--taupe);
-    opacity: 0.5;
-  }
-  .card-arrow {
-    color: var(--taupe);
-    opacity: 0.3;
-    transition: all 0.5s var(--ease-out-expo);
-    transform: translateX(-4px);
-  }
-  .blog-card:hover .card-arrow {
-    opacity: 0.7;
-    transform: translateX(0);
-    color: var(--earth);
   }
 
-  .card-hover-line {
+  .blog-card__arrow {
+    display: inline-flex;
+    flex: 0 0 auto;
+    color: var(--taupe);
+    opacity: 0.38;
+    transform: translateX(-4px);
+    transition: transform 0.55s var(--ease-out-expo), opacity 0.55s ease, color 0.55s ease;
+  }
+
+  .blog-card__link:hover .blog-card__arrow {
+    color: var(--blog-accent);
+    opacity: 0.85;
+    transform: translateX(0);
+  }
+
+  /* Hover line */
+  .blog-card__hover-line {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--earth), transparent);
-    opacity: 0.25;
-    transition: width 1s var(--ease-out-expo);
+    background: linear-gradient(90deg, transparent, var(--blog-accent), transparent);
+    opacity: 0.2;
+    transition: width 0.9s var(--ease-out-expo);
     z-index: 2;
   }
-  .blog-card:hover .card-hover-line {
+
+  .blog-card__link:hover .blog-card__hover-line {
     width: 100%;
   }
-  .card-hover-glow {
-    position: absolute;
-    bottom: -10px;
-    left: 10%;
-    width: 80%;
-    height: 20px;
-    background: radial-gradient(ellipse at 50% 50%, rgba(196,170,148,0.06) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .blog-card:hover .card-hover-glow {
-    opacity: 1;
+
+  /* ===== FOOTER: MARQUEE + CTA ===== */
+  .blog-footer {
+    position: relative;
+    z-index: 2;
+    margin-top: 4.5rem;
   }
 
-  .blog-cta {
-    display: flex;
-    justify-content: center;
+  /* ===== MARQUEE ===== */
+  .blog-marquee {
+    position: relative;
+    overflow: hidden;
+    padding: 1.35rem 0;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
-  .btn-blog {
+
+  .blog-marquee::before,
+  .blog-marquee::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+  }
+
+  .blog-marquee::before { top: 0; }
+  .blog-marquee::after { bottom: 0; }
+
+  .blog-marquee__track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: blog-marquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  .blog-marquee__item {
     display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
-    padding: 18px 44px;
-    background: rgba(107,125,106,0.06);
-    color: var(--earth);
-    font-family: var(--font-body);
-    font-weight: 400;
-    font-size: 0.62rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid rgba(107,125,106,0.15);
-    border-radius: 100px;
-    cursor: pointer;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition:
-      background 0.6s ease,
-      border-color 0.6s ease,
-      color 0.5s ease,
-      transform 0.5s var(--ease-out-expo),
-      box-shadow 0.6s ease;
-    box-shadow:
-      0 1px 2px rgba(0,0,0,0.04),
-      inset 0 1px 0 rgba(255,255,255,0.5);
-    overflow: hidden;
-    position: relative;
+    padding: 0 0.15rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.05rem, 1.6vw, 1.55rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--taupe);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+    letter-spacing: 0.01em;
   }
-  .btn-blog:hover {
-    background: rgba(107,125,106,0.14);
-    border-color: rgba(107,125,106,0.35);
-    color: var(--sage-dark);
-    transform: translateY(-3px);
-    box-shadow:
-      0 10px 36px rgba(0,0,0,0.07),
-      0 0 0 1px rgba(107,125,106,0.08),
-      inset 0 1px 0 rgba(255,255,255,0.5);
+
+  .blog-marquee__dot {
+    display: inline-flex;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold-soft);
+    margin: 0 1.35rem;
+    flex-shrink: 0;
   }
-  .btn-blog-text {
-    position: relative;
-    z-index: 1;
+
+  @keyframes blog-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
   }
-  .btn-blog-arrow {
-    position: relative;
-    z-index: 1;
+
+  /* ===== CTA ===== */
+  .blog-cta {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    transition: transform 0.5s var(--ease-out-expo);
+    gap: 1.6rem;
+    margin-top: 2.8rem;
+    text-align: center;
   }
-  .btn-blog:hover .btn-blog-arrow {
+
+  .btn-blog {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    min-height: 3.35rem;
+    padding: 0 2.2rem;
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition:
+      border-color 0.45s ease,
+      color 0.45s ease,
+      transform 0.55s var(--ease-out-expo);
+  }
+
+  .btn-blog__text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-blog__line {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 100%;
+    background: var(--ink);
+    transform: translate(-50%, -50%);
+    border-radius: inherit;
+    transition: width 0.55s var(--ease-out-expo);
+    z-index: 0;
+  }
+
+  .btn-blog:hover {
+    border-color: var(--ink);
+    color: var(--white-warm);
+    transform: translateY(-2px);
+  }
+
+  .btn-blog:hover .btn-blog__line {
+    width: 100%;
+  }
+
+  .btn-blog svg {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+
+  .btn-blog:hover svg {
     transform: translateX(4px);
   }
 
-  @media (max-width: 900px) {
-    .blog-section { padding: 8rem 0 10rem; }
-    .blog-card-link {
-      padding: 2rem 2rem;
-      gap: 1.5rem;
+  .blog-cta__note {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(0.88rem, 1.1vw, 1rem);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--taupe);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 980px) {
+    .blog-section {
+      padding: 8rem 0 10rem;
     }
-    .card-number { font-size: 2rem; min-width: 34px; }
+
+    .blog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
   }
 
   @media (max-width: 640px) {
-    .blog-section { padding: 6rem 0 8rem; }
-    .blog-card-link {
+    .blog-section {
+      padding: 6.5rem 0 8rem;
+    }
+
+    .blog-intro {
+      margin-bottom: 3rem;
+    }
+
+    .blog-grid {
       grid-template-columns: 1fr;
-      gap: 0.8rem;
-      padding: 1.8rem 1.6rem;
+      max-width: 420px;
+      margin: 0 auto;
     }
-    .card-number {
-      font-size: 1.6rem;
-      order: -1;
+
+    .blog-card__media {
+      aspect-ratio: 16 / 10;
     }
-    .card-title { font-size: 1.2rem; }
-    .card-excerpt { font-size: 0.85rem; }
+
+    .blog-card__body {
+      padding: 1.2rem;
+    }
+
+    .blog-card__footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .blog-footer {
+      margin-top: 3.5rem;
+    }
+
+    .btn-blog {
+      width: 100%;
+      max-width: 20rem;
+      padding-inline: 1.4rem;
+      text-align: center;
+    }
+
+    .blog-cta__note {
+      font-size: 0.85rem;
+    }
   }
 </style>

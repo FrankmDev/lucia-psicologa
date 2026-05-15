@@ -27,7 +27,7 @@ export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   {
     slug: 'emdr-cordoba',
-    title: 'Terapia EMDR en Córdoba: cómo reprogramar recuerdos dolorosos y recuperar tu vida',
+    title: 'EMDR: reprogramar recuerdos y recuperar tu vida',
     metaTitle: 'Terapia EMDR en Córdoba | Psicóloga especializada en trauma',
     metaDescription: 'Descubre qué es la terapia EMDR, por qué la OMS la recomienda para el tratamiento del trauma, y cómo funciona en una consulta de psicología en Córdoba.',
     category: 'trauma',
@@ -226,7 +226,7 @@ export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   {
     slug: 'duelo-perdida-cordoba',
-    title: 'Duelo y pérdida en Córdoba: afrontar la ausencia cuando el dolor no pasa',
+    title: 'Afrontar el duelo cuando el dolor no pasa',
     metaTitle: 'Psicóloga especialista en duelo Córdoba | Acompañamiento en la pérdida',
     metaDescription: '¿Has perdido a alguien querido en Córdoba? Te explico las fases reales del duelo, cuándo necesitas ayuda psicológica y cómo acompaño a personas que atraviesan una pérdida.',
     category: 'duelo',
@@ -405,7 +405,7 @@ export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   {
     slug: 'mindfulness-regulacion-cordoba',
-    title: 'Mindfulness y regulación emocional en Córdoba: técnicas que cambian el cerebro',
+    title: 'Mindfulness y regulación emocional',
     metaTitle: 'Mindfulness Córdoba | Psicóloga especialista en regulación emocional',
     metaDescription: 'Descubre cómo el mindfulness y las técnicas de regulación emocional pueden cambiar tu cerebro. Psicóloga especializada en mindfulness en Córdoba.',
     category: 'bienestar',
@@ -615,7 +615,7 @@ export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   {
     slug: 'ansiedad-cordoba',
-    title: 'Ansiedad en Córdoba: cómo reconocerla y cuándo pedir ayuda',
+    title: 'Ansiedad: reconocerla y pedir ayuda',
     metaTitle: 'Psicóloga en Córdoba | Ansiedad y bienestar',
     metaDescription: '¿Sientes ansiedad en Córdoba? Descubre cómo reconocerla y cuándo acudir a una psicóloga en Córdoba. Empieza a sentirte mejor hoy mismo.',
     category: 'ansiedad',
@@ -699,7 +699,7 @@ export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   {
     slug: 'primera-consulta-cordoba',
-    title: 'Terapia psicológica en Córdoba: qué esperar de tu primera consulta',
+    title: 'Tu primera consulta de terapia',
     metaTitle: 'Terapia psicológica Córdoba | Primera consulta',
     metaDescription: '¿Dudas sobre la terapia psicológica en Córdoba? Te explico qué esperar en tu primera consulta y cómo puedo acompañarte. Reserva tu cita hoy.',
     category: 'terapia',
@@ -787,7 +787,7 @@ export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   {
     slug: 'autoestima-cordoba',
-    title: 'Autoestima y bienestar emocional en Córdoba: trabajarlos desde la terapia',
+    title: 'Autoestima: reconstruir tu relación contigo mismo',
     metaTitle: 'Psicóloga Córdoba autoestima | Bienestar',
     metaDescription: '¿Buscas mejorar tu autoestima en Córdoba? Descubre cómo la terapia puede ayudarte a reconectar contigo. Consulta con una psicóloga en Córdoba.',
     category: 'autoestima',

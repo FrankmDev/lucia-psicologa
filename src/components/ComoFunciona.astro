@@ -1,8 +1,12 @@
 ---
+import SectionHeader from './ui/SectionHeader.astro';
+import CardSurface from './ui/CardSurface.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+import FloatOrb from './ui/FloatOrb.astro';
+import InkBlob from './ui/InkBlob.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
 import DustParticles from './ui/DustParticles.astro';
-import GrainOverlay from './ui/GrainOverlay.astro';
 
 const pasos = [
   {
@@ -13,7 +17,7 @@ const pasos = [
   {
     numero: "02",
     titulo: "Evaluación específica",
-    descripcion: "Exploramos juntos el origen de lo que te sucede. Utilizo herramientas diagnósticas validadas para entender mejor tu situación y definir el camino a seguir."
+    descripcion: "Exploramos juntas el origen de lo que te sucede. Utilizo herramientas diagnósticas validadas para entender mejor tu situación y definir el camino a seguir."
   },
   {
     numero: "03",
@@ -23,112 +27,345 @@ const pasos = [
 ];
 ---
 
-<section id="como-trabajo" class="relative py-32 md:py-40 lg:py-52 bg-base overflow-hidden paper-texture">
+<section id="como-trabajo" class="como-funciona" data-como-funciona>
   <GrainOverlay opacity={0.02} />
   <AmbientLight color="rgba(196,170,148,0.04)" />
-  <DustParticles count={10} color="rgba(196,170,148,0.15)" />
-  <Container maxWidth="1240px">
-    <!-- Section Header -->
-    <div class="mb-20 md:mb-28 reveal">
-      <p class="section-label mb-6">El proceso</p>
-      <hr class="divider-draw mb-14 reveal" />
-      <h2 class="section-title text-text-primary">
-        <span class="section-title__kicker block font-body font-light">
-          Una ruta clara hacia el
-        </span>
-        <span class="section-title__main block font-display italic text-accent mt-1">
-          bienestar
-        </span>
-      </h2>
-    </div>
+  <DustParticles count={12} color="rgba(196,170,148,0.15)" />
 
-    <!-- Steps Grid -->
-    <div class="relative grid md:grid-cols-3 gap-12 md:gap-8 lg:gap-12">
-      <!-- Connector line (desktop) -->
-      <div class="hidden md:block absolute top-[5rem] left-[16%] right-[16%] h-px bg-border" aria-hidden="true"></div>
+  <!-- Ambient orbs -->
+  <FloatOrb size={450} top="-10%" right="-10%" color="var(--sage-muted)" blur={120} opacity={0.25} animation="float-1" />
+  <FloatOrb size={300} bottom="-5%" left="-5%" color="var(--gold-soft)" opacity={0.3} animation="float-2" />
 
-      {pasos.map((paso, i) => (
-        <div class="relative group reveal" style={`transition-delay: ${0.1 + i * 0.14}s`}>
-          <!-- Giant decorative number -->
-          <span class="step-giant-num" aria-hidden="true">{paso.numero}</span>
+  <!-- Ink blobs -->
+  <InkBlob width={400} height={350} top="30%" left="-10%" color="var(--earth)" opacity={0.03} animation="morph-blob" />
 
-          <!-- Content -->
-          <div class="relative z-10 md:pt-4">
-            <span class="step-label">Paso {paso.numero}</span>
-            <h3 class="step-title">{paso.titulo}</h3>
-            <p class="step-desc">{paso.descripcion}</p>
+  <div class="cf-watermark" aria-hidden="true">
+    <span class="watermark-text">Ruta</span>
+  </div>
+
+  <Container maxWidth="1100px">
+    <SectionHeader
+      eyebrow="El proceso"
+      title={['Una ruta clara', 'hacia el bienestar']}
+      subtitle="Un camino estructurado y transparente para que sepas en todo momento en qué punto nos encontramos."
+      variant="ornamented"
+      align="center"
+      index="04"
+      class="reveal-blur"
+    />
+
+    <div class="cf-timeline">
+      <div class="cf-timeline-track" aria-hidden="true">
+        <div class="cf-timeline-progress"></div>
+      </div>
+
+      <div class="cf-steps">
+        {pasos.map((paso, i) => (
+          <div class={`cf-step cf-step--${i % 2 === 0 ? 'left' : 'right'} reveal-up`} style={`transition-delay: ${100 + i * 200}ms`}>
+            <div class="cf-step-node" aria-hidden="true">
+              <div class="node-ring"></div>
+              <div class="node-dot"></div>
+            </div>
+
+            <CardSurface watermark={paso.numero} class="cf-card" hoverable={true}>
+              <div class="cf-card-glow" aria-hidden="true"></div>
+              <div class="cf-card-inner">
+                <span class="cf-card-num" aria-hidden="true">{paso.numero}</span>
+                <div class="cf-card-content">
+                  <span class="cf-card-label">Paso {paso.numero}</span>
+                  <h3 class="cf-card-title">{paso.titulo}</h3>
+                  <p class="cf-card-desc">{paso.descripcion}</p>
+                </div>
+              </div>
+            </CardSurface>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </Container>
 </section>
 
 <style>
-  .step-giant-num {
+  .como-funciona {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 70% 30%, rgba(196,170,148,0.05) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 70%, rgba(107,125,106,0.04) 0%, transparent 50%),
+      var(--parchment);
+    padding: 10rem 0 12rem;
+  }
+
+  .cf-watermark {
     position: absolute;
-    top: -1.5rem;
-    left: -0.5rem;
-    font-family: var(--font-display);
-    font-size: clamp(6rem, 12vw, 10rem);
-    font-weight: 300;
-    line-height: 1;
-    color: var(--accent);
-    opacity: 0.045;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
+    z-index: 0;
     user-select: none;
+    width: 100%;
+    text-align: center;
+  }
+  .watermark-text {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(8rem, 24vw, 18rem);
+    color: var(--earth);
+    opacity: 0.015;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  /* Timeline */
+  .cf-timeline {
+    position: relative;
+    margin-top: 5rem;
+    z-index: 2;
+    padding: 2rem 0;
+  }
+
+  .cf-timeline-track {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    background: rgba(196,170,148,0.15);
+  }
+  .cf-timeline-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--sage-dark) 0%, transparent 100%);
+    transition: height 1.5s var(--ease-out-expo);
+  }
+  .como-funciona.visible .cf-timeline-progress {
+    height: 100%;
+  }
+
+  .cf-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    position: relative;
+  }
+
+  .cf-step {
+    position: relative;
+    width: calc(50% - 3rem);
+    display: flex;
+    flex-direction: column;
+  }
+  .cf-step--left {
+    align-self: flex-start;
+    text-align: right;
+  }
+  .cf-step--right {
+    align-self: flex-end;
+    text-align: left;
+  }
+
+  /* Node */
+  .cf-step-node {
+    position: absolute;
+    top: 3rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+  }
+  .cf-step--left .cf-step-node {
+    right: -3rem;
+    transform: translateX(50%);
+  }
+  .cf-step--right .cf-step-node {
+    left: -3rem;
+    transform: translateX(-50%);
+  }
+
+  .node-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(196,170,148,0.25);
+    background: var(--parchment);
+    transition: transform 0.6s var(--ease-out-expo), border-color 0.4s ease;
+  }
+  .node-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sage-dark);
+    opacity: 0.5;
+    transition: transform 0.6s var(--ease-out-expo), opacity 0.4s ease;
+  }
+  .cf-step:hover .node-ring {
+    transform: scale(1.3);
+    border-color: rgba(107,125,106,0.3);
+  }
+  .cf-step:hover .node-dot {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  /* Card */
+  .cf-card {
+    padding: 3rem;
+    border-radius: 3px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s ease;
+  }
+  .cf-step:hover .cf-card {
+    transform: translateY(-5px);
+    box-shadow: 
+      0 12px 32px rgba(0,0,0,0.04),
+      0 0 0 1px rgba(107,125,106,0.06) inset;
+  }
+  
+  .cf-card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(196,170,148,0.04) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
     z-index: 0;
   }
-
-  .section-title__kicker {
-    font-size: var(--type-section-kicker);
-    line-height: 1.15;
-    letter-spacing: 0;
-  }
-  .section-title__main {
-    font-size: var(--type-section-title);
-    font-weight: 400;
-    line-height: var(--leading-title);
-    letter-spacing: 0;
+  .cf-step:hover .cf-card-glow {
+    opacity: 1;
   }
 
-  .step-label {
-    display: block;
+  .cf-card-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .cf-step--left .cf-card-inner {
+    align-items: flex-end;
+  }
+  .cf-step--right .cf-card-inner {
+    align-items: flex-start;
+  }
+
+  .cf-card-num {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 3.5rem;
+    color: var(--earth);
+    opacity: 0.08;
+    line-height: 1;
+    margin-bottom: -1.5rem;
+    transition: opacity 0.5s ease, transform 0.5s var(--ease-out-expo), color 0.5s ease;
+  }
+  .cf-step:hover .cf-card-num {
+    opacity: 0.15;
+    color: var(--sage-dark);
+    transform: translateY(-4px);
+  }
+
+  .cf-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .cf-card-label {
     font-family: var(--font-body);
-    font-size: var(--type-meta);
+    font-size: 0.65rem;
     font-weight: 500;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 1rem;
+    color: var(--taupe);
+    opacity: 0.5;
   }
 
-  .step-title {
+  .cf-card-title {
     font-family: var(--font-display);
-    font-size: var(--type-card-title);
+    font-style: italic;
     font-weight: 400;
+    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    color: var(--ink);
+    line-height: 1.2;
     letter-spacing: -0.01em;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
+    margin: 0;
     transition: color 0.4s ease;
   }
-  .group:hover .step-title {
-    color: var(--accent);
+  .cf-step:hover .cf-card-title {
+    color: var(--earth);
   }
 
-  .step-desc {
+  .cf-card-desc {
     font-family: var(--font-body);
-    font-size: var(--type-card-body);
     font-weight: 300;
+    font-size: 0.9rem;
     line-height: 1.7;
-    color: var(--text-secondary);
+    color: var(--ink-soft);
+    opacity: 0.8;
+    margin: 0;
   }
 
-  @media (max-width: 768px) {
-    .step-giant-num {
-      top: -1rem;
-      left: -0.25rem;
-      font-size: 5rem;
+  /* Responsive */
+  @media (max-width: 900px) {
+    .cf-timeline-track {
+      left: 1.5rem;
+    }
+    .cf-step {
+      width: calc(100% - 4rem);
+      align-self: flex-end;
+      text-align: left;
+    }
+    .cf-step--left .cf-step-node,
+    .cf-step--right .cf-step-node {
+      left: -2.5rem;
+      right: auto;
+      transform: translateX(-50%);
+    }
+    .cf-step--left .cf-card-inner {
+      align-items: flex-start;
+    }
+    .cf-card {
+      padding: 2.5rem 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .como-funciona {
+      padding: 8rem 0 10rem;
+    }
+    .cf-timeline-track {
+      left: 1rem;
+    }
+    .cf-step {
+      width: calc(100% - 3rem);
+    }
+    .cf-step--left .cf-step-node,
+    .cf-step--right .cf-step-node {
+      left: -2rem;
+    }
+    .cf-card {
+      padding: 2rem 1.5rem;
+    }
+    .cf-card-num {
+      font-size: 2.5rem;
+    }
+    .cf-card-title {
+      font-size: 1.3rem;
+    }
+    .cf-steps {
+      gap: 2.5rem;
     }
   }
 </style>
