@@ -1,10 +1,9 @@
 ---
-import Eyebrow from './ui/Eyebrow.astro';
 import AmbientLight from './ui/AmbientLight.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 import InkBlob from './ui/InkBlob.astro';
-import DecorativeRing from './ui/DecorativeRing.astro';
+import BotanicalSVG from './ui/BotanicalSVG.astro';
 import DustParticles from './ui/DustParticles.astro';
 
 const currentYear = new Date().getFullYear();
@@ -31,11 +30,11 @@ const socialLinks = [
 <footer class="site-footer" id="siteFooter" data-footer>
   <!-- Top edge wave -->
   <div class="footer-wave" aria-hidden="true">
-    <svg class="footer-wave-svg" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
-      <path class="footer-wave-path footer-wave-path--1" d="M0,20 C360,32 720,8 1080,20 C1260,26 1350,14 1440,20"/>
-      <path class="footer-wave-path footer-wave-path--2" d="M0,24 C240,16 480,34 720,24 C960,18 1200,30 1440,24"/>
-      <path class="footer-wave-path footer-wave-path--3" d="M0,18 C180,28 540,12 900,18 C1170,24 1350,14 1440,18"/>
-      <path class="footer-wave-path footer-wave-path--4" d="M0,22 C300,14 600,30 900,22 C1200,16 1350,26 1440,22" opacity="0.5"/>
+    <svg class="footer-wave-svg" viewBox="0 0 1440 48" preserveAspectRatio="none" aria-hidden="true">
+      <path class="footer-wave-path footer-wave-path--1" d="M0,24 C360,38 720,10 1080,24 C1260,30 1350,16 1440,24"/>
+      <path class="footer-wave-path footer-wave-path--2" d="M0,28 C240,18 480,40 720,28 C960,20 1200,34 1440,28"/>
+      <path class="footer-wave-path footer-wave-path--3" d="M0,20 C180,32 540,14 900,20 C1170,28 1350,16 1440,20"/>
+      <path class="footer-wave-path footer-wave-path--4" d="M0,26 C300,16 600,34 900,26 C1200,18 1350,30 1440,26" opacity="0.4"/>
     </svg>
   </div>
 
@@ -43,32 +42,31 @@ const socialLinks = [
   <div class="footer-bg">
     <div class="footer-overlay"></div>
     <div class="footer-vignette" aria-hidden="true"></div>
+    <div class="footer-grid" aria-hidden="true"></div>
   </div>
 
-  <GrainOverlay animated opacity={0.02} zIndex={2} />
-  <AmbientLight />
-  <DustParticles count={15} />
+  <GrainOverlay animated opacity={0.018} zIndex={2} />
+  <AmbientLight color="rgba(184,168,148,0.04)" />
+  <DustParticles count={12} color="rgba(196,170,148,0.08)" />
 
-  <FloatOrb size={350} top="10%" right="15%" color="rgba(107,125,106,0.08)" blur={80} animation="float-1" />
-  <FloatOrb size={250} bottom="25%" left="10%" color="rgba(196,170,148,0.05)" blur={80} animation="float-2" />
-  <FloatOrb size={180} top="50%" right="5%" color="rgba(168,146,124,0.04)" blur={60} animation="float-3" />
+  <FloatOrb size={320} top="12%" right="12%" color="rgba(196,170,148,0.07)" blur={100} animation="float-1" />
+  <FloatOrb size={260} bottom="30%" left="8%" color="rgba(111,125,103,0.06)" blur={90} animation="float-2" />
+  <FloatOrb size={180} top="55%" right="6%" color="rgba(168,146,124,0.05)" blur={70} animation="float-3" />
 
-  <InkBlob width={400} height={300} top="-5%" right="-5%" color="var(--sage)" opacity={0.025} />
-  <InkBlob width={300} height={250} bottom="-5%" left="-5%" color="var(--gold)" opacity={0.025} animation="morph-2" />
+  <InkBlob width={380} height={280} top="-6%" right="-6%" color="var(--earth)" opacity={0.03} />
+  <InkBlob width={280} height={220} bottom="-4%" left="-4%" color="var(--sage)" opacity={0.025} animation="morph-2" />
 
-  <DecorativeRing size={350} top="-80px" right="-80px" />
-  <DecorativeRing size={200} bottom="20%" left="-60px" duration={30} reverse />
+  <BotanicalSVG variant="left" color="rgba(196,170,148,0.05)" opacity={0.6} width={55} />
+  <BotanicalSVG variant="right" color="rgba(111,125,103,0.06)" opacity={0.6} width={48} style="right: 4%; bottom: 22%;" />
 
   <div class="footer-inner">
 
-    <!-- Top area: Title + CTA -->
+    <!-- Hero area -->
     <div class="footer-hero reveal-blur" data-delay="100">
-      <Eyebrow text="Contacto" light={true} centered={true} variant="simple" />
+      <span class="footer-eyebrow">Contacto</span>
 
       <h2 class="footer-title">
-        <span class="title-line">
-          <span class="title-inner">Hablemos</span>
-        </span>
+        <span class="title-inner">Hablemos</span>
       </h2>
 
       <p class="footer-desc">
@@ -77,15 +75,13 @@ const socialLinks = [
 
       <a href="mailto:hola@luciapsicologia.es" class="btn-footer-cta">
         <span class="cta-text">Escríbeme</span>
-        <span class="cta-arrow">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </span>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </a>
     </div>
 
-    <!-- Contact row: clean inline layout -->
+    <!-- Contact row -->
     <div class="contact-row reveal-up" data-delay="300">
       <a href="mailto:hola@luciapsicologia.es" class="contact-item">
         <span class="contact-label">Email</span>
@@ -107,7 +103,7 @@ const socialLinks = [
     <div class="social-row stagger-children" data-delay="500">
       {socialLinks.map(link => (
         <a href={link.href} class="social-link reveal-up" aria-label={link.label} target="_blank" rel="noopener noreferrer">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d={link.icon} fill="currentColor"/>
           </svg>
         </a>
@@ -132,8 +128,8 @@ const socialLinks = [
   <!-- Back to top -->
   <button class="back-top" id="backTop" aria-label="Volver arriba">
     <svg class="back-top-progress" viewBox="0 0 44 44" aria-hidden="true">
-      <circle class="progress-track" cx="22" cy="22" r="20" fill="none" stroke="rgba(196,170,148,0.12)" stroke-width="1.5"/>
-      <circle class="progress-ring" cx="22" cy="22" r="20" fill="none" stroke="rgba(196,170,148,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="125.6"/>
+      <circle class="progress-track" cx="22" cy="22" r="20" fill="none" stroke="rgba(196,170,148,0.1)" stroke-width="1.5"/>
+      <circle class="progress-ring" cx="22" cy="22" r="20" fill="none" stroke="rgba(196,170,148,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="125.6"/>
     </svg>
     <span class="back-top-icon">
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -197,20 +193,31 @@ const socialLinks = [
 
 <style>
   /* ═══════════════════════════════════════════════════════════
-     FOOTER — Clean Minimal Editorial (Hero-aligned v3)
+     FOOTER — Warm Depth Editorial
+     Deep warm earth tones that feel connected to the site's palette.
      ═══════════════════════════════════════════════════════════ */
 
   .site-footer {
+    --foot-cream: #f5f0e8;
+    --foot-gold: #c4aa94;
+    --foot-gold-soft: rgba(196, 170, 148, 0.12);
+    --foot-sage: #6f7d67;
+    --foot-sage-soft: rgba(111, 125, 103, 0.15);
+    --foot-ink: #f5f0e8;
+    --foot-ink-muted: rgba(245, 240, 232, 0.55);
+    --foot-ink-faint: rgba(245, 240, 232, 0.3);
+    --foot-line: rgba(196, 170, 148, 0.1);
+
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     z-index: 0;
-    background: #0d0a08;
-    color: #F5F0E8;
+    background: #1a1512;
+    color: var(--foot-cream);
     padding: 2.5rem 0 3rem;
     overflow: hidden;
-    box-shadow: 0 -40px 100px rgba(0,0,0,0.3);
+    box-shadow: 0 -40px 100px rgba(0, 0, 0, 0.25);
   }
 
   /* ── Top Edge Wave ───────────────────────────────────────── */
@@ -219,7 +226,7 @@ const socialLinks = [
     top: 0;
     left: 0;
     width: 100%;
-    height: 32px;
+    height: 36px;
     z-index: 2;
     pointer-events: none;
     overflow: hidden;
@@ -238,22 +245,22 @@ const socialLinks = [
     stroke-linejoin: round;
   }
   .footer-wave-path--1 {
-    stroke: rgba(196,170,148,0.08);
+    stroke: rgba(196, 170, 148, 0.1);
     stroke-width: 0.8;
     animation: wave-drift-1 28s ease-in-out infinite alternate;
   }
   .footer-wave-path--2 {
-    stroke: rgba(196,170,148,0.04);
+    stroke: rgba(196, 170, 148, 0.05);
     stroke-width: 0.5;
     animation: wave-drift-2 36s ease-in-out infinite alternate-reverse;
   }
   .footer-wave-path--3 {
-    stroke: rgba(107,125,106,0.05);
+    stroke: rgba(111, 125, 103, 0.06);
     stroke-width: 0.6;
     animation: wave-drift-3 32s ease-in-out infinite alternate;
   }
   .footer-wave-path--4 {
-    stroke: rgba(196,170,148,0.03);
+    stroke: rgba(196, 170, 148, 0.04);
     stroke-width: 0.4;
     animation: wave-drift-2 42s ease-in-out infinite alternate;
   }
@@ -280,17 +287,30 @@ const socialLinks = [
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 50% 20%, rgba(13,10,8,0.2) 0%, transparent 60%),
-      radial-gradient(ellipse at 30% 80%, rgba(42,31,26,0.3) 0%, transparent 50%),
-      linear-gradient(180deg, rgba(13,10,8,0.4) 0%, rgba(13,10,8,0.1) 50%, rgba(13,10,8,0.5) 100%);
+      radial-gradient(ellipse at 50% 15%, rgba(42, 31, 26, 0.35) 0%, transparent 55%),
+      radial-gradient(ellipse at 25% 75%, rgba(196, 170, 148, 0.04) 0%, transparent 45%),
+      radial-gradient(ellipse at 75% 60%, rgba(111, 125, 103, 0.04) 0%, transparent 40%),
+      linear-gradient(180deg, rgba(26, 21, 18, 0.5) 0%, rgba(26, 21, 18, 0.1) 45%, rgba(26, 21, 18, 0.55) 100%);
     z-index: 1;
   }
   .footer-vignette {
     position: absolute;
     inset: 0;
-    box-shadow: inset 0 0 200px 80px rgba(13,10,8,0.6);
+    box-shadow: inset 0 0 200px 70px rgba(13, 10, 8, 0.5);
     z-index: 1;
     pointer-events: none;
+  }
+  .footer-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(196, 170, 148, 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(196, 170, 148, 0.012) 1px, transparent 1px);
+    background-size: 8.5rem 8.5rem;
+    mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 72%);
+    opacity: 0.5;
   }
 
   /* ── Inner Container ──────────────────────────────────────── */
@@ -303,25 +323,42 @@ const socialLinks = [
   }
 
   /* ═══════════════════════════════════════════════════════════
-     HERO AREA — Clean & Centered
+     HERO AREA
      ═══════════════════════════════════════════════════════════ */
   .footer-hero {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 1.6rem;
+    gap: 1.5rem;
     margin-bottom: clamp(3rem, 5vw, 4rem);
+  }
+
+  /* Eyebrow with hairlines */
+  .footer-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.78rem;
+    color: var(--foot-sage);
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+  .footer-eyebrow::before,
+  .footer-eyebrow::after {
+    content: '';
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(111, 125, 103, 0.3);
   }
 
   /* Title */
   .footer-title {
     margin: 0;
-    line-height: 1.0;
-  }
-  .title-line {
-    display: block;
-    overflow: hidden;
+    line-height: 1;
   }
   .title-inner {
     display: block;
@@ -330,7 +367,7 @@ const socialLinks = [
     font-style: italic;
     font-size: var(--type-section-title);
     line-height: var(--leading-title);
-    color: #F5F0E8;
+    color: var(--foot-cream);
     letter-spacing: -0.02em;
     position: relative;
   }
@@ -341,7 +378,7 @@ const socialLinks = [
     left: 10%;
     width: 80%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(196,170,148,0.15), transparent);
+    background: linear-gradient(90deg, transparent, rgba(196, 170, 148, 0.18), transparent);
     border-radius: 1px;
   }
 
@@ -350,49 +387,44 @@ const socialLinks = [
     font-family: var(--font-body);
     font-weight: 300;
     font-size: var(--type-section-subtitle);
-    line-height: 1.7;
-    color: rgba(245,240,232,0.55);
-    max-width: 36ch;
+    line-height: 1.75;
+    color: var(--foot-ink-muted);
+    max-width: 38ch;
     margin: 0;
   }
 
-  /* Primary CTA */
+  /* Primary CTA — Sage gradient pill */
   .btn-footer-cta {
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
-    padding: 18px 44px;
-    background: rgba(245,240,232,0.04);
-    color: rgba(245,240,232,0.88);
+    gap: 0.75rem;
+    min-height: 3.2rem;
+    padding: 0.85rem 2.2rem;
+    background: linear-gradient(180deg, rgba(111, 125, 103, 0.96), rgba(86, 100, 90, 0.96));
+    color: #fbf8f1;
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: 500;
     font-size: var(--type-meta);
-    letter-spacing: 0.24em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     text-decoration: none;
-    border: 1px solid rgba(196,170,148,0.15);
-    border-radius: 100px;
+    border: 1px solid rgba(111, 125, 103, 0.35);
+    border-radius: 999px;
     cursor: pointer;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition:
-      background 0.6s ease,
-      border-color 0.6s ease,
-      color 0.5s ease,
-      transform 0.5s var(--ease-out-expo),
-      box-shadow 0.6s ease;
-    box-shadow:
-      0 1px 2px rgba(0,0,0,0.06),
-      inset 0 1px 0 rgba(255,255,255,0.03);
-    margin-top: 0.6rem;
+    box-shadow: 0 0.9rem 1.8rem rgba(86, 100, 90, 0.18);
+    margin-top: 0.5rem;
     overflow: hidden;
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      box-shadow 0.45s ease,
+      border-color 0.4s ease;
   }
   .btn-footer-cta::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(245,240,232,0.06);
+    background: rgba(255, 255, 255, 0.06);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.6s var(--ease-out-expo);
@@ -402,38 +434,31 @@ const socialLinks = [
     transform-origin: left;
   }
   .btn-footer-cta:hover {
-    background: rgba(245,240,232,0.09);
-    border-color: rgba(196,170,148,0.4);
-    color: #F5F0E8;
     transform: translateY(-3px);
-    box-shadow:
-      0 10px 36px rgba(0,0,0,0.12),
-      0 0 0 1px rgba(196,170,148,0.1),
-      inset 0 1px 0 rgba(255,255,255,0.05);
+    box-shadow: 0 1.2rem 2.4rem rgba(86, 100, 90, 0.24);
+    border-color: rgba(111, 125, 103, 0.5);
   }
   .btn-footer-cta:active {
     transform: translateY(0);
     transition-duration: 0.2s;
   }
-  .cta-text {
+  .btn-footer-cta .cta-text {
     position: relative;
     z-index: 1;
   }
-  .cta-arrow {
+  .btn-footer-cta svg {
     position: relative;
     z-index: 1;
-    display: flex;
-    align-items: center;
-    color: rgba(196,170,148,0.5);
-    transition: transform 0.5s var(--ease-out-expo), color 0.4s ease;
+    transition: transform 0.5s var(--ease-out-expo);
+    opacity: 0.7;
   }
-  .btn-footer-cta:hover .cta-arrow {
+  .btn-footer-cta:hover svg {
     transform: translateX(4px);
-    color: rgba(196,170,148,0.85);
+    opacity: 1;
   }
 
   /* ═══════════════════════════════════════════════════════════
-     CONTACT ROW — Clean Inline
+     CONTACT ROW
      ═══════════════════════════════════════════════════════════ */
   .contact-row {
     display: flex;
@@ -442,72 +467,72 @@ const socialLinks = [
     flex-wrap: wrap;
     gap: 0;
     margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
-    padding: 1.5rem 0;
-    border-top: 1px solid rgba(196,170,148,0.06);
-    border-bottom: 1px solid rgba(196,170,148,0.06);
+    padding: 1.6rem 0;
+    border-top: 1px solid var(--foot-line);
+    border-bottom: 1px solid var(--foot-line);
   }
   .contact-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.25rem;
-    padding: 0 2rem;
+    gap: 0.3rem;
+    padding: 0 2.2rem;
     text-decoration: none;
     transition: opacity 0.4s ease, transform 0.5s var(--ease-out-expo);
   }
   .contact-item:hover {
-    opacity: 0.9;
+    opacity: 0.92;
     transform: translateY(-2px);
   }
   .contact-item[href]:hover .contact-value {
-    color: rgba(245,240,232,0.95);
+    color: var(--foot-cream);
   }
   .contact-label {
     font-family: var(--font-body);
     font-size: var(--type-meta);
-    font-weight: 400;
-    letter-spacing: 0.2em;
+    font-weight: 500;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.35);
+    color: rgba(245, 240, 232, 0.32);
   }
   .contact-value {
     font-family: var(--font-body);
     font-size: var(--type-card-body);
     font-weight: 300;
-    color: rgba(245,240,232,0.7);
+    color: var(--foot-ink-muted);
     transition: color 0.35s ease;
     white-space: nowrap;
   }
   .contact-sep {
     width: 1px;
-    height: 24px;
-    background: linear-gradient(180deg, transparent, rgba(196,170,148,0.12), transparent);
+    height: 28px;
+    background: linear-gradient(180deg, transparent, rgba(196, 170, 148, 0.14), transparent);
     flex-shrink: 0;
   }
 
   /* ═══════════════════════════════════════════════════════════
-     SOCIAL ROW — Minimal
+     SOCIAL ROW
      ═══════════════════════════════════════════════════════════ */
   .social-row {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 0.85rem;
     margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
   }
   .social-link {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
-    border: 1px solid rgba(196,170,148,0.08);
-    background: rgba(245,240,232,0.02);
-    color: rgba(245,240,232,0.45);
+    border: 1px solid rgba(196, 170, 148, 0.1);
+    background: rgba(245, 240, 232, 0.03);
+    color: rgba(245, 240, 232, 0.4);
     transition: all 0.5s var(--ease-out-expo);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     position: relative;
     overflow: hidden;
   }
@@ -515,22 +540,22 @@ const socialLinks = [
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(196,170,148,0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(196, 170, 148, 0.12) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
   }
   .social-link:hover {
-    background: rgba(245,240,232,0.07);
-    border-color: rgba(196,170,148,0.25);
-    color: rgba(245,240,232,0.95);
+    background: rgba(245, 240, 232, 0.07);
+    border-color: rgba(196, 170, 148, 0.25);
+    color: rgba(245, 240, 232, 0.95);
     transform: translateY(-4px);
-    box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.2);
   }
   .social-link:hover::before {
     opacity: 1;
   }
   .social-link svg {
-    width: 16px; height: 16px;
+    width: 15px; height: 15px;
     position: relative;
     z-index: 1;
   }
@@ -543,15 +568,15 @@ const socialLinks = [
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(196,170,148,0.1) 30%,
-      rgba(196,170,148,0.1) 70%,
+      rgba(196, 170, 148, 0.12) 25%,
+      rgba(196, 170, 148, 0.12) 75%,
       transparent 100%
     );
     margin-bottom: 2rem;
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 1.6s var(--ease-out-expo);
-    opacity: 0.4;
+    opacity: 0.5;
   }
   .footer-divider.visible {
     transform: scaleX(1);
@@ -568,7 +593,7 @@ const socialLinks = [
     gap: 1rem;
     font-size: var(--type-meta);
     font-weight: 400;
-    color: rgba(245,240,232,0.3);
+    color: var(--foot-ink-faint);
   }
   .bottom-copy {
     letter-spacing: 0.04em;
@@ -576,7 +601,7 @@ const socialLinks = [
   .bottom-legal {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 1.4rem;
   }
   .legal-link {
     color: inherit;
@@ -584,7 +609,7 @@ const socialLinks = [
     position: relative;
     transition: color 0.35s ease;
     padding: 2px 0;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
   .legal-link::after {
     content: '';
@@ -593,13 +618,13 @@ const socialLinks = [
     left: 0;
     width: 100%;
     height: 1px;
-    background: rgba(196,170,148,0.25);
+    background: rgba(196, 170, 148, 0.25);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform 0.5s var(--ease-out-expo);
   }
   .legal-link:hover {
-    color: rgba(245,240,232,0.75);
+    color: rgba(245, 240, 232, 0.75);
   }
   .legal-link:hover::after {
     transform: scaleX(1);
@@ -618,7 +643,7 @@ const socialLinks = [
     border-radius: 50%;
     border: none;
     background: transparent;
-    color: rgba(245,240,232,0.4);
+    color: rgba(245, 240, 232, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -628,7 +653,7 @@ const socialLinks = [
     padding: 0;
   }
   .back-top:hover {
-    color: rgba(245,240,232,0.95);
+    color: rgba(245, 240, 232, 0.95);
     transform: translateY(-5px);
   }
   .back-top-progress {
@@ -648,7 +673,7 @@ const socialLinks = [
   }
   .back-top:hover .progress-ring {
     opacity: 1;
-    stroke: rgba(196,170,148,0.7);
+    stroke: rgba(196, 170, 148, 0.65);
   }
   .back-top-icon {
     position: relative;
@@ -659,51 +684,43 @@ const socialLinks = [
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: rgba(245,240,232,0.03);
+    background: rgba(245, 240, 232, 0.03);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(196,170,148,0.06);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    border: 1px solid rgba(196, 170, 148, 0.06);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.45s var(--ease-out-expo);
   }
   .back-top:hover .back-top-icon {
-    background: rgba(245,240,232,0.07);
-    border-color: rgba(196,170,148,0.18);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+    background: rgba(245, 240, 232, 0.07);
+    border-color: rgba(196, 170, 148, 0.18);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
   }
 
   /* ═══════════════════════════════════════════════════════════
      RESPONSIVE
      ═══════════════════════════════════════════════════════════ */
-  @media (max-width: 1024px) {
-    .deco-ring--1 { width: 250px; height: 250px; top: -60px; right: -60px; }
-    .float-orb--1 { width: 250px; height: 250px; }
-  }
-
   @media (max-width: 768px) {
     .footer-inner {
       padding: clamp(3rem, 6vw, 4rem) 5vw 0;
     }
     .footer-hero {
-      gap: 1.4rem;
+      gap: 1.3rem;
       margin-bottom: 2.5rem;
     }
     .title-inner {
-      font-size: var(--type-section-title);
-    }
-    .eyebrow-line {
-      width: 28px;
+      font-size: clamp(2.4rem, 8vw, 4rem);
     }
     .contact-row {
       flex-direction: column;
-      gap: 1.2rem;
-      padding: 1.2rem 0;
+      gap: 1.3rem;
+      padding: 1.3rem 0;
     }
     .contact-item {
       padding: 0;
     }
     .contact-sep {
-      width: 24px;
+      width: 28px;
       height: 1px;
     }
     .social-row {
@@ -713,10 +730,20 @@ const socialLinks = [
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 0.8rem;
+      gap: 0.9rem;
     }
     .bottom-legal {
-      gap: 1rem;
+      gap: 1.2rem;
+    }
+    .back-top {
+      bottom: 1.2rem;
+      right: 1.2rem;
+      width: 44px;
+      height: 44px;
+    }
+    .back-top-icon {
+      width: 34px;
+      height: 34px;
     }
   }
 
@@ -725,23 +752,26 @@ const socialLinks = [
       padding: 2.5rem 5vw 0;
     }
     .btn-footer-cta {
-      padding: 16px 32px;
-      font-size: var(--type-meta);
-      letter-spacing: 0.2em;
+      width: 100%;
+      max-width: 18rem;
+      justify-content: center;
+      padding: 0.85rem 1.6rem;
     }
     .footer-desc {
-      font-size: var(--type-section-subtitle);
       max-width: 100%;
     }
-    .back-top {
-      bottom: 1.2rem;
-      right: 1.2rem;
-      width: 42px;
-      height: 42px;
-    }
-    .back-top-icon {
-      width: 32px;
-      height: 32px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .footer-wave-path,
+    .btn-footer-cta,
+    .social-link,
+    .back-top,
+    .back-top-icon,
+    .legal-link::after,
+    .footer-divider {
+      transition: none !important;
+      animation: none !important;
     }
   }
 </style>
