@@ -34,7 +34,7 @@ const profileImage = "/images/sobre-mi/lucia-portrait.jpg";
   <DecorativeRing size={250} bottom="10%" left="-60px" duration={25} reverse />
 
   <div class="hero-content" data-parallax-content>
-    <Eyebrow text="Psicología Clínica · Córdoba · Online" light={true} centered={true} />
+    <Eyebrow text="Psicología Clínica · Ciudad Real · Online" light={true} centered={true} />
 
     <h1 class="hero-title">
       <span class="title-line">
@@ -65,7 +65,7 @@ const profileImage = "/images/sobre-mi/lucia-portrait.jpg";
         <span class="credential-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M5 8l2.5 2.5L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <span class="credential-text">Terapia EMDR</span>
+        <span class="credential-text">Terapia online y presencial</span>
       </div>
       <div class="credential-sep" aria-hidden="true"></div>
       <div class="credential-item">
@@ -94,7 +94,7 @@ const profileImage = "/images/sobre-mi/lucia-portrait.jpg";
         <span class="avatar-pulse" aria-hidden="true"></span>
       </div>
       <div class="therapist-info">
-        <span class="therapist-name">Lucía Martínez</span>
+        <span class="therapist-name">Lucía Millán Jiménez</span>
         <span class="therapist-role">Psicóloga Clínica</span>
       </div>
     </div>
@@ -285,7 +285,7 @@ const profileImage = "/images/sobre-mi/lucia-portrait.jpg";
   }
   .credential-text {
     font-family: var(--font-body);
-    font-size: var(--type-meta);
+    font-size: max(0.58rem, 10px);
     font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -503,43 +503,55 @@ const profileImage = "/images/sobre-mi/lucia-portrait.jpg";
   }
 
   @media (max-width: 768px) {
-    .hero { padding: 90px 4vw 70px; }
+    .hero { padding: 90px 5vw 80px; min-height: 100svh; }
     .hide-mobile { display: none; }
     .title-inner {
-      font-size: clamp(3rem, 13.4vw, 4.35rem);
-      line-height: 1.02;
-      letter-spacing: -0.045em;
+      font-size: clamp(2.6rem, 11vw, 4rem);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
     }
-    .title-underline { height: 8px; bottom: -4px; }
+    .title-underline { height: 7px; bottom: -3px; }
     .hero-tagline {
-      font-size: 1rem;
-      margin-bottom: 1.8rem;
+      font-size: 0.95rem;
+      margin-bottom: 1.6rem;
+      line-height: 1.65;
     }
     .hero-credentials {
-      margin-bottom: 2rem;
+      margin-bottom: 1.6rem;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.45rem;
     }
     .credential-sep { display: none; }
-    .credential-item { padding: 0; }
+    .credential-item { padding: 0; gap: 0.4rem; }
     .hero-cta {
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 0.7rem;
       width: 100%;
-      max-width: 280px;
-      margin-bottom: 2rem;
+      max-width: 260px;
+      margin-bottom: 1.6rem;
     }
     .btn-hero-cta,
     .btn-hero-ghost {
       width: 100%;
       justify-content: center;
+      padding: 15px 24px;
+      font-size: max(0.58rem, 10px);
+      letter-spacing: 0.16em;
     }
-    .btn-hero-cta {
-      padding: 16px 28px;
-      font-size: var(--type-meta);
-      letter-spacing: 0.18em;
+    .hero-therapist { gap: 0.8rem; }
+    .therapist-avatar { width: 44px; height: 44px; }
+    .therapist-name { font-size: 0.95rem; }
+    .therapist-role { font-size: max(0.55rem, 9px); letter-spacing: 0.12em; }
+    .scroll-hint { bottom: 16px; }
+    .scroll-text { font-size: max(0.55rem, 9px); letter-spacing: 0.14em; }
+  }
+
+  @media (max-width: 380px) {
+    .hero { padding: 80px 4vw 70px; }
+    .title-inner {
+      font-size: clamp(2.3rem, 10vw, 3.2rem);
     }
-    .scroll-hint { bottom: 20px; }
+    .hero-tagline { font-size: 0.9rem; }
   }
 </style>
 

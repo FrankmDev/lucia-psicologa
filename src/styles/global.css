@@ -1,14 +1,15 @@
 :root {
   --cream:       #F5F0E8;
   --cream-warm:  #EDE7DC;
-  --white-warm:  #FDFAF5;
+  --white-warm:  #FDFBF7;
   --parchment:   #FAF8F3;
-  --taupe:       #9E8272;
-  --taupe-dark:  #7A6558;
-  --earth:       #C4AA94;
-  --earth-light: #D9C8B8;
-  --ink:         #2A1F1A;
-  --ink-soft:    #3D3028;
+  --paper:       #F6F3EE;
+  --taupe:       #9E9488;
+  --taupe-dark:  #7A7166;
+  --earth:       #6B7D6A;
+  --earth-light: #8A9A89;
+  --ink:         #2C2C2C;
+  --ink-soft:    #5A5A5A;
   --mint:        #7DD4CC;
   --mint-soft:   rgba(125,212,204,0.15);
   --sage:        #A8A99E;
@@ -17,7 +18,8 @@
   --sage-muted:  rgba(168,169,158,0.15);
   --gold:        #B8A88A;
   --gold-soft:   rgba(184,168,138,0.12);
-  --line:        #DDD5C8;
+  --line:        #E5DFD4;
+  --line-sage:   rgba(168,169,158,0.3);
   --line-dark:   rgba(255,255,255,0.1);
 
   /* Blog / content colors */
@@ -34,6 +36,18 @@
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body:    'DM Sans', system-ui, sans-serif;
+
+  --type-hero: clamp(2.6rem, 7vw, 5.5rem);
+  --type-section-title: clamp(2.6rem, 6vw, 4.8rem);
+  --type-section-kicker: clamp(1.3rem, 2.2vw, 1.65rem);
+  --type-section-subtitle: clamp(0.95rem, 1.2vw, 1.05rem);
+  --type-card-title: clamp(1.28rem, 2vw, 1.55rem);
+  --type-card-title-sm: 1.08rem;
+  --type-card-body: 0.86rem;
+  --type-caption: 0.78rem;
+  --type-meta: 0.58rem;
+  --leading-title: 1.08;
+  --leading-copy: 1.7;
 
   --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
@@ -338,4 +352,12 @@ button { font-family: inherit; border: none; background: none; }
 /* ── Responsive Base ──────────────────────────────────────── */
 @media (max-width: 768px) {
   body { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 14.5px; }
+  .type-eyebrow {
+    font-size: max(0.55rem, 9px);
+    letter-spacing: 0.2em;
+  }
 }

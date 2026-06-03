@@ -11,19 +11,24 @@ const currentYear = new Date().getFullYear();
 const socialLinks = [
   {
     label: 'Instagram',
-    href: '#',
+    href: 'https://www.instagram.com/luciamillanpsico/',
     icon: 'M8 3C5.24 3 3 5.24 3 8v8c0 2.76 2.24 5 5 5h8c2.76 0 5-2.24 5-5V8c0-2.76-2.24-5-5-5H8zm0 1.5h8c1.93 0 3.5 1.57 3.5 3.5v8c0 1.93-1.57 3.5-3.5 3.5H8c-1.93 0-3.5-1.57-3.5-3.5V8c0-1.93 1.57-3.5 3.5-3.5zm9.5 2a1 1 0 100 2 1 1 0 000-2zm-5 1.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 1.5a3 3 0 110 6 3 3 0 010-6z',
   },
   {
     label: 'LinkedIn',
-    href: '#',
+    href: 'https://www.linkedin.com/in/luc%C3%ADa-mill%C3%A1n-jim%C3%A9nez-304258389/',
     icon: 'M4.5 3C3.67 3 3 3.67 3 4.5S3.67 6 4.5 6 6 5.33 6 4.5 5.33 3 4.5 3zM3 7.5h3V18H3V7.5zm5.5 0h2.9v1.4h.04c.4-.76 1.4-1.4 2.9-1.4 3.1 0 3.66 2.04 3.66 4.7V18h-3v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V18h-3V7.5z',
   },
   {
     label: 'WhatsApp',
-    href: '#',
+    href: 'https://wa.me/34722535914',
     icon: 'M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.09-1.33A9.96 9.96 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.64 0-3.17-.48-4.46-1.3l-.32-.2-3.02.79.8-2.94-.2-.33A8.01 8.01 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.24-5.52c-.23-.12-1.37-.68-1.58-.75-.21-.08-.36-.12-.51.12-.15.23-.59.75-.72.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.85-1.14-.68-.6-1.14-1.35-1.27-1.58-.13-.23-.01-.36.1-.48.1-.1.23-.27.34-.4.11-.13.15-.23.23-.38.08-.15.04-.28-.02-.4-.06-.12-.51-1.23-.7-1.68-.18-.44-.37-.38-.51-.39l-.43-.01c-.15 0-.4.06-.61.28-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.15 1.62 2.47 3.92 3.46.55.24.97.38 1.31.49.55.17 1.05.15 1.44.09.44-.06 1.37-.56 1.56-1.1.2-.54.2-1 .14-1.1-.06-.1-.23-.16-.46-.27z',
   },
+];
+
+const extraLinks = [
+  { label: 'Doctoralia', href: 'https://www.doctoralia.es/lucia-millan-jimenez/psicologo/ciudad-real' },
+  { label: 'Google Business', href: 'https://www.google.com/search?sca_esv=46bc13bb03f41cf0&sxsrf=ANbL-n4P7jqJ8RBIUqoY7eJLwLqci3o1Xw:1779809431733&kgmid=/g/11z35hqkg2&q=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez,+Psic%C3%B3logo&shem=rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=07d8cea2c96db48f&utm_source=rimspwouoe,sh/x/loc/uni/m1/1' },
 ];
 ---
 
@@ -73,7 +78,7 @@ const socialLinks = [
         Estoy aquí para acompañarte. Escríbeme y daremos juntos el primer paso hacia tu bienestar.
       </p>
 
-      <a href="mailto:hola@luciapsicologia.es" class="btn-footer-cta">
+      <a href="mailto:luciamillanpsico@gmail.com" class="btn-footer-cta">
         <span class="cta-text">Escríbeme</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -83,14 +88,19 @@ const socialLinks = [
 
     <!-- Contact row -->
     <div class="contact-row reveal-up" data-delay="300">
-      <a href="mailto:hola@luciapsicologia.es" class="contact-item">
+      <a href="mailto:luciamillanpsico@gmail.com" class="contact-item">
         <span class="contact-label">Email</span>
-        <span class="contact-value">hola@luciapsicologia.es</span>
+        <span class="contact-value">luciamillanpsico@gmail.com</span>
       </a>
       <span class="contact-sep" aria-hidden="true"></span>
-      <a href="tel:+34600123456" class="contact-item">
+      <a href="tel:722535914" class="contact-item">
         <span class="contact-label">Teléfono</span>
-        <span class="contact-value">+34 600 123 456</span>
+        <span class="contact-value">722 535 914</span>
+      </a>
+      <span class="contact-sep" aria-hidden="true"></span>
+      <a href="https://www.google.com/search?sca_esv=46bc13bb03f41cf0&sxsrf=ANbL-n4P7jqJ8RBIUqoY7eJLwLqci3o1Xw:1779809431733&kgmid=/g/11z35hqkg2&q=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez,+Psic%C3%B3logo&shem=rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=07d8cea2c96db48f&utm_source=rimspwouoe,sh/x/loc/uni/m1/1" class="contact-item" target="_blank" rel="noopener noreferrer">
+        <span class="contact-label">Dirección</span>
+        <span class="contact-value">C/ Toledo, 8, 2ª Planta, Ciudad Real</span>
       </a>
       <span class="contact-sep" aria-hidden="true"></span>
       <div class="contact-item">
@@ -110,16 +120,23 @@ const socialLinks = [
       ))}
     </div>
 
+    <!-- Extra links -->
+    <div class="extra-links-row reveal-up" data-delay="550">
+      {extraLinks.map(link => (
+        <a href={link.href} class="extra-link" target="_blank" rel="noopener noreferrer">{link.label}</a>
+      ))}
+    </div>
+
     <!-- Divider -->
     <div class="footer-divider reveal-up" data-delay="600" aria-hidden="true"></div>
 
     <!-- Bottom bar -->
     <div class="footer-bottom reveal-up" data-delay="700">
-      <span class="bottom-copy">&copy; {currentYear} Lucía Martínez · Psicóloga Clínica</span>
+      <span class="bottom-copy">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga Clínica</span>
       <div class="bottom-legal">
-        <a href="#" class="legal-link">Aviso legal</a>
-        <a href="#" class="legal-link">Privacidad</a>
-        <a href="#" class="legal-link">Cookies</a>
+        <a href="/aviso-legal" class="legal-link">Aviso legal</a>
+        <a href="/privacidad" class="legal-link">Privacidad</a>
+        <a href="/cookies" class="legal-link">Cookies</a>
       </div>
     </div>
 
@@ -143,25 +160,6 @@ const socialLinks = [
   (function() {
     const footer = document.getElementById('siteFooter');
     if (!footer) return;
-
-    // Reveal footer margin fix
-    const mainEl = document.querySelector('main') || document.body;
-    function setRevealMargin() {
-      mainEl.style.marginBottom = footer.offsetHeight + 'px';
-    }
-    window.addEventListener('load', setRevealMargin);
-    window.addEventListener('resize', setRevealMargin);
-
-    // Ensure previous section has background for reveal effect
-    const prev = footer.previousElementSibling;
-    if (prev) {
-      prev.style.position = 'relative';
-      prev.style.zIndex = '1';
-      const bg = getComputedStyle(prev).backgroundColor;
-      if (!bg || bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent') {
-        prev.style.background = 'var(--paper, #f6f3ee)';
-      }
-    }
 
     // Back to top
     const btn = document.getElementById('backTop');
@@ -208,16 +206,22 @@ const socialLinks = [
     --foot-ink-faint: rgba(245, 240, 232, 0.3);
     --foot-line: rgba(196, 170, 148, 0.1);
 
-    position: fixed;
-    bottom: 0;
+    position: relative;
     left: 0;
     width: 100%;
-    z-index: 0;
+    z-index: 1;
     background: #1a1512;
     color: var(--foot-cream);
     padding: 2.5rem 0 3rem;
     overflow: hidden;
     box-shadow: 0 -40px 100px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Reveal footer effect: previous section needs to have a solid background */
+  main {
+    position: relative;
+    z-index: 2;
+    background: var(--parchment);
   }
 
   /* ── Top Edge Wave ───────────────────────────────────────── */
@@ -558,6 +562,49 @@ const socialLinks = [
     width: 15px; height: 15px;
     position: relative;
     z-index: 1;
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     EXTRA LINKS ROW
+     ═══════════════════════════════════════════════════════════ */
+  .extra-links-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.8rem;
+    margin-bottom: clamp(2rem, 3.5vw, 3rem);
+  }
+  .extra-link {
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.35);
+    text-decoration: none;
+    transition: color 0.35s ease;
+    position: relative;
+    padding: 2px 0;
+  }
+  .extra-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(196, 170, 148, 0.25);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .extra-link:hover {
+    color: rgba(245, 240, 232, 0.75);
+  }
+  .extra-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   /* ═══════════════════════════════════════════════════════════

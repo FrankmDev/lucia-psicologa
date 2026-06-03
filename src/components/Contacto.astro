@@ -8,21 +8,22 @@ import FloatOrb from './ui/FloatOrb.astro';
 const contactRoutes = [
   {
     label: 'Email',
-    value: 'hola@luciapsicologia.es',
-    href: 'mailto:hola@luciapsicologia.es',
+    value: 'luciamillanpsico@gmail.com',
+    href: 'mailto:luciamillanpsico@gmail.com',
   },
   {
     label: 'Teléfono',
-    value: '+34 600 123 456',
-    href: 'tel:+34600123456',
+    value: '722 535 914',
+    href: 'tel:722535914',
   },
   {
     label: 'Consulta',
-    value: 'Córdoba · Online',
+    value: 'Ciudad Real · Online',
   },
   {
-    label: 'Respuesta',
-    value: 'En menos de 24h',
+    label: 'Dirección',
+    value: 'C/ Toledo, 8, 2ª Planta, 13001, Ciudad Real',
+    href: 'https://www.google.com/search?sca_esv=46bc13bb03f41cf0&sxsrf=ANbL-n4P7jqJ8RBIUqoY7eJLwLqci3o1Xw:1779809431733&kgmid=/g/11z35hqkg2&q=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez,+Psic%C3%B3logo&shem=rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=07d8cea2c96db48f&utm_source=rimspwouoe,sh/x/loc/uni/m1/1',
   },
 ];
 
@@ -564,11 +565,13 @@ const quietSteps = [
 
   @media (max-width: 640px) {
     .contacto {
-      padding: clamp(4.8rem, 16vw, 6.4rem) 0 clamp(5.4rem, 16vw, 7rem);
+      padding: 4.8rem 0 5.8rem;
     }
 
     .contact-header {
       text-align: left;
+      margin-bottom: 2.2rem;
+      padding: 0 2vw;
     }
 
     .contact-eyebrow {
@@ -586,35 +589,68 @@ const quietSteps = [
     }
 
     .contact-header h2 {
-      font-size: clamp(2.45rem, 11.5vw, 3.35rem);
+      font-size: clamp(2.3rem, 10.5vw, 3.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.015em;
+    }
+
+    .contact-header p {
+      font-size: 0.95rem;
+      line-height: 1.65;
     }
 
     .contact-portrait,
     .contact-form-card {
-      border-radius: 1.25rem;
+      border-radius: 1.1rem;
     }
 
     .contact-portrait {
-      grid-template-rows: minmax(15rem, 20rem) auto;
-      padding: 0.8rem;
+      grid-template-rows: minmax(14rem, 18rem) auto;
+      padding: 0.7rem;
+      min-height: auto;
     }
 
     .portrait-note p {
-      font-size: clamp(1.26rem, 6.6vw, 1.58rem);
+      font-size: clamp(1.15rem, 5.5vw, 1.45rem);
+      line-height: 1.15;
     }
 
     .contact-form-card {
-      padding: 1.1rem;
+      padding: 1rem;
+      min-height: auto;
+    }
+
+    .form-head {
+      margin-bottom: 1.4rem;
     }
 
     .form-head h3 {
-      font-size: clamp(2.2rem, 11vw, 3.2rem);
+      font-size: clamp(1.9rem, 9vw, 2.8rem);
+    }
+
+    .form-head p {
+      font-size: 0.9rem;
+      line-height: 1.55;
     }
 
     .form-grid,
     .quiet-list,
     .contact-rail {
       grid-template-columns: 1fr;
+    }
+
+    .field span {
+      font-size: max(0.58rem, 10px);
+    }
+
+    .field input {
+      min-height: 2.9rem;
+      font-size: 0.95rem;
+    }
+
+    .field textarea {
+      min-height: 7rem;
+      font-size: 0.95rem;
     }
 
     .quiet-step,
@@ -631,17 +667,40 @@ const quietSteps = [
       border-bottom: 0;
     }
 
+    .quiet-step span {
+      font-size: 0.92rem;
+    }
+    .quiet-step p {
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
     .form-actions {
       align-items: stretch;
       flex-direction: column;
+      gap: 0.9rem;
+      margin-top: 1.1rem;
     }
 
     .form-actions p {
       max-width: none;
+      font-size: 0.78rem;
     }
 
     .contact-submit {
       width: 100%;
+      min-height: 2.9rem;
+      font-size: max(0.58rem, 10px);
+      letter-spacing: 0.16em;
+    }
+
+    .contact-route {
+      min-height: 4.6rem;
+      padding: 0.85rem;
+    }
+
+    .contact-route strong {
+      font-size: 0.88rem;
     }
   }
 

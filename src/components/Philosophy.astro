@@ -8,8 +8,6 @@ import FloatOrb from './ui/FloatOrb.astro';
 
 const backgroundImage =
   'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=2200&auto=format&fit=crop';
-const inlineImage =
-  'https://images.unsplash.com/photo-1511497584788-876760111969?q=80&w=700&auto=format&fit=crop';
 
 const phrase = [
   'La',
@@ -38,18 +36,18 @@ const phrase = [
 
 const anchors = [
   {
+    num: '01',
     title: 'Regular',
-    short: 'Suelo',
     text: 'Bajar el ruido antes de entrar en lo importante.',
   },
   {
+    num: '02',
     title: 'Comprender',
-    short: 'Claridad',
     text: 'Dar sentido a lo que se repite sin juicio.',
   },
   {
+    num: '03',
     title: 'Integrar',
-    short: 'Ritmo',
     text: 'Convertir lo trabajado en una forma más amable de vivir.',
   },
 ];
@@ -59,6 +57,7 @@ const anchors = [
   <div class="ph-bg" aria-hidden="true">
     <img src={backgroundImage} alt="" width="2200" height="1467" decoding="async" loading="lazy" />
     <div class="ph-bg__wash"></div>
+    <div class="ph-bg__vignette" aria-hidden="true"></div>
   </div>
 
   <GrainOverlay opacity={0.026} zIndex={2} />
@@ -66,58 +65,48 @@ const anchors = [
   <FloatOrb size={340} top="-16%" right="-10%" color="rgba(141,151,132,0.12)" blur={145} animation="float-1" />
   <FloatOrb size={230} bottom="4%" left="-7%" color="rgba(216,211,200,0.16)" opacity={0.3} blur={120} animation="float-2" />
 
-  <Container maxWidth="1360px" padding="0 clamp(1rem, 4vw, 4.25rem)">
+  <Container maxWidth="1280px" padding="0 clamp(1rem, 4vw, 4.25rem)">
     <div class="ph-shell">
-      <div class="ph-note reveal-blur" data-delay="80">
-        <span>Filosofía terapéutica</span>
-      </div>
+      <header class="ph-header reveal-blur" data-delay="80">
+        <span class="ph-eyebrow">Filosofía terapéutica</span>
+        <h2>Calma para mirar lo que pesa.</h2>
+        <p>
+          Un acompañamiento clínico, cercano y sin prisa para sentir seguridad mientras das forma a lo que necesitas cuidar.
+        </p>
+      </header>
 
-      <div class="ph-composition">
-        <header class="ph-hero reveal-blur" data-delay="120">
-          <h2>
-            Calma para mirar
-            <span class="ph-heading-image" style={`--ph-inline-image: url('${inlineImage}')`} aria-hidden="true"></span>
-            lo que pesa.
-          </h2>
-          <p>
-            Un acompañamiento clínico, cercano y sin prisa para sentir seguridad mientras das forma a lo que necesitas cuidar.
-          </p>
-        </header>
+      <div class="ph-manifesto reveal-scale" data-delay="180">
+        <div class="ph-manifesto__frame" aria-hidden="true">
+          <span class="ph-frame__tl"></span>
+          <span class="ph-frame__tr"></span>
+          <span class="ph-frame__bl"></span>
+          <span class="ph-frame__br"></span>
+        </div>
 
-        <aside class="ph-quiet-card reveal-scale" data-delay="220">
-          <div class="ph-card-top">
-            <span>Proceso seguro</span>
+        <p class="ph-reveal-line" aria-label="La terapia no tiene por qué ser un lugar duro. Puede ser un espacio seguro donde respirar, ordenar y volver a ti.">
+          {phrase.map((word) => (
+            <span data-ph-word>{word}</span>
+          ))}
+        </p>
+
+        <div class="ph-actions">
+          <Button href="#contacto" variant="hero" class="ph-button">
+            Reservar sesión
+          </Button>
+          <a href="#sobre-mi" class="ph-link">
+            <span>Conocer a Lucía</span>
             <i aria-hidden="true"></i>
-          </div>
-
-          <p class="ph-reveal-line" aria-label="La terapia no tiene por qué ser un lugar duro. Puede ser un espacio seguro donde respirar, ordenar y volver a ti.">
-            {phrase.map((word) => (
-              <span data-ph-word>{word}</span>
-            ))}
-          </p>
-
-          <div class="ph-actions">
-            <Button href="#contacto" variant="hero" class="ph-button">
-              Reservar sesión
-            </Button>
-            <a href="#sobre-mi" class="ph-link">
-              <span>Conocer a Lucía</span>
-              <i aria-hidden="true"></i>
-            </a>
-          </div>
-        </aside>
+          </a>
+        </div>
       </div>
 
-      <div class="ph-anchors reveal-up" data-delay="360" aria-label="Principios del enfoque">
-        {anchors.map((anchor) => (
-          <article class="ph-anchor">
-            <div class="ph-anchor__mark" aria-hidden="true">
-              <span>{anchor.short}</span>
-            </div>
-            <div class="ph-anchor__copy">
-              <h3>{anchor.title}</h3>
-              <p>{anchor.text}</p>
-            </div>
+      <div class="ph-trail" aria-label="Principios del enfoque">
+        <div class="ph-trail__line" aria-hidden="true"></div>
+        {anchors.map((anchor, index) => (
+          <article class="ph-trail__stop reveal-up" style={`transition-delay: ${320 + index * 90}ms`}>
+            <span class="ph-stop__num">{anchor.num}</span>
+            <h3>{anchor.title}</h3>
+            <p>{anchor.text}</p>
           </article>
         ))}
       </div>
@@ -136,7 +125,7 @@ const anchors = [
     --ph-gold: #b8a88a;
     --ph-depth: #0c0907;
     --ph-line: rgba(245, 240, 232, 0.14);
-    --ph-panel: rgba(245, 240, 232, 0.075);
+    --ph-line-soft: rgba(245, 240, 232, 0.09);
 
     position: relative;
     isolation: isolate;
@@ -146,9 +135,11 @@ const anchors = [
     color: var(--ph-ink);
   }
 
+  /* ── Background ─────────────────────────────────────────── */
   .ph-bg,
   .ph-bg img,
-  .ph-bg__wash {
+  .ph-bg__wash,
+  .ph-bg__vignette {
     position: absolute;
     inset: 0;
   }
@@ -163,7 +154,7 @@ const anchors = [
     height: 100%;
     object-fit: cover;
     object-position: center 42%;
-    filter: grayscale(18%) saturate(0.68) contrast(1.1) brightness(var(--ph-bg-brightness, 0.48));
+    filter: grayscale(15%) saturate(0.68) contrast(1.1) brightness(var(--ph-bg-brightness, 0.48));
     transform: scale(var(--ph-bg-scale, 1.08));
     transition: transform 0.18s linear, filter 0.18s linear;
     will-change: transform, filter;
@@ -177,6 +168,11 @@ const anchors = [
       linear-gradient(180deg, rgba(12, 9, 7, 0.8) 0%, rgba(12, 9, 7, 0.54) 46%, rgba(12, 9, 7, 0.92) 100%);
   }
 
+  .ph-bg__vignette {
+    box-shadow: inset 0 0 200px 80px rgba(12, 9, 7, 0.55);
+    pointer-events: none;
+  }
+
   .philosophy::before {
     content: '';
     position: absolute;
@@ -184,10 +180,10 @@ const anchors = [
     z-index: 1;
     pointer-events: none;
     background:
-      linear-gradient(rgba(245, 240, 232, 0.022) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(245, 240, 232, 0.014) 1px, transparent 1px);
+      linear-gradient(rgba(245, 240, 232, 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245, 240, 232, 0.011) 1px, transparent 1px);
     background-size: 8.5rem 8.5rem;
-    mask-image: radial-gradient(circle at 52% 45%, #000 0%, transparent 76%);
+    mask-image: radial-gradient(circle at 50% 48%, #000 0%, transparent 76%);
     opacity: 0.34;
   }
 
@@ -196,11 +192,18 @@ const anchors = [
     z-index: 2;
   }
 
-  .ph-note {
-    display: flex;
+  /* ── Header ─────────────────────────────────────────────── */
+  .ph-header {
+    max-width: 52rem;
+    margin: 0 auto clamp(2.6rem, 4.5vw, 4rem);
+    text-align: center;
+  }
+
+  .ph-eyebrow {
+    display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
-    margin-bottom: clamp(1.45rem, 3vw, 2.4rem);
+    justify-content: center;
+    gap: 0.78rem;
     color: var(--ph-sage);
     font-size: var(--type-meta);
     font-weight: 500;
@@ -208,167 +211,120 @@ const anchors = [
     text-transform: uppercase;
   }
 
-  .ph-note::before {
+  .ph-eyebrow::before,
+  .ph-eyebrow::after {
     content: '';
-    width: clamp(2.4rem, 7vw, 5.2rem);
+    width: 2.35rem;
     height: 1px;
     background: rgba(196, 170, 148, 0.42);
   }
 
-  .ph-composition {
-    display: grid;
-    grid-template-columns: minmax(0, 7.4fr) minmax(18.5rem, 4.6fr);
-    gap: clamp(2rem, 4.6vw, 4.8rem);
-    align-items: center;
-    min-height: clamp(24rem, 44vw, 34rem);
-    padding: clamp(1.4rem, 3.4vw, 3.1rem) 0 clamp(2.2rem, 4vw, 3.4rem);
-  }
-
-  .ph-hero {
-    max-width: min(100%, 62rem);
-    transform: translateY(clamp(-0.6rem, -0.8vw, -0.2rem));
-  }
-
-  .ph-hero h2 {
-    margin: 0;
-    color: var(--ph-ink);
+  .ph-header h2 {
+    max-width: 48rem;
+    margin: 1rem auto 1rem;
     font-family: var(--font-display);
-    font-size: clamp(2.9rem, 6.4vw, 5.7rem);
+    font-size: clamp(2.8rem, 6.4vw, 5.5rem);
     font-style: italic;
     font-weight: 300;
-    line-height: 0.98;
+    line-height: 1;
     letter-spacing: -0.045em;
+    color: var(--ph-ink);
     text-wrap: balance;
   }
 
-  .ph-heading-image {
-    display: inline-block;
-    width: clamp(4.8rem, 8vw, 7.6rem);
-    height: clamp(1.85rem, 3.3vw, 2.9rem);
-    margin: 0 0.08em;
-    border: 1px solid rgba(245, 240, 232, 0.25);
-    border-radius: 999px;
-    background-image:
-      linear-gradient(rgba(12, 9, 7, 0.04), rgba(12, 9, 7, 0.32)),
-      var(--ph-inline-image);
-    background-position: center;
-    background-size: cover;
-    vertical-align: middle;
-    box-shadow:
-      0 0.8rem 1.8rem rgba(0, 0, 0, 0.2),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.16);
-  }
-
-  .ph-hero p {
-    max-width: 35rem;
-    margin: clamp(1.1rem, 2vw, 1.45rem) 0 0;
+  .ph-header p {
+    max-width: 42rem;
+    margin: 0 auto;
     color: var(--ph-text);
-    font-size: clamp(0.98rem, 1.22vw, 1.08rem);
-    line-height: 1.76;
+    font-size: clamp(1rem, 1.35vw, 1.12rem);
+    line-height: 1.78;
     text-wrap: pretty;
   }
 
-  .ph-quiet-card {
+  /* ── Manifesto (editorial quote block) ──────────────────── */
+  .ph-manifesto {
     position: relative;
-    align-self: center;
-    justify-self: end;
-    width: min(100%, 25rem);
-    padding: clamp(1.05rem, 1.9vw, 1.45rem);
-    border: 1px solid rgba(245, 240, 232, 0.15);
-    border-radius: 1.15rem;
-    background:
-      linear-gradient(135deg, rgba(245, 240, 232, 0.13), rgba(245, 240, 232, 0.035) 58%),
-      radial-gradient(circle at 0% 0%, rgba(168, 169, 158, 0.13), transparent 30%),
-      radial-gradient(circle at 100% 100%, rgba(184, 168, 138, 0.11), transparent 34%);
-    box-shadow:
-      0 1.2rem 2.5rem rgba(0, 0, 0, 0.18),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(13px);
-    overflow: hidden;
+    max-width: 58rem;
+    margin: 0 auto clamp(3.2rem, 5.5vw, 4.8rem);
+    padding: clamp(2rem, 3.6vw, 3.2rem) clamp(1.5rem, 3vw, 3rem);
+    text-align: center;
   }
 
-  .ph-quiet-card::before {
-    content: '';
+  .ph-manifesto__frame {
     position: absolute;
-    inset: 0.9rem;
-    border: 1px solid rgba(245, 240, 232, 0.07);
-    border-radius: 0.85rem;
+    inset: 0;
     pointer-events: none;
   }
 
-  .ph-quiet-card::after {
-    content: '';
+  .ph-frame__tl,
+  .ph-frame__tr,
+  .ph-frame__bl,
+  .ph-frame__br {
     position: absolute;
-    right: -3.2rem;
-    bottom: -3.4rem;
-    width: 8.6rem;
-    aspect-ratio: 1;
-    border: 1px solid rgba(184, 168, 138, 0.16);
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(245, 240, 232, 0.08), transparent 64%);
-    pointer-events: none;
-  }
-
-  .ph-card-top,
-  .ph-reveal-line,
-  .ph-actions {
-    position: relative;
-    z-index: 1;
-  }
-
-  .ph-card-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: clamp(0.95rem, 2vw, 1.35rem);
-    padding-bottom: clamp(0.85rem, 1.7vw, 1.1rem);
-    border-bottom: 1px solid rgba(245, 240, 232, 0.12);
-  }
-
-  .ph-card-top span {
-    color: rgba(196, 170, 148, 0.78);
-    font-size: 0.66rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    line-height: 1.35;
-    text-transform: uppercase;
-  }
-
-  .ph-card-top i {
     width: 2.8rem;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(196, 170, 148, 0.6), transparent);
+    height: 2.8rem;
+    border-color: rgba(196, 170, 148, 0.28);
+    transition: border-color 0.5s ease;
+  }
+
+  .ph-frame__tl {
+    top: 0; left: 0;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+  .ph-frame__tr {
+    top: 0; right: 0;
+    border-top: 1px solid;
+    border-right: 1px solid;
+  }
+  .ph-frame__bl {
+    bottom: 0; left: 0;
+    border-bottom: 1px solid;
+    border-left: 1px solid;
+  }
+  .ph-frame__br {
+    bottom: 0; right: 0;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  .ph-manifesto:hover .ph-frame__tl,
+  .ph-manifesto:hover .ph-frame__tr,
+  .ph-manifesto:hover .ph-frame__bl,
+  .ph-manifesto:hover .ph-frame__br {
+    border-color: rgba(196, 170, 148, 0.48);
   }
 
   .ph-reveal-line {
-    max-width: 29ch;
-    margin: 0;
+    max-width: 34ch;
+    margin: 0 auto;
     color: var(--ph-ink);
-    font-family: var(--font-body);
-    font-size: clamp(0.92rem, 1.08vw, 1.02rem);
-    font-style: normal;
+    font-family: var(--font-display);
+    font-size: clamp(1.45rem, 2.8vw, 2.35rem);
+    font-style: italic;
     font-weight: 300;
-    line-height: 1.86;
-    letter-spacing: 0.01em;
+    line-height: 1.56;
+    letter-spacing: -0.01em;
+    text-wrap: pretty;
   }
 
   .ph-reveal-line span {
     display: inline-block;
-    margin-right: 0.2em;
-    opacity: var(--ph-word-opacity, 0.26);
-    transform: translateY(calc((1 - var(--ph-word-opacity, 0.26)) * 0.22rem));
+    margin-right: 0.18em;
+    opacity: var(--ph-word-opacity, 0.22);
+    transform: translateY(calc((1 - var(--ph-word-opacity, 0.22)) * 0.28rem));
     transition: opacity 0.18s linear, transform 0.18s linear;
   }
 
   .ph-actions {
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem 1.15rem;
-    margin-top: clamp(1.2rem, 2.4vw, 1.75rem);
-    padding-top: clamp(0.95rem, 1.8vw, 1.2rem);
-    border-top: 1px solid rgba(245, 240, 232, 0.1);
+    justify-content: center;
+    gap: 1rem 1.5rem;
+    margin-top: clamp(1.8rem, 3vw, 2.6rem);
+    padding-top: clamp(1.2rem, 2vw, 1.6rem);
+    border-top: 1px solid rgba(196, 170, 148, 0.2);
   }
 
   .ph-link {
@@ -387,7 +343,7 @@ const anchors = [
   .ph-link i {
     width: 2.45rem;
     height: 1px;
-    background: rgba(196, 170, 148, 0.48);
+    background: rgba(196, 170, 148, 0.42);
     transform-origin: left;
     transition: transform 0.25s ease, background 0.25s ease;
   }
@@ -399,174 +355,243 @@ const anchors = [
 
   .ph-link:hover i {
     transform: scaleX(1.16);
-    background: rgba(196, 170, 148, 0.72);
+    background: rgba(196, 170, 148, 0.68);
   }
 
-  .ph-anchors {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.75rem, 1.5vw, 1rem);
-  }
-
-  .ph-anchor {
+  /* ── Trail (3 stops, no cards) ──────────────────────────── */
+  .ph-trail {
     position: relative;
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: clamp(0.85rem, 1.5vw, 1.15rem);
-    min-height: clamp(7.4rem, 9.4vw, 8.8rem);
-    padding: clamp(1.05rem, 1.8vw, 1.4rem);
-    border-block: 1px solid rgba(245, 240, 232, 0.13);
-    overflow: hidden;
-    background:
-      radial-gradient(circle at 100% 0%, rgba(168, 169, 158, 0.12), transparent 38%),
-      linear-gradient(180deg, rgba(245, 240, 232, 0.055), rgba(245, 240, 232, 0.022));
-    backdrop-filter: blur(8px);
-    transition:
-      background 0.35s ease,
-      border-color 0.35s ease,
-      transform 0.45s var(--ease-out-expo);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 0.5rem;
   }
 
-  .ph-anchor::after {
-    content: '';
+  .ph-trail__line {
     position: absolute;
-    inset: auto 1.35rem 0.9rem 1.35rem;
+    top: 2.6rem;
+    left: 10%;
+    right: 10%;
     height: 1px;
-    background: rgba(196, 170, 148, 0.5);
-    transform: scaleX(0.2);
-    transform-origin: left;
-    transition: transform 0.42s var(--ease-out-expo);
+    background: linear-gradient(90deg, transparent, rgba(196, 170, 148, 0.22), rgba(196, 170, 148, 0.22), transparent);
+    opacity: 0.6;
+    pointer-events: none;
   }
 
-  .ph-anchor:hover {
-    border-color: rgba(196, 170, 148, 0.22);
-    background:
-      radial-gradient(circle at 100% 0%, rgba(168, 169, 158, 0.17), transparent 38%),
-      linear-gradient(180deg, rgba(245, 240, 232, 0.08), rgba(245, 240, 232, 0.032));
-    transform: translateY(-0.22rem);
+  .ph-trail__stop {
+    position: relative;
+    flex: 1;
+    max-width: 280px;
+    text-align: center;
+    transition: transform 0.45s var(--ease-out-expo);
   }
 
-  .ph-anchor:hover::after {
-    transform: scaleX(1);
+  .ph-trail__stop:nth-child(2) {
+    transform: translateY(-0.4rem);
+  }
+  .ph-trail__stop:nth-child(4) {
+    transform: translateY(0.6rem);
   }
 
-  .ph-anchor__mark {
-    display: grid;
-    place-items: center;
-    width: clamp(3.2rem, 5vw, 4.2rem);
+  .ph-trail__stop:hover {
+    transform: translateY(-0.25rem);
+  }
+  .ph-trail__stop:nth-child(2):hover {
+    transform: translateY(-0.65rem);
+  }
+  .ph-trail__stop:nth-child(4):hover {
+    transform: translateY(0.35rem);
+  }
+
+  .ph-stop__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(3.4rem, 5vw, 4.4rem);
     aspect-ratio: 1;
-    border: 1px solid rgba(196, 170, 148, 0.18);
+    margin-bottom: clamp(1.2rem, 2vw, 1.7rem);
+    border: 1px solid rgba(196, 170, 148, 0.2);
     border-radius: 50%;
     color: rgba(196, 170, 148, 0.72);
     background: rgba(245, 240, 232, 0.045);
-  }
-
-  .ph-anchor__mark span {
-    max-width: 3.4rem;
-    font-size: 0.58rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    line-height: 1.2;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .ph-anchor__copy {
-    align-self: center;
-  }
-
-  .ph-anchor h3 {
-    margin: 0;
-    color: var(--ph-ink);
+    backdrop-filter: blur(6px);
     font-family: var(--font-display);
-    font-size: clamp(1.32rem, 1.8vw, 1.68rem);
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
     font-style: italic;
     font-weight: 300;
-    line-height: 1.04;
-    letter-spacing: -0.02em;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    transition:
+      transform 0.5s var(--ease-out-expo),
+      border-color 0.35s ease,
+      background 0.35s ease,
+      color 0.35s ease;
   }
 
-  .ph-anchor p {
-    max-width: 15.5rem;
-    margin: 0.42rem 0 0;
+  .ph-trail__stop:hover .ph-stop__num {
+    transform: scale(1.08);
+    border-color: rgba(196, 170, 148, 0.4);
+    background: rgba(245, 240, 232, 0.08);
+    color: rgba(196, 170, 148, 0.92);
+  }
+
+  .ph-trail__stop h3 {
+    margin: 0 0 0.55rem;
+    color: var(--ph-ink);
+    font-family: var(--font-display);
+    font-size: clamp(1.32rem, 1.9vw, 1.68rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+    transition: color 0.35s ease;
+  }
+
+  .ph-trail__stop:hover h3 {
+    color: var(--ph-gold);
+  }
+
+  .ph-trail__stop p {
+    max-width: 24ch;
+    margin: 0 auto;
     color: var(--ph-muted);
-    font-size: 0.82rem;
-    line-height: 1.58;
+    font-size: 0.92rem;
+    line-height: 1.72;
     text-wrap: pretty;
   }
 
-  @media (max-width: 980px) {
-    .ph-composition {
-      grid-template-columns: 1fr;
-      min-height: auto;
-      padding: clamp(1.2rem, 4vw, 2.4rem) 0 clamp(2rem, 5vw, 3rem);
+  /* ── Responsive ─────────────────────────────────────────── */
+  @media (max-width: 760px) {
+    .philosophy {
+      padding: 4.8rem 0 5.8rem;
     }
 
-    .ph-quiet-card {
-      justify-self: start;
-      width: min(100%, 34rem);
+    .ph-header {
+      margin-bottom: 2.2rem;
+      padding: 0 2vw;
+    }
+
+    .ph-header h2 {
+      font-size: clamp(2.4rem, 11vw, 3.8rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .ph-header p {
+      font-size: 0.95rem;
+      line-height: 1.65;
     }
 
     .ph-reveal-line {
-      max-width: 34rem;
-      font-size: clamp(0.94rem, 2.2vw, 1.04rem);
-    }
-  }
-
-  @media (max-width: 760px) {
-    .philosophy {
-      padding: 5.2rem 0 6.2rem;
+      max-width: none;
+      font-size: clamp(1.15rem, 5vw, 1.65rem);
+      line-height: 1.48;
     }
 
-    .ph-note {
-      gap: 0.65rem;
-      margin-bottom: 1.3rem;
+    .ph-manifesto {
+      padding: 1.6rem 1rem;
+      margin-bottom: 2.6rem;
     }
 
-    .ph-note::before {
-      width: 1.6rem;
+    .ph-actions {
+      margin-top: 1.4rem;
+      padding-top: 1rem;
     }
 
-    .ph-hero h2 {
-      font-size: clamp(2.55rem, 13vw, 4.2rem);
-      line-height: 1.02;
+    .ph-trail {
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding-top: 0;
     }
 
-    .ph-anchors {
-      grid-template-columns: 1fr;
+    .ph-trail__line {
+      display: none;
     }
 
-    .ph-anchor + .ph-anchor {
-      border-top: 1px solid rgba(245, 240, 232, 0.12);
-      border-left: 0;
+    .ph-trail__stop {
+      max-width: 28rem;
     }
 
-    .ph-anchor {
-      min-height: auto;
+    .ph-trail__stop:nth-child(2),
+    .ph-trail__stop:nth-child(4) {
+      transform: none;
+    }
+
+    .ph-trail__stop:hover,
+    .ph-trail__stop:nth-child(2):hover,
+    .ph-trail__stop:nth-child(4):hover {
+      transform: none;
+    }
+
+    .ph-stop__num {
+      margin-bottom: 0.9rem;
+      width: clamp(3rem, 8vw, 3.8rem);
+      font-size: 0.9rem;
+    }
+
+    .ph-trail__stop h3 {
+      font-size: clamp(1.2rem, 4.5vw, 1.5rem);
+    }
+
+    .ph-trail__stop p {
+      font-size: 0.88rem;
+      line-height: 1.6;
     }
   }
 
   @media (max-width: 540px) {
     .ph-actions {
       align-items: stretch;
+      flex-direction: column;
+      width: 100%;
+      gap: 0.7rem;
     }
 
     .ph-actions :global(.ph-button) {
       width: 100%;
+      min-height: 2.9rem;
+      font-size: max(0.58rem, 10px);
+      letter-spacing: 0.16em;
     }
 
     .ph-link {
       justify-content: space-between;
       width: 100%;
+      min-height: 2.8rem;
+      font-size: max(0.58rem, 10px);
+      letter-spacing: 0.18em;
+    }
+
+    .ph-manifesto {
+      padding: 1.4rem 1rem;
+    }
+
+    .ph-frame__tl,
+    .ph-frame__tr,
+    .ph-frame__bl,
+    .ph-frame__br {
+      width: 1.4rem;
+      height: 1.4rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .ph-bg img,
     .ph-reveal-line span,
-    .ph-anchor,
-    .ph-anchor::after {
-      transition: none;
+    .ph-trail__stop,
+    .ph-stop__num {
+      transition: none !important;
+    }
+
+    .ph-trail__stop:hover,
+    .ph-trail__stop:nth-child(2):hover,
+    .ph-trail__stop:nth-child(4):hover {
+      transform: none;
     }
   }
 </style>
@@ -593,7 +618,7 @@ const anchors = [
 
       words.forEach((word, index) => {
         const start = index / words.length;
-        const opacity = clamp((progress - start * 0.72) * 4.4, 0.26, 1);
+        const opacity = clamp((progress - start * 0.72) * 4.4, 0.22, 1);
         word.style.setProperty('--ph-word-opacity', opacity.toFixed(3));
       });
 

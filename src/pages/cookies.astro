@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Container from '../components/ui/Container.astro';
+---
+
+<Layout
+  title="Política de Cookies | Lucía Millán Jiménez"
+  description="Política de cookies del sitio web de Lucía Millán Jiménez, psicóloga clínica en Ciudad Real."
+>
+  <Navigation />
+
+  <main class="legal-page">
+    <Container maxWidth="800px" padding="0 clamp(1rem, 5vw, 3rem)">
+      <article class="legal-article">
+        <header class="legal-header">
+          <span class="legal-eyebrow">Preferencias</span>
+          <h1>Política de Cookies</h1>
+          <p class="legal-lead">Información sobre el uso de cookies y tecnologías similares en este sitio web.</p>
+        </header>
+
+        <section class="legal-section">
+          <h2>1. ¿Qué son las cookies?</h2>
+          <p>Las cookies son pequeños archivos de texto que se almacenan en tu dispositivo (ordenador, tablet o móvil) cuando visitas un sitio web. Su finalidad es facilitar la navegación, recordar tus preferencias y recopilar información estadística de forma anónima.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>2. Tipos de cookies que utilizamos</h2>
+          <p>Este sitio web utiliza únicamente cookies técnicas y de análisis de tráfico anónimo. No empleamos cookies de publicidad ni de terceros con fines comerciales.</p>
+          <ul>
+            <li><strong>Cookies técnicas o necesarias:</strong> Son imprescindibles para el correcto funcionamiento del sitio web. Permiten, por ejemplo, recordar tus preferencias de visualización o mantener la sesión de navegación. No pueden desactivarse sin afectar al funcionamiento de la página.</li>
+            <li><strong>Cookies de análisis:</strong> Nos permiten conocer de forma anónima cómo interactúan los visitantes con el sitio (páginas visitadas, tiempo de permanencia, etc.). La información se utiliza exclusivamente para mejorar la experiencia de usuario y la estructura del contenido.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>3. Cookies de terceros</h2>
+          <p>Este sitio puede incluir contenido de terceros (como reproductores de video, widgets de redes sociales o mapas) que podrían instalar cookies ajenas a nuestro control. Te recomendamos consultar las políticas de privacidad de dichos servicios:</p>
+          <ul>
+            <li><strong>Google Analytics:</strong> utilizado de forma opcional para estadísticas de visitas. Puedes consultar su política de privacidad en <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>4. Gestión de cookies</h2>
+          <p>Puedes permitir, bloquear o eliminar las cookies instaladas en tu dispositivo a través de la configuración de tu navegador. A continuación te indicamos cómo hacerlo en los navegadores más comunes:</p>
+          <ul>
+            <li><strong>Google Chrome:</strong> Menú &gt; Configuración &gt; Privacidad y seguridad &gt; Cookies y otros datos de sitios.</li>
+            <li><strong>Mozilla Firefox:</strong> Menú &gt; Opciones &gt; Privacidad y seguridad &gt; Cookies y datos de sitios.</li>
+            <li><strong>Safari:</strong> Preferencias &gt; Privacidad &gt; Cookies y datos de sitios web.</li>
+            <li><strong>Microsoft Edge:</strong> Configuración &gt; Cookies y permisos de sitios &gt; Cookies y datos de sitios.</li>
+          </ul>
+          <p>Ten en cuenta que desactivar ciertas cookies puede afectar a la funcionalidad del sitio web.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>5. Actualizaciones</h2>
+          <p>La presente política de cookies puede actualizarse para adaptarse a cambios normativos o técnicos. Te recomendamos revisarla periódicamente para estar informado de cómo utilizamos las cookies.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>6. Contacto</h2>
+          <p>Si tienes dudas sobre el uso de cookies en este sitio web, puedes contactarme a través del correo electrónico <strong>luciamillanpsico@gmail.com</strong>.</p>
+        </section>
+      </article>
+    </Container>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    position: relative;
+    background: var(--parchment);
+    padding: clamp(8rem, 14vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
+    min-height: 100vh;
+  }
+
+  .legal-article {
+    position: relative;
+    z-index: 2;
+  }
+
+  .legal-header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .legal-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.78rem;
+    color: var(--sage-dark);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .legal-eyebrow::before,
+  .legal-eyebrow::after {
+    content: '';
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(111, 125, 103, 0.28);
+  }
+
+  .legal-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .legal-lead {
+    max-width: 42ch;
+    margin: 0 auto;
+    color: var(--taupe);
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    line-height: 1.7;
+  }
+
+  .legal-section {
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2rem, 3vw, 2.8rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .legal-section:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  .legal-section p {
+    color: var(--ink-soft);
+    font-size: clamp(0.9rem, 1.05vw, 0.98rem);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .legal-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .legal-section li {
+    color: var(--ink-soft);
+    font-size: clamp(0.9rem, 1.05vw, 0.98rem);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .legal-section li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--sage-dark);
+    opacity: 0.5;
+  }
+
+  .legal-section strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .legal-section a {
+    color: var(--earth);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(107, 125, 106, 0.35);
+    transition: text-decoration-color 0.3s ease;
+  }
+
+  .legal-section a:hover {
+    text-decoration-color: var(--earth);
+  }
+
+  @media (max-width: 768px) {
+    .legal-page {
+      padding: 7rem 0 5rem;
+    }
+    .legal-header {
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+    .legal-eyebrow {
+      justify-content: flex-start;
+    }
+    .legal-eyebrow::after {
+      display: none;
+    }
+    .legal-header h1 {
+      font-size: clamp(2.2rem, 9vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+    .legal-lead {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .legal-section {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+    }
+    .legal-section h2 {
+      font-size: clamp(1.25rem, 4.5vw, 1.55rem);
+      margin-bottom: 1rem;
+    }
+    .legal-section p,
+    .legal-section li {
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .legal-page {
+      padding: 6.5rem 0 4.5rem;
+    }
+    .legal-eyebrow {
+      gap: 0.55rem;
+      letter-spacing: 0.18em;
+    }
+    .legal-eyebrow::before {
+      width: 1.45rem;
+    }
+  }
+</style>

@@ -7,7 +7,7 @@ interface Props {
 
 const {
   title,
-  description = "Psicóloga colegiada en Córdoba. Terapia individual, EMDR y acompañamiento emocional.",
+  description = "Psicóloga colegiada en Ciudad Real. Terapia individual online y presencial. Enfoque integrador: TCC, ACT, TFE y técnicas psicosomáticas.",
   keywords = [],
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://luciapsicologia.es");
@@ -235,9 +235,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://luciapsi
     }
     .type-eyebrow {
       font-family: var(--font-body);
-      font-size: var(--type-meta);
+      font-size: max(0.58rem, 10px);
       font-weight: 400;
-      letter-spacing: 0.35em;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--taupe);
     }
@@ -247,6 +247,36 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://luciapsi
       font-weight: 300;
       font-size: var(--type-section-subtitle);
       color: var(--taupe);
+    }
+
+    /* Unified section eyebrow pattern */
+    .section-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.78rem;
+      color: var(--sage-dark);
+      font-size: max(0.58rem, 10px);
+      font-weight: 500;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+    .section-eyebrow::before,
+    .section-eyebrow::after {
+      content: '';
+      width: 2.35rem;
+      height: 1px;
+      background: rgba(111, 125, 103, 0.34);
+    }
+    @media (max-width: 640px) {
+      .section-eyebrow {
+        gap: 0.55rem;
+        letter-spacing: 0.18em;
+      }
+      .section-eyebrow::before,
+      .section-eyebrow::after {
+        width: 1.45rem;
+      }
     }
 
     /* Buttons */
@@ -574,6 +604,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://luciapsi
       body { font-size: 15px; }
       .type-display-upper {
         letter-spacing: 0.05em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { font-size: 14.5px; }
+      .type-display-upper {
+        letter-spacing: 0.03em;
       }
     }
   </style>

@@ -1,0 +1,239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Container from '../components/ui/Container.astro';
+---
+
+<Layout
+  title="Aviso Legal | Lucía Millán Jiménez"
+  description="Aviso legal del sitio web de Lucía Millán Jiménez, psicóloga clínica en Ciudad Real."
+>
+  <Navigation />
+
+  <main class="legal-page">
+    <Container maxWidth="800px" padding="0 clamp(1rem, 5vw, 3rem)">
+      <article class="legal-article">
+        <header class="legal-header">
+          <span class="legal-eyebrow">Información</span>
+          <h1>Aviso Legal</h1>
+          <p class="legal-lead">Condiciones de uso del sitio web y datos de identificación del titular.</p>
+        </header>
+
+        <section class="legal-section">
+          <h2>1. Datos de identificación</h2>
+          <p>De conformidad con lo establecido en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico, se facilitan los siguientes datos de identificación del titular de este sitio web:</p>
+          <ul>
+            <li><strong>Titular:</strong> Lucía Millán Jiménez</li>
+            <li><strong>Profesión:</strong> Psicóloga Clínica Colegiada</li>
+            <li><strong>Dirección de consulta:</strong> Calle Toledo, 8, 2ª Planta, 13001, Ciudad Real</li>
+            <li><strong>Correo electrónico:</strong> luciamillanpsico@gmail.com</li>
+            <li><strong>Teléfono:</strong> 722 535 914</li>
+          </ul>
+        </section>
+
+        <section class="legal-section">
+          <h2>2. Objeto del sitio web</h2>
+          <p>Este sitio web tiene por objeto facilitar información sobre los servicios profesionales de psicología clínica ofrecidos por Lucía Millán Jiménez, así como proporcionar contenidos de divulgación relacionados con la salud mental y el bienestar emocional.</p>
+          <p>La información contenida en este sitio no constituye, en ningún caso, un diagnóstico o tratamiento médico-psicológico. En caso de emergencia o crisis, se recomienda acudir a los servicios de urgencias o llamar al teléfono de emergencias.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>3. Propiedad intelectual</h2>
+          <p>Todos los contenidos de este sitio web (textos, fotografías, gráficos, logotipos, iconos, software y cualquier otro material) son propiedad de Lucía Millán Jiménez o se utilizan con autorización de sus respectivos titulares, estando protegidos por la normativa de propiedad intelectual e industrial.</p>
+          <p>Queda prohibida la reproducción, distribución, comunicación pública o transformación de los contenidos, total o parcial, sin la autorización expresa del titular.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>4. Enlaces</h2>
+          <p>Este sitio web puede contener enlaces a páginas de terceros (redes sociales, directorios profesionales, etc.). El titular no se hace responsable del contenido ni de las políticas de privacidad de dichos sitios externos.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>5. Modificaciones</h2>
+          <p>El titular se reserva el derecho a modificar, suspender o cancelar, total o parcialmente, el sitio web y sus contenidos, así como a actualizar el presente aviso legal, sin necesidad de previo aviso.</p>
+        </section>
+
+        <section class="legal-section">
+          <h2>6. Legislación aplicable</h2>
+          <p>El presente aviso legal se rige por la legislación española. Para la resolución de cualquier controversia que pudiera derivarse del acceso al sitio web, las partes se someten a los juzgados y tribunales de Ciudad Real.</p>
+        </section>
+      </article>
+    </Container>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    position: relative;
+    background: var(--parchment);
+    padding: clamp(8rem, 14vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
+    min-height: 100vh;
+  }
+
+  .legal-article {
+    position: relative;
+    z-index: 2;
+  }
+
+  .legal-header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .legal-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.78rem;
+    color: var(--sage-dark);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .legal-eyebrow::before,
+  .legal-eyebrow::after {
+    content: '';
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(111, 125, 103, 0.28);
+  }
+
+  .legal-header h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .legal-lead {
+    max-width: 42ch;
+    margin: 0 auto;
+    color: var(--taupe);
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    line-height: 1.7;
+  }
+
+  .legal-section {
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2rem, 3vw, 2.8rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .legal-section:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .legal-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  .legal-section p {
+    color: var(--ink-soft);
+    font-size: clamp(0.9rem, 1.05vw, 0.98rem);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .legal-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .legal-section li {
+    color: var(--ink-soft);
+    font-size: clamp(0.9rem, 1.05vw, 0.98rem);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .legal-section li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--sage-dark);
+    opacity: 0.5;
+  }
+
+  .legal-section strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .legal-page {
+      padding: 7rem 0 5rem;
+    }
+    .legal-header {
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+    .legal-eyebrow {
+      justify-content: flex-start;
+    }
+    .legal-eyebrow::after {
+      display: none;
+    }
+    .legal-header h1 {
+      font-size: clamp(2.2rem, 9vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+    .legal-lead {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .legal-section {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+    }
+    .legal-section h2 {
+      font-size: clamp(1.25rem, 4.5vw, 1.55rem);
+      margin-bottom: 1rem;
+    }
+    .legal-section p,
+    .legal-section li {
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .legal-page {
+      padding: 6.5rem 0 4.5rem;
+    }
+    .legal-eyebrow {
+      gap: 0.55rem;
+      letter-spacing: 0.18em;
+    }
+    .legal-eyebrow::before {
+      width: 1.45rem;
+    }
+  }
+</style>
