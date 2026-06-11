@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-10T00:00:00Z",
+  "title": "Design System: Lucía — Psicóloga Clínica",
+  "extensions": {
+    "colorMeta": {
+      "earth": {
+        "role": "primary",
+        "displayName": "Moss Earth",
+        "canonical": "oklch(60% 0.05 142)",
+        "tonalRamp": [
+          "oklch(15% 0.02 142)",
+          "oklch(25% 0.03 142)",
+          "oklch(35% 0.04 142)",
+          "oklch(45% 0.045 142)",
+          "oklch(55% 0.05 142)",
+          "oklch(65% 0.05 142)",
+          "oklch(75% 0.045 142)",
+          "oklch(85% 0.03 142)"
+        ]
+      },
+      "mint": {
+        "role": "accent",
+        "displayName": "Soft Mint",
+        "canonical": "oklch(80% 0.08 180)",
+        "tonalRamp": [
+          "oklch(20% 0.02 180)",
+          "oklch(35% 0.04 180)",
+          "oklch(50% 0.06 180)",
+          "oklch(65% 0.07 180)",
+          "oklch(75% 0.08 180)",
+          "oklch(85% 0.07 180)",
+          "oklch(92% 0.04 180)",
+          "oklch(97% 0.02 180)"
+        ]
+      },
+      "cream": {
+        "role": "neutral",
+        "displayName": "Warm Cream",
+        "canonical": "oklch(95% 0.01 90)",
+        "tonalRamp": [
+          "oklch(15% 0.02 90)",
+          "oklch(30% 0.03 90)",
+          "oklch(45% 0.04 90)",
+          "oklch(60% 0.05 90)",
+          "oklch(75% 0.04 90)",
+          "oklch(85% 0.03 90)",
+          "oklch(92% 0.02 90)",
+          "oklch(97% 0.01 90)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Deep Ink",
+        "canonical": "oklch(20% 0 0)",
+        "tonalRamp": [
+          "oklch(5% 0 0)",
+          "oklch(10% 0 0)",
+          "oklch(15% 0 0)",
+          "oklch(20% 0 0)",
+          "oklch(30% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(60% 0 0)",
+          "oklch(75% 0 0)"
+        ]
+      },
+      "taupe": {
+        "role": "neutral",
+        "displayName": "Aged Taupe",
+        "canonical": "oklch(65% 0.03 80)",
+        "tonalRamp": [
+          "oklch(15% 0.01 80)",
+          "oklch(25% 0.02 80)",
+          "oklch(40% 0.025 80)",
+          "oklch(55% 0.03 80)",
+          "oklch(65% 0.03 80)",
+          "oklch(75% 0.025 80)",
+          "oklch(85% 0.02 80)",
+          "oklch(95% 0.01 80)"
+        ]
+      },
+      "gold": {
+        "role": "accent",
+        "displayName": "Worn Gold",
+        "canonical": "oklch(75% 0.05 90)",
+        "tonalRamp": [
+          "oklch(20% 0.02 90)",
+          "oklch(35% 0.03 90)",
+          "oklch(50% 0.04 90)",
+          "oklch(60% 0.045 90)",
+          "oklch(70% 0.05 90)",
+          "oklch(80% 0.045 90)",
+          "oklch(90% 0.03 90)",
+          "oklch(95% 0.02 90)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headlines y títulos de sección principal."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Títulos de sección secundarios."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de cards, sub-secciones, y valores."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido y párrafos."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, botones, navegación, y metadatos."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-low",
+        "value": "0 4px 16px rgba(44, 44, 44, 0.06)",
+        "purpose": "Hover sutil en botones y cards."
+      },
+      {
+        "name": "ambient-medium",
+        "value": "0 12px 30px rgba(44, 44, 44, 0.12)",
+        "purpose": "Hover elevado en botones primarios."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 8px 24px rgba(86, 100, 90, 0.18)",
+        "purpose": "Elevación para navegación flotante y elementos de confianza."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Easing principal para entradas, hovers, y transiciones."
+      },
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Easing secundario para micro-interacciones."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "480px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Botón de acción principal con fondo Moss Earth y hover animado.",
+      "html": "<button class=\"ds-btn-primary\"><span>Reservar primera sesión</span></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.7rem; background: #6B7D6A; color: #fff; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 400; font-size: max(0.58rem, 10px); letter-spacing: 0.25em; text-transform: uppercase; padding: 16px 36px; border: none; border-radius: 999px; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); position: relative; overflow: hidden; cursor: pointer; } .ds-btn-primary::before { content: ''; position: absolute; inset: 0; background: #2C2C2C; transform: scaleX(0); transform-origin: right; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover::before { transform: scaleX(1); transform-origin: left; } .ds-btn-primary span { position: relative; z-index: 1; } .ds-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(44,44,44,0.12); }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Botón secundario sin fondo, solo underline animado en hover.",
+      "html": "<button class=\"ds-btn-ghost\">Conóceme</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 0.7rem; font-family: 'DM Sans', system-ui, sans-serif; font-size: max(0.58rem, 10px); font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: #2C2C2C; padding: 14px 0; position: relative; border: none; background: none; cursor: pointer; } .ds-btn-ghost::after { content: ''; position: absolute; bottom: 10px; left: 0; width: 100%; height: 1px; background: #2C2C2C; transform: scaleX(0); transform-origin: right; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-ghost:hover::after { transform: scaleX(1); transform-origin: left; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Campo de formulario editorial con label flotante y solo borde inferior.",
+      "html": "<div class=\"ds-form-field\"><input type=\"text\" id=\"name\" placeholder=\" \" /><label for=\"name\">Nombre</label></div>",
+      "css": ".ds-form-field { position: relative; } .ds-form-field input { width: 100%; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 300; font-size: clamp(0.95rem, 1.2vw, 1.05rem); color: #2C2C2C; background: transparent; border: none; border-bottom: 1px solid #E5DFD4; padding: 28px 0 10px; outline: none; transition: border-color 0.4s ease; } .ds-form-field input:focus { border-color: #8A8B7E; } .ds-form-field label { position: absolute; left: 0; top: 28px; font-size: 0.9rem; font-weight: 300; color: #9E9488; pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-form-field input:focus + label, .ds-form-field input:not(:placeholder-shown) + label { top: 0; font-size: max(0.58rem, 10px); letter-spacing: 0.15em; text-transform: uppercase; color: #8A8B7E; }"
+    },
+    {
+      "name": "Navigation Island",
+      "kind": "nav",
+      "refersTo": "nav-island",
+      "description": "Barra de navegación flotante con glassmorphism cálido y transición de color según scroll.",
+      "html": "<nav class=\"ds-nav-island\"><a href=\"#\" class=\"ds-nav-mark\">Lucía</a><div class=\"ds-nav-links\"><a href=\"#\" class=\"ds-nav-link\">Sobre mí</a><a href=\"#\" class=\"ds-nav-link\">Servicios</a></div><a href=\"#\" class=\"ds-nav-cta\">Reservar</a></nav>",
+      "css": ".ds-nav-island { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 0.55rem 2.2rem; border-radius: 22px; background: transparent; transition: all 0.7s ease; } .ds-nav-island.scrolled { background: rgba(251, 248, 241, 0.82); backdrop-filter: blur(14px) saturate(1.1); border: 1px solid rgba(111, 125, 103, 0.14); box-shadow: 0 8px 32px rgba(47, 45, 40, 0.06); border-radius: 100px; } .ds-nav-mark { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-weight: 300; font-size: 1.08rem; color: #2C2C2C; text-decoration: none; letter-spacing: 0.02em; } .ds-nav-link { font-family: 'DM Sans', system-ui, sans-serif; font-size: max(0.58rem, 10px); font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(47, 45, 40, 0.6); text-decoration: none; padding: 6px 0; transition: color 0.5s ease; } .ds-nav-link:hover { color: #2C2C2C; } .ds-nav-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 9px 20px; background: linear-gradient(180deg, rgba(111, 125, 103, 0.92), rgba(86, 100, 90, 0.92)); border: 1px solid rgba(111, 125, 103, 0.3); border-radius: 999px; font-family: 'DM Sans', system-ui, sans-serif; font-size: max(0.58rem, 10px); font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: #fbf8f1; text-decoration: none; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(86, 100, 90, 0.18); }"
+    },
+    {
+      "name": "Value Card",
+      "kind": "card",
+      "refersTo": "value-card",
+      "description": "Card de valores sin radio, con bordes horizontales y hover sutil.",
+      "html": "<article class=\"ds-value-card\"><span class=\"ds-value-num\">01</span><h3 class=\"ds-value-title\">Escucha</h3><p class=\"ds-value-text\">Un espacio sin juicio para poner palabras a lo que necesitas cuidar.</p></article>",
+      "css": ".ds-value-card { min-height: 11.5rem; padding: clamp(1.3rem, 2.5vw, 1.85rem); border-block: 1px solid rgba(111, 125, 103, 0.16); border-inline: 0; border-radius: 0; background: radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.5), transparent 38%), linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(250, 248, 242, 0.12)); box-shadow: none; transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease; } .ds-value-card:hover { transform: translateY(-0.18rem); border-color: rgba(111, 125, 103, 0.22); background: radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.62), transparent 38%), rgba(255, 253, 248, 0.86); } .ds-value-num { display: inline-flex; margin-bottom: clamp(1.5rem, 3vw, 2.2rem); font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1rem; font-style: italic; color: rgba(111, 125, 103, 0.72); } .ds-value-title { margin: 0 0 0.48rem; font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(1.28rem, 1.9vw, 1.58rem); font-style: italic; font-weight: 300; line-height: 1.1; color: rgba(47, 45, 40, 0.9); } .ds-value-text { margin: 0; color: #5f5c55; font-size: 0.88rem; line-height: 1.68; }"
+    },
+    {
+      "name": "Hero CTA",
+      "kind": "custom",
+      "refersTo": "hero-cta",
+      "description": "CTA del hero sobre fondo oscuro con borde sutil y fondo semi-transparente.",
+      "html": "<a href=\"#\" class=\"ds-hero-cta\"><span class=\"ds-hero-cta-text\">Reservar primera sesión</span><svg width=\"12\" height=\"12\" viewBox=\"0 0 12 12\" fill=\"none\" aria-hidden=\"true\"><path d=\"M1 6h10M6 1l5 5-5 5\" stroke=\"currentColor\" stroke-width=\"1.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></a>",
+      "css": ".ds-hero-cta { position: relative; display: inline-flex; align-items: center; gap: 0.75rem; min-height: 3.2rem; padding: 0.85rem 2.2rem; background: linear-gradient(180deg, rgba(111, 125, 103, 0.96), rgba(86, 100, 90, 0.96)); color: #fbf8f1; font-family: 'DM Sans', system-ui, sans-serif; font-weight: 500; font-size: max(0.58rem, 10px); letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(111, 125, 103, 0.35); border-radius: 999px; cursor: pointer; box-shadow: 0 0.9rem 1.8rem rgba(86, 100, 90, 0.18); overflow: hidden; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease, border-color 0.4s ease; } .ds-hero-cta::before { content: ''; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.06); transform: scaleX(0); transform-origin: right; transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); } .ds-hero-cta:hover::before { transform: scaleX(1); transform-origin: left; } .ds-hero-cta:hover { transform: translateY(-3px); box-shadow: 0 1.2rem 2.4rem rgba(86, 100, 90, 0.24); border-color: rgba(111, 125, 103, 0.5); } .ds-hero-cta-text { position: relative; z-index: 1; } .ds-hero-cta svg { position: relative; z-index: 1; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0.7; } .ds-hero-cta:hover svg { transform: translateX(4px); opacity: 1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Editorial Sanctuary",
+    "overview": "Una revista de bienestar de autor, no una clínica fría. Este sistema visual transmite calma, calidez y profesionalidad a través de una paleta orgánica, tipografía editorial con carácter, y detalles táctiles que evocan un espacio de escucha. La densidad es generosa pero nunca abrumadora; cada sección respira. El sistema rechaza explícitamente el estilo clínico/institucional, el estilo SaaS genérico, y el estilo 'AI default' de 2026.",
+    "keyCharacteristics": [
+      "Paleta orgánica earth + sage + mint sobre fondos cálidos, nunca fríos.",
+      "Tipografía serif italic (Cormorant Garamond) para display, sans humanista (DM Sans) para cuerpo.",
+      "Texturas naturales: grain overlay, bordes irregulares, gradientes radiales suaves.",
+      "Animaciones con propósito emocional: entrada suave, parallax sutil, micro-interacciones reconfortantes.",
+      "Jerarquía editorial rica con espacio intencional; nunca minimalismo por omisión."
+    ],
+    "rules": [
+      {
+        "name": "The Earth Voice Rule",
+        "body": "El verde musgo (Moss Earth) es la única voz de color en la interfaz. Su rareza es el punto: usado en ≤10% de cualquier pantalla, siempre con propósito.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warmth First Rule",
+        "body": "Nunca usar un fondo neutro frío (gris puro, blanco azulado) cuando un fondo cálido (Warm Cream, Parchment) puede hacer el trabajo. La calidez no es decorativa, es funcional.",
+        "section": "colors"
+      },
+      {
+        "name": "The Italic Rule",
+        "body": "El display serif italic es la firma tipográfica del sistema. Usarlo en títulos de sección y hero. No usar italic en body text ni en labels.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tracked Label Rule",
+        "body": "Los labels (eyebrows, botones, nav) siempre usan letter-spacing ≥ 0.2em y uppercase. Esto los distingue del texto corrido y añade un aire de editorial.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Las superficies en reposo son planas. Las sombras son una respuesta, no una decoración. Si una card tiene sombra sin hover, reescribirla.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Diffuse Shadow Rule",
+        "body": "Las sombras deben ser tan suaves que el usuario sienta el lift antes de ver la sombra. Nunca usar sombras oscuras duras (rgba(0,0,0,0.3) o mayores). Si la sombra se ve como una línea, es demasiado dura.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar Warm Cream (#F5F0E8) como fondo de página por defecto. Nunca blanco puro (#FFFFFF).",
+      "Do usar Cormorant Garamond italic en todos los títulos de sección y hero. Es la firma del sistema.",
+      "Do usar letter-spacing ≥ 0.2em en todos los labels, botones, y navegación. Es el sello editorial.",
+      "Do usar gradientes radiales suaves y overlays de textura (grain, paper) para crear profundidad sin sombras.",
+      "Do respetar prefers-reduced-motion: reduce con transiciones instantáneas o crossfade.",
+      "Do mantener el contraste de texto de cuerpo ≥ 4.5:1 contra fondos claros.",
+      "Do usar border-radius 999px para botones y pills; 0px para cards y value cards."
+    ],
+    "donts": [
+      "Don't usar blanco puro (#FFFFFF) como fondo de sección. Siempre un tono cálido.",
+      "Don't usar glassmorphism como decoración. El blur en la navegación tiene un propósito funcional; en cualquier otro lugar es prohibido.",
+      "Don't usar gradient text (background-clip: text). El énfasis tipográfico se logra con peso, tamaño, y italic.",
+      "Don't usar border-left o border-right > 1px como acento en cards o listas.",
+      "Don't usar el patrón hero-metric (número grande + label pequeño). Este es un sitio de calma, no un dashboard SaaS.",
+      "Don't usar cards idénticas con icono + título + texto repetidos en loop.",
+      "Don't usar cejas en mayúsculas (eyebrows) sobre cada sección. Uno o dos por página como guía editorial están bien.",
+      "Don't usar números de sección (01, 02, 03) como scaffolding por defecto.",
+      "Don't usar tipografía sans-serif en títulos de display.",
+      "Don't usar sombras oscuras duras (rgba(0,0,0,0.3) o mayores).",
+      "Don't usar fondos crema/beige sin criterio como el 'AI default' de 2026.",
+      "Don't usar iconografía médica o clínica (cruces, estetoscopios, batas blancas)."
+    ]
+  }
+}

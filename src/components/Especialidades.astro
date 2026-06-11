@@ -7,25 +7,25 @@ const especialidades = [
     titulo: "Ansiedad y Estrés",
     descripcion: "Restauramos el equilibrio. Encontramos la raíz del ruido mental para devolverle a tu cuerpo la capacidad de habitar la calma.",
     num: "01",
-    img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1200&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1200&auto=format&fit=crop&crop=entropy"
   },
   {
     titulo: "Trauma y Abordaje Integrador",
     descripcion: "Sanación profunda. Procesamos experiencias dolorosas de forma segura para que el pasado deje de activarse en el presente.",
     num: "02",
-    img: "https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=1200&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=1200&auto=format&fit=crop&crop=entropy"
   },
   {
     titulo: "Autoestima",
     descripcion: "Reconstrucción del yo. Transformamos el diálogo interno hacia uno de compasión, respeto y amor propio.",
     num: "03",
-    img: "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=1200&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&w=1200&auto=format&fit=crop&crop=entropy"
   },
   {
     titulo: "Duelo y Pérdida",
     descripcion: "Acompañamiento en la sombra. Un espacio sagrado para transitar la pérdida sin prisa ni juicio.",
     num: "04",
-    img: "https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop"
+    img: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=1200&auto=format&fit=crop&crop=entropy"
   }
 ];
 ---
@@ -109,7 +109,7 @@ const especialidades = [
   }
   .ed-kicker {
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: var(--type-meta);
     font-weight: 400;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -117,7 +117,7 @@ const especialidades = [
   }
   .ed-huge-title {
     font-family: var(--font-display);
-    font-size: clamp(4rem, 8vw, 8rem);
+    font-size: var(--type-decorative-lg);
     font-weight: 300;
     line-height: 0.9;
     letter-spacing: -0.02em;
@@ -131,7 +131,7 @@ const especialidades = [
   .ed-sidebar-desc {
     font-family: var(--font-body);
     font-weight: 300;
-    font-size: 1.1rem;
+    font-size: var(--type-lead);
     line-height: 1.6;
     color: var(--ink-soft);
     max-width: 28ch;
@@ -217,7 +217,7 @@ const especialidades = [
   .ed-item-num {
     font-family: var(--font-display);
     font-style: italic;
-    font-size: 2rem;
+    font-size: var(--type-subsection-title);
     color: var(--earth);
   }
   .ed-item-line {
@@ -228,7 +228,7 @@ const especialidades = [
 
   .ed-item-title {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-size: var(--type-section-title-sm);
     font-weight: 400;
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -238,7 +238,7 @@ const especialidades = [
   .ed-item-desc {
     font-family: var(--font-body);
     font-weight: 300;
-    font-size: 1.05rem;
+    font-size: var(--type-lead);
     line-height: 1.7;
     color: var(--ink-soft);
     max-width: 32ch;
@@ -250,7 +250,7 @@ const especialidades = [
     align-items: center;
     gap: 1rem;
     font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-size: var(--type-caption);
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -321,7 +321,7 @@ const especialidades = [
       aspect-ratio: 4/5 !important;
     }
     .ed-huge-title {
-      font-size: 4.5rem;
+      font-size: var(--type-decorative-lg);
     }
   }
 </style>

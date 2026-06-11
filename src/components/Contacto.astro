@@ -64,28 +64,70 @@ const quietSteps = [
           </div>
         </aside>
 
-        <form class="contact-form-card reveal-scale" data-delay="220" onsubmit="event.preventDefault(); alert('Formulario de demostración.');">
+        <!-- 
+          FORM CONFIGURATION:
+          For production, replace the form action with your Formspree endpoint:
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          Or use Netlify Forms by adding data-netlify="true" and name="contact"
+        -->
+        <form
+          id="contactForm"
+          class="contact-form-card reveal-scale"
+          data-delay="220"
+          action="mailto:luciamillanpsico@gmail.com"
+          method="POST"
+          enctype="text/plain"
+        >
           <div class="form-head">
             <span class="form-kicker">Mensaje inicial</span>
             <h3>Cuéntame lo básico, sin presión.</h3>
             <p>Te responderé con una propuesta clara y sin compromiso para valorar juntas cómo empezar.</p>
           </div>
 
-          <div class="form-grid">
-            <label class="field">
-              <span>Nombre</span>
-              <input type="text" name="nombre" autocomplete="name" required />
-            </label>
+          <div class="form-fields">
+            <div class="form-field">
+              <input
+                type="text"
+                id="nombre"
+                name="nombre"
+                placeholder=" "
+                autocomplete="name"
+                required
+                aria-required="true"
+                aria-describedby="nombre-hint"
+              />
+              <label for="nombre">Nombre</label>
+              <span id="nombre-hint" class="field-hint" role="alert">Por favor, dime cómo te llamas.</span>
+            </div>
 
-            <label class="field">
-              <span>Email</span>
-              <input type="email" name="email" autocomplete="email" required />
-            </label>
+            <div class="form-field">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder=" "
+                autocomplete="email"
+                required
+                aria-required="true"
+                aria-describedby="email-hint"
+              />
+              <label for="email">Email</label>
+              <span id="email-hint" class="field-hint" role="alert">Necesito un email para poder responderte.</span>
+            </div>
 
-            <label class="field field--full">
-              <span>¿Qué te gustaría contarme?</span>
-              <textarea name="mensaje" rows="5" required></textarea>
-            </label>
+            <div class="form-field form-field--full">
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                placeholder=" "
+                rows="5"
+                required
+                aria-required="true"
+                aria-describedby="mensaje-hint"
+              ></textarea>
+              <label for="mensaje">¿Qué te gustaría contarme?</label>
+              <span id="mensaje-hint" class="field-hint" role="alert">Cuéntame lo que necesites, incluso si no sabes por dónde empezar.</span>
+            </div>
           </div>
 
           <div class="quiet-list" aria-label="Qué ocurre después">
@@ -99,12 +141,31 @@ const quietSteps = [
 
           <div class="form-actions">
             <p>Tus datos se tratan con confidencialidad.</p>
-            <button type="submit" class="contact-submit">
-              <span>Enviar mensaje</span>
+            <button type="submit" class="contact-submit" id="contactSubmit">
+              <span class="submit-text">Enviar mensaje</span>
+              <span class="submit-loading" aria-hidden="true">Enviando...</span>
+              <span class="submit-success" aria-hidden="true">Mensaje enviado</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </button>
+          </div>
+
+          <div id="formFeedback" class="form-feedback" role="status" aria-live="polite">
+            <p class="feedback-success">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M5 8l2.5 2.5L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Gracias por escribir. Te responderé en un plazo máximo de 24 horas laborables.
+            </p>
+            <p class="feedback-error">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/>
+                <path d="M8 5v3M8 10.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+              Algo no ha funcionado. Puedes escribirme directamente a <a href="mailto:luciamillanpsico@gmail.com">luciamillanpsico@gmail.com</a>.
+            </p>
           </div>
         </form>
 
@@ -130,26 +191,90 @@ const quietSteps = [
   <PageNumber number="07" />
 </section>
 
+<script>
+  (function() {
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('contactSubmit');
+    const feedback = document.getElementById('formFeedback');
+    if (!form || !submitBtn || !feedback) return;
+
+    const action = form.getAttribute('action') || '';
+    const isMailto = action.startsWith('mailto:');
+
+    form.addEventListener('submit', function(e) {
+      if (isMailto) {
+        // mailto: fallback — let the browser handle it natively
+        // but show a success message since we can't track the email client
+        submitBtn.classList.add('is-success');
+        feedback.classList.add('show-success');
+        return;
+      }
+
+      e.preventDefault();
+      submitBtn.classList.add('is-loading');
+      submitBtn.disabled = true;
+      feedback.classList.remove('show-success', 'show-error');
+
+      const formData = new FormData(form);
+
+      fetch(action, {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      })
+        .then((response) => {
+          if (response.ok) {
+            submitBtn.classList.remove('is-loading');
+            submitBtn.classList.add('is-success');
+            feedback.classList.add('show-success');
+            form.reset();
+          } else {
+            throw new Error('Form submission failed');
+          }
+        })
+        .catch(() => {
+          submitBtn.classList.remove('is-loading');
+          submitBtn.classList.add('is-error');
+          feedback.classList.add('show-error');
+          submitBtn.disabled = false;
+        });
+    });
+
+    // Real-time validation — comforting messages, not alarming
+    form.querySelectorAll('.form-field input, .form-field textarea').forEach((input) => {
+      const field = input.closest('.form-field');
+      if (!field) return;
+
+      input.addEventListener('blur', function() {
+        if (input.validity.valid) {
+          field.classList.add('is-valid');
+          field.classList.remove('is-invalid');
+        } else if (input.value.trim()) {
+          field.classList.add('is-invalid');
+          field.classList.remove('is-valid');
+        }
+      });
+
+      input.addEventListener('input', function() {
+        if (input.validity.valid) {
+          field.classList.add('is-valid');
+          field.classList.remove('is-invalid');
+        }
+      });
+    });
+  })();
+</script>
+
 <style>
   .contacto {
-    --ct-ink: #2f2d28;
-    --ct-text: rgba(47, 45, 40, 0.7);
-    --ct-muted: rgba(47, 45, 40, 0.52);
-    --ct-sage: #6f7d67;
-    --ct-sage-deep: #56645a;
-    --ct-paper: #fffdf8;
-    --ct-cream: #faf8f2;
-    --ct-line: rgba(111, 125, 103, 0.13);
-    --ct-line-soft: rgba(111, 125, 103, 0.075);
-
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: clamp(6.2rem, 9vw, 9.4rem) 0 clamp(6.6rem, 10vw, 10rem);
+    padding: var(--section-py--spacious) 0 calc(var(--section-py--spacious) + 0.6rem);
     background:
       radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.84), transparent 30%),
       radial-gradient(circle at 84% 18%, rgba(223, 228, 216, 0.26), transparent 34%),
-      linear-gradient(180deg, var(--cream) 0%, var(--ct-cream) 58%, #f4f0e9 100%);
+      linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-elevated) 58%, #f4f0e9 100%);
   }
 
   .contacto::before {
@@ -177,12 +302,34 @@ const quietSteps = [
     text-align: center;
   }
 
+  .contact-header h2 {
+    max-width: 56rem;
+    margin: 1rem auto 1rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-section-title);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
+  }
+
+  .contact-header p {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+    font-size: var(--type-lead);
+    line-height: 1.86;
+    text-wrap: pretty;
+  }
+
   .contact-eyebrow {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.78rem;
-    color: var(--ct-sage);
+    color: var(--color-accent);
     font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.24em;
@@ -194,29 +341,7 @@ const quietSteps = [
     content: '';
     width: 2.35rem;
     height: 1px;
-    background: rgba(111, 125, 103, 0.28);
-  }
-
-  .contact-header h2 {
-    max-width: 56rem;
-    margin: 1rem auto 1rem;
-    color: var(--ct-ink);
-    font-family: var(--font-display);
-    font-size: clamp(2.9rem, 6.2vw, 5.8rem);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 0.98;
-    letter-spacing: -0.018em;
-    text-wrap: balance;
-  }
-
-  .contact-header p {
-    max-width: 42rem;
-    margin: 0 auto;
-    color: var(--ct-text);
-    font-size: clamp(1rem, 1.2vw, 1.08rem);
-    line-height: 1.86;
-    text-wrap: pretty;
+    background: rgba(111, 125, 103, 0.34);
   }
 
   .contact-layout {
@@ -231,7 +356,7 @@ const quietSteps = [
   .contact-form-card,
   .contact-rail {
     position: relative;
-    border: 1px solid var(--ct-line);
+    border: 1px solid var(--color-line-accent);
     background: rgba(255, 253, 248, 0.58);
     box-shadow: 0 1.1rem 2.8rem rgba(57, 54, 48, 0.035);
   }
@@ -270,7 +395,7 @@ const quietSteps = [
     inset: 0;
     background:
       linear-gradient(180deg, rgba(255, 253, 248, 0.02), rgba(47, 45, 40, 0.12)),
-      url('https://picsum.photos/seed/lucia-quiet-therapy-window/960/1280') center / cover;
+      url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=960&h=1280&auto=format&fit=crop&crop=entropy') center / cover;
     filter: grayscale(0.22) contrast(1.02) saturate(0.68) brightness(1.04);
     transform: scale(1.015);
     transition: transform 1.2s var(--ease-out-expo), filter 0.8s ease;
@@ -291,7 +416,7 @@ const quietSteps = [
     align-items: center;
     gap: 0.7rem;
     width: fit-content;
-    color: var(--ct-sage);
+    color: var(--color-accent);
     font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.2em;
@@ -309,9 +434,9 @@ const quietSteps = [
   .portrait-note p {
     max-width: 27rem;
     margin: 1rem 0 0;
-    color: var(--ct-ink);
+    color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: clamp(1.35rem, 2.2vw, 2rem);
+    font-size: var(--type-subsection-title);
     font-style: italic;
     font-weight: 300;
     line-height: 1.18;
@@ -337,9 +462,9 @@ const quietSteps = [
   .form-head h3 {
     max-width: 34rem;
     margin: 0.95rem 0 0.65rem;
-    color: var(--ct-ink);
+    color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: clamp(2.15rem, 4vw, 4rem);
+    font-size: var(--type-section-title-sm);
     font-style: italic;
     font-weight: 300;
     line-height: 1.02;
@@ -349,79 +474,116 @@ const quietSteps = [
   .form-head p {
     max-width: 30rem;
     margin: 0;
-    color: var(--ct-muted);
-    font-size: 0.98rem;
+    color: var(--color-text-muted);
+    font-size: var(--type-body);
     line-height: 1.72;
   }
 
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(0.9rem, 1.4vw, 1.1rem);
-  }
+  /* ═══════════════════════════════════════════════════════════
+     EDITORIAL FORM FIELDS — border-bottom only, like a letter
+     ═══════════════════════════════════════════════════════════ */
 
-  .field {
+  .form-fields {
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
+    gap: 0.2rem;
   }
 
-  .field--full {
-    grid-column: 1 / -1;
+  .form-field {
+    position: relative;
   }
 
-  .field span {
-    color: var(--ct-sage-deep);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .field input,
-  .field textarea {
+  .form-field input,
+  .form-field textarea {
     width: 100%;
-    border: 1px solid rgba(111, 125, 103, 0.12);
-    border-radius: 0.95rem;
-    background: rgba(255, 253, 248, 0.68);
-    color: var(--ct-ink);
-    font: inherit;
-    font-size: 0.98rem;
-    line-height: 1.5;
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--type-body);
+    color: var(--color-ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-line-accent);
+    padding: 28px 0 10px;
     outline: none;
-    transition: border-color 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+    transition: border-color 0.4s ease, background 0.3s ease;
+    border-radius: 0;
+    line-height: 1.5;
   }
 
-  .field input {
-    min-height: 3.25rem;
-    padding: 0 1rem;
-  }
-
-  .field textarea {
-    min-height: 9rem;
-    padding: 0.95rem 1rem;
+  .form-field textarea {
     resize: vertical;
+    min-height: 90px;
   }
 
-  .field input:focus,
-  .field textarea:focus {
-    border-color: rgba(111, 125, 103, 0.32);
-    background: rgba(255, 253, 248, 0.94);
-    box-shadow: 0 0 0 0.2rem rgba(111, 125, 103, 0.065);
+  .form-field input:focus,
+  .form-field textarea:focus {
+    border-color: var(--color-accent);
+  }
+
+  .form-field.is-valid input,
+  .form-field.is-valid textarea {
+    border-color: rgba(111, 125, 103, 0.35);
+  }
+
+  .form-field.is-invalid input,
+  .form-field.is-invalid textarea {
+    border-color: rgba(184, 110, 110, 0.45);
+  }
+
+  .form-field label {
+    position: absolute;
+    left: 0;
+    top: 28px;
+    font-size: var(--type-small);
+    font-weight: 300;
+    color: var(--taupe);
+    pointer-events: none;
+    transition: all 0.3s var(--ease-out-expo);
+  }
+
+  .form-field input:focus + label,
+  .form-field input:not(:placeholder-shown) + label,
+  .form-field textarea:focus + label,
+  .form-field textarea:not(:placeholder-shown) + label {
+    top: 0;
+    font-size: var(--type-meta);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .form-field.is-invalid label {
+    color: rgba(184, 110, 110, 0.85);
+  }
+
+  .field-hint {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    font-size: var(--type-caption);
+    font-weight: 300;
+    line-height: 1.5;
+    color: rgba(184, 110, 110, 0.75);
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .form-field.is-invalid .field-hint {
+    max-height: 3rem;
+    padding-top: 0.4rem;
   }
 
   .quiet-list {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     margin-top: clamp(1.15rem, 2vw, 1.65rem);
-    border-block: 1px solid var(--ct-line-soft);
+    border-block: 1px solid var(--color-line-accent-soft);
   }
 
   .quiet-step {
     display: grid;
     gap: 0.5rem;
     padding: clamp(0.82rem, 1.35vw, 1rem);
-    border-right: 1px solid var(--ct-line-soft);
+    border-right: 1px solid var(--color-line-accent-soft);
   }
 
   .quiet-step:last-child {
@@ -431,15 +593,15 @@ const quietSteps = [
   .quiet-step span {
     color: rgba(111, 125, 103, 0.58);
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: var(--type-body);
     font-style: italic;
     line-height: 1;
   }
 
   .quiet-step p {
     margin: 0;
-    color: var(--ct-text);
-    font-size: 0.84rem;
+    color: var(--color-text-secondary);
+    font-size: var(--type-card-body);
     line-height: 1.52;
   }
 
@@ -451,11 +613,11 @@ const quietSteps = [
     margin-top: clamp(1.25rem, 2.4vw, 2rem);
   }
 
-  .form-actions p {
+  .form-actions > p {
     max-width: 15rem;
     margin: 0;
-    color: var(--ct-muted);
-    font-size: 0.82rem;
+    color: var(--color-text-muted);
+    font-size: var(--type-card-body);
     line-height: 1.6;
   }
 
@@ -468,28 +630,115 @@ const quietSteps = [
     padding: 0 1.25rem 0 1.35rem;
     border: 1px solid rgba(86, 100, 90, 0.14);
     border-radius: 999px;
-    background: linear-gradient(135deg, var(--ct-sage-deep), var(--ct-sage));
+    background: linear-gradient(135deg, var(--color-accent-deep), var(--color-accent));
     color: #fbf8f1;
     font: inherit;
-    font-size: 0.86rem;
+    font-size: var(--type-card-body);
     font-weight: 500;
     cursor: pointer;
     box-shadow: 0 0.75rem 1.35rem rgba(86, 100, 90, 0.12);
     transition: transform 0.42s var(--ease-out-expo), box-shadow 0.42s ease, filter 0.28s ease;
+    position: relative;
   }
 
-  .contact-submit:hover {
+  .contact-submit:hover:not(:disabled) {
     transform: translateY(-2px);
     filter: saturate(1.03);
     box-shadow: 0 0.9rem 1.7rem rgba(86, 100, 90, 0.15);
+  }
+
+  .contact-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
   }
 
   .contact-submit svg {
     transition: transform 0.35s var(--ease-out-expo);
   }
 
-  .contact-submit:hover svg {
+  .contact-submit:hover:not(:disabled) svg {
     transform: translateX(0.18rem);
+  }
+
+  .submit-loading,
+  .submit-success {
+    display: none;
+  }
+
+  .contact-submit.is-loading .submit-text,
+  .contact-submit.is-success .submit-text,
+  .contact-submit.is-error .submit-text {
+    display: none;
+  }
+
+  .contact-submit.is-loading .submit-loading,
+  .contact-submit.is-success .submit-success,
+  .contact-submit.is-error .submit-success {
+    display: inline;
+  }
+
+  .contact-submit.is-success {
+    background: linear-gradient(135deg, #65745f, #839079);
+  }
+
+  /* ═══════════════════════════════════════════════════════════
+     FORM FEEDBACK — comforting, not alarming
+     ═══════════════════════════════════════════════════════════ */
+
+  .form-feedback {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s var(--ease-out-expo), padding 0.5s var(--ease-out-expo), opacity 0.4s ease;
+    opacity: 0;
+  }
+
+  .form-feedback.show-success,
+  .form-feedback.show-error {
+    max-height: 6rem;
+    padding-top: 1.2rem;
+    opacity: 1;
+  }
+
+  .feedback-success,
+  .feedback-error {
+    display: none;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0;
+    padding: 0.85rem 1.1rem;
+    border-radius: 1rem;
+    font-size: var(--type-small);
+    line-height: 1.5;
+  }
+
+  .feedback-success {
+    color: var(--color-accent-deep);
+    background: rgba(111, 125, 103, 0.08);
+    border: 1px solid rgba(111, 125, 103, 0.14);
+  }
+
+  .feedback-error {
+    color: rgba(47, 45, 40, 0.78);
+    background: rgba(184, 110, 110, 0.06);
+    border: 1px solid rgba(184, 110, 110, 0.14);
+  }
+
+  .feedback-error a {
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .form-feedback.show-success .feedback-success,
+  .form-feedback.show-error .feedback-error {
+    display: flex;
+  }
+
+  .feedback-success svg,
+  .feedback-error svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
   }
 
   .contact-rail {
@@ -507,7 +756,7 @@ const quietSteps = [
     gap: 0.45rem;
     min-height: 5.4rem;
     padding: clamp(0.95rem, 1.45vw, 1.15rem);
-    border-right: 1px solid var(--ct-line-soft);
+    border-right: 1px solid var(--color-line-accent-soft);
     color: inherit;
     text-decoration: none;
     transition: background 0.35s ease;
@@ -518,7 +767,7 @@ const quietSteps = [
   }
 
   .contact-route span {
-    color: var(--ct-sage);
+    color: var(--color-accent);
     font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.18em;
@@ -526,8 +775,8 @@ const quietSteps = [
   }
 
   .contact-route strong {
-    color: var(--ct-ink);
-    font-size: clamp(0.9rem, 1vw, 0.98rem);
+    color: var(--color-ink);
+    font-size: var(--type-body-sm);
     font-weight: 400;
     line-height: 1.35;
   }
@@ -559,7 +808,7 @@ const quietSteps = [
     }
 
     .contact-route:nth-child(-n + 2) {
-      border-bottom: 1px solid var(--ct-line-soft);
+      border-bottom: 1px solid var(--color-line-accent-soft);
     }
   }
 
@@ -589,13 +838,13 @@ const quietSteps = [
     }
 
     .contact-header h2 {
-      font-size: clamp(2.3rem, 10.5vw, 3.2rem);
+      font-size: var(--type-section-title-sm);
       line-height: 0.98;
       letter-spacing: -0.015em;
     }
 
     .contact-header p {
-      font-size: 0.95rem;
+      font-size: var(--type-body);
       line-height: 1.65;
     }
 
@@ -611,7 +860,7 @@ const quietSteps = [
     }
 
     .portrait-note p {
-      font-size: clamp(1.15rem, 5.5vw, 1.45rem);
+      font-size: var(--type-card-title);
       line-height: 1.15;
     }
 
@@ -625,32 +874,36 @@ const quietSteps = [
     }
 
     .form-head h3 {
-      font-size: clamp(1.9rem, 9vw, 2.8rem);
+      font-size: var(--type-section-title-sm);
     }
 
     .form-head p {
-      font-size: 0.9rem;
+      font-size: var(--type-small);
       line-height: 1.55;
     }
 
-    .form-grid,
+    .form-field input,
+    .form-field textarea {
+      font-size: var(--type-body);
+      padding: 24px 0 8px;
+    }
+
+    .form-field label {
+      top: 24px;
+      font-size: var(--type-caption);
+    }
+
+    .form-field input:focus + label,
+    .form-field input:not(:placeholder-shown) + label,
+    .form-field textarea:focus + label,
+    .form-field textarea:not(:placeholder-shown) + label {
+      top: 0;
+      font-size: var(--type-micro);
+    }
+
     .quiet-list,
     .contact-rail {
       grid-template-columns: 1fr;
-    }
-
-    .field span {
-      font-size: max(0.58rem, 10px);
-    }
-
-    .field input {
-      min-height: 2.9rem;
-      font-size: 0.95rem;
-    }
-
-    .field textarea {
-      min-height: 7rem;
-      font-size: 0.95rem;
     }
 
     .quiet-step,
@@ -659,7 +912,7 @@ const quietSteps = [
     .contact-route:last-child,
     .contact-route:nth-child(-n + 2) {
       border-right: 0;
-      border-bottom: 1px solid var(--ct-line-soft);
+      border-bottom: 1px solid var(--color-line-accent-soft);
     }
 
     .quiet-step:last-child,
@@ -668,10 +921,10 @@ const quietSteps = [
     }
 
     .quiet-step span {
-      font-size: 0.92rem;
+      font-size: var(--type-body-sm);
     }
     .quiet-step p {
-      font-size: 0.82rem;
+      font-size: var(--type-card-body);
       line-height: 1.45;
     }
 
@@ -682,15 +935,15 @@ const quietSteps = [
       margin-top: 1.1rem;
     }
 
-    .form-actions p {
+    .form-actions > p {
       max-width: none;
-      font-size: 0.78rem;
+      font-size: var(--type-caption);
     }
 
     .contact-submit {
       width: 100%;
       min-height: 2.9rem;
-      font-size: max(0.58rem, 10px);
+      font-size: var(--type-meta);
       letter-spacing: 0.16em;
     }
 
@@ -700,7 +953,13 @@ const quietSteps = [
     }
 
     .contact-route strong {
-      font-size: 0.88rem;
+      font-size: var(--type-card-body);
+    }
+
+    .feedback-success,
+    .feedback-error {
+      font-size: var(--type-caption);
+      padding: 0.7rem 0.9rem;
     }
   }
 
@@ -708,9 +967,20 @@ const quietSteps = [
     .portrait-image,
     .contact-submit,
     .contact-submit svg,
-    .contact-route {
+    .contact-route,
+    .form-field input,
+    .form-field textarea,
+    .form-field label,
+    .field-hint,
+    .form-feedback {
       transition: none;
-      transform: none;
+    }
+
+    .form-field input:focus + label,
+    .form-field input:not(:placeholder-shown) + label,
+    .form-field textarea:focus + label,
+    .form-field textarea:not(:placeholder-shown) + label {
+      transition: none;
     }
   }
 </style>

@@ -78,24 +78,14 @@ const steps = [
 
 <style>
   .proceso {
-    --pr-ink: #2f2d28;
-    --pr-text: rgba(47, 45, 40, 0.72);
-    --pr-muted: rgba(47, 45, 40, 0.52);
-    --pr-sage: #6f7d67;
-    --pr-sage-deep: #56645a;
-    --pr-line: rgba(111, 125, 103, 0.17);
-    --pr-warm-line: rgba(184, 168, 138, 0.2);
-    --pr-paper: #fffdf8;
-    --pr-cream: #faf8f2;
-
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: clamp(5.6rem, 7.5vw, 8rem) 0 clamp(5.8rem, 8vw, 8.4rem);
+    padding: var(--section-py) 0 calc(var(--section-py) + 0.4rem);
     background:
       radial-gradient(circle at 16% 8%, rgba(255, 255, 255, 0.9), transparent 30%),
       radial-gradient(circle at 82% 16%, rgba(223, 228, 216, 0.46), transparent 30%),
-      linear-gradient(180deg, var(--parchment) 0%, var(--pr-cream) 68%, #f3efe7 100%);
+      linear-gradient(180deg, var(--color-surface-elevated) 0%, var(--color-surface) 68%, #f3efe7 100%);
   }
 
   .proceso::before {
@@ -128,7 +118,7 @@ const steps = [
     align-items: center;
     justify-content: center;
     gap: 0.78rem;
-    color: var(--pr-sage);
+    color: var(--color-accent);
     font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.24em;
@@ -146,9 +136,9 @@ const steps = [
   .process-header h2 {
     max-width: 48rem;
     margin: 1rem auto 1rem;
-    color: var(--pr-ink);
+    color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: clamp(2.8rem, 5.8vw, 5.2rem);
+    font-size: var(--type-section-title);
     font-style: italic;
     font-weight: 300;
     line-height: 1;
@@ -159,8 +149,8 @@ const steps = [
   .process-header p {
     max-width: 39rem;
     margin: 0 auto;
-    color: var(--pr-text);
-    font-size: clamp(1rem, 1.25vw, 1.08rem);
+    color: var(--color-text-secondary);
+    font-size: var(--type-lead);
     line-height: 1.78;
     text-wrap: pretty;
   }
@@ -174,7 +164,6 @@ const steps = [
       linear-gradient(180deg, rgba(255, 253, 248, 0.72), rgba(250, 248, 242, 0.52)),
       radial-gradient(circle at 50% 0%, rgba(223, 228, 216, 0.3), transparent 54%);
     box-shadow: 0 1.4rem 3rem rgba(57, 54, 48, 0.045);
-    backdrop-filter: blur(10px);
   }
 
   .process-track {
@@ -213,9 +202,9 @@ const steps = [
     border: 1px solid rgba(111, 125, 103, 0.28);
     border-radius: 999px;
     background: #fffdf8;
-    color: var(--pr-sage-deep);
+    color: var(--color-accent-deep);
     font-family: var(--font-display);
-    font-size: 0.92rem;
+    font-size: var(--type-body-sm);
     font-style: italic;
     line-height: 1;
     box-shadow: 0 0 0 0.45rem rgba(255, 253, 248, 0.84);
@@ -278,7 +267,7 @@ const steps = [
     margin-bottom: clamp(1.25rem, 2vw, 1.7rem);
     color: rgba(184, 168, 138, 0.92);
     font-family: var(--font-display);
-    font-size: 1.08rem;
+    font-size: var(--type-card-title-sm);
     font-style: italic;
     font-weight: 300;
     line-height: 1;
@@ -286,9 +275,9 @@ const steps = [
 
   .process-step h3 {
     margin: 0 0 0.75rem;
-    color: var(--pr-ink);
+    color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: clamp(1.55rem, 2.2vw, 2.2rem);
+    font-size: var(--type-subsection-title);
     font-style: italic;
     font-weight: 300;
     line-height: 1.08;
@@ -298,8 +287,8 @@ const steps = [
   .process-step p {
     max-width: 25ch;
     margin: 0;
-    color: var(--pr-muted);
-    font-size: 0.92rem;
+    color: var(--color-text-muted);
+    font-size: var(--type-body-sm);
     line-height: 1.68;
     text-wrap: pretty;
   }
@@ -316,8 +305,8 @@ const steps = [
 
   .process-close p {
     margin: 0;
-    color: var(--pr-text);
-    font-size: 0.98rem;
+    color: var(--color-text-secondary);
+    font-size: var(--type-body);
     line-height: 1.7;
   }
 
@@ -333,7 +322,7 @@ const steps = [
     border-radius: 999px;
     background: linear-gradient(180deg, rgba(111, 125, 103, 0.96), rgba(86, 100, 90, 0.96));
     color: #fbf8f1;
-    font-size: 0.72rem;
+    font-size: var(--type-caption);
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -405,13 +394,13 @@ const steps = [
     }
 
     .process-header h2 {
-      font-size: clamp(2.4rem, 11vw, 3.6rem);
+      font-size: var(--type-section-title-sm);
       line-height: 1.02;
       letter-spacing: -0.02em;
     }
 
     .process-header p {
-      font-size: 0.95rem;
+      font-size: var(--type-body);
       line-height: 1.65;
     }
 
@@ -438,17 +427,17 @@ const steps = [
 
     .process-step__num {
       margin-bottom: 0.7rem;
-      font-size: 0.95rem;
+      font-size: var(--type-body);
     }
 
     .process-step h3 {
-      font-size: clamp(1.35rem, 5vw, 1.7rem);
+      font-size: var(--type-card-title);
       margin-bottom: 0.55rem;
     }
 
     .process-step p {
       max-width: none;
-      font-size: 0.86rem;
+      font-size: var(--type-card-body);
       line-height: 1.58;
     }
 
@@ -461,7 +450,7 @@ const steps = [
     }
 
     .process-close p {
-      font-size: 0.92rem;
+      font-size: var(--type-body-sm);
       line-height: 1.6;
     }
 
@@ -469,7 +458,7 @@ const steps = [
       width: 100%;
       margin-top: 1rem;
       min-height: 2.8rem;
-      font-size: max(0.58rem, 10px);
+      font-size: var(--type-meta);
       letter-spacing: 0.16em;
     }
   }

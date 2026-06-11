@@ -54,7 +54,7 @@ const h = height || 'clamp(48px, 6vw, 96px)';
     <path
       d={path}
       fill={toColor}
-      opacity="0.04"
+      opacity="0.02"
       filter={`url(#blur-${variant})`}
       transform="translate(0, 6)"
       class="divider-layer divider-layer--shadow"
@@ -64,7 +64,7 @@ const h = height || 'clamp(48px, 6vw, 96px)';
     <path
       d={path}
       fill={toColor}
-      opacity="0.07"
+      opacity="0.035"
       filter={`url(#blur-${variant})`}
       transform="translate(0, 2)"
       class="divider-layer divider-layer--mid"
@@ -82,8 +82,8 @@ const h = height || 'clamp(48px, 6vw, 96px)';
       d={path}
       fill="none"
       stroke="currentColor"
-      stroke-width="0.5"
-      opacity="0.06"
+      stroke-width="0.3"
+      opacity="0.03"
       class="divider-layer divider-layer--stroke"
     />
   </svg>
@@ -107,7 +107,7 @@ const h = height || 'clamp(48px, 6vw, 96px)';
     line-height: 0;
     z-index: 2;
     pointer-events: none;
-    color: var(--earth);
+    color: var(--color-line-gold);
   }
   .flip {
     transform: rotate(180deg);
@@ -168,26 +168,26 @@ const h = height || 'clamp(48px, 6vw, 96px)';
   .divider-dot {
     position: absolute;
     border-radius: 50%;
-    background: var(--earth);
+    background: var(--gold);
     will-change: transform;
   }
   .divider-dot--1 {
-    width: 4px; height: 4px;
+    width: 3px; height: 3px;
     top: 30%; left: 15%;
-    opacity: 0.08;
+    opacity: 0.035;
     animation: float-gentle 10s ease-in-out infinite;
   }
   .divider-dot--2 {
-    width: 3px; height: 3px;
+    width: 2px; height: 2px;
     top: 60%; right: 20%;
-    opacity: 0.06;
+    opacity: 0.025;
     animation: float-gentle-reverse 12s ease-in-out infinite;
     animation-delay: -3s;
   }
   .divider-dot--3 {
-    width: 5px; height: 5px;
+    width: 4px; height: 4px;
     top: 45%; left: 60%;
-    opacity: 0.05;
+    opacity: 0.02;
     animation: float-gentle 14s ease-in-out infinite;
     animation-delay: -6s;
   }

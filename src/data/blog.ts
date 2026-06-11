@@ -21,6 +21,28 @@ export interface BlogArticle {
   keywords: string[];
 }
 
+const articleImageUrls: Record<string, string> = {
+  'emdr-cordoba':
+    'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&auto=format&fit=crop&crop=entropy',
+  'duelo-perdida-cordoba':
+    'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&auto=format&fit=crop&crop=entropy',
+  'mindfulness-regulacion-cordoba':
+    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&auto=format&fit=crop&crop=entropy',
+  'ansiedad-cordoba':
+    'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&auto=format&fit=crop&crop=entropy',
+  'primera-consulta-cordoba':
+    'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&auto=format&fit=crop&crop=entropy',
+  'autoestima-cordoba':
+    'https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&auto=format&fit=crop&crop=entropy',
+};
+
+export function getArticleImage(slug: string, width = 1400, height = 980): string {
+  const fallback =
+    'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&auto=format&fit=crop&crop=entropy';
+
+  return `${articleImageUrls[slug] ?? fallback}&w=${width}&h=${height}`;
+}
+
 export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   // Article 1 — EMDR

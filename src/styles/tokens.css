@@ -1,0 +1,241 @@
+/* ════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — Lucía Millán Jiménez
+   Semantic color system. One source of truth for all components.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── Primitive colors ──────────────────────────────────────── */
+:root {
+  /* Ink family — warm, not pure black */
+  --p-ink: #2f2d28;
+  --p-ink-soft: #49463f;
+  --p-ink-muted: #5c5850;
+  --p-ink-faint: #706d65;
+
+  /* Surface family — warm cream/parchment */
+  --p-cream: #f5f0e8;
+  --p-cream-warm: #ede7dc;
+  --p-parchment: #faf8f3;
+  --p-paper: #f6f3ee;
+  --p-white-warm: #fdfbf7;
+
+  /* Accent family — sage / earth */
+  --p-sage: #6f7d67;
+  --p-sage-deep: #56645a;
+  --p-sage-soft: #dfe4d8;
+  --p-sage-pale: #eef1ea;
+  --p-earth: #6b7d6a;
+  --p-earth-light: #8a9a89;
+
+  /* Gold family — warm metallic */
+  --p-gold: #b8a88a;
+  --p-gold-soft: rgba(184, 168, 138, 0.12);
+
+  /* Line / border family */
+  --p-line: #e5dfd4;
+  --p-line-sage: rgba(168, 169, 158, 0.3);
+
+  /* Dark surface family */
+  --p-dark: #1a1512;
+  --p-dark-wash: #0c0907;
+  --p-dark-overlay: rgba(12, 9, 7, 0.96);
+
+  /* Light on dark */
+  --p-light: #f5f0e8;
+  --p-light-soft: rgba(245, 240, 232, 0.76);
+  --p-light-muted: rgba(245, 240, 232, 0.70);
+  --p-light-faint: rgba(245, 240, 232, 0.50);
+}
+
+/* ── Shorthand aliases (used throughout codebase) ───────────── */
+:root {
+  --cream: var(--p-cream);
+  --cream-warm: var(--p-cream-warm);
+  --parchment: var(--p-parchment);
+  --paper: var(--p-paper);
+  --white-warm: var(--p-white-warm);
+  --ink: var(--p-ink);
+  --ink-soft: var(--p-ink-soft);
+  --ink-muted: var(--p-ink-muted);
+  --ink-faint: var(--p-ink-faint);
+  --sage: var(--p-sage);
+  --sage-deep: var(--p-sage-deep);
+  --sage-soft: var(--p-sage-soft);
+  --sage-pale: var(--p-sage-pale);
+  --sage-muted: rgba(111, 125, 103, 0.35);
+  --sage-dark: var(--p-sage-deep);
+  --earth: var(--p-earth);
+  --earth-light: var(--p-earth-light);
+  --gold: var(--p-gold);
+  --gold-soft: var(--p-gold-soft);
+  --taupe: #9e9488;
+  --taupe-dark: #7a7166;
+  --line: var(--p-line);
+  --line-sage: var(--p-line-sage);
+}
+
+/* ── Semantic tokens (light surface) ────────────────────────── */
+:root {
+  --color-ink: var(--p-ink);
+  --color-ink-soft: var(--p-ink-soft);
+  --color-ink-muted: var(--p-ink-muted);
+  --color-ink-faint: var(--p-ink-faint);
+
+  --color-surface: var(--p-cream);
+  --color-surface-warm: var(--p-cream-warm);
+  --color-surface-elevated: var(--p-parchment);
+  --color-surface-paper: var(--p-paper);
+  --color-surface-white: var(--p-white-warm);
+
+  --color-accent: var(--p-sage);
+  --color-accent-deep: var(--p-sage-deep);
+  --color-accent-soft: var(--p-sage-soft);
+  --color-accent-pale: var(--p-sage-pale);
+
+  --color-gold: var(--p-gold);
+  --color-gold-soft: var(--p-gold-soft);
+
+  --color-line: var(--p-line);
+  --color-line-sage: var(--p-line-sage);
+  --color-line-accent: rgba(111, 125, 103, 0.18);
+  --color-line-accent-soft: rgba(111, 125, 103, 0.10);
+  --color-line-gold: rgba(184, 168, 138, 0.20);
+  --color-line-gold-soft: rgba(184, 168, 138, 0.12);
+
+  /* Text contrast-safe values */
+  --color-text-primary: var(--p-ink);
+  --color-text-secondary: var(--p-ink-soft);
+  --color-text-muted: var(--p-ink-muted);   /* ≥4.5:1 on cream */
+  --color-text-faint: var(--p-ink-faint);   /* ≥3:1 on cream */
+  --color-text-placeholder: var(--p-ink-muted); /* same as muted */
+
+  /* Background contrast-safe */
+  --color-bg: var(--p-cream);
+  --color-bg-warm: var(--p-cream-warm);
+  --color-bg-elevated: var(--p-parchment);
+}
+
+/* ── Semantic tokens (dark surface) ─────────────────────────── */
+[data-surface="dark"],
+.dark-surface {
+  --color-ink: var(--p-light);
+  --color-ink-soft: var(--p-light-soft);
+  --color-ink-muted: var(--p-light-muted);
+  --color-ink-faint: var(--p-light-faint);
+
+  --color-surface: var(--p-dark);
+  --color-surface-warm: var(--p-dark-wash);
+  --color-surface-elevated: var(--p-dark);
+  --color-surface-paper: var(--p-dark);
+  --color-surface-white: var(--p-dark);
+
+  --color-accent: var(--p-gold);
+  --color-accent-deep: var(--p-gold);
+  --color-accent-soft: rgba(196, 170, 148, 0.15);
+  --color-accent-pale: rgba(196, 170, 148, 0.08);
+
+  --color-gold: var(--p-gold);
+  --color-gold-soft: var(--p-gold-soft);
+
+  --color-line: rgba(196, 170, 148, 0.10);
+  --color-line-sage: rgba(111, 125, 103, 0.12);
+  --color-line-accent: rgba(196, 170, 148, 0.18);
+  --color-line-accent-soft: rgba(196, 170, 148, 0.09);
+  --color-line-gold: rgba(196, 170, 148, 0.15);
+  --color-line-gold-soft: rgba(196, 170, 148, 0.08);
+
+  --color-text-primary: var(--p-light);
+  --color-text-secondary: var(--p-light-soft);
+  --color-text-muted: var(--p-light-muted);
+  --color-text-faint: var(--p-light-faint);
+  --color-text-placeholder: var(--p-light-muted);
+
+  --color-bg: var(--p-dark);
+  --color-bg-warm: var(--p-dark-wash);
+  --color-bg-elevated: var(--p-dark);
+}
+
+/* ── Component-specific tokens (light) ──────────────────────── */
+:root {
+  /* Section shell — rhythm scale */
+  --section-py: clamp(5.5rem, 8vw, 8rem);
+  --section-py--compact: clamp(4.5rem, 7vw, 7rem);
+  --section-py--generous: clamp(6.5rem, 9vw, 10rem);
+  --section-py--spacious: clamp(6rem, 9vw, 9.5rem);
+  --section-padding-x: clamp(1rem, 4vw, 4.25rem);
+
+  /* Typography */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  /* Type scale — semantic roles used by every component */
+  --type-hero: clamp(2.6rem, 7vw, 5.5rem);
+  --type-page-title: clamp(2.35rem, 5.2vw, 4.2rem);
+  --type-section-title: clamp(2.55rem, 5.8vw, 5.1rem);
+  --type-section-title-sm: clamp(2.05rem, 4vw, 3.4rem);
+  --type-panel-title: clamp(1.95rem, 3vw, 3.05rem);
+  --type-subsection-title: clamp(1.48rem, 2.2vw, 2.15rem);
+  --type-card-title-lg: clamp(1.6rem, 2.7vw, 2.45rem);
+  --type-card-title: clamp(1.22rem, 1.75vw, 1.55rem);
+  --type-card-title-sm: 1.08rem;
+  --type-kicker: clamp(1.12rem, 1.8vw, 1.45rem);
+  --type-lead: clamp(1rem, 1.3vw, 1.12rem);
+  --type-body: 1rem;
+  --type-body-sm: 0.92rem;
+  --type-small: 0.9rem;
+  --type-card-body: 0.88rem;
+  --type-caption: 0.8rem;
+  --type-meta: max(0.64rem, 10px);
+  --type-micro: max(0.55rem, 9px);
+  --type-eyebrow: max(0.68rem, 11px);
+  --type-label: max(0.64rem, 10px);
+  --type-decorative-lg: clamp(3.4rem, 8vw, 8rem);
+  --type-decorative-xl: clamp(5.5rem, 13vw, 11rem);
+
+  /* Leading */
+  --leading-title: 1.08;
+  --leading-copy: 1.7;
+  --leading-tight: 1.05;
+  --leading-comfort: 1.78;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 0.3s;
+  --duration-base: 0.5s;
+  --duration-slow: 0.8s;
+  --duration-reveal: 1.1s;
+
+  /* Shadow */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(47, 45, 40, 0.06);
+  --shadow-lg: 0 12px 32px rgba(47, 45, 40, 0.08);
+  --shadow-xl: 0 24px 48px rgba(47, 45, 40, 0.10);
+}
+
+/* ── Shell / Navigation ─────────────────────────────────────── */
+:root {
+  --site-header-height: 0px;
+}
+
+/* ── Z-index scale ──────────────────────────────────────────── */
+:root {
+  --z-grain: 0;
+  --z-grain-overlay: 950;
+  --z-ambient: 1;
+  --z-float: 2;
+  --z-content: 3;
+  --z-nav: 900;
+  --z-overlay: 901;
+  --z-trigger: 902;
+  --z-toast: 1000;
+  --z-tooltip: 1001;
+}

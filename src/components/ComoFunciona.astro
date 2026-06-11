@@ -112,7 +112,7 @@ const pasos = [
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(8rem, 24vw, 18rem);
+    font-size: var(--type-decorative-xl);
     color: var(--earth);
     opacity: 0.015;
     line-height: 1;
@@ -142,12 +142,14 @@ const pasos = [
     top: 0;
     left: 0;
     width: 100%;
-    height: 0%;
+    height: 100%;
+    transform: scaleY(0);
+    transform-origin: top;
     background: linear-gradient(180deg, var(--sage-dark) 0%, transparent 100%);
-    transition: height 1.5s var(--ease-out-expo);
+    transition: transform 1.5s var(--ease-out-expo);
   }
   .como-funciona.visible .cf-timeline-progress {
-    height: 100%;
+    transform: scaleY(1);
   }
 
   .cf-steps {
@@ -263,7 +265,7 @@ const pasos = [
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: 3.5rem;
+    font-size: var(--type-decorative-lg);
     color: var(--earth);
     opacity: 0.08;
     line-height: 1;
@@ -284,7 +286,7 @@ const pasos = [
 
   .cf-card-label {
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -296,7 +298,7 @@ const pasos = [
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 400;
-    font-size: clamp(1.4rem, 2vw, 1.8rem);
+    font-size: var(--type-subsection-title);
     color: var(--ink);
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -310,7 +312,7 @@ const pasos = [
   .cf-card-desc {
     font-family: var(--font-body);
     font-weight: 300;
-    font-size: 0.9rem;
+    font-size: var(--type-small);
     line-height: 1.7;
     color: var(--ink-soft);
     opacity: 0.8;
@@ -359,10 +361,10 @@ const pasos = [
       padding: 2rem 1.5rem;
     }
     .cf-card-num {
-      font-size: 2.5rem;
+      font-size: var(--type-section-title-sm);
     }
     .cf-card-title {
-      font-size: 1.3rem;
+      font-size: var(--type-card-title);
     }
     .cf-steps {
       gap: 2.5rem;

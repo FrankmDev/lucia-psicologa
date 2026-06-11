@@ -6,7 +6,7 @@ import GrainOverlay from './ui/GrainOverlay.astro';
 import AmbientLight from './ui/AmbientLight.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 
-const portraitImage = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=980&auto=format&fit=crop";
+import portraitImage from '../assets/about.avif';
 
 const credentials = [
   'Psicóloga clínica colegiada',
@@ -50,10 +50,9 @@ const values = [
         <div class="sm-panel__mark" aria-hidden="true">L</div>
         <div class="sm-panel__visual">
           <figure class="sm-portrait">
-            <img src={portraitImage} alt="Lucía Millán Jiménez, psicóloga clínica" width="980" height="1307" sizes="(max-width: 960px) 72vw, 360px" decoding="async" loading="lazy" />
+            <img src={portraitImage.src} alt="Lucía Millán Jiménez, psicóloga clínica" width={portraitImage.width} height={portraitImage.height} sizes="(max-width: 960px) 72vw, 360px" decoding="async" loading="lazy" />
             <figcaption>
               <span>Lucía Millán Jiménez</span>
-              <small>Psicóloga clínica</small>
             </figcaption>
           </figure>
 
@@ -62,10 +61,7 @@ const values = [
         <div class="sm-panel__content">
           <span class="sm-label">Conoce a Lucía</span>
           <p class="sm-lead">
-            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada. Entiendo la terapia como un proceso profundamente personalizado, sin soluciones únicas ni procesos estándar. Cada persona llega con una mochila diferente, por lo que adapto siempre la intervención a tus necesidades, tu momento vital y tus objetivos específicos.
-          </p>
-          <p>
-            Mi estilo es cercano, empático y colaborativo. Combino de forma estratégica la Terapia Cognitivo-Conductual (TCC), la Terapia de Aceptación y Compromiso (ACT), la Terapia Focalizada en la Emoción (TFE) y técnicas psicosomáticas, integrando siempre el trabajo mente-cuerpo para lograr una regulación emocional profunda.
+            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada. Cada persona necesita una mirada diferente, por eso adapto cada intervención a lo que te ocurre ahora. Combino TCC, ACT, TFE y trabajo psicosomático para ayudarte a sentirte mejor y recuperar el rumbo.
           </p>
 
           <ul class="sm-credentials" aria-label="Credenciales y modalidad">
@@ -107,28 +103,15 @@ const values = [
 
 <style>
   .sobre-mi {
-    --sm-ink: #2f2d28;
-    --sm-text: #49463f;
-    --sm-muted: #706d65;
-    --sm-sage: #6f7d67;
-    --sm-sage-soft: #dfe4d8;
-    --sm-sage-pale: #eef1ea;
-    --sm-paper: #fffdf8;
-    --sm-cream: #faf8f2;
-    --sm-line: rgba(111, 125, 103, 0.18);
-    --sm-hairline: rgba(184, 168, 138, 0.22);
-    --sm-soft-shadow: rgba(57, 54, 48, 0.05);
-    --sm-warm-line: rgba(184, 168, 138, 0.16);
-
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: clamp(5.8rem, 8vw, 8.5rem) 0 clamp(6.4rem, 8vw, 9.2rem);
+    padding: var(--section-py) 0 calc(var(--section-py) + 1rem);
     background:
       radial-gradient(circle at 14% 8%, rgba(255, 255, 255, 0.95), transparent 30%),
       radial-gradient(circle at 82% 12%, rgba(223, 228, 216, 0.58), transparent 32%),
       radial-gradient(circle at 72% 76%, rgba(184, 168, 138, 0.11), transparent 30%),
-      linear-gradient(180deg, #fffdfa 0%, var(--sm-cream) 58%, #f4f1e9 100%);
+      linear-gradient(180deg, #fffdfa 0%, var(--color-surface-elevated) 58%, #f4f1e9 100%);
   }
 
   .sobre-mi::before {
@@ -161,7 +144,7 @@ const values = [
     align-items: center;
     justify-content: center;
     gap: 0.78rem;
-    color: var(--sm-sage);
+    color: var(--color-accent);
     font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.24em;
@@ -181,20 +164,20 @@ const values = [
     max-width: 52rem;
     margin: 1rem auto 1rem;
     font-family: var(--font-display);
-    font-size: clamp(2.75rem, 6.5vw, 5.35rem);
+    font-size: var(--type-section-title);
     font-style: italic;
     font-weight: 300;
     line-height: 1;
-    letter-spacing: -0.045em;
-    color: var(--sm-ink);
+    letter-spacing: -0.04em;
+    color: var(--color-ink);
     text-wrap: balance;
   }
 
   .sm-header p {
     max-width: 42rem;
     margin: 0 auto;
-    color: var(--sm-muted);
-    font-size: clamp(1rem, 1.35vw, 1.12rem);
+    color: var(--color-text-muted);
+    font-size: var(--type-lead);
     line-height: 1.78;
     text-wrap: pretty;
   }
@@ -204,7 +187,7 @@ const values = [
     display: grid;
     grid-template-columns: minmax(22rem, 0.78fr) minmax(0, 1.22fr);
     gap: clamp(2rem, 4vw, 4.8rem);
-    align-items: center;
+    align-items: stretch;
     padding: clamp(1.1rem, 2.4vw, 2rem);
     border-block: 1px solid rgba(111, 125, 103, 0.16);
     border-radius: 0;
@@ -240,7 +223,7 @@ const values = [
     top: clamp(0.7rem, 1.7vw, 1.2rem);
     z-index: 0;
     font-family: var(--font-display);
-    font-size: clamp(5.5rem, 12vw, 9.5rem);
+    font-size: var(--type-decorative-xl);
     font-style: italic;
     font-weight: 300;
     line-height: 1;
@@ -258,13 +241,14 @@ const values = [
     display: flex;
     align-items: stretch;
     justify-content: center;
+    height: 100%;
     min-height: clamp(30rem, 38vw, 36rem);
     padding: clamp(1.1rem, 2.4vw, 2rem);
     overflow: visible;
     background:
       radial-gradient(circle at 74% 16%, rgba(255, 255, 255, 0.55), transparent 26%),
       linear-gradient(135deg, rgba(255, 253, 248, 0.38), transparent 42%),
-      linear-gradient(180deg, var(--sm-sage-pale), #d7decf);
+      linear-gradient(180deg, var(--color-accent-pale), #d7decf);
     box-shadow:
       inset 0 0 0 1px rgba(111, 125, 103, 0.12),
       0 18px 44px rgba(57, 54, 48, 0.045);
@@ -298,6 +282,7 @@ const values = [
     position: relative;
     width: 100%;
     max-width: none;
+    height: 100%;
     min-height: 100%;
     margin: 0;
     transform: none;
@@ -321,8 +306,6 @@ const values = [
   .sm-portrait img {
     width: 100%;
     height: 100%;
-    aspect-ratio: 0.76;
-    min-height: clamp(28rem, 36vw, 34rem);
     object-fit: cover;
     object-position: center top;
     border-radius: inherit;
@@ -335,32 +318,23 @@ const values = [
     right: clamp(0.85rem, 1.8vw, 1.1rem);
     bottom: clamp(0.85rem, 1.8vw, 1.1rem);
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.75rem;
+    align-items: center;
+    justify-content: center;
     padding: 0.72rem 0.84rem;
     border: 1px solid rgba(255, 253, 248, 0.32);
     border-radius: 999px;
-    background: rgba(245, 240, 232, 0.78);
-    backdrop-filter: blur(14px);
+    background: rgba(245, 240, 232, 0.92);
   }
 
   .sm-portrait figcaption span {
+    display: block;
+    width: 100%;
+    text-align: center;
     font-family: var(--font-display);
-    font-size: clamp(1.12rem, 1.7vw, 1.36rem);
+    font-size: var(--type-kicker);
     font-style: italic;
     font-weight: 300;
     color: rgba(47, 45, 40, 0.9);
-  }
-
-  .sm-portrait figcaption small {
-    color: rgba(73, 70, 63, 0.62);
-    font-size: 0.52rem;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    line-height: 1.35;
-    text-transform: uppercase;
-    white-space: nowrap;
   }
 
   .sm-panel__content {
@@ -376,8 +350,8 @@ const values = [
 
   .sm-panel__content p {
     margin: 0;
-    color: var(--sm-text);
-    font-size: clamp(0.98rem, 1.05vw, 1.04rem);
+    color: var(--color-text-secondary);
+    font-size: var(--type-body);
     line-height: 1.84;
     text-wrap: pretty;
   }
@@ -388,7 +362,7 @@ const values = [
 
   .sm-lead {
     font-family: var(--font-display);
-    font-size: clamp(1.28rem, 1.95vw, 1.64rem) !important;
+    font-size: var(--type-card-title) !important;
     font-style: italic;
     font-weight: 300;
     line-height: 1.52 !important;
@@ -396,7 +370,7 @@ const values = [
   }
 
   .sm-lead strong {
-    color: var(--sm-sage);
+    color: var(--color-accent);
     font-weight: 500;
   }
 
@@ -419,7 +393,7 @@ const values = [
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.62), rgba(250, 248, 242, 0.38));
     color: #5d6258;
-    font-size: 0.56rem;
+    font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.14em;
     line-height: 1.4;
@@ -429,17 +403,15 @@ const values = [
   .sm-quote {
     margin: clamp(1.6rem, 3vw, 2.2rem) 0 0;
     padding: clamp(1.05rem, 2.4vw, 1.45rem) clamp(1.05rem, 2.4vw, 1.5rem);
-    border-left: 2px solid rgba(111, 125, 103, 0.3);
-    border-radius: 0 1.1rem 1.1rem 0;
+    border-radius: 1.1rem;
     background:
-      linear-gradient(90deg, rgba(223, 228, 216, 0.58), rgba(255, 255, 255, 0)),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.56), rgba(255, 255, 255, 0));
+      linear-gradient(180deg, rgba(223, 228, 216, 0.45), rgba(255, 255, 255, 0.32));
   }
 
   .sm-quote p {
     margin: 0;
     font-family: var(--font-display);
-    font-size: clamp(1.18rem, 1.75vw, 1.46rem);
+    font-size: var(--type-card-title);
     font-style: italic;
     font-weight: 300;
     line-height: 1.45;
@@ -492,7 +464,7 @@ const values = [
   }
 
   .sm-link:hover {
-    color: var(--sm-sage);
+    color: var(--color-accent);
     letter-spacing: 0.23em;
   }
 
@@ -533,7 +505,7 @@ const values = [
     display: inline-flex;
     margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
     font-family: var(--font-display);
-    font-size: 1rem;
+    font-size: var(--type-body);
     font-style: italic;
     color: rgba(111, 125, 103, 0.72);
   }
@@ -541,7 +513,7 @@ const values = [
   .sm-value h3 {
     margin: 0 0 0.48rem;
     font-family: var(--font-display);
-    font-size: clamp(1.28rem, 1.9vw, 1.58rem);
+    font-size: var(--type-card-title);
     font-style: italic;
     font-weight: 300;
     line-height: 1.1;
@@ -551,7 +523,7 @@ const values = [
   .sm-value p {
     margin: 0;
     color: #5f5c55;
-    font-size: 0.88rem;
+    font-size: var(--type-card-body);
     line-height: 1.68;
   }
 
@@ -583,8 +555,6 @@ const values = [
     }
 
     .sm-quote {
-      border-left: 0;
-      border-top: 1px solid rgba(111, 125, 103, 0.2);
       border-radius: 1rem;
       background: rgba(223, 228, 216, 0.3);
     }
@@ -606,13 +576,13 @@ const values = [
     }
 
     .sm-header h2 {
-      font-size: clamp(2.4rem, 11vw, 3.8rem);
+      font-size: var(--type-section-title);
       line-height: 1.02;
       letter-spacing: -0.03em;
     }
 
     .sm-header p {
-      font-size: 0.95rem;
+      font-size: var(--type-body);
       line-height: 1.65;
     }
 
@@ -642,19 +612,16 @@ const values = [
     }
 
     .sm-portrait figcaption {
-      align-items: flex-start;
+      align-items: center;
       flex-direction: column;
-      gap: 0.05rem;
       padding: 0.55rem 0.7rem;
       border-radius: 999px;
     }
 
     .sm-portrait figcaption span {
-      font-size: 1rem;
-    }
-    .sm-portrait figcaption small {
-      font-size: 0.48rem;
-      letter-spacing: 0.16em;
+      width: 100%;
+      text-align: center;
+      font-size: var(--type-body);
     }
 
     .sm-panel__content {
@@ -662,12 +629,12 @@ const values = [
     }
 
     .sm-lead {
-      font-size: 1.15rem !important;
+      font-size: var(--type-card-title-sm) !important;
       line-height: 1.45 !important;
     }
 
     .sm-panel__content p {
-      font-size: 0.92rem;
+      font-size: var(--type-body-sm);
       line-height: 1.72;
     }
 
@@ -681,7 +648,7 @@ const values = [
       width: 100%;
       min-height: 2.4rem;
       text-align: center;
-      font-size: 0.52rem;
+      font-size: var(--type-meta);
       letter-spacing: 0.12em;
     }
 
@@ -696,7 +663,7 @@ const values = [
       width: 100%;
       min-height: 2.9rem;
       padding: 0.9rem 1.4rem;
-      font-size: max(0.58rem, 10px);
+      font-size: var(--type-meta);
       letter-spacing: 0.16em;
     }
 
@@ -704,7 +671,7 @@ const values = [
       justify-content: center;
       width: 100%;
       min-height: 2.8rem;
-      font-size: max(0.58rem, 10px);
+      font-size: var(--type-meta);
       letter-spacing: 0.18em;
     }
 
@@ -719,13 +686,13 @@ const values = [
     }
     .sm-value span {
       margin-bottom: 1.1rem;
-      font-size: 0.92rem;
+      font-size: var(--type-body-sm);
     }
     .sm-value h3 {
-      font-size: 1.18rem;
+      font-size: var(--type-card-title);
     }
     .sm-value p {
-      font-size: 0.86rem;
+      font-size: var(--type-card-body);
       line-height: 1.62;
     }
   }

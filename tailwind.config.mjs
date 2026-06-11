@@ -8,29 +8,37 @@ export default {
       colors: {
         cream: {
           DEFAULT: '#F5F0E8',
-          warm: '#FDFAF5',
+          warm: '#EDE7DC',
+          white: '#FDFBF7',
         },
         taupe: {
-          DEFAULT: '#9E8272',
-          light: '#C4AA94',
-          deep: '#7A6255',
+          DEFAULT: '#9E9488',
+          light: '#C4C5BA',
+          deep: '#7A7166',
         },
         ink: {
-          DEFAULT: '#2A1F1A',
+          DEFAULT: '#2f2d28',
+          soft: '#49463f',
+          muted: '#5c5850',
         },
         mint: {
           DEFAULT: '#7DD4CC',
         },
-        line: {
-          DEFAULT: '#DDD5C8',
+        sage: {
+          DEFAULT: '#6f7d67',
+          deep: '#56645a',
+          soft: '#dfe4d8',
         },
-        pill: {
-          DEFAULT: '#EDE4D8',
+        line: {
+          DEFAULT: '#E5DFD4',
+        },
+        gold: {
+          DEFAULT: '#B8A88A',
         },
       },
       fontFamily: {
-        display: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
-        body: ['DM Sans', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Cormorant Garamond', 'Georgia', 'serif'],
+        body: ['DM Sans', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         'organic': '12px 2px 12px 2px',

@@ -10,33 +10,33 @@ import AmbientLight from './ui/AmbientLight.astro';
 const faqs = [
   {
     k: 'Sesiones',
-    q: 'Cuanto dura una sesion de terapia?',
-    a: 'Las sesiones individuales tienen una duracion aproximada de 50 a 55 minutos. En terapia de pareja, la sesion puede extenderse hasta 75 minutos para dar espacio a ambas partes.',
+    q: '¿Cuánto dura una sesión de terapia?',
+    a: 'Las sesiones individuales tienen una duración aproximada de 50 a 55 minutos. En terapia de pareja, la sesión puede extenderse hasta 75 minutos para dar espacio a ambas partes.',
   },
   {
     k: 'Modalidad',
-    q: 'Ofreces terapia online?',
-    a: 'Si, ofrezco sesiones online a traves de una plataforma segura y encriptada. La experiencia mantiene el mismo cuidado clinico y la misma estructura que una sesion presencial.',
+    q: '¿Ofreces terapia online?',
+    a: 'Sí, ofrezco sesiones online a través de una plataforma segura y encriptada. La experiencia mantiene el mismo cuidado clínico y la misma estructura que una sesión presencial.',
   },
   {
     k: 'Frecuencia',
-    q: 'Con que frecuencia debo acudir?',
-    a: 'Lo habitual es empezar con una sesion semanal. Esa continuidad ayuda a profundizar, sostener el proceso y revisar con calma lo que va ocurriendo entre encuentros.',
+    q: '¿Con qué frecuencia debo acudir?',
+    a: 'Lo habitual es empezar con una sesión semanal. Esa continuidad ayuda a profundizar, sostener el proceso y revisar con calma lo que va ocurriendo entre encuentros.',
   },
   {
     k: 'Proceso',
-    q: 'Cuanto tiempo dura un proceso terapeutico?',
-    a: 'Depende de tus objetivos, del momento vital y de la complejidad de lo que estes atravesando. Algunas personas encuentran alivio en pocas sesiones y otras prefieren un acompanamiento mas largo.',
+    q: '¿Cuánto tiempo dura un proceso terapéutico?',
+    a: 'Depende de tus objetivos, del momento vital y de la complejidad de lo que estés atravesando. Algunas personas encuentran alivio en pocas sesiones y otras prefieren un acompañamiento más largo.',
   },
   {
     k: 'Enfoque',
-    q: 'Cual es tu enfoque terapeutico?',
-    a: 'Mi practica se fundamenta en un modelo integrador. Combino Terapia Cognitivo-Conductual (TCC), Aceptacion y Compromiso (ACT), Terapia Focalizada en la Emocion (TFE) y tecnicas psicosomaticas, adaptando cada intervencion a tu momento vital y a tus objetivos especificos.',
+    q: '¿Cuál es tu enfoque terapéutico?',
+    a: 'Mi práctica se fundamenta en un modelo integrador. Combino Terapia Cognitivo-Conductual (TCC), Aceptación y Compromiso (ACT), Terapia Focalizada en la Emoción (TFE) y técnicas psicosomáticas, adaptando cada intervención a tu momento vital y a tus objetivos específicos.',
   },
   {
     k: 'Reserva',
-    q: 'Como puedo pedir cita?',
-    a: 'Puedes escribirme desde el formulario de esta web, por email o por telefono. Respondo en un plazo maximo de 24 horas laborables para orientarte y ofrecerte un primer hueco.',
+    q: '¿Cómo puedo pedir cita?',
+    a: 'Puedes escribirme desde el formulario de esta web, por email o por teléfono. Respondo en un plazo máximo de 24 horas laborables para orientarte y ofrecerte un primer hueco.',
   },
 ];
 ---
@@ -53,10 +53,10 @@ const faqs = [
   <Container maxWidth="1180px" padding="0 clamp(1rem, 4vw, 4rem)">
     <div class="faq-shell">
       <header class="faq-header reveal-blur" data-delay="80">
-        <span class="faq-eyebrow">Dudas habituales</span>
+        <span class="faq-eyebrow">Preguntas frecuentes</span>
         <h2>Preguntas frecuentes antes de empezar.</h2>
         <p>
-          Una orientacion breve para que sepas como trabajo, que puedes esperar del proceso y como dar el primer paso con calma.
+          Una orientación breve para que sepas cómo trabajo, qué puedes esperar del proceso y cómo dar el primer paso con calma.
         </p>
       </header>
 
@@ -110,26 +110,15 @@ const faqs = [
 
 <style>
   .faq {
-    --fq-ink: #2f2d28;
-    --fq-text: rgba(47, 45, 40, 0.72);
-    --fq-muted: rgba(47, 45, 40, 0.54);
-    --fq-sage: #6f7d67;
-    --fq-sage-deep: #56645a;
-    --fq-paper: #fffdf8;
-    --fq-cream: #faf8f2;
-    --fq-line: rgba(111, 125, 103, 0.16);
-    --fq-line-soft: rgba(111, 125, 103, 0.08);
-    --fq-warm-line: rgba(184, 168, 138, 0.18);
-
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: clamp(5.8rem, 8vw, 8.6rem) 0 clamp(6.1rem, 8.4vw, 9rem);
+    padding: var(--section-py--compact) 0 calc(var(--section-py--compact) + 0.4rem);
     background:
       radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.92), transparent 28%),
       radial-gradient(circle at 84% 18%, rgba(223, 228, 216, 0.34), transparent 30%),
       radial-gradient(circle at 68% 84%, rgba(184, 168, 138, 0.08), transparent 28%),
-      linear-gradient(180deg, var(--white-warm) 0%, var(--fq-cream) 64%, #f5f1ea 100%);
+      linear-gradient(180deg, var(--color-surface-white) 0%, var(--color-surface-elevated) 64%, #f5f1ea 100%);
   }
 
   .faq::before {
@@ -152,9 +141,31 @@ const faqs = [
   }
 
   .faq-header {
-    max-width: 48rem;
-    margin: 0 auto clamp(3rem, 5vw, 4.6rem);
+    max-width: 50rem;
+    margin: 0 auto clamp(2.8rem, 4.6vw, 4.2rem);
     text-align: center;
+  }
+
+  .faq-header h2 {
+    max-width: 49rem;
+    margin: 1rem auto 1rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-section-title);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .faq-header p {
+    max-width: 39rem;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+    font-size: var(--type-body);
+    line-height: 1.74;
+    text-wrap: pretty;
   }
 
   .faq-eyebrow {
@@ -162,7 +173,7 @@ const faqs = [
     align-items: center;
     justify-content: center;
     gap: 0.78rem;
-    color: var(--fq-sage);
+    color: var(--color-accent);
     font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.24em;
@@ -177,31 +188,9 @@ const faqs = [
     background: rgba(111, 125, 103, 0.34);
   }
 
-  .faq-header h2 {
-    max-width: 48rem;
-    margin: 1rem auto 1rem;
-    color: var(--fq-ink);
-    font-family: var(--font-display);
-    font-size: clamp(2.8rem, 5.8vw, 5.2rem);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: 0;
-    text-wrap: balance;
-  }
-
-  .faq-header p {
-    max-width: 39rem;
-    margin: 0 auto;
-    color: var(--fq-text);
-    font-size: clamp(0.98rem, 1.16vw, 1.04rem);
-    line-height: 1.86;
-    text-wrap: pretty;
-  }
-
   .faq-panel {
     position: relative;
-    max-width: 52rem;
+    max-width: 54rem;
     margin: 0 auto;
     padding: 0;
     border-top: 1px solid rgba(111, 125, 103, 0.1);
@@ -233,7 +222,7 @@ const faqs = [
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 1rem;
     align-items: center;
-    padding: 1.55rem 0;
+    padding: 1.8rem 0;
     border: 0;
     background: transparent;
     text-align: left;
@@ -246,8 +235,8 @@ const faqs = [
 
   .faq-kicker {
     display: inline-block;
-    margin-bottom: 0.38rem;
-    color: var(--fq-sage);
+    margin-bottom: 0.35rem;
+    color: var(--color-accent);
     font-size: var(--type-meta);
     font-weight: 500;
     letter-spacing: 0.2em;
@@ -257,20 +246,20 @@ const faqs = [
 
   .faq-question {
     margin: 0;
-    color: var(--fq-ink);
+    color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: clamp(1.12rem, 1.5vw, 1.34rem);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.24;
-    letter-spacing: 0;
+    font-size: var(--type-card-title);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.18;
+    letter-spacing: -0.015em;
     text-wrap: balance;
     transition: color 0.35s ease;
   }
 
   .faq-item:hover .faq-question,
   .faq-item.open .faq-question {
-    color: var(--fq-sage-deep);
+    color: var(--color-accent-deep);
   }
 
   .faq-icon {
@@ -279,7 +268,7 @@ const faqs = [
     justify-content: center;
     width: 1.65rem;
     height: 1.65rem;
-    color: var(--fq-ink);
+    color: var(--color-ink);
     opacity: 0.24;
     transition:
       transform 0.45s var(--ease-out-expo),
@@ -289,7 +278,7 @@ const faqs = [
 
   .faq-item:hover .faq-icon,
   .faq-item.open .faq-icon {
-    color: var(--fq-sage);
+    color: var(--color-accent);
     opacity: 0.5;
   }
 
@@ -326,8 +315,8 @@ const faqs = [
   }
 
   .faq-answer__body {
-    max-width: 39rem;
-    padding: 0 0 1.55rem;
+    max-width: 41rem;
+    padding: 0.1rem 0 1.7rem;
     transform: translateY(10px);
     opacity: 0;
     transition:
@@ -342,9 +331,10 @@ const faqs = [
 
   .faq-answer__body p {
     margin: 0;
-    color: var(--fq-text);
-    font-size: 0.9rem;
-    line-height: 1.88;
+    color: var(--color-text-secondary);
+    font-size: var(--type-body);
+    font-weight: 300;
+    line-height: 1.72;
     text-wrap: pretty;
   }
 
@@ -359,8 +349,8 @@ const faqs = [
 
   .faq-close p {
     margin: 0;
-    color: var(--fq-muted);
-    font-size: 0.88rem;
+    color: var(--color-text-muted);
+    font-size: var(--type-body-sm);
     line-height: 1.8;
   }
 
@@ -368,9 +358,9 @@ const faqs = [
     display: inline-flex;
     align-items: center;
     gap: 0.6rem;
-    color: var(--fq-ink);
+    color: var(--color-ink);
     font-family: var(--font-body);
-    font-size: 0.76rem;
+    font-size: var(--type-caption);
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -378,7 +368,7 @@ const faqs = [
   }
 
   .faq-close__link:hover {
-    color: var(--fq-sage);
+    color: var(--color-accent);
     transform: translateY(-1px);
   }
 
@@ -393,14 +383,24 @@ const faqs = [
     }
 
     .faq-header h2 {
-      font-size: clamp(2.4rem, 11vw, 3.6rem);
+      font-size: var(--type-section-title-sm);
       line-height: 1.02;
       letter-spacing: -0.02em;
     }
 
     .faq-header p {
-      font-size: 0.95rem;
+      font-size: var(--type-body);
       line-height: 1.65;
+    }
+
+    .faq-eyebrow {
+      gap: 0.55rem;
+      letter-spacing: 0.18em;
+    }
+
+    .faq-eyebrow::before,
+    .faq-eyebrow::after {
+      width: 1.45rem;
     }
 
     .faq-panel {
@@ -409,18 +409,18 @@ const faqs = [
 
     .faq-trigger {
       gap: 0.8rem;
-      padding: 1.05rem 0;
+      padding: 1.25rem 0;
     }
 
     .faq-kicker {
-      font-size: max(0.55rem, 9px);
+      font-size: var(--type-micro);
       letter-spacing: 0.16em;
       margin-bottom: 0.25rem;
     }
 
     .faq-question {
-      font-size: clamp(0.95rem, 4.2vw, 1.1rem);
-      line-height: 1.22;
+      font-size: var(--type-card-title);
+      line-height: 1.16;
     }
 
     .faq-icon {
@@ -433,8 +433,8 @@ const faqs = [
     }
 
     .faq-answer__body p {
-      font-size: 0.86rem;
-      line-height: 1.7;
+      font-size: var(--type-body-sm);
+      line-height: 1.68;
     }
 
     .faq-close {
@@ -443,11 +443,11 @@ const faqs = [
     }
 
     .faq-close p {
-      font-size: 0.86rem;
+      font-size: var(--type-card-body);
     }
 
     .faq-close__link {
-      font-size: max(0.58rem, 10px);
+      font-size: var(--type-meta);
       letter-spacing: 0.16em;
     }
   }

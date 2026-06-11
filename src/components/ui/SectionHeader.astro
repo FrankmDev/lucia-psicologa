@@ -257,7 +257,7 @@ const dScroll = dSubtitle + 360;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: 0.66rem;
+    font-size: var(--type-meta);
     color: var(--taupe);
     opacity: 0;
     letter-spacing: 0.28em;
@@ -290,7 +290,7 @@ const dScroll = dSubtitle + 360;
   }
   .tag-text {
     font-family: var(--font-body);
-    font-size: 0.55rem;
+    font-size: var(--type-meta);
     font-weight: 400;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -311,7 +311,7 @@ const dScroll = dSubtitle + 360;
   }
   .breadcrumb-item {
     font-family: var(--font-body);
-    font-size: 0.55rem;
+    font-size: var(--type-meta);
     font-weight: 400;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -358,7 +358,7 @@ const dScroll = dSubtitle + 360;
   }
   .eyebrow-text {
     font-family: var(--font-body);
-    font-size: 0.54rem;
+    font-size: var(--type-meta);
     font-weight: 400;
     letter-spacing: 0.36em;
     text-transform: uppercase;
@@ -371,14 +371,16 @@ const dScroll = dSubtitle + 360;
      DIVIDER — hairline that expands
      ═══════════════════════════════════════════ */
   .section-header__divider {
-    width: 0;
+    width: 46px;
     height: 1px;
     background: linear-gradient(90deg, rgba(184,168,138,0.55), rgba(184,168,138,0.08));
+    transform: scaleX(0);
+    transform-origin: left;
     opacity: 1;
     margin-bottom: 0.95rem;
     position: relative;
     z-index: 2;
-    transition: width 1.2s var(--ease-out-expo);
+    transition: transform 1.2s var(--ease-out-expo);
   }
   .section-header__divider::after {
     content: '';
@@ -396,10 +398,10 @@ const dScroll = dSubtitle + 360;
       opacity 0.8s var(--ease-out-expo) 0.45s,
       transform 0.8s var(--ease-out-expo) 0.45s;
   }
-  .section-header--align-start .section-header__divider { margin-left: 0; margin-right: auto; }
-  .section-header--align-center .section-header__divider { margin-left: auto; margin-right: auto; }
-  .section-header--align-end .section-header__divider { margin-left: auto; margin-right: 0; }
-  .section-header.visible .section-header__divider { width: 46px; }
+  .section-header--align-start .section-header__divider { margin-left: 0; margin-right: auto; transform-origin: left; }
+  .section-header--align-center .section-header__divider { margin-left: auto; margin-right: auto; transform-origin: center; }
+  .section-header--align-end .section-header__divider { margin-left: auto; margin-right: 0; transform-origin: right; }
+  .section-header.visible .section-header__divider { transform: scaleX(1); }
   .section-header.visible .section-header__divider::after {
     opacity: 1;
     transform: translateY(-50%) scale(1);
@@ -422,7 +424,7 @@ const dScroll = dSubtitle + 360;
     font-family: var(--font-display);
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(2.08rem, 4vw, 3.42rem);
+    font-size: var(--type-section-title-sm);
     line-height: 1.03;
     color: var(--ink);
     letter-spacing: -0.03em;
@@ -475,26 +477,28 @@ const dScroll = dSubtitle + 360;
   .section-header--align-end .subtitle-sep { justify-content: flex-end; }
 
   .sep-line {
-    width: 0;
+    width: 16px;
     height: 1px;
-    background: var(--earth);
-    opacity: 0.2;
-    transition: width 1s var(--ease-out-expo) 0.3s;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0.1;
+    transition: transform 1s var(--ease-out-expo) 0.3s;
   }
   .section-header.visible .sep-line {
-    width: 18px;
+    transform: scaleX(1);
   }
 
   .sep-diamond {
-    width: 5px;
-    height: 5px;
-    border: 1px solid var(--earth);
+    width: 4px;
+    height: 4px;
+    border: 1px solid var(--gold);
     opacity: 0;
     transform: rotate(45deg) scale(0.4);
     transition: all 0.8s var(--ease-out-expo) 0.5s;
   }
   .section-header.visible .sep-diamond {
-    opacity: 0.3;
+    opacity: 0.15;
     transform: rotate(45deg) scale(1);
   }
 
@@ -505,7 +509,7 @@ const dScroll = dSubtitle + 360;
     font-family: var(--font-display);
     font-style: italic;
     font-weight: 300;
-    font-size: clamp(0.98rem, 1.38vw, 1.12rem);
+    font-size: var(--type-lead);
     color: var(--ink-soft);
     line-height: 1.72;
     max-width: 520px;
@@ -520,13 +524,15 @@ const dScroll = dSubtitle + 360;
      ═══════════════════════════════════════════ */
   .section-header__decor-line {
     width: 1px;
-    height: 0;
+    height: 48px;
+    transform: scaleY(0);
+    transform-origin: top;
     background: linear-gradient(180deg, var(--earth), transparent);
     opacity: 0.12;
     margin-top: 1.45rem;
-    transition: height 1.4s var(--ease-out-expo) 0.5s;
+    transition: transform 1.4s var(--ease-out-expo) 0.5s;
   }
-  .section-header.visible .section-header__decor-line { height: 48px; }
+  .section-header.visible .section-header__decor-line { transform: scaleY(1); }
 
   /* ═══════════════════════════════════════════
      SCROLL HINT — gentle invitation
@@ -546,16 +552,18 @@ const dScroll = dSubtitle + 360;
   .scroll-line {
     display: block;
     width: 1px;
-    height: 0;
+    height: 28px;
+    transform: scaleY(0);
+    transform-origin: top;
     background: var(--taupe);
     opacity: 0.12;
-    transition: height 1s var(--ease-out-expo) 0.4s;
+    transition: transform 1s var(--ease-out-expo) 0.4s;
   }
-  .section-header.visible .scroll-line { height: 28px; }
+  .section-header.visible .scroll-line { transform: scaleY(1); }
 
   .scroll-text {
     font-family: var(--font-body);
-    font-size: 0.55rem;
+    font-size: var(--type-meta);
     font-weight: 400;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -582,18 +590,18 @@ const dScroll = dSubtitle + 360;
      SIZE VARIANTS
      ═══════════════════════════════════════════ */
   .section-header--hero .title-line {
-    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    font-size: var(--type-section-title);
     line-height: 1.04;
   }
   .section-header--large .title-line {
-    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    font-size: var(--type-section-title-sm);
   }
   .section-header--small {
     margin-bottom: 2.3rem;
     padding: 1.5rem 0 1rem;
   }
   .section-header--small .title-line {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-size: var(--type-subsection-title);
   }
 
   /* ═══════════════════════════════════════════
@@ -627,7 +635,7 @@ const dScroll = dSubtitle + 360;
     padding: 1.1rem 0 0.85rem;
   }
   .section-header--minimal .title-line {
-    font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+    font-size: var(--type-subsection-title);
   }
   .section-header--minimal .section-header__glow,
   .section-header--minimal .section-header__flourish,
@@ -668,23 +676,23 @@ const dScroll = dSubtitle + 360;
       padding: 1.85rem 0 1rem;
     }
     .title-line {
-      font-size: clamp(1.85rem, 5.5vw, 2.65rem);
+      font-size: var(--type-section-title-sm);
     }
     .section-header--hero .title-line {
-      font-size: clamp(2.2rem, 7vw, 3.2rem);
+      font-size: var(--type-section-title-sm);
     }
     .section-header--large .title-line {
-      font-size: clamp(1.9rem, 5vw, 2.8rem);
+      font-size: var(--type-section-title-sm);
     }
     .section-header--small .title-line {
-      font-size: clamp(1.4rem, 4vw, 1.9rem);
+      font-size: var(--type-subsection-title);
     }
     .section-header__subtitle {
-      font-size: 1rem;
+      font-size: var(--type-body);
       max-width: 100%;
     }
     .eyebrow-text {
-      font-size: 0.53rem;
+      font-size: var(--type-meta);
       letter-spacing: 0.26em;
     }
     .section-header__eyebrow {
@@ -694,7 +702,7 @@ const dScroll = dSubtitle + 360;
       width: 1.35rem;
     }
     .tag-text {
-      font-size: 0.52rem;
+      font-size: var(--type-meta);
     }
     .section-header__flourish {
       width: 70px;
