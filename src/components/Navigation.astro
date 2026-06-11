@@ -1,7 +1,4 @@
 ---
-import GrainOverlay from './ui/GrainOverlay.astro';
-import FloatOrb from './ui/FloatOrb.astro';
-
 const links = [
   { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Servicios', href: '#servicios' },
@@ -18,15 +15,8 @@ const links = [
 
     <!-- Logo -->
     <a href="#inicio" class="nav-mark" aria-label="Inicio" data-nav-reveal>
-      <span class="mark-icon" aria-hidden="true">
-        <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-          <path d="M14 2C14 2 9 7 9 13c0 3 2 5.5 5 6.5V26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M14 2C14 2 19 7 19 13c0 3-2 5.5-5 6.5V26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M14 19.5c-2-1.5-4.5-3-4.5-6.5 0-2.5 2-5 2-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
-          <path d="M14 19.5c2-1.5 4.5-3 4.5-6.5 0-2.5-2-5-2-5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.4"/>
-        </svg>
-      </span>
-      <span class="mark-text">Lucía</span>
+      <img src="/logo-white.webp" alt="Lucía" class="mark-logo mark-logo--dark" width="auto" height="32" />
+      <img src="/logo-dark.webp" alt="Lucía" class="mark-logo mark-logo--light" width="auto" height="32" />
     </a>
 
     <!-- Desktop Links -->
@@ -53,6 +43,7 @@ const links = [
     <button class="nav-trigger" id="menuTrigger" aria-label="Abrir menú" aria-expanded="false" data-nav-reveal>
       <span class="trigger-line"></span>
       <span class="trigger-line"></span>
+      <span class="trigger-label">Menú</span>
     </button>
   </div>
 
@@ -61,44 +52,55 @@ const links = [
     <div class="hairline-fill" id="hairlineFill"></div>
   </div>
 
-  <!-- Mobile Overlay -->
+    <!-- Mobile Overlay -->
   <div class="nav-overlay" id="menuOverlay" aria-hidden="true">
-    <div class="overlay-bg" aria-hidden="true">
-      <div class="overlay-bg__layer"></div>
-      <div class="overlay-bg__layer"></div>
-      <div class="overlay-bg__layer"></div>
-    </div>
-    <div class="overlay-vignette" aria-hidden="true"></div>
-    <GrainOverlay opacity={0.015} zIndex={1} />
-    <FloatOrb size={300} top="15%" right="10%" color="rgba(196,170,148,0.06)" blur={100} animation="float-1" />
-    <FloatOrb size={220} bottom="20%" left="5%" color="rgba(111,125,103,0.05)" blur={90} animation="float-2" />
+    <div class="overlay-backdrop" aria-hidden="true"></div>
 
-    <div class="overlay-content">
-      <nav class="overlay-nav" aria-label="Principal">
-        {links.map((l, i) => (
-          <a href={l.href} class="overlay-link" style={`transition-delay: ${i * 80 + 350}ms`}>
-            <span class="link-label">{l.label}</span>
-            <span class="link-arrow" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-                <path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="overlay-card">
+      <div class="overlay-grain" aria-hidden="true"></div>
+      <div class="overlay-card__inner">
+        
+        <!-- Compact Header -->
+        <div class="overlay-top" aria-hidden="true">
+          <div class="overlay-deco">
+            <svg width="48" height="48" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="38" stroke="rgba(184, 168, 138, 0.2)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="28" stroke="rgba(184, 168, 138, 0.15)" stroke-width="1"/>
+              <circle cx="40" cy="40" r="18" stroke="rgba(184, 168, 138, 0.1)" stroke-width="1"/>
+              <path d="M40 22 L40 58 M22 40 L58 40" stroke="rgba(184, 168, 138, 0.12)" stroke-width="0.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="overlay-greeting">Bienvenida</p>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="overlay-nav" aria-label="Principal">
+          {links.map((l, i) => (
+            <a href={l.href} class="overlay-link" style={`transition-delay: ${i * 55 + 120}ms`}>
+              <span class="link-number">0{i + 1}</span>
+              <span class="link-label">{l.label}</span>
+              <span class="link-indicator" aria-hidden="true"></span>
+            </a>
+          ))}
+        </nav>
+
+        <!-- Footer -->
+        <div class="overlay-footer">
+          <div class="footer-divider" aria-hidden="true"></div>
+          <div class="footer-block">
+            <span class="footer-heading">¿Empezamos?</span>
+            <a href="#contacto" class="overlay-cta">
+              <span>Pide tu primera sesión</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </span>
-          </a>
-        ))}
-      </nav>
-
-      <div class="overlay-footer">
-        <a href="#contacto" class="overlay-cta">
-          <span>Pide tu primera sesión</span>
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-            <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <div class="overlay-divider" aria-hidden="true"></div>
-        <div class="overlay-meta">
-          <span>luciamillanpsico@gmail.com</span>
-          <span class="meta-sep">·</span>
-          <span>722 535 914</span>
+            </a>
+          </div>
+          <div class="overlay-meta">
+            <span>luciamillanpsico@gmail.com</span>
+            <span class="meta-sep">·</span>
+            <span>722 535 914</span>
+          </div>
         </div>
       </div>
     </div>
@@ -140,7 +142,7 @@ const links = [
     if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
   });
   overlay.addEventListener('click', (e) => {
-    if (e.target === overlay || e.target.classList.contains('overlay-bg')) closeMenu();
+    if (e.target === overlay || e.target.classList.contains('overlay-backdrop')) closeMenu();
   });
 
   // ── Smart hide / show on scroll direction ──────────────────
@@ -318,6 +320,11 @@ const links = [
       inset 0 1px 0 rgba(255, 255, 255, 0.6);
   }
 
+  /* Keep island above overlay when menu is open */
+  .nav-root.menu-open .nav-island {
+    z-index: 904;
+  }
+
   /* Warm ambient glow behind scrolled island */
   .island-glow {
     position: absolute;
@@ -338,9 +345,8 @@ const links = [
 
   /* ── Logo ─────────────────────────────────────────────────── */
   .nav-mark {
-    display: flex;
+    display: grid;
     align-items: center;
-    gap: 0.6rem;
     text-decoration: none;
     transition: opacity 0.35s ease;
     flex-shrink: 0;
@@ -349,37 +355,33 @@ const links = [
   }
   .nav-mark:hover { opacity: 0.72; }
 
-  .mark-icon {
-    color: rgba(245, 240, 232, 0.85);
-    transition: color 0.5s ease, transform 0.5s var(--ease-out-expo);
-    display: flex;
-    align-items: center;
+  .mark-logo {
+    height: 32px;
+    width: auto;
+    grid-row: 1;
+    grid-column: 1;
+    transition: opacity 0.5s ease, transform 0.5s var(--ease-out-expo);
   }
-  .nav-mark:hover .mark-icon {
-    transform: rotate(10deg) scale(1.08);
-  }
-  /* Scrolled: ink color */
-  .nav-root.is-visible .mark-icon,
-  .nav-root.menu-open .mark-icon {
-    color: rgba(47, 45, 40, 0.7);
+  .nav-mark:hover .mark-logo {
+    transform: scale(1.05);
   }
 
-  .mark-text {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
-    font-size: var(--type-card-title-sm);
-    color: rgba(245, 240, 232, 0.95);
-    letter-spacing: 0.02em;
-    line-height: 1;
-    transition: color 0.5s ease, text-shadow 0.5s ease;
-    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.2);
+  /* Dark logo — visible at top (over dark hero) */
+  .mark-logo--dark {
+    opacity: 1;
   }
-  /* Scrolled: ink color, no shadow */
-  .nav-root.is-visible .mark-text,
-  .nav-root.menu-open .mark-text {
-    color: var(--nav-ink);
-    text-shadow: none;
+  .nav-root.is-visible .mark-logo--dark,
+  .nav-root.menu-open .mark-logo--dark {
+    opacity: 0;
+  }
+
+  /* Light logo — visible when scrolled (over cream island) */
+  .mark-logo--light {
+    opacity: 0;
+  }
+  .nav-root.is-visible .mark-logo--light,
+  .nav-root.menu-open .mark-logo--light {
+    opacity: 1;
   }
 
   /* ── Desktop Links ────────────────────────────────────────── */
@@ -554,217 +556,401 @@ const links = [
   /* ── Mobile Trigger ───────────────────────────────────────── */
   .nav-trigger {
     display: none;
-    width: 44px; height: 44px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
+    gap: 5px;
     cursor: pointer;
     z-index: 902;
     background: none;
     border: none;
     flex-shrink: 0;
     position: relative;
+    padding: 8px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+  .nav-trigger:active {
+    transform: scale(0.92);
   }
   .trigger-line {
     display: block;
-    width: 22px; height: 1.2px;
-    background: rgba(245, 240, 232, 0.75);
-    transition: transform 0.45s var(--ease-out-expo), opacity 0.25s ease, background 0.5s ease;
+    width: 20px;
+    height: 1.2px;
+    background: rgba(245, 240, 232, 0.7);
+    transition: transform 0.4s var(--ease-out-expo), opacity 0.3s ease, background 0.5s ease, width 0.3s var(--ease-out-expo);
     border-radius: 1px;
   }
+  .trigger-line:last-child {
+    width: 14px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .nav-trigger:hover .trigger-line:last-child {
+    width: 20px;
+  }
   .nav-root.is-visible .trigger-line {
-    background: rgba(47, 45, 40, 0.55);
+    background: rgba(47, 45, 40, 0.5);
   }
   .nav-trigger.open .trigger-line:first-child {
-    transform: translateY(3.6px) rotate(45deg);
-    background: rgba(245, 240, 232, 0.8);
+    transform: translateY(3.1px) rotate(45deg);
+    width: 20px;
+    background: rgba(245, 240, 232, 0.85);
   }
   .nav-trigger.open .trigger-line:last-child {
-    transform: translateY(-3.6px) rotate(-45deg);
-    background: rgba(245, 240, 232, 0.8);
+    transform: translateY(-3.1px) rotate(-45deg);
+    width: 20px;
+    background: rgba(245, 240, 232, 0.85);
   }
   .nav-root.menu-open .trigger-line,
   .nav-root.menu-open .nav-trigger.open .trigger-line {
-    background: rgba(47, 45, 40, 0.68);
+    background: rgba(47, 45, 40, 0.65);
+  }
+  .trigger-label {
+    display: none;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.5);
+    margin-top: 2px;
+    transition: color 0.5s ease, opacity 0.3s ease;
+  }
+  .nav-root.is-visible .trigger-label {
+    color: rgba(47, 45, 40, 0.35);
+  }
+  .nav-trigger.open .trigger-label {
+    opacity: 0;
   }
 
-  /* ── Mobile Overlay ───────────────────────────────────────── */
+  /* ── Mobile Overlay — Editorial Warm Panel ──────────────── */
   .nav-overlay {
     position: fixed;
-    inset: 0;
-    z-index: 901;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100vw;
-    min-height: 100vh;
-    min-height: 100dvh;
+    height: 100vh;
+    height: 100dvh;
+    z-index: 903;
     display: flex;
-    flex-direction: column;
+    align-items: flex-end;
     justify-content: center;
-    align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.85s ease, visibility 0.85s ease;
+    transition: opacity 0.5s var(--ease-out-expo), visibility 0s 0.5s;
     pointer-events: none;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation;
   }
+
   .nav-overlay.open {
     opacity: 1;
     visibility: visible;
-    pointer-events: all;
+    transition: opacity 0.5s var(--ease-out-expo), visibility 0s 0s;
+    pointer-events: auto;
   }
 
-  .overlay-bg {
+  /* Soft diffused backdrop */
+  .overlay-backdrop {
     position: absolute;
     inset: 0;
-    z-index: 0;
-    pointer-events: none;
+    background: rgba(22, 18, 15, 0.35);
+    backdrop-filter: blur(8px) saturate(0.9);
+    -webkit-backdrop-filter: blur(8px) saturate(0.9);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
-  .overlay-bg__layer {
-    position: absolute;
-    inset: 0;
-    background: #16120f;
-    transform: translateY(-101%);
-    transition: transform 0.85s var(--ease-out-expo);
-  }
-  .overlay-bg__layer:nth-child(2) { background: rgba(22, 18, 15, 0.97); transition-delay: 0.04s; }
-  .overlay-bg__layer:nth-child(3) { background: rgba(42, 31, 26, 0.92); transition-delay: 0.08s; }
-  .nav-overlay.open .overlay-bg__layer { transform: translateY(0); }
-  .nav-overlay.open .overlay-bg__layer:nth-child(2) { transition-delay: 0.08s; }
-  .nav-overlay.open .overlay-bg__layer:nth-child(3) { transition-delay: 0.16s; }
-
-  .overlay-vignette {
-    position: absolute;
-    inset: 0;
-    box-shadow: inset 0 0 150px 60px rgba(13, 10, 8, 0.45);
-    z-index: 1;
-    pointer-events: none;
+  .nav-overlay.open .overlay-backdrop {
+    opacity: 1;
   }
 
-  .overlay-content {
+  /* The panel — warm bottom sheet */
+  .overlay-card {
     position: relative;
     z-index: 2;
+    width: 100%;
+    max-height: 70vh;
+    max-height: 70dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background: linear-gradient(180deg, #faf8f3 0%, #f3efe6 100%);
+    border-radius: 24px 24px 0 0;
+    box-shadow:
+      0 -16px 56px rgba(47, 45, 40, 0.08),
+      0 -4px 12px rgba(47, 45, 40, 0.04);
+    transform: translateY(40px);
+    opacity: 0;
+    transition: transform 0.55s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
+    padding: 0 0 env(safe-area-inset-bottom, 0px) 0;
+    -webkit-transform: translateY(40px);
+    will-change: transform, opacity;
+  }
+  .nav-overlay.open .overlay-card {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+
+  .overlay-card__inner {
+    padding: 1.5rem clamp(1.5rem, 6vw, 3rem) 1.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: calc(96px + env(safe-area-inset-top, 0px)) max(20px, 5vw) calc(34px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+    position: relative;
+    z-index: 2;
   }
 
+  /* Subtle paper grain texture overlay */
+  .overlay-grain {
+    position: absolute;
+    inset: 0;
+    border-radius: 32px 32px 0 0;
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px 128px;
+  }
+
+  /* Drag handle */
+  .overlay-card::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: rgba(47, 45, 40, 0.1);
+    border-radius: 2px;
+    margin: 10px auto 0;
+    position: relative;
+    z-index: 2;
+    transition: background 0.3s ease;
+  }
+  .overlay-card:active::before {
+    background: rgba(47, 45, 40, 0.18);
+  }
+
+  /* ── Top Decorative Block ──────────────────────────────── */
+  .overlay-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(-6px);
+    transition: opacity 0.5s var(--ease-out-expo) 0.1s, transform 0.5s var(--ease-out-expo) 0.1s;
+  }
+  .nav-overlay.open .overlay-top {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .overlay-deco {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .overlay-deco svg {
+    width: 100%;
+    height: 100%;
+    animation: slowRotate 20s linear infinite;
+  }
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .overlay-greeting {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.75rem;
+    color: rgba(47, 45, 40, 0.35);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Overlay Nav Links — Editorial Style ───────────────── */
   .overlay-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.1rem;
-    margin: auto 0 0;
+    gap: 0.15rem;
+    width: 100%;
+    margin: 0 0 1rem;
+    padding: 0;
   }
+
   .overlay-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.55rem 0;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo), color 0.3s ease;
+    transform: translateY(8px);
+    transition: opacity 0.45s var(--ease-out-expo), transform 0.45s var(--ease-out-expo);
     text-decoration: none;
+    border-bottom: none;
+    position: relative;
   }
   .nav-overlay.open .overlay-link {
     opacity: 1;
     transform: translateY(0);
   }
-  .overlay-link:hover .link-label { color: rgba(196, 170, 148, 0.85); }
-  .overlay-link:hover .link-arrow { opacity: 1; transform: translateX(0); }
+
+  .link-number {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: rgba(184, 168, 138, 0.7);
+    vertical-align: super;
+    transition: color 0.35s ease;
+  }
+  .overlay-link:hover .link-number {
+    color: rgba(111, 125, 103, 0.9);
+  }
 
   .link-label {
     font-family: var(--font-display);
     font-style: italic;
-    font-weight: 300;
-    font-size: var(--type-section-title-sm);
-    color: rgba(245, 240, 232, 0.9);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 5vw, 2rem);
+    color: #2f2d28;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
     transition: color 0.35s ease;
   }
-  .link-arrow {
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: all 0.35s var(--ease-out-expo);
-    color: rgba(245, 240, 232, 0.35);
+  .overlay-link:hover .link-label,
+  .overlay-link:active .link-label {
+    color: #6f7d67;
   }
 
-  /* Overlay Footer */
+  /* Elegant underline indicator on hover */
+  .link-indicator {
+    position: absolute;
+    bottom: 0.35rem;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 18px;
+    height: 1px;
+    background: #b8a88a;
+    opacity: 0;
+    transition: opacity 0.35s var(--ease-out-expo), transform 0.35s var(--ease-out-expo);
+  }
+  .overlay-link:hover .link-indicator,
+  .overlay-link:active .link-indicator {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  /* ── Overlay Footer — Editorial ────────────────────────── */
   .overlay-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.2rem;
-    width: min(100%, 420px);
-    margin-top: auto;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0;
+    padding-top: 0.75rem;
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transform: translateY(6px);
+    transition: opacity 0.5s var(--ease-out-expo), transform 0.5s var(--ease-out-expo);
     transition-delay: 0s;
   }
   .nav-overlay.open .overlay-footer {
     opacity: 1;
-    transition-delay: 0.6s;
+    transform: translateY(0);
+    transition-delay: 0.25s;
   }
+
+  .footer-divider {
+    width: 28px;
+    height: 1px;
+    background: rgba(184, 168, 138, 0.35);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-heading {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(47, 45, 40, 0.25);
+  }
+
   .overlay-cta {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.7rem;
-    max-width: 100%;
-    padding: 18px 36px;
-    background: linear-gradient(180deg, rgba(111, 125, 103, 0.9), rgba(86, 100, 90, 0.9));
-    border: 1px solid rgba(111, 125, 103, 0.3);
-    border-radius: 999px;
+    gap: 0.6rem;
+    width: auto;
+    padding: 12px 28px;
+    background: linear-gradient(180deg, #6f7d67, #56645a);
+    border: none;
+    border-radius: 100px;
     font-family: var(--font-body);
-    font-size: var(--type-meta);
+    font-size: 0.7rem;
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     text-align: center;
     color: #fbf8f1;
-    transition: all 0.45s var(--ease-out-expo);
     text-decoration: none;
-    box-shadow: 0 4px 16px rgba(86, 100, 90, 0.15);
+    box-shadow: 0 4px 16px rgba(86, 100, 90, 0.18);
+    transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
-  .overlay-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(86, 100, 90, 0.2);
-    border-color: rgba(111, 125, 103, 0.45);
+  .overlay-cta:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 8px rgba(86, 100, 90, 0.2);
   }
   .overlay-cta svg {
-    transition: transform 0.4s var(--ease-out-expo);
+    transition: transform 0.35s var(--ease-out-expo);
+    flex-shrink: 0;
   }
-  .overlay-cta:hover svg {
-    transform: translateX(3px);
+  .overlay-cta:active svg {
+    transform: translateX(2px);
   }
-  .overlay-divider {
-    width: 32px;
-    height: 1px;
-    background: rgba(196, 170, 148, 0.12);
-  }
+
   .overlay-meta {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.7rem;
-    max-width: 100%;
-    font-size: var(--type-meta);
+    gap: 0.8rem;
+    font-family: var(--font-body);
+    font-size: 0.65rem;
     font-weight: 400;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     text-align: center;
-    color: rgba(245, 240, 232, 0.35);
+    color: rgba(47, 45, 40, 0.4);
   }
-  .meta-sep { opacity: 0.4; }
+  .meta-sep {
+    opacity: 0.3;
+  }
 
   /* ── Responsive ───────────────────────────────────────────── */
   @media (max-width: 1024px) {
@@ -775,6 +961,7 @@ const links = [
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .nav-trigger { display: flex; }
+    .trigger-label { display: block; }
     .nav-island {
       width: min(1280px, 96vw);
       min-height: 58px;
@@ -783,13 +970,12 @@ const links = [
       border-radius: 18px;
     }
     .nav-root.is-visible .nav-island {
-      width: clamp(280px, 65vw, 600px);
+      width: clamp(280px, 55vw, 540px);
       min-height: 0;
-      padding: 0.45rem;
+      padding: 0.45rem 0.6rem;
       gap: 1rem;
     }
-    .mark-text { font-size: var(--type-card-title-sm); }
-    .mark-icon svg { width: 20px; height: 20px; }
+    .mark-logo { height: 28px; }
   }
 
   @media (max-width: 768px) {
@@ -806,42 +992,42 @@ const links = [
       border-radius: 16px;
     }
     .nav-root.is-visible .nav-island {
-      width: clamp(240px, 62vw, 440px);
+      width: clamp(180px, 50vw, 360px);
       min-height: 0;
-      padding: 0.4rem;
+      padding: 0.4rem 0.6rem;
     }
-    .mark-text { font-size: var(--type-card-title-sm); }
-    .overlay-content {
-      padding: calc(88px + env(safe-area-inset-top, 0px)) 20px calc(26px + env(safe-area-inset-bottom, 0px));
+    .mark-logo { height: 26px; }
+    .overlay-card__inner {
+      padding: 1.25rem clamp(1.25rem, 5vw, 2rem) 1.5rem;
     }
-    .overlay-link {
-      width: min(100%, 330px);
-      justify-content: center;
-    }
-    .link-label { font-size: clamp(2rem, 13vw, 3.15rem); }
-    .overlay-footer { gap: 1rem; }
+    .link-label { font-size: clamp(1.5rem, 4vw, 1.75rem); }
+    .overlay-footer { gap: 0.75rem; padding-top: 0.75rem; }
     .overlay-cta {
-      width: 100%;
-      padding: 14px 22px;
-      letter-spacing: 0.16em;
+      width: auto;
+      padding: 12px 24px;
+      letter-spacing: 0.18em;
     }
     .overlay-meta {
-      row-gap: 0.35rem;
-      column-gap: 0.55rem;
-      letter-spacing: 0.1em;
+      row-gap: 0.3rem;
+      column-gap: 0.5rem;
+      letter-spacing: 0.12em;
     }
   }
 
   @media (max-width: 380px), (max-height: 720px) {
-    .overlay-content {
-      padding-top: calc(78px + env(safe-area-inset-top, 0px));
-      padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    .overlay-card__inner {
+      padding: 1.25rem clamp(1rem, 4vw, 1.5rem) 1.5rem;
     }
-    .overlay-nav { gap: 0; }
-    .overlay-link { padding: 0.35rem 0; }
-    .link-label { font-size: clamp(1.75rem, 11vw, 2.45rem); }
-    .overlay-footer { gap: 0.75rem; }
-    .overlay-cta { padding: 12px 18px; }
+    .overlay-top { margin-bottom: 0.75rem; }
+    .overlay-deco { width: 40px; height: 40px; }
+    .overlay-greeting { font-size: 0.7rem; }
+    .overlay-nav { gap: 0.1rem; }
+    .overlay-link { padding: 0.5rem 0.4rem; }
+    .link-label { font-size: clamp(1.35rem, 5vw, 1.6rem); }
+    .link-number { font-size: 0.45rem; }
+    .overlay-footer { gap: 0.6rem; padding-top: 0.5rem; }
+    .overlay-cta { padding: 11px 22px; }
+    .trigger-label { display: none; }
   }
 
   @media (prefers-reduced-transparency: reduce) {
@@ -857,12 +1043,19 @@ const links = [
     .nav-island,
     .nav-link,
     .nav-cta,
-    .mark-icon,
+    .mark-logo,
     .trigger-line,
     .island-glow,
     .overlay-link,
-    .overlay-bg__layer {
+    .overlay-card,
+    .overlay-backdrop,
+    .overlay-footer,
+    .overlay-top,
+    .link-indicator {
       transition: none !important;
+    }
+    .overlay-deco svg {
+      animation: none !important;
     }
   }
 </style>

@@ -7,9 +7,9 @@ import GrainOverlay from './ui/GrainOverlay.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 import InkBlob from './ui/InkBlob.astro';
 import DecorativeRing from './ui/DecorativeRing.astro';
+import profileImage from '../assets/about.avif';
 
 const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2200&auto=format&fit=crop&crop=entropy";
-const profileImage = "/images/sobre-mi/lucia-portrait.jpg";
 ---
 
 <section id="inicio" class="hero" data-hero>
@@ -89,7 +89,7 @@ const profileImage = "/images/sobre-mi/lucia-portrait.jpg";
 
     <div class="hero-therapist">
       <div class="therapist-avatar">
-        <img src={profileImage} alt="Lucía, psicóloga clínica" loading="lazy" />
+        <img src={profileImage.src} alt="Lucía, psicóloga clínica" loading="lazy" />
         <span class="avatar-ring" aria-hidden="true"></span>
         <span class="avatar-pulse" aria-hidden="true"></span>
       </div>
