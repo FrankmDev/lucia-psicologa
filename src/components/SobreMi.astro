@@ -106,7 +106,7 @@ const values = [
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: var(--section-py) 0 calc(var(--section-py) + 1rem);
+    padding: var(--section-py) 0 calc(var(--section-py) + 0.5rem);
     background:
       radial-gradient(circle at 14% 8%, rgba(255, 255, 255, 0.95), transparent 30%),
       radial-gradient(circle at 82% 12%, rgba(223, 228, 216, 0.58), transparent 32%),
@@ -188,9 +188,9 @@ const values = [
     grid-template-columns: minmax(22rem, 0.78fr) minmax(0, 1.22fr);
     gap: clamp(2rem, 4vw, 4.8rem);
     align-items: stretch;
-    padding: clamp(1.1rem, 2.4vw, 2rem);
+    padding: var(--card-pd-md);
     border-block: 1px solid rgba(111, 125, 103, 0.16);
-    border-radius: 0;
+    border-radius: var(--card-radius);
     background:
       linear-gradient(90deg, rgba(255, 253, 248, 0.62), rgba(255, 253, 248, 0.18) 45%, transparent),
       radial-gradient(circle at 8% 8%, rgba(223, 228, 216, 0.34), transparent 30%);
@@ -243,7 +243,7 @@ const values = [
     justify-content: center;
     height: 100%;
     min-height: clamp(30rem, 38vw, 36rem);
-    padding: clamp(1.1rem, 2.4vw, 2rem);
+    padding: var(--card-pd-sm);
     overflow: visible;
     background:
       radial-gradient(circle at 74% 16%, rgba(255, 255, 255, 0.55), transparent 26%),
@@ -339,7 +339,7 @@ const values = [
 
   .sm-panel__content {
     max-width: 45rem;
-    padding: clamp(1.65rem, 3.6vw, 3.8rem) clamp(1rem, 3.2vw, 3.1rem);
+    padding: var(--card-pd-lg) var(--card-pd-md);
     justify-self: start;
   }
 
@@ -562,7 +562,7 @@ const values = [
 
   @media (max-width: 720px) {
     .sobre-mi {
-      padding: 5rem 0 6rem;
+      padding: 4.8rem 0 5.8rem;
     }
 
     .sobre-mi::before {
@@ -587,8 +587,8 @@ const values = [
     }
 
     .sm-panel {
-      padding: 0.6rem;
-      border-radius: 1.1rem;
+      padding: var(--card-pd-sm);
+      border-radius: var(--card-radius-sm);
     }
 
     .sm-panel::before, .sm-panel::after {
@@ -597,8 +597,8 @@ const values = [
 
     .sm-panel__visual {
       min-height: clamp(22rem, 95vw, 26rem);
-      border-radius: 0.85rem;
-      padding: 0.8rem;
+      border-radius: var(--card-radius-sm);
+      padding: var(--card-pd-sm);
     }
 
     .sm-panel__visual::before {
@@ -625,7 +625,7 @@ const values = [
     }
 
     .sm-panel__content {
-      padding: 1.5rem 0.6rem 0.9rem;
+      padding: var(--card-pd-sm) 0.5rem 0.9rem;
     }
 
     .sm-lead {
@@ -682,7 +682,7 @@ const values = [
 
     .sm-value {
       min-height: auto;
-      padding: 1.2rem;
+      padding: var(--card-pd-sm);
     }
     .sm-value span {
       margin-bottom: 1.1rem;

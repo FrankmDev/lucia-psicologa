@@ -113,7 +113,7 @@ const faqs = [
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: var(--section-py--compact) 0 calc(var(--section-py--compact) + 0.4rem);
+    padding: var(--section-py--compact) 0 calc(var(--section-py--compact) + 0.5rem);
     background:
       radial-gradient(circle at 12% 8%, rgba(255, 255, 255, 0.92), transparent 28%),
       radial-gradient(circle at 84% 18%, rgba(223, 228, 216, 0.34), transparent 30%),
@@ -222,7 +222,7 @@ const faqs = [
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 1rem;
     align-items: center;
-    padding: 1.8rem 0;
+    padding: var(--card-pd-sm) 0;
     border: 0;
     background: transparent;
     text-align: left;
@@ -374,12 +374,12 @@ const faqs = [
 
   @media (max-width: 768px) {
     .faq {
-      padding: 5rem 0 6.2rem;
+      padding: 4.8rem 0 5.8rem;
     }
 
     .faq-header {
       margin-bottom: 2.2rem;
-      padding: 0 2vw;
+      padding: 0 4vw;
     }
 
     .faq-header h2 {
@@ -409,7 +409,7 @@ const faqs = [
 
     .faq-trigger {
       gap: 0.8rem;
-      padding: 1.25rem 0;
+      padding: var(--card-pd-sm) 0;
     }
 
     .faq-kicker {

@@ -298,7 +298,7 @@ const contactItems = [
     z-index: 3;
     max-width: 1100px;
     margin: 0 auto;
-    padding: clamp(2.5rem, 5vw, 3.5rem) clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(2.5rem, 5vw, 3.5rem) var(--section-padding-x);
   }
 
   /* ═══════════════════════════════════════════════════════════
@@ -732,7 +732,7 @@ const contactItems = [
      ═══════════════════════════════════════════════════════════ */
   @media (max-width: 768px) {
     .footer-inner {
-      padding: 2rem 5vw;
+      padding: 2rem var(--section-padding-x);
     }
     .footer-main-grid {
       grid-template-columns: 1fr;
@@ -779,7 +779,7 @@ const contactItems = [
 
   @media (max-width: 480px) {
     .footer-inner {
-      padding: 1.8rem 5vw;
+      padding: 1.8rem var(--section-padding-x);
     }
     .title-inner {
       font-size: var(--type-section-title-sm);

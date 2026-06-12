@@ -163,6 +163,13 @@
   --section-py--spacious: clamp(6rem, 9vw, 9.5rem);
   --section-padding-x: clamp(1rem, 4vw, 4.25rem);
 
+  /* Card padding scale — unified across all components */
+  --card-pd-sm: clamp(1rem, 2vw, 1.5rem);
+  --card-pd-md: clamp(1.25rem, 2.8vw, 2.25rem);
+  --card-pd-lg: clamp(1.65rem, 3.6vw, 3rem);
+  --card-radius: clamp(1rem, 1.8vw, 1.6rem);
+  --card-radius-sm: clamp(0.85rem, 1.4vw, 1.2rem);
+
   /* Typography */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;

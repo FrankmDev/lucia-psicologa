@@ -270,7 +270,7 @@ const quietSteps = [
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    padding: var(--section-py--spacious) 0 calc(var(--section-py--spacious) + 0.6rem);
+    padding: var(--section-py--spacious) 0 calc(var(--section-py--spacious) + 0.5rem);
     background:
       radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.84), transparent 30%),
       radial-gradient(circle at 84% 18%, rgba(223, 228, 216, 0.26), transparent 34%),
@@ -366,8 +366,8 @@ const quietSteps = [
     grid-template-rows: minmax(21rem, 1fr) auto;
     gap: clamp(1rem, 1.8vw, 1.35rem);
     min-height: 39rem;
-    padding: clamp(0.85rem, 1.6vw, 1.15rem);
-    border-radius: 1.65rem;
+    padding: var(--card-pd-sm);
+    border-radius: var(--card-radius);
     background:
       linear-gradient(180deg, rgba(255, 253, 248, 0.68), rgba(250, 248, 242, 0.42)),
       rgba(255, 253, 248, 0.5);
@@ -447,8 +447,8 @@ const quietSteps = [
     flex-direction: column;
     justify-content: space-between;
     min-height: 39rem;
-    padding: clamp(1.35rem, 2.9vw, 2.65rem);
-    border-radius: 1.65rem;
+    padding: var(--card-pd-lg);
+    border-radius: var(--card-radius);
     background:
       radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.18), transparent 42%),
       linear-gradient(145deg, rgba(255, 253, 248, 0.82), rgba(250, 248, 242, 0.58));
@@ -820,7 +820,7 @@ const quietSteps = [
     .contact-header {
       text-align: left;
       margin-bottom: 2.2rem;
-      padding: 0 2vw;
+      padding: 0 4vw;
     }
 
     .contact-eyebrow {
@@ -850,12 +850,12 @@ const quietSteps = [
 
     .contact-portrait,
     .contact-form-card {
-      border-radius: 1.1rem;
+      border-radius: var(--card-radius-sm);
     }
 
     .contact-portrait {
       grid-template-rows: minmax(14rem, 18rem) auto;
-      padding: 0.7rem;
+      padding: var(--card-pd-sm);
       min-height: auto;
     }
 
@@ -865,7 +865,7 @@ const quietSteps = [
     }
 
     .contact-form-card {
-      padding: 1rem;
+      padding: var(--card-pd-sm);
       min-height: auto;
     }
 
