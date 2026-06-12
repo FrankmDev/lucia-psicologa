@@ -22,17 +22,17 @@ export interface BlogArticle {
 }
 
 const articleImageUrls: Record<string, string> = {
-  'emdr-cordoba':
+  'emdr-ciudad-real':
     'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&auto=format&fit=crop&crop=entropy',
-  'duelo-perdida-cordoba':
+  'duelo-perdida-ciudad-real':
     'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&auto=format&fit=crop&crop=entropy',
-  'mindfulness-regulacion-cordoba':
+  'mindfulness-regulacion-ciudad-real':
     'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&auto=format&fit=crop&crop=entropy',
-  'ansiedad-cordoba':
+  'ansiedad-ciudad-real':
     'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&auto=format&fit=crop&crop=entropy',
-  'primera-consulta-cordoba':
+  'primera-consulta-ciudad-real':
     'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&auto=format&fit=crop&crop=entropy',
-  'autoestima-cordoba':
+  'autoestima-ciudad-real':
     'https://images.unsplash.com/photo-1490750967868-88aa4486c946?q=80&auto=format&fit=crop&crop=entropy',
 };
 
@@ -48,17 +48,17 @@ export const articles: BlogArticle[] = [
   // Article 1 — EMDR
   // ════════════════════════════════════════════════════
   {
-    slug: 'emdr-cordoba',
+    slug: 'emdr-ciudad-real',
     title: 'EMDR: reprogramar recuerdos y recuperar tu vida',
-    metaTitle: 'Terapia EMDR en Córdoba | Psicóloga especializada en trauma',
-    metaDescription: 'Descubre qué es la terapia EMDR, por qué la OMS la recomienda para el tratamiento del trauma, y cómo funciona en una consulta de psicología en Córdoba.',
+    metaTitle: 'Terapia EMDR en Ciudad Real | Psicóloga especializada en trauma',
+    metaDescription: 'Descubre qué es la terapia EMDR, por qué la OMS la recomienda para el tratamiento del trauma, y cómo funciona en una consulta de psicología en Ciudad Real.',
     category: 'trauma',
     categoryLabel: 'Trauma',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '12 min',
-    excerpt: 'Descubre qué es la terapia EMDR, por qué es el tratamiento de elección para el trauma según la OMS, y cómo funciona en una consulta de psicología en Córdoba.',
-    keywords: ['terapia EMDR Córdoba', 'psicóloga EMDR Córdoba', 'tratamiento trauma Córdoba', 'EMDR psicología'],
+    excerpt: 'Descubre qué es la terapia EMDR, por qué es el tratamiento de elección para el trauma según la OMS, y cómo funciona en una consulta de psicología en Ciudad Real.',
+    keywords: ['terapia EMDR Ciudad Real', 'psicóloga EMDR Ciudad Real', 'tratamiento trauma Ciudad Real', 'EMDR psicología'],
     content: `
 <p class="lead">
   Hace tres meses, un hombre de cuarenta y cinco años entró en mi consulta con una petición que había rehecho en su cabeza durante años: "Necesito que algo cambie, pero no quiero hablar de mi infancia durante décadas. ¿Existe otra forma?". Llevaba dos décadas evitando ciertos lugares de la ciudad, con pesadillas recurrentes y una sensación de amenaza permanente que no conseguía explicar con palabras. Había probado terapia conversacional. Había leído libros. Había meditado. Pero el recuerdo seguía ahí, como una cicatriz que no cerraba.
@@ -191,7 +191,7 @@ export const articles: BlogArticle[] = [
 <h2>EMDR: por qué cada vez más personas lo eligen</h2>
 
 <p>
-  En los últimos años, el EMDR ha ganado visibilidad. Universidades como la Universidad han incluido formaciones en terapias basadas en la evidencia, y cada vez más profesionales de la salud mental se especializan en este enfoque. Los motivos de esta tendencia son claros:
+  En los últimos años, el EMDR ha ganado visibilidad. Universidades y equipos clínicos han incluido formaciones en terapias basadas en la evidencia, y cada vez más profesionales de la salud mental se especializan en este enfoque. Los motivos de esta tendencia son claros:
 </p>
 
 <ul>
@@ -236,7 +236,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  <a href="/blog/duelo-perdida-cordoba">
+  <a href="/blog/duelo-perdida-ciudad-real">
     Si lo que estás viviendo es una pérdida reciente, en este artículo explico cómo acompaño el duelo desde la terapia.
   </a>
 </p>
@@ -247,17 +247,17 @@ export const articles: BlogArticle[] = [
   // Article 2 — Duelo
   // ════════════════════════════════════════════════════
   {
-    slug: 'duelo-perdida-cordoba',
+    slug: 'duelo-perdida-ciudad-real',
     title: 'Afrontar el duelo cuando el dolor no pasa',
-    metaTitle: 'Psicóloga especialista en duelo Córdoba | Acompañamiento en la pérdida',
-    metaDescription: '¿Has perdido a alguien querido en Córdoba? Te explico las fases reales del duelo, cuándo necesitas ayuda psicológica y cómo acompaño a personas que atraviesan una pérdida.',
+    metaTitle: 'Psicóloga especialista en duelo Ciudad Real | Acompañamiento en la pérdida',
+    metaDescription: '¿Has perdido a alguien querido en Ciudad Real? Te explico las fases reales del duelo, cuándo necesitas ayuda psicológica y cómo acompaño a personas que atraviesan una pérdida.',
     category: 'duelo',
     categoryLabel: 'Duelo',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '14 min',
-    excerpt: 'No todo duelo es igual. Te explico las fases reales del duelo, cuándo necesitas ayuda psicológica en Córdoba y cómo acompaño a personas que han perdido a alguien.',
-    keywords: ['psicóloga duelo Córdoba', 'ayuda duelo Córdoba', 'terapia pérdida Córdoba', 'duelo complicado tratamiento'],
+    excerpt: 'No todo duelo es igual. Te explico las fases reales del duelo, cuándo necesitas ayuda psicológica en Ciudad Real y cómo acompaño a personas que han perdido a alguien.',
+    keywords: ['psicóloga duelo Ciudad Real', 'ayuda duelo Ciudad Real', 'terapia pérdida Ciudad Real', 'duelo complicado tratamiento'],
     content: `
 <p class="lead">
   El domingo pasado, una persona de cincuenta y dos años llegó a mi consulta con una frase que resume lo que muchas personas sienten pero no se atreven a decir en voz alta: "Mi madre murió hace dos años y aún no he llorado. Todo el mundo me dice que debería estar mejor, pero yo siento que ella se murió ayer". Llevaba meses de insomnio, irritabilidad constante y una sensación de vacío que no sabía nombrar. Su médico de cabecera le había diagnosticado ansiedad. Sus amigas le recomendaban viajar. Pero ella seguía atrapada en un dolor que nadie veía.
@@ -415,7 +415,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  <a href="/blog/mindfulness-regulacion-cordoba">
+  <a href="/blog/mindfulness-regulacion-ciudad-real">
     Si necesitas herramientas para gestionar la intensidad emocional del duelo, en este artículo explico técnicas de mindfulness y regulación emocional que pueden ayudarte.
   </a>
 </p>
@@ -426,17 +426,17 @@ export const articles: BlogArticle[] = [
   // Article 3 — Mindfulness
   // ════════════════════════════════════════════════════
   {
-    slug: 'mindfulness-regulacion-cordoba',
+    slug: 'mindfulness-regulacion-ciudad-real',
     title: 'Mindfulness y regulación emocional',
-    metaTitle: 'Mindfulness Córdoba | Psicóloga especialista en regulación emocional',
-    metaDescription: 'Descubre cómo el mindfulness y las técnicas de regulación emocional pueden cambiar tu cerebro. Psicóloga especializada en mindfulness en Córdoba.',
+    metaTitle: 'Mindfulness Ciudad Real | Psicóloga especialista en regulación emocional',
+    metaDescription: 'Descubre cómo el mindfulness y las técnicas de regulación emocional pueden cambiar tu cerebro. Psicóloga especializada en mindfulness en Ciudad Real.',
     category: 'bienestar',
     categoryLabel: 'Bienestar',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '11 min',
-    excerpt: 'El mindfulness no es moda pasajera. Te cuento las técnicas de regulación emocional que uso en mi consulta de Córdoba y cómo la neurociencia respalda su eficacia.',
-    keywords: ['mindfulness Córdoba', 'regulación emocional Córdoba', 'psicóloga mindfulness Córdoba', 'técnicas regulación emocional'],
+    excerpt: 'El mindfulness no es moda pasajera. Te cuento las técnicas de regulación emocional que uso en mi consulta de Ciudad Real y cómo la neurociencia respalda su eficacia.',
+    keywords: ['mindfulness Ciudad Real', 'regulación emocional Ciudad Real', 'psicóloga mindfulness Ciudad Real', 'técnicas regulación emocional'],
     content: `
 <p class="lead">
   La semana pasada, una estudiante de medicina entró en mi consulta con una petición directa: "Necesito algo que me ayude a no sentirme abrumada constantemente. No quiero medicación. Quiero aprender a gestionar mi mente". Llevaba meses con taquicardias antes de los exámenes, insomnio previo a las prácticas clínicas y una irritabilidad que estaba deteriorando sus relaciones. Había probado apps de meditación. Había leído sobre mindfulness. Pero sentía que no avanzaba sola.
@@ -625,7 +625,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  <a href="/blog/emdr-cordoba">
+  <a href="/blog/emdr-ciudad-real">
     Si sospechas que tu dificultad emocional tiene raíces en un trauma o experiencia del pasado, en este artículo explico cómo la terapia EMDR puede ayudarte a reprocesar esos recuerdos.
   </a>
 </p>
@@ -636,17 +636,17 @@ export const articles: BlogArticle[] = [
   // Article 4 — Ansiedad
   // ════════════════════════════════════════════════════
   {
-    slug: 'ansiedad-cordoba',
+    slug: 'ansiedad-ciudad-real',
     title: 'Ansiedad: reconocerla y pedir ayuda',
-    metaTitle: 'Psicóloga en Córdoba | Ansiedad y bienestar',
-    metaDescription: '¿Sientes ansiedad en Córdoba? Descubre cómo reconocerla y cuándo acudir a una psicóloga en Córdoba. Empieza a sentirte mejor hoy mismo.',
+    metaTitle: 'Psicóloga en Ciudad Real | Ansiedad y bienestar',
+    metaDescription: '¿Sientes ansiedad en Ciudad Real? Descubre cómo reconocerla y cuándo acudir a una psicóloga en Ciudad Real. Empieza a sentirte mejor hoy mismo.',
     category: 'ansiedad',
     categoryLabel: 'Ansiedad',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
     readTime: '10 min',
-    excerpt: 'Descubre cómo reconocer los signos reales de la ansiedad, cuándo es el momento de buscar ayuda psicológica en Córdoba y cómo puede ayudarte la terapia a recuperar tu bienestar.',
-    keywords: ['psicóloga en Córdoba', 'ansiedad Córdoba', 'ayuda psicológica Córdoba'],
+    excerpt: 'Descubre cómo reconocer los signos reales de la ansiedad, cuándo es el momento de buscar ayuda psicológica en Ciudad Real y cómo puede ayudarte la terapia a recuperar tu bienestar.',
+    keywords: ['psicóloga en Ciudad Real', 'ansiedad Ciudad Real', 'ayuda psicológica Ciudad Real'],
     content: `
 <p class="lead">
   Hace unas semanas, una persona de treinta y dos años entró en mi consulta con una frase que escucho con frecuencia: "No sé si lo que me pasa es ansiedad o simplemente estoy agotada". Llevaba meses durmiendo mal, con el estómago revuelto antes de cada reunión de trabajo y una sensación permanente de que se le acababa el tiempo. No había sufrido ninguna tragedia. Su vida, vista desde fuera, era normal. Pero ella ya no se sentía ella.
@@ -720,17 +720,17 @@ export const articles: BlogArticle[] = [
   // Article 5 — Primera consulta
   // ════════════════════════════════════════════════════
   {
-    slug: 'primera-consulta-cordoba',
+    slug: 'primera-consulta-ciudad-real',
     title: 'Tu primera consulta de terapia',
-    metaTitle: 'Terapia psicológica Córdoba | Primera consulta',
-    metaDescription: '¿Dudas sobre la terapia psicológica en Córdoba? Te explico qué esperar en tu primera consulta y cómo puedo acompañarte. Reserva tu cita hoy.',
+    metaTitle: 'Terapia psicológica Ciudad Real | Primera consulta',
+    metaDescription: '¿Dudas sobre la terapia psicológica en Ciudad Real? Te explico qué esperar en tu primera consulta y cómo puedo acompañarte. Reserva tu cita hoy.',
     category: 'terapia',
     categoryLabel: 'Terapia',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
     readTime: '9 min',
-    excerpt: 'Resolvemos los miedos más comunes antes de la primera sesión y te contamos exactamente qué ocurre cuando acudes a una consulta de psicología en Córdoba.',
-    keywords: ['terapia psicológica Córdoba', 'primera consulta psicólogo Córdoba', 'cómo es ir al psicólogo'],
+    excerpt: 'Resolvemos los miedos más comunes antes de la primera sesión y te contamos exactamente qué ocurre cuando acudes a una consulta de psicología en Ciudad Real.',
+    keywords: ['terapia psicológica Ciudad Real', 'primera consulta psicólogo Ciudad Real', 'cómo es ir al psicólogo'],
     content: `
 <p class="lead">
   La puerta de mi consulta se abre casi siempre con la misma mezcla de emociones. Algunas personas llegan con los ojos enrojecidos de haber llorado en el coche. Otras con una sonrisa nerviosa que intenta disimular el temblor de las manos. Hay quien entra hablando sin parar para no dejar espacio al silencio, y quien apenas puede articular palabra. Todas estas formas de llegar son válidas. Todas son bienvenidas. Y todas comparten algo: alguien ha decidido que ya no quiere seguir así.
@@ -808,17 +808,17 @@ export const articles: BlogArticle[] = [
   // Article 6 — Autoestima
   // ════════════════════════════════════════════════════
   {
-    slug: 'autoestima-cordoba',
+    slug: 'autoestima-ciudad-real',
     title: 'Autoestima: reconstruir tu relación contigo mismo',
-    metaTitle: 'Psicóloga Córdoba autoestima | Bienestar',
-    metaDescription: '¿Buscas mejorar tu autoestima en Córdoba? Descubre cómo la terapia puede ayudarte a reconectar contigo. Consulta con una psicóloga en Córdoba.',
+    metaTitle: 'Psicóloga Ciudad Real autoestima | Bienestar',
+    metaDescription: '¿Buscas mejorar tu autoestima en Ciudad Real? Descubre cómo la terapia puede ayudarte a reconectar contigo. Consulta con una psicóloga en Ciudad Real.',
     category: 'autoestima',
     categoryLabel: 'Autoestima',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
     readTime: '11 min',
     excerpt: 'Entiende qué es la autoestima real, cómo afecta a tu vida cotidiana y cómo la terapia puede ayudarte a reconstruir una relación sana contigo mismo.',
-    keywords: ['psicóloga Córdoba autoestima', 'bienestar emocional Córdoba', 'terapia autoestima Córdoba'],
+    keywords: ['psicóloga Ciudad Real autoestima', 'bienestar emocional Ciudad Real', 'terapia autoestima Ciudad Real'],
     content: `
 <p class="lead">
   Hace unos meses, una persona de veintiocho años se sentó frente a mí en mi consulta y dijo algo que resume lo que escucho con demasiada frecuencia: "Sé que debería quererme más, pero no sé cómo". Llevaba años repitiéndose frases que había leído en libros de autoayuda y publicaciones motivacionales. Se esforzaba por pensar positivo. Se obligaba a mirarse al espejo y decirse que era válida. Pero por las mañanas, cuando sonaba el despertador, seguía sintiendo el mismo vacío. El mismo peso. La misma sensación de no ser suficiente.

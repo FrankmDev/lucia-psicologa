@@ -12,11 +12,57 @@ import Contacto from '../components/Contacto.astro';
 import BlogSection from '../components/BlogSection.astro';
 import Footer from '../components/Footer.astro';
 import SectionDivider from '../components/SectionDivider.astro';
+
+const homeSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://lucia-psicologa.vercel.app/#webpage',
+    url: 'https://lucia-psicologa.vercel.app/',
+    name: 'Lucía Millán Jiménez | Psicóloga en Ciudad Real',
+    description:
+      'Psicóloga en Ciudad Real. Terapia individual online y presencial para ansiedad, duelo, autoestima, trauma y bienestar emocional.',
+    inLanguage: 'es-ES',
+    isPartOf: { '@id': 'https://lucia-psicologa.vercel.app/#website' },
+    about: { '@id': 'https://lucia-psicologa.vercel.app/#lucia-millan-jimenez' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: '¿La terapia puede ser online o presencial?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí. La consulta ofrece terapia individual presencial en Ciudad Real y sesiones online para personas que prefieren o necesitan un formato a distancia.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cuándo conviene pedir ayuda psicológica?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Conviene pedir ayuda cuando el malestar emocional, la ansiedad, el duelo, la baja autoestima o una experiencia difícil empiezan a limitar tu vida cotidiana, tus relaciones o tu descanso.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué ocurre en la primera sesión?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'La primera sesión sirve para escuchar tu situación, entender qué necesitas y acordar una forma de trabajo clara, respetando tu ritmo y tus objetivos.',
+        },
+      },
+    ],
+  },
+];
 ---
 
 <Layout
   title="Lucía Millán Jiménez | Psicología Clínica en Ciudad Real"
   description="Psicóloga colegiada en Ciudad Real. Terapia individual online y presencial con enfoque integrador: TCC, ACT, TFE y técnicas psicosomáticas. Un espacio seguro para tu bienestar emocional."
+  schema={homeSchema}
 >
   <Navigation />
   <main>

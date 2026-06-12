@@ -28,9 +28,54 @@ const formattedDate = new Date(article.dateISO).toLocaleDateString('es-ES', {
 
 const heroImage = getArticleImage(article.slug, 1800, 1200);
 const pullQuote = article.excerpt;
+const articleURL = `https://lucia-psicologa.vercel.app/blog/${article.slug}`;
+const articleSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.metaDescription,
+    image: heroImage,
+    datePublished: article.dateISO,
+    dateModified: article.dateISO,
+    author: {
+      '@type': 'Person',
+      name: 'Lucía Millán Jiménez',
+      url: 'https://lucia-psicologa.vercel.app/',
+    },
+    publisher: { '@id': 'https://lucia-psicologa.vercel.app/#lucia-millan-jimenez' },
+    mainEntityOfPage: articleURL,
+    inLanguage: 'es-ES',
+    keywords: article.keywords.join(', '),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Inicio',
+        item: 'https://lucia-psicologa.vercel.app/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://lucia-psicologa.vercel.app/blog',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: article.title,
+        item: articleURL,
+      },
+    ],
+  },
+];
 ---
 
-<Layout title={article.metaTitle} description={article.metaDescription} keywords={article.keywords}>
+<Layout title={article.metaTitle} description={article.metaDescription} keywords={article.keywords} image={heroImage} type="article" schema={articleSchema}>
   <Navigation />
 
   <main class="article-page" data-article-page>
