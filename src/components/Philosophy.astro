@@ -12,43 +12,36 @@ const backgroundImage =
 const phrase = [
   'La',
   'terapia',
-  'no',
-  'tiene',
-  'por',
-  'qué',
-  'ser',
-  'un',
-  'lugar',
-  'duro.',
-  'Puede',
-  'ser',
-  'un',
-  'espacio',
-  'seguro',
-  'donde',
-  'respirar,',
-  'ordenar',
-  'y',
-  'volver',
+  'puede',
+  'ayudarte',
   'a',
-  'ti.',
+  'entender',
+  'síntomas,',
+  'regular',
+  'emociones',
+  'y',
+  'tomar',
+  'decisiones',
+  'con',
+  'más',
+  'margen.',
 ];
 
 const anchors = [
   {
     num: '01',
-    title: 'Regular',
-    text: 'Bajar el ruido antes de entrar en lo importante.',
+    title: 'Evaluar',
+    text: 'Comprender qué ocurre y qué factores mantienen el malestar.',
   },
   {
     num: '02',
-    title: 'Comprender',
-    text: 'Dar sentido a lo que se repite sin juicio.',
+    title: 'Regular',
+    text: 'Desarrollar recursos para manejar activación, ansiedad o bloqueo.',
   },
   {
     num: '03',
     title: 'Integrar',
-    text: 'Convertir lo trabajado en una forma más amable de vivir.',
+    text: 'Trasladar lo trabajado a decisiones, vínculos y vida diaria.',
   },
 ];
 ---
@@ -69,9 +62,9 @@ const anchors = [
     <div class="ph-shell">
       <header class="ph-header reveal-blur" data-delay="80">
         <span class="ph-eyebrow">Filosofía</span>
-        <h2>Calma para mirar lo que pesa.</h2>
+        <h2>Un proceso clínico con dirección.</h2>
         <p>
-          Un acompañamiento clínico, cercano y sin prisa para sentir seguridad mientras das forma a lo que necesitas cuidar.
+          Evaluamos, definimos objetivos y revisamos avances para que cada sesión tenga una función dentro del proceso.
         </p>
       </header>
 
@@ -83,7 +76,7 @@ const anchors = [
           <span class="ph-frame__br"></span>
         </div>
 
-        <p class="ph-reveal-line" aria-label="La terapia no tiene por qué ser un lugar duro. Puede ser un espacio seguro donde respirar, ordenar y volver a ti.">
+        <p class="ph-reveal-line" aria-label="La terapia puede ayudarte a entender síntomas, regular emociones y tomar decisiones con más margen.">
           {phrase.map((word) => (
             <span data-ph-word>{word}</span>
           ))}
@@ -91,10 +84,10 @@ const anchors = [
 
         <div class="ph-actions">
           <Button href="#contacto" variant="hero" class="ph-button">
-            Reservar sesión
+            Solicitar primera sesión
           </Button>
-          <a href="#sobre-mi" class="ph-link">
-            <span>Conocer a Lucía</span>
+          <a href="#proceso" class="ph-link">
+            <span>Ver cómo trabajo</span>
             <i aria-hidden="true"></i>
           </a>
         </div>

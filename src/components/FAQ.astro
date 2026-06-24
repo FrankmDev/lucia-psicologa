@@ -1,8 +1,5 @@
 ---
-import PageNumber from './ui/PageNumber.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
-import InkBlob from './ui/InkBlob.astro';
-import BotanicalSVG from './ui/BotanicalSVG.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
@@ -10,33 +7,38 @@ import AmbientLight from './ui/AmbientLight.astro';
 const faqs = [
   {
     k: 'Sesiones',
-    q: '¿Cuánto dura una sesión de terapia?',
-    a: 'Las sesiones individuales tienen una duración aproximada de 50 a 55 minutos. En terapia de pareja, la sesión puede extenderse hasta 75 minutos para dar espacio a ambas partes.',
+    q: '¿Cuánto dura una sesión?',
+    a: 'Las sesiones individuales duran alrededor de 50 minutos. En trabajo de trauma, algunas sesiones pueden ampliarse a 60–90 minutos si tiene sentido clínico y lo acordamos previamente.',
   },
   {
     k: 'Modalidad',
-    q: '¿Ofreces terapia online?',
-    a: 'Sí, ofrezco sesiones online a través de una plataforma segura y encriptada. La experiencia mantiene el mismo cuidado clínico y la misma estructura que una sesión presencial.',
+    q: '¿La terapia puede ser online?',
+    a: 'Sí. Atiendo terapia presencial en Ciudad Real y sesiones online para personas que prefieren o necesitan un formato a distancia. En ambos casos mantenemos encuadre, confidencialidad y seguimiento.',
+  },
+  {
+    k: 'Primera sesión',
+    q: '¿Qué ocurre en la primera sesión?',
+    a: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas y definimos un primer objetivo de trabajo.',
   },
   {
     k: 'Frecuencia',
-    q: '¿Con qué frecuencia debo acudir?',
-    a: 'Lo habitual es empezar con una sesión semanal. Esa continuidad ayuda a profundizar, sostener el proceso y revisar con calma lo que va ocurriendo entre encuentros.',
-  },
-  {
-    k: 'Proceso',
-    q: '¿Cuánto tiempo dura un proceso terapéutico?',
-    a: 'Depende de tus objetivos, del momento vital y de la complejidad de lo que estés atravesando. Algunas personas encuentran alivio en pocas sesiones y otras prefieren un acompañamiento más largo.',
+    q: '¿Con qué frecuencia se acude?',
+    a: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución, los objetivos y tu disponibilidad.',
   },
   {
     k: 'Enfoque',
-    q: '¿Cuál es tu enfoque terapéutico?',
-    a: 'Mi práctica se fundamenta en un modelo integrador. Combino Terapia Cognitivo-Conductual (TCC), Aceptación y Compromiso (ACT), Terapia Focalizada en la Emoción (TFE) y técnicas psicosomáticas, adaptando cada intervención a tu momento vital y a tus objetivos específicos.',
+    q: '¿Qué enfoque de terapia utilizas?',
+    a: 'Trabajo desde un modelo integrador que combina Terapia Cognitivo-Conductual, ACT, Terapia Focalizada en la Emoción y técnicas psicosomáticas. La intervención se adapta a tu caso, no al revés.',
   },
   {
-    k: 'Reserva',
+    k: 'Confidencialidad',
+    q: '¿Lo que cuente será confidencial?',
+    a: 'Sí. La información que compartas se trata con confidencialidad profesional y de acuerdo con la normativa de protección de datos.',
+  },
+  {
+    k: 'Contacto',
     q: '¿Cómo puedo pedir cita?',
-    a: 'Puedes escribirme desde el formulario de esta web, por email o por teléfono. Respondo en un plazo máximo de 24 horas laborables para orientarte y ofrecerte un primer hueco.',
+    a: 'Puedes escribir desde el formulario, por email o por teléfono. Respondo en un plazo máximo de 24 horas laborables para orientarte y valorar un primer hueco.',
   },
 ];
 ---
@@ -46,9 +48,6 @@ const faqs = [
   <AmbientLight color="rgba(255,255,255,0.24)" />
   <FloatOrb size={360} top="-14%" right="-10%" color="rgba(141,151,132,0.12)" blur={145} opacity={0.32} animation="float-1" />
   <FloatOrb size={240} bottom="4%" left="-8%" color="rgba(216,211,200,0.24)" blur={120} opacity={0.28} animation="float-2" />
-  <InkBlob width={320} height={240} top="8%" right="-6%" color="var(--sage)" opacity={0.024} animation="morph-blob" />
-  <InkBlob width={320} height={240} bottom="-4%" left="-8%" color="var(--gold)" opacity={0.02} animation="morph-2" />
-  <BotanicalSVG variant="right" opacity={0.032} width={84} />
 
   <Container maxWidth="1180px" padding="0 clamp(1rem, 4vw, 4rem)">
     <div class="faq-shell">
@@ -56,7 +55,7 @@ const faqs = [
         <span class="faq-eyebrow">Preguntas frecuentes</span>
         <h2>Preguntas frecuentes antes de empezar.</h2>
         <p>
-          Una orientación breve para que sepas cómo trabajo, qué puedes esperar del proceso y cómo dar el primer paso con calma.
+          Información práctica sobre duración, modalidad, primera sesión, confidencialidad y contacto.
         </p>
       </header>
 
@@ -64,22 +63,24 @@ const faqs = [
         <div class="faq-list" aria-label="Preguntas frecuentes">
           {faqs.map((faq, i) => (
             <article class="faq-item reveal-up" data-faq-item style={`transition-delay: ${220 + i * 55}ms`}>
-              <button
-                class="faq-trigger"
-                aria-expanded="false"
-                aria-controls={`faq-answer-${i}`}
-              >
-                <div class="faq-trigger__copy">
-                  <span class="faq-kicker">{faq.k}</span>
-                  <h3 class="faq-question">{faq.q}</h3>
-                </div>
-                <span class="faq-icon" aria-hidden="true">
-                  <svg viewBox="0 0 18 18" fill="none" class="faq-icon-svg">
-                    <line x1="9" y1="4.5" x2="9" y2="13.5" stroke="currentColor" stroke-width="1.05" class="faq-icon-v"/>
-                    <line x1="4.5" y1="9" x2="13.5" y2="9" stroke="currentColor" stroke-width="1.05"/>
-                  </svg>
-                </span>
-              </button>
+              <h3>
+                <button
+                  class="faq-trigger"
+                  aria-expanded="false"
+                  aria-controls={`faq-answer-${i}`}
+                >
+                  <div class="faq-trigger__copy">
+                    <span class="faq-kicker">{faq.k}</span>
+                    <span class="faq-question">{faq.q}</span>
+                  </div>
+                  <span class="faq-icon" aria-hidden="true">
+                    <svg viewBox="0 0 18 18" fill="none" class="faq-icon-svg" aria-hidden="true">
+                      <line x1="9" y1="4.5" x2="9" y2="13.5" stroke="currentColor" stroke-width="1.05" class="faq-icon-v"/>
+                      <line x1="4.5" y1="9" x2="13.5" y2="9" stroke="currentColor" stroke-width="1.05"/>
+                    </svg>
+                  </span>
+                </button>
+              </h3>
 
               <div id={`faq-answer-${i}`} class="faq-answer">
                 <div class="faq-answer__inner">
@@ -94,9 +95,9 @@ const faqs = [
       </div>
 
       <div class="faq-close reveal-up" data-delay="520">
-        <p>Si prefieres, podemos resolver tu caso concreto directamente.</p>
+        <p>Si tu pregunta depende de tu situación concreta, puedes explicármela en el primer mensaje.</p>
         <a href="#contacto" class="faq-close__link">
-          <span>Ir a contacto</span>
+          <span>Solicitar primera sesión</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -104,8 +105,6 @@ const faqs = [
       </div>
     </div>
   </Container>
-
-  <PageNumber number="06" />
 </section>
 
 <style>
@@ -209,6 +208,10 @@ const faqs = [
 
   .faq-item:first-child {
     border-top: 0;
+  }
+
+  .faq-item h3 {
+    margin: 0;
   }
 
   .faq-item:hover,

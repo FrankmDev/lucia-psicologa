@@ -3,7 +3,7 @@ export const SITE = {
   name: 'Lucía Millán Jiménez',
   title: 'Lucía Millán Jiménez | Psicóloga en Ciudad Real',
   description:
-    'Psicóloga en Ciudad Real. Terapia individual online y presencial para ansiedad, duelo, autoestima, trauma y bienestar emocional.',
+    'Psicóloga clínica en Ciudad Real. Terapia individual presencial y online, integradora y orientada a objetivos. Primera respuesta en 24 h.',
   email: 'luciamillanpsico@gmail.com',
   phone: '+34 722535914',
   phoneHref: '+34722535914',

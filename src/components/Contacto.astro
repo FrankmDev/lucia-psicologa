@@ -1,5 +1,4 @@
 ---
-import PageNumber from './ui/PageNumber.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
@@ -13,8 +12,8 @@ const contactRoutes = [
   },
   {
     label: 'Teléfono',
-    value: '722535914',
-    href: 'tel:722535914',
+    value: '722 53 59 14',
+    href: 'tel:+34722535914',
   },
   {
     label: 'Consulta',
@@ -22,15 +21,15 @@ const contactRoutes = [
   },
   {
     label: 'Dirección',
-    value: 'c/ Toledo, 8, 2° Planta, 13001, Ciudad Real',
-    href: 'https://www.google.com/search?sca_esv=46bc13bb03f41cf0&sxsrf=ANbL-n4P7jqJ8RBIUqoY7eJLwLqci3o1Xw:1779809431733&kgmid=/g/11z35hqkg2&q=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez,+Psic%C3%B3logo&shem=rimspwouoe&shndl=30&source=sh/x/loc/uni/m1/1&kgs=07d8cea2c96db48f&utm_source=rimspwouoe,sh/x/loc/uni/m1/1',
+    value: 'c/ Toledo, 8, 2° Planta, 13001 Ciudad Real',
+    href: 'https://www.google.com/maps/search/?api=1&query=Calle+Toledo+8+Ciudad+Real',
   },
 ];
 
 const quietSteps = [
-  'Escríbeme solo lo esencial.',
-  'Te respondo con una primera orientación.',
-  'Elegimos juntas el formato que encaje.',
+  'Indica el motivo de consulta y desde cuándo ocurre.',
+  'Cuéntame si prefieres sesión presencial u online.',
+  'Te respondo en un máximo de 24 horas laborables.',
 ];
 ---
 
@@ -46,7 +45,7 @@ const quietSteps = [
         <span class="contact-eyebrow">Contacto</span>
         <h2>Empezamos con una conversación sencilla.</h2>
         <p>
-          No hace falta tenerlo todo ordenado para escribir. Puedes acercarte con lo que haya ahora; yo te responderé con claridad, cuidado y un siguiente paso posible.
+          No necesitas explicar toda tu historia en el primer mensaje. Basta con contar qué te preocupa, desde cuándo ocurre y qué modalidad prefieres.
         </p>
       </header>
 
@@ -59,7 +58,7 @@ const quietSteps = [
           <div class="portrait-note">
             <span>Primera respuesta</span>
             <p>
-              Puedes contarme poco, mucho o simplemente decir que necesitas orientación. El primer contacto también puede ser tranquilo.
+              Respondo en un plazo máximo de 24 horas laborables para orientarte y valorar el primer hueco disponible.
             </p>
           </div>
         </aside>
@@ -78,10 +77,15 @@ const quietSteps = [
           method="POST"
           enctype="text/plain"
         >
+          <noscript>
+            <div class="form-noscript">
+              <p>Puedes escribirme directamente a <a href="mailto:luciamillanpsico@gmail.com">luciamillanpsico@gmail.com</a> o llamar al <a href="tel:+34722535914">722 53 59 14</a>.</p>
+            </div>
+          </noscript>
           <div class="form-head">
             <span class="form-kicker">Mensaje inicial</span>
-            <h3>Cuéntame lo básico, sin presión.</h3>
-            <p>Te responderé con una propuesta clara y sin compromiso para valorar juntas cómo empezar.</p>
+            <h3>Cuéntame lo necesario para orientarte.</h3>
+            <p>Se abrirá tu cliente de correo con el mensaje preparado. También puedes escribirme directamente a <a href="mailto:luciamillanpsico@gmail.com" class="form-inline-link">luciamillanpsico@gmail.com</a>.</p>
           </div>
 
           <div class="form-fields">
@@ -125,26 +129,26 @@ const quietSteps = [
                 aria-required="true"
                 aria-describedby="mensaje-hint"
               ></textarea>
-              <label for="mensaje">¿Qué te gustaría contarme?</label>
-              <span id="mensaje-hint" class="field-hint" role="alert">Cuéntame lo que necesites, incluso si no sabes por dónde empezar.</span>
+              <label for="mensaje">Motivo de consulta</label>
+              <span id="mensaje-hint" class="field-hint" role="alert">Incluye, si puedes, qué ocurre, desde cuándo y si prefieres presencial u online.</span>
             </div>
           </div>
 
           <div class="quiet-list" aria-label="Qué ocurre después">
             {quietSteps.map((step, index) => (
               <div class="quiet-step">
-                <span>{String(index + 1).padStart(2, '0')}</span>
+                <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
                 <p>{step}</p>
               </div>
             ))}
           </div>
 
           <div class="form-actions">
-            <p>Tus datos se tratan con confidencialidad.</p>
+            <p>Tus datos se tratan con confidencialidad. Respuesta en 24 horas laborables.</p>
             <button type="submit" class="contact-submit" id="contactSubmit">
-              <span class="submit-text">Enviar mensaje</span>
-              <span class="submit-loading" aria-hidden="true">Enviando...</span>
-              <span class="submit-success" aria-hidden="true">Mensaje enviado</span>
+              <span class="submit-text">Solicitar primera sesión</span>
+              <span class="submit-loading" aria-hidden="true">Abriendo correo...</span>
+              <span class="submit-success" aria-hidden="true">Abrir correo</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -157,7 +161,7 @@ const quietSteps = [
                 <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/>
                 <path d="M5 8l2.5 2.5L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              Gracias por escribir. Te responderé en un plazo máximo de 24 horas laborables.
+              El navegador intentará abrir tu cliente de correo con el mensaje preparado. Si no se abre, escríbeme a <a href="mailto:luciamillanpsico@gmail.com">luciamillanpsico@gmail.com</a>.
             </p>
             <p class="feedback-error">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -172,7 +176,7 @@ const quietSteps = [
         <div class="contact-rail reveal-up" data-delay="320" aria-label="Datos de contacto">
           {contactRoutes.map((route) => (
             route.href ? (
-              <a class="contact-route" href={route.href}>
+              <a class="contact-route" href={route.href} {...(route.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
                 <span>{route.label}</span>
                 <strong>{route.value}</strong>
               </a>
@@ -187,8 +191,6 @@ const quietSteps = [
       </div>
     </div>
   </Container>
-
-  <PageNumber number="07" />
 </section>
 
 <script>
@@ -203,8 +205,9 @@ const quietSteps = [
 
     form.addEventListener('submit', function(e) {
       if (isMailto) {
-        // mailto: fallback — let the browser handle it natively
-        // but show a success message since we can't track the email client
+        // mailto: fallback — the browser will try to open the email client.
+        // We can't track whether the user actually sent the message,
+        // so we only acknowledge that the handoff was attempted.
         submitBtn.classList.add('is-success');
         feedback.classList.add('show-success');
         return;
@@ -477,6 +480,35 @@ const quietSteps = [
     color: var(--color-text-muted);
     font-size: var(--type-body);
     line-height: 1.72;
+  }
+
+  .form-noscript {
+    padding: 0.85rem 1rem;
+    margin-bottom: 1rem;
+    background: rgba(111, 125, 103, 0.06);
+    border: 1px solid rgba(111, 125, 103, 0.12);
+    border-radius: 0.75rem;
+    font-size: var(--type-small);
+    line-height: 1.6;
+  }
+  .form-noscript a {
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .form-inline-link {
+    color: var(--color-accent-deep);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-color: rgba(111, 125, 103, 0.35);
+    transition: text-decoration-color 0.3s ease, color 0.3s ease;
+  }
+
+  .form-inline-link:hover,
+  .form-inline-link:focus-visible {
+    text-decoration-color: var(--color-accent-deep);
+    color: var(--color-ink);
   }
 
   /* ═══════════════════════════════════════════════════════════

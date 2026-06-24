@@ -35,16 +35,25 @@ const articleSchema = [
     '@type': 'Article',
     headline: article.title,
     description: article.metaDescription,
-    image: heroImage,
+    image: {
+      '@type': 'ImageObject',
+      url: heroImage,
+      width: 1800,
+      height: 1200,
+    },
     datePublished: article.dateISO,
     dateModified: article.dateISO,
     author: {
       '@type': 'Person',
       name: 'Lucía Millán Jiménez',
+      jobTitle: 'Psicóloga Clínica',
       url: 'https://lucia-psicologa.vercel.app/',
     },
     publisher: { '@id': 'https://lucia-psicologa.vercel.app/#lucia-millan-jimenez' },
-    mainEntityOfPage: articleURL,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': articleURL,
+    },
     inLanguage: 'es-ES',
     keywords: article.keywords.join(', '),
   },
@@ -96,7 +105,7 @@ const articleSchema = [
             <span aria-hidden="true">/</span>
             <a href="/blog">Blog</a>
             <span aria-hidden="true">/</span>
-            <span>{article.categoryLabel}</span>
+            <span aria-current="page">{article.title}</span>
           </nav>
 
           <div class="article-hero__meta">
@@ -112,7 +121,7 @@ const articleSchema = [
 
           <div class="article-actions">
             <a href="/#contacto" class="article-btn article-btn--solid">
-              <span>Reservar sesi&oacute;n</span>
+              <span>Solicitar primera sesión</span>
               <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
@@ -124,8 +133,8 @@ const articleSchema = [
         </Container>
 
         <figure class="article-hero__media" data-article-image>
-          <img src={heroImage} alt={`Imagen principal para ${article.title}`} loading="eager" decoding="async" />
-          <figcaption>{article.categoryLabel} &middot; Lectura cl&iacute;nica</figcaption>
+          <img src={heroImage} alt={`Imagen principal para ${article.title}`} width="1800" height="1200" loading="eager" decoding="async" />
+          <figcaption>{article.categoryLabel} &middot; Lectura clínica</figcaption>
         </figure>
       </header>
 
@@ -133,10 +142,10 @@ const articleSchema = [
       <section class="article-reading">
         <Container maxWidth="820px">
           <div class="article-reading__inner">
-            <div class="article-aside" aria-label="Resumen del art&iacute;culo">
+            <div class="article-aside" aria-label="Resumen del artículo">
               <div class="article-aside__panel">
                 <p>{pullQuote}</p>
-                <a href="/#contacto" class="article-aside__link">Hablar con Luc&iacute;a</a>
+                <a href="/#contacto" class="article-aside__link">Solicitar primera sesión</a>
               </div>
             </div>
 
@@ -150,11 +159,11 @@ const articleSchema = [
         <Container maxWidth="820px">
           <div class="article-final-cta__inner">
             <div>
-              <h2 id="article-cta-title">Una conversaci&oacute;n puede ordenar lo que ahora pesa.</h2>
-              <p>Si algo de este art&iacute;culo te ha tocado de cerca, puedes escribir y vemos con calma qu&eacute; tipo de acompa&ntilde;amiento encaja contigo.</p>
+              <h2 id="article-cta-title">Si necesitas orientación clínica, podemos empezar por una primera sesión.</h2>
+              <p>Cuéntame qué te preocupa, desde cuándo ocurre y si prefieres consulta presencial en Ciudad Real u online.</p>
             </div>
             <a href="/#contacto" class="article-btn article-btn--solid">
-              <span>Ir a contacto</span>
+              <span>Solicitar primera sesión</span>
               <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
@@ -169,7 +178,7 @@ const articleSchema = [
           <Container maxWidth="820px">
             <div class="article-related__header">
               <h2 id="related-heading">Seguir leyendo</h2>
-              <a href="/blog">Todos los art&iacute;culos</a>
+              <a href="/blog">Todos los artículos</a>
             </div>
 
             <div class="article-related__grid">

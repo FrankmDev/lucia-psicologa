@@ -2,10 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Hero from '../components/Hero.astro';
-import QuoteSection from '../components/QuoteSection.astro';
-import SobreMi from '../components/SobreMi.astro';
 import Servicios from '../components/Servicios.astro';
-import Philosophy from '../components/Philosophy.astro';
+import SobreMi from '../components/SobreMi.astro';
 import Proceso from '../components/Proceso.astro';
 import FAQ from '../components/FAQ.astro';
 import Contacto from '../components/Contacto.astro';
@@ -19,9 +17,9 @@ const homeSchema = [
     '@type': 'WebPage',
     '@id': 'https://lucia-psicologa.vercel.app/#webpage',
     url: 'https://lucia-psicologa.vercel.app/',
-    name: 'Lucía Millán Jiménez | Psicóloga en Ciudad Real',
+    name: 'Psicóloga clínica en Ciudad Real · Terapia online · Lucía Millán Jiménez',
     description:
-      'Psicóloga en Ciudad Real. Terapia individual online y presencial para ansiedad, duelo, autoestima, trauma y bienestar emocional.',
+      'Psicóloga clínica en Ciudad Real. Terapia individual presencial y online, integradora y orientada a objetivos. Primera respuesta en 24 h.',
     inLanguage: 'es-ES',
     isPartOf: { '@id': 'https://lucia-psicologa.vercel.app/#website' },
     about: { '@id': 'https://lucia-psicologa.vercel.app/#lucia-millan-jimenez' },
@@ -32,18 +30,18 @@ const homeSchema = [
     mainEntity: [
       {
         '@type': 'Question',
-        name: '¿La terapia puede ser online o presencial?',
+        name: '¿Cuánto dura una sesión?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Sí. La consulta ofrece terapia individual presencial en Ciudad Real y sesiones online para personas que prefieren o necesitan un formato a distancia.',
+          text: 'Las sesiones individuales duran alrededor de 50 minutos. En trabajo de trauma, algunas sesiones pueden ampliarse a 60–90 minutos si tiene sentido clínico y lo acordamos previamente.',
         },
       },
       {
         '@type': 'Question',
-        name: '¿Cuándo conviene pedir ayuda psicológica?',
+        name: '¿La terapia puede ser online?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Conviene pedir ayuda cuando el malestar emocional, la ansiedad, el duelo, la baja autoestima o una experiencia difícil empiezan a limitar tu vida cotidiana, tus relaciones o tu descanso.',
+          text: 'Sí. Atiendo terapia presencial en Ciudad Real y sesiones online para personas que prefieren o necesitan un formato a distancia. En ambos casos mantenemos encuadre, confidencialidad y seguimiento.',
         },
       },
       {
@@ -51,7 +49,39 @@ const homeSchema = [
         name: '¿Qué ocurre en la primera sesión?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'La primera sesión sirve para escuchar tu situación, entender qué necesitas y acordar una forma de trabajo clara, respetando tu ritmo y tus objetivos.',
+          text: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas y definimos un primer objetivo de trabajo.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Con qué frecuencia se acude?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución, los objetivos y tu disponibilidad.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Qué enfoque de terapia utilizas?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Trabajo desde un modelo integrador que combina Terapia Cognitivo-Conductual, ACT, Terapia Focalizada en la Emoción y técnicas psicosomáticas. La intervención se adapta a tu caso, no al revés.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Lo que cuente será confidencial?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Sí. La información que compartas se trata con confidencialidad profesional y de acuerdo con la normativa de protección de datos.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Cómo puedo pedir cita?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Puedes escribir desde el formulario, por email o por teléfono. Respondo en un plazo máximo de 24 horas laborables para orientarte y valorar un primer hueco.',
         },
       },
     ],
@@ -60,40 +90,30 @@ const homeSchema = [
 ---
 
 <Layout
-  title="Lucía Millán Jiménez | Psicología Clínica en Ciudad Real"
-  description="Psicóloga colegiada en Ciudad Real. Terapia individual online y presencial con enfoque integrador: TCC, ACT, TFE y técnicas psicosomáticas. Un espacio seguro para tu bienestar emocional."
+  title="Psicóloga clínica en Ciudad Real · Terapia online · Lucía Millán Jiménez"
+  description="Psicóloga clínica en Ciudad Real. Terapia individual presencial y online, integradora y orientada a objetivos. Primera respuesta en 24 h."
   schema={homeSchema}
 >
   <Navigation />
   <main>
     <Hero />
 
-    <!-- Dark to light: organic ink bleed -->
+    <!-- Dark hero to warm cream: organic ink bleed -->
     <SectionDivider variant="ink" toColor="var(--white-warm)" />
-
-    <SobreMi />
-
-    <!-- Warm to parchment: gentle wave -->
-    <SectionDivider variant="wave" toColor="var(--parchment)" />
-
-    <QuoteSection />
-
-    <!-- Parchment to cream-warm: soft hill -->
-    <SectionDivider variant="hill" toColor="var(--cream-warm)" />
 
     <Servicios />
 
-    <!-- Cream-warm to dark: ink bleed separator -->
-    <SectionDivider variant="ink" toColor="#0c0907" height="clamp(56px, 7vw, 96px)" />
+    <!-- White-warm to parchment: gentle wave -->
+    <SectionDivider variant="wave" toColor="var(--parchment)" />
 
-    <Philosophy />
+    <SobreMi />
 
-    <!-- Dark to parchment: ink bleed separator -->
-    <SectionDivider variant="ink" toColor="var(--parchment)" height="clamp(56px, 7vw, 96px)" />
+    <!-- Parchment to cream: soft hill -->
+    <SectionDivider variant="hill" toColor="var(--cream)" />
 
     <Proceso />
 
-    <!-- Paper to white-warm: gentle wave -->
+    <!-- Cream to white-warm: gentle wave -->
     <SectionDivider variant="wave" toColor="var(--white-warm)" />
 
     <FAQ />

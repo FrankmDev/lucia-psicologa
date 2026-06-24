@@ -1,36 +1,28 @@
 ---
-import PageNumber from './ui/PageNumber.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
-import BotanicalSVG from './ui/BotanicalSVG.astro';
 import FloatOrb from './ui/FloatOrb.astro';
-import InkBlob from './ui/InkBlob.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
-import DustParticles from './ui/DustParticles.astro';
 import { getArticleImage, getLatestArticles } from '../data/blog';
 
 const articles = getLatestArticles(3);
 ---
 
 <section id="blog" class="blog-section" data-blog-section>
-  <GrainOverlay opacity={0.018} />
+  <GrainOverlay opacity={0.014} />
   <AmbientLight color="rgba(196,170,148,0.045)" />
-  <DustParticles count={12} color="rgba(196,170,148,0.12)" />
-  <FloatOrb size={360} top="-12%" left="-8%" color="var(--sage-muted)" blur={120} animation="float-1" />
-  <FloatOrb size={240} bottom="8%" right="-4%" color="var(--gold-soft)" opacity={0.48} animation="float-2" />
-  <InkBlob width={320} height={240} top="12%" right="-5%" color="var(--earth)" opacity={0.03} animation="morph-2" />
-  <BotanicalSVG variant="left" color="var(--earth)" opacity={0.04} width={70} />
-  <BotanicalSVG variant="right" color="var(--sage-muted)" opacity={0.05} width={58} style="right: 3%; bottom: 18%;" />
+  <FloatOrb size={320} top="-12%" left="-8%" color="var(--sage-muted)" blur={120} animation="float-1" />
+  <FloatOrb size={200} bottom="8%" right="-4%" color="var(--gold-soft)" opacity={0.42} animation="float-2" />
 
   <div class="blog-section__wash" aria-hidden="true"></div>
 
   <Container maxWidth="1180px">
     <div class="blog-intro">
       <header class="blog-header reveal-blur" data-delay="80">
-        <span class="blog-eyebrow">Blog</span>
-        <h2>Lecturas para volver a ti.</h2>
+        <span class="blog-eyebrow">Lecturas del blog</span>
+        <h2>Artículos para entender mejor lo que te ocurre.</h2>
         <p>
-          Artículos sobre trauma, duelo, ansiedad y bienestar emocional escritos desde la práctica clínica, con calma y rigor.
+          Información sobre ansiedad, trauma, duelo, autoestima y regulación emocional escrita con criterio clínico y lenguaje claro.
         </p>
       </header>
     </div>
@@ -119,12 +111,10 @@ const articles = getLatestArticles(3);
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
         </a>
-        <p class="blog-cta__note">Escritura pausada, sin ruido. Lo que necesitas, cuando lo necesitas.</p>
+        <p class="blog-cta__note">Lecturas educativas para consultar antes o durante el proceso terapéutico.</p>
       </div>
     </div>
   </Container>
-
-  <PageNumber number="08" />
 </section>
 
 <style>

@@ -1,13 +1,14 @@
 ---
+const isHome = Astro.url.pathname === '/';
+const isBlog = Astro.url.pathname.startsWith('/blog');
+
 const links = [
-  { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Servicios', href: '#servicios' },
+  { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Proceso', href: '#proceso' },
-  { label: 'Blog', href: '#blog' },
+  { label: 'Blog', href: isHome ? '#blog' : 'blog' },
   { label: 'Contacto', href: '#contacto' },
 ];
-
-const isHome = Astro.url.pathname === '/';
 const resolveHref = (href: string) => (isHome ? href : `/${href}`);
 ---
 
@@ -18,14 +19,14 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
 
     <!-- Logo -->
     <a href={isHome ? '#inicio' : '/'} class="nav-mark" aria-label="Inicio" data-nav-reveal>
-      <img src="/logo-white.webp" alt="Lucía" class="mark-logo mark-logo--dark" width="auto" height="32" />
-      <img src="/logo-dark.webp" alt="Lucía" class="mark-logo mark-logo--light" width="auto" height="32" />
+      <img src="/logo-white.webp" alt="" class="mark-logo mark-logo--dark" width="auto" height="32" />
+      <img src="/logo-dark.webp" alt="" class="mark-logo mark-logo--light" width="auto" height="32" />
     </a>
 
     <!-- Desktop Links -->
     <nav class="nav-links" aria-label="Principal" id="navLinks">
       {links.map((l, i) => (
-        <a href={resolveHref(l.href)} class="nav-link" data-nav-link data-nav-reveal style={`transition-delay: ${i * 60 + 200}ms`}>
+        <a href={resolveHref(l.href)} class="nav-link" data-nav-link data-nav-reveal style={`transition-delay: ${i * 60 + 200}ms`} aria-current={l.label === 'Blog' && isBlog ? 'page' : undefined}>
           <span class="link-text">{l.label}</span>
           <span class="link-track" aria-hidden="true">
             <span class="link-fill"></span>
@@ -36,7 +37,7 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
 
     <!-- CTA -->
     <a href={resolveHref('#contacto')} class="nav-cta" data-nav-reveal style="transition-delay: 500ms">
-      <span class="cta-text">Reservar</span>
+      <span class="cta-text">Solicitar primera sesión</span>
       <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
         <path d="M1 6h10M6 1l5 5-5 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -73,8 +74,8 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
         <!-- Navigation -->
         <nav class="overlay-nav" aria-label="Principal">
           {links.map((l, i) => (
-            <a href={resolveHref(l.href)} class="overlay-link" style={`transition-delay: ${i * 65 + 140}ms`}>
-              <span class="link-number">0{i + 1}</span>
+            <a href={resolveHref(l.href)} class="overlay-link" style={`transition-delay: ${i * 65 + 140}ms`} aria-current={l.label === 'Blog' && isBlog ? 'page' : undefined}>
+              <span class="link-number" aria-hidden="true">0{i + 1}</span>
               <span class="link-label">{l.label}</span>
               <span class="link-arrow" aria-hidden="true">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
@@ -119,7 +120,7 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
             <span class="divider-line"></span>
           </div>
           <a href={resolveHref('#contacto')} class="overlay-cta">
-            <span>Contactar</span>
+            <span>Solicitar primera sesión</span>
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -516,14 +517,15 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 9px 20px;
+    padding: 9px 18px;
     background: rgba(245, 240, 232, 0.08);
     border: 1px solid rgba(196, 170, 148, 0.2);
     border-radius: 999px;
     font-family: var(--font-body);
     font-size: var(--type-meta);
     font-weight: 500;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.14em;
+    line-height: 1.1;
     text-transform: uppercase;
     color: rgba(245, 240, 232, 0.92);
     text-decoration: none;

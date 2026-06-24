@@ -49,27 +49,27 @@ export const articles: BlogArticle[] = [
   // ════════════════════════════════════════════════════
   {
     slug: 'emdr-ciudad-real',
-    title: 'EMDR: reprogramar recuerdos y recuperar tu vida',
-    metaTitle: 'Terapia EMDR en Ciudad Real | Psicóloga especializada en trauma',
-    metaDescription: 'Descubre qué es la terapia EMDR, por qué la OMS la recomienda para el tratamiento del trauma, y cómo funciona en una consulta de psicología en Ciudad Real.',
+    title: 'EMDR y trauma: cómo se trabaja en terapia',
+    metaTitle: 'Terapia EMDR en Ciudad Real | Trauma y regulación emocional',
+    metaDescription: 'Qué es la terapia EMDR, cuándo puede estar indicada y cómo se integra en un proceso psicológico para trauma y malestar asociado.',
     category: 'trauma',
     categoryLabel: 'Trauma',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '12 min',
-    excerpt: 'Descubre qué es la terapia EMDR, por qué es el tratamiento de elección para el trauma según la OMS, y cómo funciona en una consulta de psicología en Ciudad Real.',
+    excerpt: 'Una explicación clínica y accesible sobre EMDR, trauma, regulación emocional y preparación antes de iniciar el procesamiento.',
     keywords: ['terapia EMDR Ciudad Real', 'psicóloga EMDR Ciudad Real', 'tratamiento trauma Ciudad Real', 'EMDR psicología'],
     content: `
 <p class="lead">
-  Hace tres meses, un hombre de cuarenta y cinco años entró en mi consulta con una petición que había rehecho en su cabeza durante años: "Necesito que algo cambie, pero no quiero hablar de mi infancia durante décadas. ¿Existe otra forma?". Llevaba dos décadas evitando ciertos lugares de la ciudad, con pesadillas recurrentes y una sensación de amenaza permanente que no conseguía explicar con palabras. Había probado terapia conversacional. Había leído libros. Había meditado. Pero el recuerdo seguía ahí, como una cicatriz que no cerraba.
+  A veces una experiencia del pasado sigue activándose en el presente: una imagen, una sensación corporal, una reacción intensa o una evitación que limita la vida diaria. No siempre se vive como un recuerdo claro. A veces aparece como ansiedad, hipervigilancia, bloqueo o dificultad para confiar.
 </p>
 
 <p>
-  Le propuse <strong>EMDR</strong>. En diez sesiones, el recuerdo que le había torturado durante veinte años dejó de tener poder sobre él. No lo olvidó. Pero dejó de sentir que el pasado viviera en su cuerpo. Eso es lo que hace la terapia EMDR cuando se aplica correctamente: no borra la historia, pero cambia tu relación con ella.
+  El <strong>EMDR</strong> puede ser una herramienta útil cuando existe trauma o recuerdos con una carga emocional elevada. No borra lo vivido ni garantiza un cambio inmediato; ayuda a reprocesar información que quedó asociada a miedo, culpa, indefensión o alerta corporal.
 </p>
 
 <p>
-  Si has vivido una experiencia traumática —o sospechas que algo de tu pasado sigue condicionando tu presente— este artículo es para ti. Voy a explicarte qué es el EMDR, cómo funciona desde la neurociencia, qué esperar en una sesión, y por qué cada vez más personas buscan una <strong>psicóloga especializada en EMDR</strong> para tratar traumas, fobias, ansiedad crónica y duelos complicados.
+  Si sospechas que algo de tu historia sigue condicionando tu presente, aquí encontrarás una explicación sobre qué es el EMDR, cuándo puede estar indicado, cómo se prepara una sesión y qué límites conviene tener en cuenta.
 </p>
 
 <h2>¿Qué es exactamente la terapia EMDR?</h2>
@@ -114,7 +114,7 @@ export const articles: BlogArticle[] = [
 </ul>
 
 <p>
-  En términos prácticos: el recuerdo sigue existiendo, pero deja de doler. Deja de activar el sistema de alarma. Deja de gobernar tus decisiones, tus relaciones y tu forma de ver el mundo.
+  En términos prácticos: el recuerdo sigue existiendo, pero puede perder parte de su intensidad y dejar de activar el sistema de alarma con la misma fuerza.
 </p>
 
 <h2>¿Para qué problemas sirve el EMDR? Más de lo que imaginas</h2>
@@ -134,7 +134,7 @@ export const articles: BlogArticle[] = [
 </ul>
 
 <p>
-  En una ciudad con población universitaria joven y una clase trabajadora diversa, veo cómo el estrés acumulado —exámenes, oposiciones, precariedad laboral, rupturas sentimentales— puede desencadenar o reactivar recuerdos que creíamos superados. El EMDR ofrece una vía rápida y profunda para resolverlo.
+  El estrés acumulado —exámenes, oposiciones, precariedad laboral, rupturas sentimentales— puede desencadenar o reactivar recuerdos que parecían superados. El EMDR ofrece una vía estructurada para abordar esas activaciones cuando la evaluación clínica indica que es adecuado.
 </p>
 
 <h2>¿Cómo es una sesión de EMDR en mi consulta?</h2>
@@ -156,7 +156,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Durante la estimulación, tu cerebro comienza a asociar libremente. Pueden surgir imágenes, sensaciones, emociones, pensamientos. Mi trabajo es guiarte sin interferir en ese proceso natural. No interpreto. No analizo. Solo acompaño y estabilizo. Lo que ocurre es que tu propio sistema nervioso está reorganizando la información.
+  Durante la estimulación, tu cerebro comienza a asociar libremente. Pueden surgir imágenes, sensaciones, emociones, pensamientos. Mi trabajo es guiarte sin interferir en ese proceso natural. No interpreto. No analizo. Guío y estabilizo. Lo que ocurre es que tu propio sistema nervioso está reorganizando la información.
 </p>
 
 <p>
@@ -170,8 +170,8 @@ export const articles: BlogArticle[] = [
 </p>
 
 <blockquote>
-  <p>"Al tercer día después de la sesión, conduje por la Avenida de la Arruzafa sin sentir que se me cerrara el pecho. Llevaba seis años evitando esa zona. No puedo explicar cómo, pero algo cambió por dentro."</p>
-  <cite>— Paciente de 34 años, tras cuatro sesiones de EMDR</cite>
+  <p>Un objetivo habitual del trabajo con EMDR es que la persona pueda recordar o exponerse a estímulos asociados al trauma con menos activación física y más sensación de control.</p>
+  <cite>— Objetivo clínico frecuente en trauma</cite>
 </blockquote>
 
 <h2>¿Es seguro? ¿Duele? ¿Puedo empeorar?</h2>
@@ -181,7 +181,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Durante el procesamiento pueden surgir emociones intensas. Es normal y es parte del proceso. Pero nunca te dejo solo con ellas. Cada sesión termina con una técnica de estabilización que te permite salir de la consulta en calma. Además, entre sesiones, te doy herramientas para gestionar lo que pueda aparecer.
+  Durante el procesamiento pueden surgir emociones intensas. Es normal y es parte del proceso. Pero nunca te dejo solo con ellas. Cada sesión termina con una técnica de estabilización para que salgas con recursos concretos. Además, entre sesiones, te doy herramientas para gestionar lo que pueda aparecer.
 </p>
 
 <p>
@@ -195,15 +195,15 @@ export const articles: BlogArticle[] = [
 </p>
 
 <ul>
-  <li><strong>Rapidez:</strong> mientras que la terapia tradicional puede durar años, el EMDR suele resolver traumas específicos en semanas o meses.</li>
-  <li><strong>Eficacia demostrada:</strong> tasas de mejora superiores al 80% en estudios de TEPT, según metanálisis publicados en <em>Journal of Clinical Psychology</em>.</li>
+  <li><strong>Trabajo focalizado:</strong> permite abordar recuerdos o escenas concretas dentro de un plan terapéutico más amplio.</li>
+  <li><strong>Evidencia clínica:</strong> cuenta con investigación y guías internacionales que respaldan su uso en trauma cuando lo aplica un profesional formado.</li>
   <li><strong>No requiere verbalización detallada:</strong> no es necesario contar cada detalle del trauma. El cerebro procesa la información sin necesidad de revivirla en voz alta.</li>
   <li><strong>Abordaje integral:</strong> trabaja simultáneamente con la mente, el cuerpo y las emociones.</li>
   <li><strong>Durabilidad:</strong> los cambios suelen mantenerse en el tiempo porque el recuerdo se ha reprocesado, no solo gestionado.</li>
 </ul>
 
 <p>
-  En mi consulta, combino el EMDR con otras herramientas según las necesidades de cada persona. No es un protocolo rígido. Es un marco flexible que adapto a tu ritmo, tu historia y tus objetivos.
+  En mi consulta, combino el EMDR con otras herramientas según las necesidades de cada persona. No es un protocolo rígido. Es un marco flexible que adapto a tu historia, tus síntomas y tus objetivos.
 </p>
 
 <h2>Cómo saber si el EMDR es para ti</h2>
@@ -222,22 +222,22 @@ export const articles: BlogArticle[] = [
 </ul>
 
 <p>
-  Si estás en duda, podemos hacer una primera sesión de evaluación sin compromiso. Te explico con detalle si el EMDR es adecuado para tu caso particular, y si no lo es, te oriento hacia el enfoque que más te convenga.
+  Si estás en duda, la primera sesión sirve para evaluar tu caso y explicar si el EMDR es adecuado para ti. Si no lo es, valoramos otro enfoque terapéutico.
 </p>
 
 <h2>El primer paso: una conversación honesta</h2>
 
 <p>
-  Llevar un trauma durante años es como caminar con una piedra en el zapato. Al principio duele. Luego aprendes a cojear. Al final, cojear se convierte en tu forma normal de andar y olvidas que existe otra manera. El EMDR te permite quitarte la piedra. No es inmediato, pero es posible.
+  Cuando el trauma se mantiene en el tiempo, la persona suele organizar su vida alrededor de lo que evita, teme o no puede nombrar. El trabajo terapéutico busca reducir esa interferencia y ampliar recursos de regulación.
 </p>
 
 <p>
-  Si sientes que algo de tu pasado sigue condicionando tu presente, te invito a que me escribas. No necesitas tenerlo todo claro. No necesitas saber si lo que viviste "es suficientemente grave" para merecer terapia. Si te duele, es suficiente. Y hay una forma de que deje de doler.
+  Si sientes que algo del pasado sigue afectando a tu presente, puedes solicitar una primera sesión. No necesitas llevar un diagnóstico cerrado: basta con explicar qué ocurre y desde cuándo.
 </p>
 
 <p>
   <a href="/blog/duelo-perdida-ciudad-real">
-    Si lo que estás viviendo es una pérdida reciente, en este artículo explico cómo acompaño el duelo desde la terapia.
+    Si lo que estás viviendo es una pérdida reciente, en este artículo explico cómo se trabaja el duelo desde la terapia.
   </a>
 </p>
     `
@@ -249,18 +249,18 @@ export const articles: BlogArticle[] = [
   {
     slug: 'duelo-perdida-ciudad-real',
     title: 'Afrontar el duelo cuando el dolor no pasa',
-    metaTitle: 'Psicóloga especialista en duelo Ciudad Real | Acompañamiento en la pérdida',
-    metaDescription: '¿Has perdido a alguien querido en Ciudad Real? Te explico las fases reales del duelo, cuándo necesitas ayuda psicológica y cómo acompaño a personas que atraviesan una pérdida.',
+    metaTitle: 'Psicóloga especialista en duelo en Ciudad Real | Terapia individual',
+    metaDescription: 'Señales de duelo complicado, cuándo pedir ayuda psicológica y cómo puede trabajarse una pérdida en terapia individual.',
     category: 'duelo',
     categoryLabel: 'Duelo',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '14 min',
-    excerpt: 'No todo duelo es igual. Te explico las fases reales del duelo, cuándo necesitas ayuda psicológica en Ciudad Real y cómo acompaño a personas que han perdido a alguien.',
+    excerpt: 'No todo duelo sigue el mismo recorrido. Revisamos señales de bloqueo, duelo complicado y formas de trabajarlo en terapia.',
     keywords: ['psicóloga duelo Ciudad Real', 'ayuda duelo Ciudad Real', 'terapia pérdida Ciudad Real', 'duelo complicado tratamiento'],
     content: `
 <p class="lead">
-  El domingo pasado, una persona de cincuenta y dos años llegó a mi consulta con una frase que resume lo que muchas personas sienten pero no se atreven a decir en voz alta: "Mi madre murió hace dos años y aún no he llorado. Todo el mundo me dice que debería estar mejor, pero yo siento que ella se murió ayer". Llevaba meses de insomnio, irritabilidad constante y una sensación de vacío que no sabía nombrar. Su médico de cabecera le había diagnosticado ansiedad. Sus amigas le recomendaban viajar. Pero ella seguía atrapada en un dolor que nadie veía.
+  Muchas personas llegan a terapia con una sensación difícil de explicar: ha pasado tiempo desde la pérdida, el entorno espera que estén mejor, pero por dentro el dolor sigue ocupando demasiado. Puede aparecer insomnio, irritabilidad, vacío, culpa o una sensación persistente de bloqueo.
 </p>
 
 <p>
@@ -268,7 +268,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Como <strong>psicóloga especialista en duelo</strong>, acompaño a personas que han perdido a un padre, una madre, un hijo, una pareja, un amigo. También a quienes atraviesan pérdidas no reconocidas socialmente: la muerte de una mascota, el aborto, la ruptura de una relación significativa, la pérdida de salud, el abandono forzoso de un país. Todas son pérdidas reales. Todo duelo merece ser acompañado.
+  Como <strong>psicóloga especialista en duelo</strong>, trabajo con personas que han perdido a un padre, una madre, un hijo, una pareja o un amigo. También con pérdidas no reconocidas socialmente: la muerte de una mascota, el aborto, la ruptura de una relación significativa, la pérdida de salud o el abandono forzoso de un país. Todas son pérdidas reales y pueden necesitar atención clínica.
 </p>
 
 <h2>El mito de las "fases del duelo": por qué Kübler-Ross no dijo lo que crees</h2>
@@ -304,7 +304,7 @@ export const articles: BlogArticle[] = [
   Por eso el duelo se manifiesta de formas tan diversas. Algunas personas lloran sin parar. Otras no pueden llorar. Algunas se sienten iracundas. Otras, apáticas. Algunas se lanzan a la actividad frenética. Otras se paralizan. Todas estas respuestas son válidas. El duelo es tan individual como una huella dactilar.
 </p>
 
-<h2>Señales de que tu duelo necesita acompañamiento psicológico</h2>
+<h2>Señales de que tu duelo puede necesitar ayuda psicológica</h2>
 
 <p>
   No todo duelo requiere terapia. Muchas personas atraviesan la pérdida con el apoyo de su entorno y, con el tiempo, integran la ausencia en su vida de forma natural. Pero hay señales de alarma que indican que el duelo se ha complicado y que necesita intervención profesional:
@@ -331,7 +331,7 @@ export const articles: BlogArticle[] = [
 <h3>4. Has desarrollado síntomas físicos sin explicación médica</h3>
 
 <p>
-  Dolores de cabeza crónicos, problemas digestivos, taquicardias, fatiga persistente. El duelo no procesado se instala en el cuerpo. He acompañado a personas que habían realizado múltiples pruebas médicas antes de entender que su cuerpo estaba hablando de un dolor que la mente no podía nombrar.
+  Dolores de cabeza crónicos, problemas digestivos, taquicardias, fatiga persistente. El duelo no procesado puede expresarse en el cuerpo. En estos casos conviene descartar causas médicas y valorar también el impacto emocional de la pérdida.
 </p>
 
 <h3>5. No puedes hablar de la persona sin sentir angustia extrema</h3>
@@ -346,22 +346,22 @@ export const articles: BlogArticle[] = [
   La OMS y la APA han reconocido recientemente el <strong>trastorno de duelo prolongado</strong> como una condición clínica. Se caracteriza por una intensa nostalgia y preocupación por la persona fallecida, junto con una dificultad severa para aceptar la muerte y reinvertirse en la vida, durante más de seis meses. No es debilidad. Es una condición tratable.
 </p>
 
-<h2>Cómo acompaño el duelo desde la terapia</h2>
+<h2>Cómo se trabaja el duelo desde la terapia</h2>
 
 <p>
   Mi enfoque no busca que "olvides" a la persona ni que "superes" la pérdida como si nada hubiera pasado. El objetivo es que puedas construir una relación sana con la ausencia: recordar sin que destroce, sentir la pérdida sin que paralice, y seguir viviendo sin que sea una traición.
 </p>
 
-<h3>Creación de un espacio seguro para el dolor</h3>
+<h3>Un encuadre terapéutico para el dolor</h3>
 
 <p>
-  En mi consulta, ofrezco algo que raramente se encuentra fuera: <strong>permiso para sentir lo que sientes</strong>. Puedes llorar, puedes enfadarte, puedes decir que no entiendes por qué se fue, puedes admitir que parte de ti se alivia. Todo es bienvenido. El duelo no se cura en soledad. Se cura en compañía.
+  En consulta puedes hablar de tristeza, rabia, culpa, alivio o bloqueo sin tener que justificarlo. La terapia ayuda a nombrar lo que ocurre, regular la intensidad emocional y recuperar funcionamiento diario sin invalidar la pérdida.
 </p>
 
 <h3>Elaboración del significado de la pérdida</h3>
 
 <p>
-  Una de las tareas más importantes del duelo es dar sentido a lo ocurrido. No en un sentido religioso o filosófico abstracto, sino personal. ¿Qué significa esta pérdida para tu historia? ¿Qué te enseña sobre ti mismo? ¿Cómo redefine tus prioridades? Trabajamos juntos estas preguntas sin prisa.
+  Una de las tareas importantes del duelo es dar sentido a lo ocurrido de forma personal. ¿Qué significa esta pérdida para tu historia? ¿Cómo redefine tus prioridades? ¿Qué necesitas reconstruir ahora? Estas preguntas se trabajan de forma gradual.
 </p>
 
 <h3>Integración del recuerdo con técnicas especializadas</h3>
@@ -377,14 +377,14 @@ export const articles: BlogArticle[] = [
 </p>
 
 <blockquote>
-  <p>"Mi terapeuta no me dijo que todo pasaría. Me dijo que podía aprender a vivir con el agujero. Y aprendí que un agujero no significa que la casa se derrumbe. Significa que entra luz de una forma nueva."</p>
-  <cite>— Paciente de 41 años, tras la pérdida de su padre</cite>
+  <p>En duelo, el objetivo no es borrar la ausencia, sino poder recordar, sentir y reorganizar la vida sin que el dolor paralice todas las áreas importantes.</p>
+  <cite>— Objetivo clínico frecuente en duelo</cite>
 </blockquote>
 
 <h2>Pérdidas no reconocidas: cuando el duelo es invisible</h2>
 
 <p>
-  Como en cualquier ciudad, existen duelos que la sociedad no valida. Duelos silenciados que duelen tanto o más porque no hay espacio social para nombrarlos:
+  Existen duelos que la sociedad no valida. Duelos silenciados que duelen tanto o más porque apenas encuentran reconocimiento social:
 </p>
 
 <ul>
@@ -397,21 +397,21 @@ export const articles: BlogArticle[] = [
 </ul>
 
 <p>
-  Si estás atravesando alguna de estas pérdidas, no necesitas que nadie más la valide para que sea real. Si te duele, es real. Y merece ser acompañada.
+  Si estás atravesando alguna de estas pérdidas, no necesitas que otras personas la validen para pedir ayuda. Si interfiere en tu vida, merece atención.
 </p>
 
 <h2>Cómo pedir ayuda: el primer paso hacia la elaboración</h2>
 
 <p>
-  Pedir ayuda para el duelo no significa que seas débil. Significa que reconoces que una pérdida importante requiere un acompañamiento importante. Es como pedir ayuda médica tras una fractura: el hueso puede sanar solo, pero con un yeso adecuado sana mejor, más recto y sin secuelas.
+  Pedir ayuda para el duelo no significa debilidad. Significa reconocer que una pérdida importante puede necesitar un encuadre profesional. Es como pedir ayuda médica tras una fractura: a veces el cuerpo sana solo, pero una buena intervención reduce complicaciones.
 </p>
 
 <p>
-  Si has perdido a alguien —hace meses o hace años— y sientes que el dolor no cede, te invito a que me escribas. No hay prisa. No hay juicios. Solo un espacio donde tu duelo puede ser lo que es: una expresión del amor que sientes y de la ausencia que duele.
+  Si has perdido a alguien —hace meses o hace años— y sientes que el dolor no cede, puedes solicitar una primera sesión para valorar qué está ocurriendo y qué tipo de apoyo psicológico necesitas.
 </p>
 
 <p>
-  No prometo que dejes de echar de menos a esa persona. Pero sí puedo acompañarte para que echarla de menos deje de ser insoportable. Para que puedas recordarla con cariño sin que el recuerdo te rompa. Para que sigas viviendo, no a pesar de la pérdida, sino <strong>incluyendo</strong> la pérdida en una vida que merece la pena.
+  La terapia no promete borrar la ausencia. Busca que el recuerdo pueda integrarse con menos sufrimiento, que recuperes recursos y que la pérdida tenga un lugar dentro de una vida que sigue necesitando atención.
 </p>
 
 <p>
@@ -428,26 +428,26 @@ export const articles: BlogArticle[] = [
   {
     slug: 'mindfulness-regulacion-ciudad-real',
     title: 'Mindfulness y regulación emocional',
-    metaTitle: 'Mindfulness Ciudad Real | Psicóloga especialista en regulación emocional',
-    metaDescription: 'Descubre cómo el mindfulness y las técnicas de regulación emocional pueden cambiar tu cerebro. Psicóloga especializada en mindfulness en Ciudad Real.',
+    metaTitle: 'Mindfulness y regulación emocional | Psicología en Ciudad Real',
+    metaDescription: 'Qué aporta el mindfulness a la regulación emocional, cuándo puede ayudar y cuándo conviene integrarlo dentro de un proceso terapéutico.',
     category: 'bienestar',
     categoryLabel: 'Bienestar',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '11 min',
-    excerpt: 'El mindfulness no es moda pasajera. Te cuento las técnicas de regulación emocional que uso en mi consulta de Ciudad Real y cómo la neurociencia respalda su eficacia.',
+    excerpt: 'Una mirada clínica al mindfulness como herramienta de regulación emocional, con límites, usos y ejemplos prácticos.',
     keywords: ['mindfulness Ciudad Real', 'regulación emocional Ciudad Real', 'psicóloga mindfulness Ciudad Real', 'técnicas regulación emocional'],
     content: `
 <p class="lead">
-  La semana pasada, una estudiante de medicina entró en mi consulta con una petición directa: "Necesito algo que me ayude a no sentirme abrumada constantemente. No quiero medicación. Quiero aprender a gestionar mi mente". Llevaba meses con taquicardias antes de los exámenes, insomnio previo a las prácticas clínicas y una irritabilidad que estaba deteriorando sus relaciones. Había probado apps de meditación. Había leído sobre mindfulness. Pero sentía que no avanzaba sola.
+  Muchas personas buscan mindfulness cuando sienten que viven desbordadas: taquicardias antes de exámenes o reuniones, insomnio, irritabilidad o dificultad para desconectar. A veces han probado aplicaciones de meditación o ejercicios sueltos, pero necesitan una guía más ajustada a su situación clínica.
 </p>
 
 <p>
-  Lo que le propuse no fue un curso rápido de relajación. Fue un entrenamiento sistemático en <strong>regulación emocional basada en mindfulness</strong>, adaptado a su ritmo de vida, su personalidad y sus objetivos específicos. En ocho semanas, había desarrollado herramientas que no solo gestionaban su ansiedad académica, sino que le permitían responder con mayor claridad ante cualquier situación estresante de su vida.
+  Lo que le propuse no fue un curso rápido de relajación. Fue un entrenamiento sistemático en <strong>regulación emocional basada en mindfulness</strong>, adaptado a su contexto, su personalidad y sus objetivos específicos. Con práctica, desarrolló herramientas para gestionar la ansiedad académica y responder con más margen ante situaciones estresantes.
 </p>
 
 <p>
-  Si sientes que tus emociones te gobiernan en lugar de acompañarte, este artículo es para ti. Voy a explicarte qué es realmente el mindfulness, cómo afecta a tu cerebro, qué técnicas de regulación emocional utilizo en mi consulta, y por qué la combinación de ambas es una de las intervenciones más potentes de la psicología contemporánea.
+  Si sientes que tus emociones condicionan demasiado tu día a día, este artículo explica qué es el mindfulness, qué técnicas de regulación emocional pueden ayudar y cuándo conviene trabajarlas dentro de una terapia.
 </p>
 
 <h2>¿Qué es el mindfulness? Mucho más que sentarse a meditar</h2>
@@ -489,7 +489,7 @@ export const articles: BlogArticle[] = [
 </ul>
 
 <p>
-  En términos prácticos: un cerebro entrenado en mindfulness reacciona menos intensamente ante el estrés, recupera más rápido de las emociones negativas, toma decisiones con mayor claridad y experimenta mayor bienestar subjetivo. No es magia. Es neuroplasticidad aplicada.
+  En términos prácticos: entrenar la atención puede ayudar a reconocer antes las señales de estrés, responder con menos impulsividad y recuperar margen para decidir. No es una solución aislada, pero puede ser una herramienta útil.
 </p>
 
 <h2>Regulación emocional: la habilidad que nadie nos enseñó</h2>
@@ -572,8 +572,8 @@ export const articles: BlogArticle[] = [
 </p>
 
 <blockquote>
-  <p>"Antes de empezar el entrenamiento, mi ansiedad me paralizaba antes de cada examen. Ahora siento los síntomas, respiro, uso la técnica STOP, y puedo entrar al aula con claridad. No es que no sienta ansiedad. Es que ya no me gobierna."</p>
-  <cite>— Estudiante universitario, tras seis sesiones de entrenamiento en regulación emocional</cite>
+  <p>Un objetivo habitual del entrenamiento no es eliminar la ansiedad, sino reconocer sus señales, aplicar una técnica concreta y poder actuar sin quedar bloqueado por la intensidad del síntoma.</p>
+  <cite>— Objetivo clínico frecuente en regulación emocional</cite>
 </blockquote>
 
 <h2>Mindfulness adaptado a la vida real</h2>
@@ -621,7 +621,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Si quieres aprender a gestionar tus emociones con herramientas basadas en evidencia científica, te invito a que me escribas. Podemos diseñar juntos un plan de entrenamiento adaptado a tu vida, tu ritmo y tus objetivos. No se trata de convertirte en un experto en meditación. Se trata de recuperar el control sobre tu bienestar emocional. Eso es posible. Y empieza con una sola respiración consciente.
+  Si quieres aprender a regular tus emociones con herramientas basadas en evidencia, puedes solicitar una primera sesión. Valoraremos qué necesitas, qué has probado hasta ahora y qué técnicas pueden encajar con tu vida diaria.
 </p>
 
 <p>
@@ -638,22 +638,22 @@ export const articles: BlogArticle[] = [
   {
     slug: 'ansiedad-ciudad-real',
     title: 'Ansiedad: reconocerla y pedir ayuda',
-    metaTitle: 'Psicóloga en Ciudad Real | Ansiedad y bienestar',
-    metaDescription: '¿Sientes ansiedad en Ciudad Real? Descubre cómo reconocerla y cuándo acudir a una psicóloga en Ciudad Real. Empieza a sentirte mejor hoy mismo.',
+    metaTitle: 'Ansiedad y terapia individual | Psicóloga en Ciudad Real',
+    metaDescription: 'Señales frecuentes de ansiedad, cuándo pedir ayuda psicológica y cómo se trabaja en terapia individual presencial u online.',
     category: 'ansiedad',
     categoryLabel: 'Ansiedad',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
     readTime: '10 min',
-    excerpt: 'Descubre cómo reconocer los signos reales de la ansiedad, cuándo es el momento de buscar ayuda psicológica en Ciudad Real y cómo puede ayudarte la terapia a recuperar tu bienestar.',
+    excerpt: 'Señales frecuentes de ansiedad, criterios para pedir ayuda y cómo puede abordarse en un proceso de terapia individual.',
     keywords: ['psicóloga en Ciudad Real', 'ansiedad Ciudad Real', 'ayuda psicológica Ciudad Real'],
     content: `
 <p class="lead">
-  Hace unas semanas, una persona de treinta y dos años entró en mi consulta con una frase que escucho con frecuencia: "No sé si lo que me pasa es ansiedad o simplemente estoy agotada". Llevaba meses durmiendo mal, con el estómago revuelto antes de cada reunión de trabajo y una sensación permanente de que se le acababa el tiempo. No había sufrido ninguna tragedia. Su vida, vista desde fuera, era normal. Pero ella ya no se sentía ella.
+  Una duda frecuente en consulta es distinguir entre ansiedad, agotamiento y una etapa exigente. La persona puede llevar meses durmiendo mal, con el estómago revuelto antes de compromisos importantes y una sensación permanente de urgencia. Desde fuera, todo parece normal; por dentro, el malestar empieza a ocupar demasiado.
 </p>
 
 <p>
-  Si algo de esto resuena contigo, quiero que sepas una cosa antes de seguir leyendo: la ansiedad no siempre llega con un estruendo. A veces se instala poco a poco, como un ruido de fondo que al principio apenas notas y que termina por agotarte. Y pedir ayuda no es un signo de debilidad. Buscar a un <strong>psicólogo</strong> cuando las cosas se tuercen es una decisión inteligente, valiente y, sobre todo, transformadora.
+  Si algo de esto resuena contigo, conviene saber que la ansiedad no siempre aparece como una crisis evidente. A veces se instala poco a poco, como un ruido de fondo que al principio apenas notas y que termina por agotarte. Pedir ayuda psicológica puede ser una forma de entender qué la mantiene y qué necesitas cambiar.
 </p>
 
 <h2>¿Qué es la ansiedad y por qué cuesta tanto reconocerla?</h2>
@@ -663,7 +663,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  En mi consulta como <strong>psicóloga</strong>, veo cómo esta confusión retrasa la búsqueda de ayuda durante meses, a veces años. Muchas personas atribuyen su malestar a otras causas: el trabajo es intenso, la ciudad es agobiante, duermo poco, como mal. Todas son excusas válidas que esconden una verdad incómoda: el sistema de alarma está fallando, y necesitas herramientas para repararlo.
+  En consulta veo cómo esta confusión retrasa la búsqueda de ayuda durante meses, a veces años. Muchas personas atribuyen su malestar al trabajo, al cansancio, a dormir poco o a una etapa exigente. A veces es cierto; otras, el sistema de alarma se ha quedado activado y necesita intervención.
 </p>
 
 <h2>Señales concretas de que la ansiedad gobierna tu día a día</h2>
@@ -675,10 +675,10 @@ export const articles: BlogArticle[] = [
 <h3>Tu cuerpo está enviando mensajes que ignoras</h3>
 
 <p>
-  La tensión en mandíbula y hombros que te acompaña desde hace meses. El dolor de estómago que aparece antes de cualquier compromiso importante. Las palpitaciones que atribuyes al café, aunque ya solo bebas una taza al día. El insomnio que empieza a las tres de la mañana con una lista mental de tareas pendientes. Estos síntomas no son normales, aunque los hayas normalizado. Son señales de que tu sistema nervioso está sobrecargado.
+  La tensión en mandíbula y hombros que llevas notando desde hace meses. El dolor de estómago que aparece antes de cualquier compromiso importante. Las palpitaciones que atribuyes al café, aunque ya solo bebas una taza al día. El insomnio que empieza a las tres de la mañana con una lista mental de tareas pendientes. Estos síntomas no son normales, aunque los hayas normalizado. Son señales de que tu sistema nervioso está sobrecargado.
 </p>
 
-<h3>Tu mente ya no es un lugar tranquilo</h3>
+<h3>Tu mente no descansa</h3>
 
 <p>
   Te cuesta concentrarte en una sola tarea. Saltas de una pestaña a otra sin terminar nada. Anticipas problemas que aún no existen. Te despiertas con una sensación de urgencia que no sabes de dónde viene. Te cuesta decidir algo tan sencillo como qué cenar o qué camisa ponerte. Y cuando por fin consigues relajarte, aparece una preocupación nueva que te devuelve al punto de partida.
@@ -687,7 +687,7 @@ export const articles: BlogArticle[] = [
 <h2>¿Cuándo es el momento de buscar ayuda psicológica?</h2>
 
 <p>
-  Esta pregunta tiene una respuesta más sencilla de lo que parece: cuando el malestar interfiere en tu calidad de vida. No hace falta que estés en crisis. No hace falta que todo se haya derrumbado. De hecho, cuanto antes actúes, menos sufrimiento acumularás y más rápido recuperarás tu bienestar.
+  Esta pregunta tiene una respuesta más sencilla de lo que parece: cuando el malestar interfiere en tu calidad de vida. No hace falta que estés en crisis ni que todo se haya derrumbado. Pedir ayuda a tiempo puede evitar que el problema se cronifique.
 </p>
 
 <h3>La regla de los seis meses</h3>
@@ -707,11 +707,11 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Mi objetivo no es que nunca más sientas ansiedad. Mi objetivo es que, cuando aparezca, sepas qué hacer con ella. Que deje de ser el director de tu vida y vuelva a ser un actor secundario. Eso es posible. Lo veo en mi consulta cada semana.
+  El objetivo no es que nunca más sientas ansiedad. El objetivo es que, cuando aparezca, puedas reconocerla, regularla y actuar con más margen de elección.
 </p>
 
 <p>
-  Si sientes que la ansiedad está ocupando más espacio del que debería, te invito a que me escribas. No hay compromiso, no hay juicios. Solo una conversación para ver cómo puedo ayudarte.
+  Si sientes que la ansiedad está interfiriendo en tu vida diaria, puedes solicitar una primera sesión para evaluar qué ocurre y qué tipo de trabajo terapéutico encaja contigo.
 </p>
     `
   },
@@ -723,21 +723,21 @@ export const articles: BlogArticle[] = [
     slug: 'primera-consulta-ciudad-real',
     title: 'Tu primera consulta de terapia',
     metaTitle: 'Terapia psicológica Ciudad Real | Primera consulta',
-    metaDescription: '¿Dudas sobre la terapia psicológica en Ciudad Real? Te explico qué esperar en tu primera consulta y cómo puedo acompañarte. Reserva tu cita hoy.',
+    metaDescription: 'Qué ocurre en una primera sesión de terapia, qué puedes contar y cómo se define un primer objetivo terapéutico.',
     category: 'terapia',
     categoryLabel: 'Terapia',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
     readTime: '9 min',
-    excerpt: 'Resolvemos los miedos más comunes antes de la primera sesión y te contamos exactamente qué ocurre cuando acudes a una consulta de psicología en Ciudad Real.',
+    excerpt: 'Qué puedes esperar en una primera sesión: motivo de consulta, dudas frecuentes, objetivos iniciales y siguientes pasos.',
     keywords: ['terapia psicológica Ciudad Real', 'primera consulta psicólogo Ciudad Real', 'cómo es ir al psicólogo'],
     content: `
 <p class="lead">
-  La puerta de mi consulta se abre casi siempre con la misma mezcla de emociones. Algunas personas llegan con los ojos enrojecidos de haber llorado en el coche. Otras con una sonrisa nerviosa que intenta disimular el temblor de las manos. Hay quien entra hablando sin parar para no dejar espacio al silencio, y quien apenas puede articular palabra. Todas estas formas de llegar son válidas. Todas son bienvenidas. Y todas comparten algo: alguien ha decidido que ya no quiere seguir así.
+  La puerta de mi consulta se abre casi siempre con la misma mezcla de emociones. Algunas personas llegan con los ojos enrojecidos de haber llorado en el coche. Otras con una sonrisa nerviosa que intenta disimular el temblor de las manos. Hay quien entra hablando sin parar para no dejar lugar al silencio, y quien apenas puede articular palabra. Todas estas formas de llegar son válidas. Todas son bienvenidas. Y todas comparten algo: alguien ha decidido que ya no quiere seguir así.
 </p>
 
 <p>
-  Si estás leyendo esto, probablemente estés dándole vueltas a la idea de empezar una <strong>terapia psicológica</strong>. Tal vez tengas miedo a lo desconocido. Tal vez te avergüence un poco pedir ayuda. O tal vez simplemente no tengas claro qué ocurre cuando entras por primera vez en una consulta de psicología. Voy a quitarte esa incertidumbre.
+  Si estás leyendo esto, probablemente estés dándole vueltas a la idea de empezar una <strong>terapia psicológica</strong>. Tal vez tengas miedo a lo desconocido, te cueste pedir ayuda o no sepas qué ocurre en una primera consulta. Aquí tienes una explicación sencilla del proceso.
 </p>
 
 <h2>Desmontando los miedos más comunes antes de la primera sesión</h2>
@@ -747,7 +747,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Déjame ser directa: en mi consulta no hay juzgamiento. No hay diagnósticos precipitados. No hay sillones de cuero donde te tumbarás a mirar el techo mientras yo tomo notas en silencio. La terapia que practico es conversacional, activa y colaborativa. Tú y yo somos un equipo.
+  En consulta no hay juicios ni diagnósticos precipitados. La terapia que practico es conversacional, activa y colaborativa: trabajamos con información clínica, objetivos compartidos y revisiones periódicas.
 </p>
 
 <h2>¿Cómo es ir al psicólogo? Tu primera consulta paso a paso</h2>
@@ -779,7 +779,7 @@ export const articles: BlogArticle[] = [
 <h3>Después de la primera consulta: qué ocurre en los días siguientes</h3>
 
 <p>
-  Es normal sentirse algo agotado después de la primera sesión. Hablar de lo que nos duele requiere energía, incluso cuando lo hacemos en un espacio seguro. Es también normal sentir alivio, confusión o una mezcla de ambas cosas. Algunas personas me escriben al día siguiente con preguntas que se les han ocurrido. Otras necesitan unos días para digerir lo conversado. Todo está bien.
+  Es normal sentirse algo agotado después de la primera sesión. Hablar de lo que duele requiere energía, incluso en un contexto terapéutico. También es normal sentir alivio, confusión o una mezcla de ambas cosas. Algunas personas escriben al día siguiente con preguntas que se les han ocurrido. Otras necesitan unos días para digerir lo conversado. Todo está bien.
 </p>
 
 <h2>¿Qué terapia psicológica se adapta a ti?</h2>
@@ -799,7 +799,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Si llevas tiempo pensando en buscar una <strong>terapia psicológica</strong>, permítete dar ese paso. No tiene que ser perfecto. No tienes que tenerlo todo claro. Solo necesitas estar dispuesto a abrir una puerta. El resto lo hacemos juntos.
+  Si llevas tiempo pensando en buscar una <strong>terapia psicológica</strong>, puedes empezar por una primera sesión de evaluación. No hace falta tenerlo todo claro: basta con explicar qué te preocupa, desde cuándo y cómo afecta a tu vida.
 </p>
     `
   },
@@ -810,14 +810,14 @@ export const articles: BlogArticle[] = [
   {
     slug: 'autoestima-ciudad-real',
     title: 'Autoestima: reconstruir tu relación contigo mismo',
-    metaTitle: 'Psicóloga Ciudad Real autoestima | Bienestar',
-    metaDescription: '¿Buscas mejorar tu autoestima en Ciudad Real? Descubre cómo la terapia puede ayudarte a reconectar contigo. Consulta con una psicóloga en Ciudad Real.',
+    metaTitle: 'Autoestima y terapia individual | Psicóloga en Ciudad Real',
+    metaDescription: 'Cómo se forma la autoestima, qué señales indican que está dañada y cómo puede trabajarse en terapia individual.',
     category: 'autoestima',
     categoryLabel: 'Autoestima',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
     readTime: '11 min',
-    excerpt: 'Entiende qué es la autoestima real, cómo afecta a tu vida cotidiana y cómo la terapia puede ayudarte a reconstruir una relación sana contigo mismo.',
+    excerpt: 'Qué es la autoestima, cómo se manifiesta cuando está dañada y qué se trabaja en terapia para construir una relación más justa contigo.',
     keywords: ['psicóloga Ciudad Real autoestima', 'bienestar emocional Ciudad Real', 'terapia autoestima Ciudad Real'],
     content: `
 <p class="lead">
@@ -825,7 +825,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Si esto te resulta familiar, quiero que sepas algo importante: la autoestima no se construye con frases bonitas. No se recupera con fuerza de voluntad ni con positivismo tóxico. La autoestima real es mucho más compleja, más profunda y, por suerte, mucho más alcanzable de lo que parece cuando sabes por dónde empezar. Como <strong>psicóloga especializada en autoestima</strong>, acompaño a personas como tú a desmontar las creencias que les hacen daño y a reconstruir una relación sana consigo mismos.
+  Si esto te resulta familiar, conviene saber algo importante: la autoestima no se construye con frases bonitas. No se recupera solo con fuerza de voluntad ni con positivismo tóxico. En terapia trabajamos las creencias, experiencias y patrones que sostienen una relación dañina contigo mismo.
 </p>
 
 <h2>Qué es la autoestima real, más allá del positivismo tóxico</h2>
@@ -881,7 +881,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Si sientes que es momento de dejar de ser tan duro contigo mismo, te invito a que me escribas. Podemos hablar sin compromiso de lo que necesitas y ver si encajamos. A veces el cambio empieza con algo tan simple como decidir que ya no quieres seguir así. Ese algo eres tú.
+  Si sientes que la autocrítica está condicionando tu vida, puedes solicitar una primera sesión. Revisaremos qué ocurre, desde cuándo y qué objetivos tendría sentido trabajar.
 </p>
     `
   },

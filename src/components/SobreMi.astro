@@ -1,6 +1,5 @@
 ---
 import Button from './ui/Button.astro';
-import PageNumber from './ui/PageNumber.astro';
 import Container from './ui/Container.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
 import AmbientLight from './ui/AmbientLight.astro';
@@ -9,23 +8,23 @@ import FloatOrb from './ui/FloatOrb.astro';
 import portraitImage from '../assets/about.avif';
 
 const credentials = [
-  'Psicóloga clínica colegiada',
-  'Enfoque integrador',
-  'Presencial y online',
+  'Colegiada CM03673',
+  'TCC · ACT · TFE · Psicosomática',
+  'Ansiedad · Trauma · Malestar emocional',
 ];
 
 const values = [
   {
-    title: 'Escucha',
-    text: 'Un espacio sin juicio para poner palabras a lo que necesitas cuidar.',
+    title: 'Evaluación',
+    text: 'Primero delimitamos el motivo de consulta, los síntomas y el impacto en tu vida diaria.',
   },
   {
-    title: 'Claridad',
-    text: 'Un proceso comprensible, con herramientas clínicas y pasos claros.',
+    title: 'Objetivos',
+    text: 'Definimos metas realistas para que la terapia tenga dirección y puedas revisar avances.',
   },
   {
-    title: 'Cuidado',
-    text: 'Avanzar a tu ritmo, con seguridad y sin exigirte más de lo necesario.',
+    title: 'Seguimiento',
+    text: 'Ajustamos el trabajo según tu evolución, con herramientas que puedas aplicar fuera de consulta.',
   },
 ];
 ---
@@ -40,14 +39,13 @@ const values = [
     <div class="sm-shell">
       <header class="sm-header reveal-blur" data-delay="80">
         <span class="sm-eyebrow">Sobre mí</span>
-        <h2>Un espacio tranquilo para volver a escucharte.</h2>
+        <h2>Formación clínica, criterio profesional y trato cercano.</h2>
         <p>
-          Acompañamiento psicológico cercano y respetuoso para comprender lo que te ocurre sin prisas.
+          Trabajo desde un enfoque integrador para adaptar la intervención a tu historia, tus síntomas y tus objetivos terapéuticos.
         </p>
       </header>
 
       <article class="sm-panel reveal-scale" data-delay="180">
-        <div class="sm-panel__mark" aria-hidden="true">L</div>
         <div class="sm-panel__visual">
           <figure class="sm-portrait">
             <img src={portraitImage.src} alt="Lucía Millán Jiménez, psicóloga clínica" width={portraitImage.width} height={portraitImage.height} sizes="(max-width: 960px) 72vw, 360px" decoding="async" loading="lazy" />
@@ -59,9 +57,9 @@ const values = [
         </div>
 
         <div class="sm-panel__content">
-          <span class="sm-label">Conoce a Lucía</span>
+          <span class="sm-label">Lucía Millán Jiménez</span>
           <p class="sm-lead">
-            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada. Cada persona necesita una mirada diferente, por eso adapto cada intervención a lo que te ocurre ahora. Combino TCC, ACT, TFE y trabajo psicosomático para ayudarte a sentirte mejor y recuperar el rumbo.
+            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada <strong>CM03673</strong>. Atiendo terapia individual en Ciudad Real y online, especialmente en ansiedad, trauma, duelo, autoestima y malestar emocional. Combino Terapia Cognitivo-Conductual, ACT, Terapia Focalizada en la Emoción y trabajo psicosomático para construir un proceso comprensible, seguro y orientado a objetivos.
           </p>
 
           <ul class="sm-credentials" aria-label="Credenciales y modalidad">
@@ -70,26 +68,21 @@ const values = [
             ))}
           </ul>
 
-          <blockquote class="sm-quote">
-            <p>“La terapia también puede sentirse como un lugar de descanso.”</p>
-          </blockquote>
-
           <div class="sm-actions">
             <Button href="#contacto" variant="solid" class="sm-button">
-              Reserva tu primera sesión
+              Solicitar primera sesión
             </Button>
-            <a href="#servicios" class="sm-link">
-              <span>Ver servicios</span>
+            <a href="#proceso" class="sm-link">
+              <span>Ver cómo trabajo</span>
               <span class="sm-link__line" aria-hidden="true"></span>
             </a>
           </div>
         </div>
       </article>
 
-      <div class="sm-values" aria-label="Forma de acompañamiento">
+      <div class="sm-values" aria-label="Forma de trabajo terapéutico">
         {values.map((value, index) => (
           <article class="sm-value reveal-up" style={`transition-delay: ${320 + index * 80}ms`}>
-            <span aria-hidden="true">0{index + 1}</span>
             <h3>{value.title}</h3>
             <p>{value.text}</p>
           </article>
@@ -97,8 +90,6 @@ const values = [
       </div>
     </div>
   </Container>
-
-  <PageNumber number="02" />
 </section>
 
 <style>
@@ -215,20 +206,6 @@ const values = [
     inset: clamp(0.55rem, 1vw, 0.8rem);
     border-block: 1px solid rgba(184, 168, 138, 0.13);
     pointer-events: none;
-  }
-
-  .sm-panel__mark {
-    position: absolute;
-    right: clamp(1.1rem, 2.4vw, 2rem);
-    top: clamp(0.7rem, 1.7vw, 1.2rem);
-    z-index: 0;
-    font-family: var(--font-display);
-    font-size: var(--type-decorative-xl);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1;
-    color: rgba(111, 125, 103, 0.035);
-    user-select: none;
   }
 
   .sm-panel__visual,
@@ -400,24 +377,6 @@ const values = [
     text-transform: uppercase;
   }
 
-  .sm-quote {
-    margin: clamp(1.6rem, 3vw, 2.2rem) 0 0;
-    padding: clamp(1.05rem, 2.4vw, 1.45rem) clamp(1.05rem, 2.4vw, 1.5rem);
-    border-radius: 1.1rem;
-    background:
-      linear-gradient(180deg, rgba(223, 228, 216, 0.45), rgba(255, 255, 255, 0.32));
-  }
-
-  .sm-quote p {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: var(--type-card-title);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.45;
-    color: rgba(47, 45, 40, 0.78);
-  }
-
   .sm-actions {
     display: flex;
     align-items: center;
@@ -429,17 +388,17 @@ const values = [
   .sm-actions :global(.sm-button.btn--solid) {
     min-height: 3.2rem;
     padding: 1rem 1.65rem;
-    border-color: #65745f;
+    border-color: rgba(111, 125, 103, 0.32);
     border-radius: 999px;
-    background: linear-gradient(135deg, #65745f, #839079);
+    background: linear-gradient(135deg, #6f7d67, #56645a);
     color: #fff;
     box-shadow:
-      0 14px 28px rgba(101, 116, 95, 0.16),
+      0 14px 28px rgba(86, 100, 90, 0.16),
       inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
 
   .sm-actions :global(.sm-button.btn--solid::before) {
-    background: linear-gradient(135deg, #34372f, #56614f);
+    background: linear-gradient(135deg, #3a3e36, #56614f);
   }
 
   .sm-link {
@@ -501,15 +460,6 @@ const values = [
       rgba(255, 253, 248, 0.86);
   }
 
-  .sm-value span {
-    display: inline-flex;
-    margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
-    font-family: var(--font-display);
-    font-size: var(--type-body);
-    font-style: italic;
-    color: rgba(111, 125, 103, 0.72);
-  }
-
   .sm-value h3 {
     margin: 0 0 0.48rem;
     font-family: var(--font-display);
@@ -552,11 +502,6 @@ const values = [
     .sm-credentials,
     .sm-actions {
       justify-content: center;
-    }
-
-    .sm-quote {
-      border-radius: 1rem;
-      background: rgba(223, 228, 216, 0.3);
     }
   }
 
@@ -683,10 +628,6 @@ const values = [
     .sm-value {
       min-height: auto;
       padding: var(--card-pd-sm);
-    }
-    .sm-value span {
-      margin-bottom: 1.1rem;
-      font-size: var(--type-body-sm);
     }
     .sm-value h3 {
       font-size: var(--type-card-title);

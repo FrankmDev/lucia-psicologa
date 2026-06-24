@@ -7,6 +7,8 @@ import BotanicalSVG from './ui/BotanicalSVG.astro';
 import DustParticles from './ui/DustParticles.astro';
 
 const currentYear = new Date().getFullYear();
+const isHomePath = Astro.url.pathname === '/';
+const resolveHref = (href: string) => (isHomePath ? href : `/${href}`);
 
 const socialLinks = [
   {
@@ -28,7 +30,7 @@ const socialLinks = [
 
 const extraLinks = [
   { label: 'Doctoralia', href: 'https://www.doctoralia.es/lucia-millan-jimenez/psicologo/ciudad-real' },
-  { label: 'Google Business', href: 'https://www.google.com/search?sca_esv=46bc13bb03f41cf0&sxsrf=ANbL-n4P7jqJ8RBIUqoY7eJLwLqci3o1Xw:1779809431733&kgmid=/g/11z35hqkg2&q=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez,+Psic%C3%B3logo&shem=rimspwouoe,sh/x/loc/uni/m1/1&kgs=07d8cea2c96db48f&utm_source=rimspwouoe,sh/x/loc/uni/m1/1' },
+  { label: 'Google', href: 'https://www.google.com/maps/search/?api=1&query=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez+Psic%C3%B3loga+Ciudad+Real' },
 ];
 
 const contactItems = [
@@ -40,14 +42,14 @@ const contactItems = [
   },
   {
     label: 'Teléfono',
-    value: '722535914',
-    href: 'tel:722535914',
+    value: '722 53 59 14',
+    href: 'tel:+34722535914',
     icon: 'M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z',
   },
   {
     label: 'Dirección',
-    value: 'c/ Toledo, 8, 2° Planta, Ciudad Real',
-    href: 'https://www.google.com/search?sca_esv=46bc13bb03f41cf0&sxsrf=ANbL-n4P7jqJ8RBIUqoY7eJLwLqci3o1Xw:1779809431733&kgmid=/g/11z35hqkg2&q=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez,+Psic%C3%B3logo&shem=rimspwouoe,shndl=30&source=sh/x/loc/uni/m1/1&kgs=07d8cea2c96db48f&utm_source=rimspwouoe,sh/x/loc/uni/m1/1',
+    value: 'c/ Toledo, 8, 2° Planta',
+    href: 'https://www.google.com/maps/search/?api=1&query=Calle+Toledo+8+Ciudad+Real',
     icon: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0zM12 7a3 3 0 100 6 3 3 0 000-6z',
   },
   {
@@ -84,60 +86,50 @@ const contactItems = [
 
   <div class="footer-inner">
 
-    <!-- Main grid: CTA left | Contact right -->
-    <div class="footer-main-grid">
-      
-      <!-- Left: CTA -->
-      <div class="footer-cta-area reveal-left" data-delay="100">
-        <div class="footer-eyebrow">
-          <span>Contacto</span>
+    <!-- Top: identity + single line of contact -->
+    <div class="footer-top reveal-up" data-delay="100">
+      <a href={isHomePath ? '#inicio' : '/'} class="footer-mark" aria-label="Inicio">
+        <span class="footer-mark__name">Lucía Millán Jiménez</span>
+        <span class="footer-mark__role">Psicóloga Clínica · Ciudad Real</span>
+      </a>
+
+      <nav class="footer-nav" aria-label="Footer">
+        <a href={resolveHref('#servicios')}>Servicios</a>
+        <a href={resolveHref('#sobre-mi')}>Sobre mí</a>
+        <a href={resolveHref('#proceso')}>Proceso</a>
+        <a href={resolveHref('#blog')}>Blog</a>
+        <a href={resolveHref('#contacto')}>Contacto</a>
+      </nav>
+    </div>
+
+    <!-- Contact strip — minimal -->
+    <div class="footer-contact reveal-up" data-delay="200">
+      {contactItems.map((item) => (
+        <div class="contact-item">
+          <div class="contact-icon" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d={item.icon} />
+            </svg>
+          </div>
+          <div class="contact-text">
+            <span class="contact-label">{item.label}</span>
+            {item.href ? (
+              <a href={item.href} class="contact-value" {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+                {item.value}
+              </a>
+            ) : (
+              <span class="contact-value">{item.value}</span>
+            )}
+          </div>
         </div>
-        
-        <h2 class="footer-title">
-          <span class="title-inner">Hablemos</span>
-        </h2>
-
-        <p class="footer-desc">
-          Estoy aquí para acompañarte. Escríbeme y daremos juntos el primer paso hacia tu bienestar.
-        </p>
-
-        <a href="mailto:luciamillanpsico@gmail.com" class="btn-footer-cta magnetic-btn">
-          <span class="cta-text">Escríbeme</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Right: Contact grid -->
-      <div class="footer-contact-area reveal-right" data-delay="200">
-        <div class="contact-grid">
-          {contactItems.map((item) => (
-            <div class="contact-item">
-              <div class="contact-icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d={item.icon} />
-                </svg>
-              </div>
-              <span class="contact-label">{item.label}</span>
-              {item.href ? (
-                <a href={item.href} class="contact-value" target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}>
-                  {item.value}
-                </a>
-              ) : (
-                <span class="contact-value">{item.value}</span>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
 
     <!-- Divider -->
-    <div class="footer-divider reveal-scale-x" data-delay="400" aria-hidden="true"></div>
+    <div class="footer-divider reveal-scale-x" data-delay="350" aria-hidden="true"></div>
 
-    <!-- Bottom row: social + extra links -->
-    <div class="footer-bottom-row reveal-up" data-delay="500">
+    <!-- Bottom row: social + extra links + legal -->
+    <div class="footer-bottom-row reveal-up" data-delay="450">
       <div class="social-row">
         {socialLinks.map(link => (
           <a href={link.href} class="social-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
@@ -153,11 +145,7 @@ const contactItems = [
           <a href={link.href} class="extra-link" target="_blank" rel="noopener noreferrer">{link.label}</a>
         ))}
       </div>
-    </div>
 
-    <!-- Copyright bar -->
-    <div class="footer-copyright reveal-up" data-delay="600">
-      <span class="copy-text">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga Clínica</span>
       <div class="legal-row">
         <a href="/aviso-legal" class="legal-link">Aviso legal</a>
         <span class="legal-sep">·</span>
@@ -165,6 +153,11 @@ const contactItems = [
         <span class="legal-sep">·</span>
         <a href="/cookies" class="legal-link">Cookies</a>
       </div>
+    </div>
+
+    <!-- Copyright bar -->
+    <div class="footer-copyright reveal-up" data-delay="550">
+      <span class="copy-text">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga Clínica</span>
     </div>
 
   </div>
@@ -302,183 +295,110 @@ const contactItems = [
   }
 
   /* ═══════════════════════════════════════════════════════════
-     MAIN GRID — 2 columns: CTA left | Contact right
+     COMPACT FOOTER — identity + minimal nav + contact strip
      ═══════════════════════════════════════════════════════════ */
-  .footer-main-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    gap: clamp(2rem, 4vw, 4rem);
-    align-items: start;
-    margin-bottom: clamp(2rem, 3vw, 2.5rem);
+  .footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.4rem 2.4rem;
+    margin-bottom: clamp(1.8rem, 3vw, 2.4rem);
   }
 
-  /* ── CTA Area ─────────────────────────────────────────────── */
-  .footer-cta-area {
+  .footer-mark {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
+    gap: 0.2rem;
+    text-decoration: none;
+    color: inherit;
   }
-
-  .footer-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    color: var(--color-accent);
-    font-family: var(--font-body);
-    font-size: var(--type-eyebrow);
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    margin-bottom: 0.25rem;
-  }
-  .footer-eyebrow::before {
-    content: '';
-    width: 1.8rem;
-    height: 1px;
-    background: rgba(111, 125, 103, 0.35);
-  }
-
-  .footer-title {
-    margin: 0;
-    line-height: 1;
-  }
-  .title-inner {
-    display: block;
+  .footer-mark__name {
     font-family: var(--font-display);
-    font-weight: 300;
     font-style: italic;
-    font-size: var(--type-section-title-sm);
-    line-height: var(--leading-tight);
+    font-weight: 400;
+    font-size: var(--type-card-title);
+    line-height: 1.05;
     color: var(--color-ink);
-    letter-spacing: -0.02em;
   }
-
-  .footer-desc {
+  .footer-mark__role {
     font-family: var(--font-body);
-    font-weight: 300;
-    font-size: var(--type-section-subtitle);
-    line-height: 1.75;
-    color: var(--color-text-muted);
-    max-width: 36ch;
-    margin: 0.25rem 0 0.5rem;
-  }
-
-  /* Primary CTA — Compact sage pill */
-  .btn-footer-cta {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
-    min-height: 2.8rem;
-    padding: 0.75rem 1.8rem;
-    background: linear-gradient(180deg, rgba(111, 125, 103, 0.92), rgba(86, 100, 90, 0.92));
-    color: #fbf8f1;
-    font-family: var(--font-body);
-    font-weight: 500;
     font-size: var(--type-meta);
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    text-decoration: none;
-    border: 1px solid rgba(111, 125, 103, 0.3);
-    border-radius: 999px;
-    cursor: pointer;
-    box-shadow: 0 0.6rem 1.2rem rgba(86, 100, 90, 0.15);
-    overflow: hidden;
-    transition:
-      transform 0.5s var(--ease-out-expo),
-      box-shadow 0.45s ease,
-      border-color 0.4s ease;
-  }
-  .btn-footer-cta::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.05);
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.6s var(--ease-out-expo);
-  }
-  .btn-footer-cta:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-  }
-  .btn-footer-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0.9rem 1.8rem rgba(86, 100, 90, 0.22);
-    border-color: rgba(111, 125, 103, 0.45);
-  }
-  .btn-footer-cta:active {
-    transform: translateY(0);
-    transition-duration: 0.2s;
-  }
-  .btn-footer-cta .cta-text {
-    position: relative;
-    z-index: 1;
-  }
-  .btn-footer-cta svg {
-    position: relative;
-    z-index: 1;
-    transition: transform 0.5s var(--ease-out-expo);
-    opacity: 0.7;
-  }
-  .btn-footer-cta:hover svg {
-    transform: translateX(4px);
-    opacity: 1;
+    color: rgba(245, 240, 232, 0.45);
   }
 
-  /* ── Contact Area ─────────────────────────────────────────── */
-  .footer-contact-area {
+  .footer-nav {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+  }
+  .footer-nav a {
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.55);
+    text-decoration: none;
+    transition: color 0.35s ease;
+    position: relative;
+    padding: 2px 0;
+  }
+  .footer-nav a:hover {
+    color: rgba(245, 240, 232, 0.92);
   }
 
-  .contact-grid {
+  .footer-contact {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem 2.5rem;
-    width: 100%;
-    max-width: 420px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem 1.6rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid rgba(196, 170, 148, 0.08);
+    border-bottom: 1px solid rgba(196, 170, 148, 0.08);
   }
 
   .contact-item {
     display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    transition: transform 0.5s var(--ease-out-expo);
-  }
-  .contact-item:hover {
-    transform: translateY(-2px);
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 0;
   }
 
   .contact-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
     border-radius: 50%;
     border: 1px solid rgba(196, 170, 148, 0.12);
     background: rgba(245, 240, 232, 0.03);
-    color: rgba(196, 170, 148, 0.5);
-    margin-bottom: 0.4rem;
-    transition: all 0.5s var(--ease-out-expo);
+    color: rgba(196, 170, 148, 0.55);
+    transition: color 0.35s ease, border-color 0.35s ease;
   }
   .contact-item:hover .contact-icon {
-    border-color: rgba(196, 170, 148, 0.25);
-    color: rgba(196, 170, 148, 0.85);
-    background: rgba(245, 240, 232, 0.05);
-    transform: translateY(-2px);
+    color: rgba(196, 170, 148, 0.9);
+    border-color: rgba(196, 170, 148, 0.28);
+  }
+
+  .contact-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
   }
 
   .contact-label {
     font-family: var(--font-body);
-    font-size: var(--type-meta);
+    font-size: var(--type-micro);
     font-weight: 500;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.45);
+    color: rgba(245, 240, 232, 0.4);
   }
 
   .contact-value {
@@ -488,8 +408,10 @@ const contactItems = [
     color: var(--color-text-muted);
     text-decoration: none;
     transition: color 0.35s ease;
-    line-height: 1.5;
+    line-height: 1.4;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .contact-value:hover {
     color: var(--color-ink);
@@ -734,24 +656,14 @@ const contactItems = [
     .footer-inner {
       padding: 2rem var(--section-padding-x);
     }
-    .footer-main-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      margin-bottom: 1.5rem;
+    .footer-top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.1rem;
     }
-    .footer-cta-area {
-      align-items: center;
-      text-align: center;
-    }
-    .footer-desc {
-      max-width: 100%;
-    }
-    .footer-contact-area {
-      justify-content: center;
-    }
-    .contact-grid {
-      max-width: 100%;
-      gap: 1.2rem 2rem;
+    .footer-contact {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem 1.2rem;
     }
     .footer-bottom-row {
       flex-direction: column;
@@ -781,20 +693,9 @@ const contactItems = [
     .footer-inner {
       padding: 1.8rem var(--section-padding-x);
     }
-    .title-inner {
-      font-size: var(--type-section-title-sm);
-    }
-    .contact-grid {
+    .footer-contact {
       grid-template-columns: 1fr;
-      gap: 1.2rem;
-    }
-    .btn-footer-cta {
-      width: 100%;
-      max-width: 18rem;
-      justify-content: center;
-    }
-    .footer-desc {
-      font-size: var(--type-small);
+      gap: 0.85rem;
     }
   }
 

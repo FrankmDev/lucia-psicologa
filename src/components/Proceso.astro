@@ -1,5 +1,4 @@
 ---
-import PageNumber from './ui/PageNumber.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
@@ -7,20 +6,20 @@ import FloatOrb from './ui/FloatOrb.astro';
 
 const steps = [
   {
-    title: 'Hablamos',
-    text: 'Resolvemos tus dudas y vemos juntas si este es el momento adecuado para empezar.',
+    title: 'Primer contacto',
+    text: 'Me cuentas el motivo de consulta, desde cuándo ocurre y si prefieres terapia presencial u online.',
   },
   {
-    title: 'Ordenamos',
-    text: 'Comprendemos qué está ocurriendo y definimos objetivos sencillos, realistas y compartidos.',
+    title: 'Evaluación inicial',
+    text: 'Recogemos información clínica relevante y definimos objetivos concretos, realistas y compartidos.',
   },
   {
-    title: 'Trabajamos',
-    text: 'Avanzamos con herramientas clínicas, escucha activa y un ritmo que puedas sostener.',
+    title: 'Intervención',
+    text: 'Trabajamos con herramientas clínicas adaptadas a tu caso: regulación emocional, pensamiento, conducta y cuerpo.',
   },
   {
-    title: 'Integramos',
-    text: 'Revisamos lo aprendido y cerramos el proceso cuando sientas más estabilidad y autonomía.',
+    title: 'Revisión',
+    text: 'Valoramos avances, ajustamos objetivos y cerramos el proceso cuando hay más estabilidad y autonomía.',
   },
 ];
 ---
@@ -35,9 +34,9 @@ const steps = [
     <div class="process-shell">
       <header class="process-header reveal-blur" data-delay="80">
         <span class="process-eyebrow">Proceso</span>
-        <h2>Un camino claro, sereno y a tu ritmo.</h2>
+        <h2>Cómo empieza y cómo se sostiene el proceso.</h2>
         <p>
-          La terapia no tiene por qué sentirse confusa. Desde el primer contacto cuidamos que sepas qué esperar y hacia dónde estamos caminando.
+          Desde el primer contacto sabrás qué puedes esperar, qué información necesito y cómo decidimos los siguientes pasos.
         </p>
       </header>
 
@@ -62,9 +61,9 @@ const steps = [
       </div>
 
       <div class="process-close reveal-up" data-delay="420">
-        <p>Si necesitas preguntarme algo antes, puedes escribirme sin compromiso.</p>
+        <p>Si tienes dudas antes de empezar, puedes plantearlas en el primer mensaje.</p>
         <a href="#contacto" class="process-link">
-          <span>Contactar</span>
+          <span>Solicitar primera sesión</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -72,8 +71,6 @@ const steps = [
       </div>
     </div>
   </Container>
-
-  <PageNumber number="05" />
 </section>
 
 <style>

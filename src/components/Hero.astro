@@ -9,13 +9,14 @@ import InkBlob from './ui/InkBlob.astro';
 import DecorativeRing from './ui/DecorativeRing.astro';
 import profileImage from '../assets/about.avif';
 
-const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2200&auto=format&fit=crop&crop=entropy";
+const heroImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2200&auto=format&fit=crop&crop=entropy";
 ---
 
 <section id="inicio" class="hero" data-hero>
   <div class="hero-bg">
-    <img src={heroImage} alt="Paisaje natural de calma y serenidad" decoding="async" loading="eager" class="hero-bg-img" />
+    <img src={heroImage} alt="Paisaje natural con luz suave" fetchpriority="high" decoding="async" loading="eager" class="hero-bg-img" />
     <div class="hero-overlay"></div>
+    <div class="hero-header-shade" aria-hidden="true"></div>
     <div class="hero-vignette" aria-hidden="true"></div>
   </div>
 
@@ -34,14 +35,14 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
   <DecorativeRing size={250} bottom="10%" left="-60px" duration={25} reverse class="hide-mobile" />
 
   <div class="hero-content" data-parallax-content>
-    <Eyebrow text="Psicología Clínica · Ciudad Real · Online" light={true} centered={true} />
+    <Eyebrow text="Terapia individual · Ciudad Real · Online" light={true} centered={true} />
 
     <h1 class="hero-title">
       <span class="title-line">
-        <span class="title-inner" data-split>Un espacio para</span>
+        <span class="title-inner" data-split>Psicología clínica</span>
       </span>
       <span class="title-line title-line--accent">
-        <span class="title-inner" data-split>encontrarte</span>
+        <span class="title-inner" data-split>en Ciudad Real y online</span>
         <svg class="title-underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
           <path d="M2 8 Q50 2 100 6 T198 4" stroke="rgba(196,170,148,0.5)" stroke-width="2" fill="none" stroke-linecap="round" class="underline-path"/>
         </svg>
@@ -49,8 +50,8 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     </h1>
 
     <p class="hero-tagline">
-      Acompañamiento psicológico para quienes buscan sentirse mejor.<br class="hide-mobile"/>
-      Con la calidez y el rigor profesional que necesitas.
+      Terapia individual para ansiedad, trauma y malestar emocional.<br class="hide-mobile"/>
+      Un proceso clínico con evaluación, objetivos y seguimiento.
     </p>
 
     <div class="hero-credentials">
@@ -58,30 +59,23 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
         <span class="credential-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3.5 2.5 6.5 6 7 3.5-.5 6-3.5 6-7V4L8 1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
         </span>
-        <span class="credential-text">Psicóloga clínica colegiada</span>
+        <span class="credential-text">Psicóloga clínica · Col. CM03673</span>
       </div>
       <div class="credential-sep" aria-hidden="true"></div>
       <div class="credential-item">
         <span class="credential-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M5 8l2.5 2.5L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <span class="credential-text">Terapia online y presencial</span>
-      </div>
-      <div class="credential-sep" aria-hidden="true"></div>
-      <div class="credential-item">
-        <span class="credential-icon" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 6l6-4 6 4v6l-6 4-6-4V6z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 8v6" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 8L4 6" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M8 8l4-2" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
-        </span>
-        <span class="credential-text">Online y presencial</span>
+        <span class="credential-text">Presencial en Ciudad Real y online</span>
       </div>
     </div>
 
     <div class="hero-cta">
       <Button href="#contacto" variant="hero" class="btn-hero-cta" data-cta>
-        Reservar primera sesión
+        Solicitar primera sesión
       </Button>
-      <a href="#sobre-mi" class="btn-hero-ghost">
-        <span class="ghost-text">Conóceme</span>
+      <a href="#proceso" class="btn-hero-ghost">
+        <span class="ghost-text">Ver cómo trabajo</span>
         <span class="ghost-line" aria-hidden="true"></span>
         <span class="ghost-dot" aria-hidden="true"></span>
       </a>
@@ -138,7 +132,7 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     max-height: none;
     object-fit: cover;
     object-position: center 40%;
-    filter: grayscale(15%) brightness(0.55) saturate(0.8) contrast(1.1);
+    filter: brightness(1.02) saturate(0.94) contrast(1.04);
     transform: none;
     animation: none;
     will-change: auto;
@@ -148,22 +142,34 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 50% 30%, rgba(13,10,8,0.3) 0%, transparent 60%),
-      radial-gradient(ellipse at 30% 70%, rgba(42,31,26,0.4) 0%, transparent 50%),
-      linear-gradient(180deg, rgba(13,10,8,0.5) 0%, rgba(13,10,8,0.2) 50%, rgba(13,10,8,0.6) 100%);
+      radial-gradient(ellipse 76% 60% at 50% 48%, rgba(13,10,8,0.22) 0%, transparent 76%),
+      linear-gradient(180deg, rgba(13,10,8,0.24) 0%, rgba(13,10,8,0.1) 48%, rgba(13,10,8,0.42) 100%);
     z-index: 1;
   }
   .hero-vignette {
     position: absolute;
     inset: 0;
-    box-shadow: inset 0 0 200px 80px rgba(13,10,8,0.6);
+    box-shadow: inset 0 0 180px 72px rgba(13,10,8,0.36);
     z-index: 1;
     pointer-events: none;
+  }
+  .hero-header-shade {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: clamp(140px, 24vh, 260px);
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(8,6,5,0.72) 0%, rgba(8,6,5,0.52) 28%, rgba(8,6,5,0.22) 62%, transparent 100%),
+      radial-gradient(ellipse 82% 70% at 50% 0%, rgba(8,6,5,0.42) 0%, transparent 74%);
   }
 
   .hero-content {
     position: relative;
     z-index: 3;
+    isolation: isolate;
     width: 100%;
     max-width: 940px;
     margin: 0 auto;
@@ -175,6 +181,37 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     gap: 0;
     text-align: center;
     will-change: transform;
+  }
+  .hero :global(.eyebrow-text) {
+    color: rgba(251,248,242,0.88);
+  }
+  .hero :global(.eyebrow-line) {
+    background: rgba(227,213,191,0.34);
+  }
+  .hero :global(.eyebrow-dot) {
+    background: rgba(227,213,191,0.5);
+  }
+  .hero-content::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: clamp(-3rem, -5vw, -1.8rem) clamp(-3.2rem, -5vw, -1.4rem);
+    border-radius: 999px;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 72% 58% at 50% 43%, rgba(10,7,5,0.74) 0%, rgba(10,7,5,0.54) 36%, rgba(10,7,5,0.24) 64%, transparent 86%),
+      radial-gradient(ellipse 58% 48% at 50% 66%, rgba(74,52,41,0.2) 0%, transparent 72%);
+    filter: blur(18px);
+    transform: scale(1.04);
+  }
+  .hero-content::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: clamp(-1.3rem, -2.4vw, -0.7rem) clamp(-1.4rem, -2.8vw, -0.8rem);
+    border-radius: 999px;
+    pointer-events: none;
+    background: radial-gradient(ellipse 62% 48% at 50% 46%, rgba(13,10,8,0.4) 0%, rgba(13,10,8,0.2) 56%, transparent 100%);
   }
 
   .hero-title {
@@ -193,9 +230,9 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     font-style: italic;
     font-size: var(--type-hero);
     line-height: 1;
-    color: #F5F0E8;
-    letter-spacing: -0.04em;
-    text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+    color: #fbf8f2;
+    letter-spacing: -0.028em;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.34);
     will-change: transform;
     opacity: 0;
     transform: translateY(110%);
@@ -210,7 +247,7 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
   }
   .title-line--accent .title-inner {
     animation-delay: 0.85s;
-    color: rgba(245,240,232,0.95);
+    color: rgba(251,248,242,0.98);
     font-weight: 300;
   }
   .title-underline {
@@ -240,7 +277,7 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     font-style: normal;
     font-weight: 400;
     font-size: var(--type-lead);
-    color: rgba(245,240,232,0.74);
+    color: rgba(251,248,242,0.93);
     margin: 0 0 clamp(1.6rem, 3.2vw, 2.6rem);
     letter-spacing: 0.01em;
     max-width: 620px;
@@ -272,9 +309,8 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
   }
   .credential-item:nth-child(1) { animation-delay: 1.25s; }
   .credential-item:nth-child(3) { animation-delay: 1.4s; }
-  .credential-item:nth-child(5) { animation-delay: 1.55s; }
   .credential-icon {
-    color: rgba(196,170,148,0.7);
+    color: rgba(227,213,191,0.88);
     display: flex;
     align-items: center;
     transition: color 0.4s ease, transform 0.4s var(--ease-out-expo);
@@ -292,7 +328,8 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.82);
+    color: rgba(251,248,242,0.94);
+    text-shadow: 0 1px 14px rgba(0,0,0,0.26);
     transition: color 0.3s ease;
   }
   .credential-item:hover .credential-text {
@@ -332,7 +369,7 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     font-weight: 400;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(245,240,232,0.75);
+    color: rgba(251,248,242,0.94);
     text-decoration: none;
     transition: color 0.4s ease;
   }
@@ -532,15 +569,35 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
     }
     .hero-overlay {
       background:
-        linear-gradient(180deg, rgba(13,10,8,0.42) 0%, rgba(13,10,8,0.16) 32%, rgba(13,10,8,0.72) 100%),
-        radial-gradient(ellipse at 35% 82%, rgba(42,31,26,0.52) 0%, transparent 58%);
+        radial-gradient(ellipse 86% 66% at 50% 45%, rgba(13,10,8,0.24) 0%, transparent 76%),
+        linear-gradient(180deg, rgba(13,10,8,0.24) 0%, rgba(13,10,8,0.1) 32%, rgba(13,10,8,0.48) 100%);
     }
     .hero-vignette {
-      box-shadow: inset 0 0 120px 36px rgba(13,10,8,0.56);
+      box-shadow: inset 0 0 150px 48px rgba(13,10,8,0.36);
+    }
+    .hero-header-shade {
+      height: clamp(128px, 26vh, 220px);
+      background:
+        linear-gradient(180deg, rgba(8,6,5,0.78) 0%, rgba(8,6,5,0.56) 30%, rgba(8,6,5,0.24) 66%, transparent 100%),
+        radial-gradient(ellipse 94% 76% at 50% 0%, rgba(8,6,5,0.42) 0%, transparent 76%);
     }
     .hero-content {
       max-width: 30rem;
       justify-content: center;
+    }
+    .hero-content::before {
+      inset: -1.65rem -0.9rem;
+      border-radius: 999px;
+      background:
+        radial-gradient(ellipse 86% 66% at 50% 42%, rgba(10,7,5,0.76) 0%, rgba(10,7,5,0.56) 40%, rgba(10,7,5,0.24) 68%, transparent 92%),
+        radial-gradient(ellipse 72% 50% at 50% 68%, rgba(74,52,41,0.2) 0%, transparent 76%);
+      filter: blur(14px);
+      transform: scale(1.03);
+    }
+    .hero-content::after {
+      inset: -0.7rem -0.5rem;
+      border-radius: 999px;
+      background: radial-gradient(ellipse 70% 52% at 50% 45%, rgba(13,10,8,0.38) 0%, rgba(13,10,8,0.18) 58%, transparent 100%);
     }
     .hide-mobile { display: none; }
     .hero :global(.eyebrow) {
@@ -565,7 +622,7 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
       font-size: clamp(2.55rem, 12vw, 4.1rem);
       line-height: 0.98;
       letter-spacing: -0.035em;
-      text-shadow: 0 2px 28px rgba(0,0,0,0.34);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.34);
     }
     .title-line--accent { display: inline-block; }
     .title-underline { height: 4px; bottom: -3px; }
@@ -590,7 +647,7 @@ const heroImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?
       gap: 0.4rem;
       border: 1px solid rgba(245,240,232,0.1);
       border-radius: 999px;
-      background: rgba(13,10,8,0.22);
+      background: rgba(13,10,8,0.18);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
     }
