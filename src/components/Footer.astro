@@ -86,66 +86,69 @@ const contactItems = [
 
   <div class="footer-inner">
 
-    <!-- Top: identity + single line of contact -->
-    <div class="footer-top reveal-up" data-delay="100">
+    <!-- Top: identity + tagline -->
+    <div class="footer-identity reveal-up" data-delay="100">
       <a href={isHomePath ? '#inicio' : '/'} class="footer-mark" aria-label="Inicio">
         <span class="footer-mark__name">Lucía Millán Jiménez</span>
-        <span class="footer-mark__role">Psicóloga Clínica · Ciudad Real</span>
+        <span class="footer-mark__role">Psicología clínica · Ciudad Real</span>
       </a>
-
-      <nav class="footer-nav" aria-label="Footer">
-        <a href={resolveHref('#servicios')}>Servicios</a>
-        <a href={resolveHref('#sobre-mi')}>Sobre mí</a>
-        <a href={resolveHref('#proceso')}>Proceso</a>
-        <a href={resolveHref('#blog')}>Blog</a>
-        <a href={resolveHref('#contacto')}>Contacto</a>
-      </nav>
+      <p class="footer-tagline">Acompañamiento psicológico para entender lo que te ocurre y trabajarlo con un enfoque adaptado a tu caso.</p>
     </div>
 
-    <!-- Contact strip — minimal -->
-    <div class="footer-contact reveal-up" data-delay="200">
-      {contactItems.map((item) => (
-        <div class="contact-item">
-          <div class="contact-icon" aria-hidden="true">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-              <path d={item.icon} />
-            </svg>
-          </div>
-          <div class="contact-text">
-            <span class="contact-label">{item.label}</span>
-            {item.href ? (
-              <a href={item.href} class="contact-value" {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+    <div class="footer-divider reveal-scale-x" data-delay="250" aria-hidden="true"></div>
+
+    <!-- Main columns -->
+    <div class="footer-columns reveal-up" data-delay="300">
+      <nav class="footer-col" aria-label="Navegación">
+        <span class="footer-col__title">Navegación</span>
+        <div class="footer-col__links">
+          <a href={resolveHref('#servicios')}>Servicios</a>
+          <a href={resolveHref('#sobre-mi')}>Sobre mí</a>
+          <a href={resolveHref('#proceso')}>Proceso</a>
+          <a href={resolveHref('#blog')}>Blog</a>
+          <a href={resolveHref('#contacto')}>Contacto</a>
+        </div>
+      </nav>
+
+      <div class="footer-col" aria-label="Contacto">
+        <span class="footer-col__title">Contacto</span>
+        <div class="footer-col__links">
+          {contactItems.map((item) => (
+            item.href ? (
+              <a href={item.href} {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
                 {item.value}
               </a>
             ) : (
-              <span class="contact-value">{item.value}</span>
-            )}
-          </div>
+              <span>{item.value}</span>
+            )
+          ))}
         </div>
-      ))}
+      </div>
+
+      <div class="footer-col" aria-label="Redes y directorios">
+        <span class="footer-col__title">Sígueme</span>
+        <div class="footer-social">
+          {socialLinks.map(link => (
+            <a href={link.href} class="social-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d={link.icon} fill="currentColor"/>
+              </svg>
+            </a>
+          ))}
+        </div>
+        <div class="footer-directories">
+          {extraLinks.map(link => (
+            <a href={link.href} class="directory-link" target="_blank" rel="noopener noreferrer">{link.label}</a>
+          ))}
+        </div>
+      </div>
     </div>
 
-    <!-- Divider -->
-    <div class="footer-divider reveal-scale-x" data-delay="350" aria-hidden="true"></div>
+    <div class="footer-divider reveal-scale-x" data-delay="450" aria-hidden="true"></div>
 
-    <!-- Bottom row: social + extra links + legal -->
-    <div class="footer-bottom-row reveal-up" data-delay="450">
-      <div class="social-row">
-        {socialLinks.map(link => (
-          <a href={link.href} class="social-link" aria-label={link.label} target="_blank" rel="noopener noreferrer">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d={link.icon} fill="currentColor"/>
-            </svg>
-          </a>
-        ))}
-      </div>
-
-      <div class="extra-links-row">
-        {extraLinks.map(link => (
-          <a href={link.href} class="extra-link" target="_blank" rel="noopener noreferrer">{link.label}</a>
-        ))}
-      </div>
-
+    <!-- Bottom bar -->
+    <div class="footer-bottom reveal-up" data-delay="500">
+      <span class="copy-text">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga Clínica</span>
       <div class="legal-row">
         <a href="/aviso-legal" class="legal-link">Aviso legal</a>
         <span class="legal-sep">·</span>
@@ -153,11 +156,6 @@ const contactItems = [
         <span class="legal-sep">·</span>
         <a href="/cookies" class="legal-link">Cookies</a>
       </div>
-    </div>
-
-    <!-- Copyright bar -->
-    <div class="footer-copyright reveal-up" data-delay="550">
-      <span class="copy-text">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga Clínica</span>
     </div>
 
   </div>
@@ -182,7 +180,6 @@ const contactItems = [
     const spacer = document.getElementById('footerSpacer');
     if (!footer || !spacer) return;
 
-    // Calculate and set spacer height to match footer
     function updateSpacer() {
       requestAnimationFrame(() => {
         const height = footer.getBoundingClientRect().height;
@@ -190,14 +187,12 @@ const contactItems = [
       });
     }
     
-    // Run multiple times to ensure correct measurement after layout
     updateSpacer();
     window.addEventListener('resize', updateSpacer, { passive: true });
     window.addEventListener('load', updateSpacer, { passive: true });
     document.fonts.ready.then(updateSpacer);
     setTimeout(updateSpacer, 100);
 
-    // Back to top
     const btn = document.getElementById('backTop');
     if (btn) {
       btn.addEventListener('click', () => {
@@ -205,7 +200,6 @@ const contactItems = [
       });
     }
 
-    // Scroll progress ring
     const progressRing = footer.querySelector('.progress-ring');
     if (progressRing) {
       const circumference = 2 * Math.PI * 20;
@@ -226,12 +220,6 @@ const contactItems = [
 </script>
 
 <style>
-  /* ═══════════════════════════════════════════════════════════
-     FOOTER REVEAL — Fixed footer with dynamic spacer
-     The footer sits fixed beneath the main content,
-     revealed as the page scrolls past the spacer.
-     ═══════════════════════════════════════════════════════════ */
-
   .footer-spacer {
     display: block;
     position: relative;
@@ -250,7 +238,6 @@ const contactItems = [
     overflow: hidden;
   }
 
-  /* ── Background Layers ────────────────────────────────────── */
   .footer-bg {
     position: absolute;
     inset: 0;
@@ -285,7 +272,6 @@ const contactItems = [
     opacity: 0.4;
   }
 
-  /* ── Inner Container ──────────────────────────────────────── */
   .footer-inner {
     position: relative;
     z-index: 3;
@@ -294,16 +280,14 @@ const contactItems = [
     padding: clamp(2.5rem, 5vw, 3.5rem) var(--section-padding-x);
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     COMPACT FOOTER — identity + minimal nav + contact strip
-     ═══════════════════════════════════════════════════════════ */
-  .footer-top {
+  /* ── Identity ─────────────────────────────────────────── */
+  .footer-identity {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 1.4rem 2.4rem;
-    margin-bottom: clamp(1.8rem, 3vw, 2.4rem);
+    gap: 1rem 2rem;
+    margin-bottom: clamp(1.6rem, 3vw, 2.2rem);
   }
 
   .footer-mark {
@@ -329,107 +313,20 @@ const contactItems = [
     color: rgba(245, 240, 232, 0.45);
   }
 
-  .footer-nav {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4rem 1.4rem;
-  }
-  .footer-nav a {
-    font-family: var(--font-body);
-    font-size: var(--type-meta);
-    font-weight: 400;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.55);
-    text-decoration: none;
-    transition: color 0.35s ease;
-    position: relative;
-    padding: 2px 0;
-  }
-  .footer-nav a:hover {
-    color: rgba(245, 240, 232, 0.92);
+  .footer-tagline {
+    max-width: 24rem;
+    margin: 0;
+    font-size: var(--type-body-sm);
+    line-height: 1.6;
+    color: rgba(245, 240, 232, 0.38);
+    text-wrap: pretty;
+    text-align: right;
   }
 
-  .footer-contact {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem 1.6rem;
-    padding: 1.1rem 0;
-    border-top: 1px solid rgba(196, 170, 148, 0.08);
-    border-bottom: 1px solid rgba(196, 170, 148, 0.08);
-  }
-
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    min-width: 0;
-  }
-
-  .contact-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px;
-    height: 30px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    border: 1px solid rgba(196, 170, 148, 0.12);
-    background: rgba(245, 240, 232, 0.03);
-    color: rgba(196, 170, 148, 0.55);
-    transition: color 0.35s ease, border-color 0.35s ease;
-  }
-  .contact-item:hover .contact-icon {
-    color: rgba(196, 170, 148, 0.9);
-    border-color: rgba(196, 170, 148, 0.28);
-  }
-
-  .contact-text {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    min-width: 0;
-  }
-
-  .contact-label {
-    font-family: var(--font-body);
-    font-size: var(--type-micro);
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.4);
-  }
-
-  .contact-value {
-    font-family: var(--font-body);
-    font-size: var(--type-card-body);
-    font-weight: 300;
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color 0.35s ease;
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .contact-value:hover {
-    color: var(--color-ink);
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     DIVIDER
-     ═══════════════════════════════════════════════════════════ */
+  /* ── Divider ──────────────────────────────────────────── */
   .footer-divider {
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(196, 170, 148, 0.12) 20%,
-      rgba(196, 170, 148, 0.12) 80%,
-      transparent 100%
-    );
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
+    background: linear-gradient(90deg, transparent 0%, rgba(196, 170, 148, 0.12) 20%, rgba(196, 170, 148, 0.12) 80%, transparent 100%);
     transform: scaleX(0);
     transform-origin: center;
     transition: transform 1.6s var(--ease-out-expo);
@@ -439,19 +336,47 @@ const contactItems = [
     transform: scaleX(1);
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     BOTTOM ROW — Social + Extra links
-     ═══════════════════════════════════════════════════════════ */
-  .footer-bottom-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: clamp(1.2rem, 2vw, 1.5rem);
+  /* ── Columns ──────────────────────────────────────────── */
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    padding: clamp(1.6rem, 3vw, 2.2rem) 0;
   }
 
-  .social-row {
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .footer-col__title {
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(245, 240, 232, 0.5);
+  }
+
+  .footer-col__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .footer-col__links a,
+  .footer-col__links span {
+    font-size: var(--type-body-sm);
+    color: rgba(245, 240, 232, 0.45);
+    text-decoration: none;
+    transition: color 0.35s ease;
+    line-height: 1.5;
+  }
+  .footer-col__links a:hover {
+    color: rgba(245, 240, 232, 0.85);
+  }
+
+  .footer-social {
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -478,6 +403,16 @@ const contactItems = [
     opacity: 0;
     transition: opacity 0.5s ease;
   }
+  .social-link::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    border: 1px solid rgba(196, 170, 148, 0.04);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s var(--ease-out-expo);
+    transform: scale(0.85);
+  }
   .social-link:hover {
     background: rgba(245, 240, 232, 0.06);
     border-color: rgba(196, 170, 148, 0.2);
@@ -488,31 +423,31 @@ const contactItems = [
   .social-link:hover::before {
     opacity: 1;
   }
+  .social-link:hover::after {
+    opacity: 1;
+    transform: scale(1);
+  }
   .social-link svg {
     width: 14px; height: 14px;
     position: relative;
     z-index: 1;
   }
 
-  .extra-links-row {
+  .footer-directories {
     display: flex;
-    align-items: center;
-    gap: 0.5rem 1.5rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
   }
-  .extra-link {
-    font-family: var(--font-body);
-    font-size: var(--type-meta);
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(245, 240, 232, 0.3);
+  .directory-link {
+    font-size: var(--type-body-sm);
+    color: rgba(245, 240, 232, 0.35);
     text-decoration: none;
     transition: color 0.35s ease;
     position: relative;
     padding: 2px 0;
   }
-  .extra-link::after {
+  .directory-link::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -524,23 +459,22 @@ const contactItems = [
     transform-origin: right;
     transition: transform 0.5s var(--ease-out-expo);
   }
-  .extra-link:hover {
+  .directory-link:hover {
     color: rgba(245, 240, 232, 0.7);
   }
-  .extra-link:hover::after {
+  .directory-link:hover::after {
     transform: scaleX(1);
     transform-origin: left;
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     COPYRIGHT BAR
-     ═══════════════════════════════════════════════════════════ */
-  .footer-copyright {
+  /* ── Bottom bar ───────────────────────────────────────── */
+  .footer-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.8rem;
+    padding-top: clamp(1.2rem, 2vw, 1.5rem);
     font-size: var(--type-meta);
     font-weight: 400;
     color: rgba(245, 240, 232, 0.35);
@@ -585,9 +519,7 @@ const contactItems = [
     user-select: none;
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     BACK TO TOP
-     ═══════════════════════════════════════════════════════════ */
+  /* ── Back to top ──────────────────────────────────────── */
   .back-top {
     position: fixed;
     bottom: 1.5rem;
@@ -649,29 +581,25 @@ const contactItems = [
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
   }
 
-  /* ═══════════════════════════════════════════════════════════
-     RESPONSIVE
-     ═══════════════════════════════════════════════════════════ */
+  /* ── Responsive ───────────────────────────────────────── */
   @media (max-width: 768px) {
     .footer-inner {
       padding: 2rem var(--section-padding-x);
     }
-    .footer-top {
+    .footer-identity {
       flex-direction: column;
       align-items: flex-start;
-      gap: 1.1rem;
+      gap: 0.8rem;
     }
-    .footer-contact {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 1rem 1.2rem;
+    .footer-tagline {
+      text-align: left;
+      max-width: 100%;
     }
-    .footer-bottom-row {
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
+    .footer-columns {
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
     }
-    .footer-copyright {
+    .footer-bottom {
       flex-direction: column;
       align-items: center;
       text-align: center;
@@ -689,23 +617,12 @@ const contactItems = [
     }
   }
 
-  @media (max-width: 480px) {
-    .footer-inner {
-      padding: 1.8rem var(--section-padding-x);
-    }
-    .footer-contact {
-      grid-template-columns: 1fr;
-      gap: 0.85rem;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
-    .btn-footer-cta,
     .social-link,
     .back-top,
     .back-top-icon,
     .legal-link::after,
-    .extra-link::after,
+    .directory-link::after,
     .footer-divider {
       transition: none !important;
       animation: none !important;

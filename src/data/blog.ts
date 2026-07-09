@@ -79,12 +79,12 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Desde entonces, el EMDR ha sido investigado en más de <strong>30 estudios controlados</strong> y validado por organizaciones de primer nivel mundial. La <strong>Organización Mundial de la Salud (OMS)</strong> la incluye como tratamiento de elección para el trastorno de estrés postraumático (TEPT). La <strong>Asociación Americana de Psicología (APA)</strong> y el <strong>Departamento de Defensa de Estados Unidos</strong> también la recomiendan. En España, el Colegio Oficial de Psicólogos reconoce su eficacia cuando es aplicada por profesionales debidamente formados.
+  Desde entonces, el EMDR ha sido investigado en numerosos estudios y cuenta con respaldo en guías clínicas internacionales para el abordaje del trauma. La <strong>Organización Mundial de la Salud (OMS)</strong> lo contempla para el tratamiento de las secuelas psicológicas del trauma y del trastorno de estrés postraumático (TEPT) cuando lo aplica un profesional formado.
 </p>
 
 <blockquote>
-  <p>"El EMDR no es magia. Es neurociencia aplicada. Lo que hacemos es activar los mecanismos naturales de procesamiento del cerebro para que un recuerdo bloqueado pueda ser integrado de forma adaptativa."</p>
-  <cite>— Dr. Bessel van der Kolk, autor de <em>El cuerpo lleva la cuenta</em></cite>
+  <p>El EMDR no busca borrar lo ocurrido. Busca que el recuerdo pueda integrarse con menos carga emocional y más sensación de presente.</p>
+  <cite>— Enfoque clínico del reprocesamiento</cite>
 </blockquote>
 
 <h2>¿Cómo funciona el EMDR en el cerebro? Una explicación sin jerga</h2>
@@ -100,7 +100,7 @@ export const articles: BlogArticle[] = [
 <h3>La clave: el movimiento bilateral</h3>
 
 <p>
-  La terapia EMDR utiliza estimulación bilateral —movimientos oculares guiados, o alternancia de sonidos o vibraciones en las manos— para activar una red cerebral similar a la del sueño REM. Durante el sueño REM, tu cerebro procesa la información del día, consolida recuerdos y resuelve conflictos. El EMDR induce artificialmente ese estado de procesamiento acelerado, pero de forma dirigida y terapéutica.
+  La terapia EMDR se apoya en el modelo PISA, Procesamiento de la Información a Sistemas Adaptativos, y utiliza estimulación bilateral: movimientos oculares guiados, sonidos alternos o golpecitos técnicos conocidos como tapping. Esta estimulación se aplica de forma controlada para favorecer que el sistema de procesamiento pueda integrar la experiencia con menos carga emocional.
 </p>
 
 <p>
@@ -120,7 +120,7 @@ export const articles: BlogArticle[] = [
 <h2>¿Para qué problemas sirve el EMDR? Más de lo que imaginas</h2>
 
 <p>
-  Muchas personas asocian el EMDR exclusivamente con traumas graves: accidentes, agresiones, desastres naturales. Y sí, es extraordinariamente eficaz para esos casos. Pero en mi consulta aplico EMDR para una amplia variedad de situaciones:
+  Muchas personas asocian el EMDR exclusivamente con traumas graves: accidentes, agresiones, desastres naturales. También puede ser útil en otras experiencias estresantes o relacionales cuando la evaluación clínica indica que el recuerdo sigue activando malestar en el presente:
 </p>
 
 <ul>
@@ -160,7 +160,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Al final de la sesión, evaluamos juntos el cambio. La mayoría de las personas experimentan una reducción notable de la intensidad emocional del recuerdo. Algunas lo describen como "verlo desde lejos", "como si fuera una película", o simplemente "ya no me hace daño".
+  Al final de la sesión, evaluamos juntos el cambio. En muchos procesos, el objetivo es que la intensidad emocional del recuerdo disminuya y que la persona pueda relacionarse con lo vivido con más distancia, menos activación corporal y mayor sensación de control.
 </p>
 
 <h3>Fase 3: Instalación y cierre (1-2 sesiones)</h3>
@@ -185,7 +185,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Respecto a empeorar: en décadas de investigación, no se ha documentado un empeoramiento significativo atribuible al EMDR cuando se aplica correctamente. Lo que sí ocurre es que, a veces, entre sesiones surgen nuevos recuerdos relacionados. Esto no es un empeoramiento; es una señal de que tu sistema de procesamiento se ha activado y está trabajando.
+  Respecto a empeorar: antes de iniciar EMDR valoramos estabilidad, recursos y momento vital. A veces, entre sesiones pueden surgir recuerdos o emociones relacionadas; por eso el proceso se prepara, se revisa y se acompaña con herramientas de regulación.
 </p>
 
 <h2>EMDR: por qué cada vez más personas lo eligen</h2>
@@ -367,7 +367,7 @@ export const articles: BlogArticle[] = [
 <h3>Integración del recuerdo con técnicas especializadas</h3>
 
 <p>
-  Cuando el duelo está bloqueado por un trauma —una muerte repentina, un accidente, una enfermedad agresiva, una despedida abrupta— utilizo técnicas como el <strong>EMDR</strong> para desbloquear la imagen dolorosa y permitir que el recuerdo se integre de forma adaptativa. Esto no borra a la persona. Libera el recuerdo del dolor paralizante.
+  Cuando el duelo está bloqueado por un trauma —una muerte repentina, un accidente, una enfermedad agresiva, una despedida abrupta— técnicas como el <strong>EMDR</strong> pueden ayudar a trabajar la imagen dolorosa para que el recuerdo se integre de forma más adaptativa. Esto no borra a la persona ni lo vivido; busca reducir la carga traumática asociada.
 </p>
 
 <h3>Reconstrucción de identidad y proyecto vital</h3>
@@ -568,7 +568,7 @@ export const articles: BlogArticle[] = [
 </ul>
 
 <p>
-  Los estudios demuestran que la autocompasión reduce la ansiedad, la depresión y el perfeccionismo, y aumenta la resiliencia emocional. No es autoindulgencia. Es una estrategia de supervivencia emocional.
+  La investigación sobre autocompasión la relaciona con menor ansiedad, menor autocrítica y más resiliencia emocional. No es autoindulgencia: es una forma de responder al dolor sin añadir más juicio.
 </p>
 
 <blockquote>
@@ -603,7 +603,7 @@ export const articles: BlogArticle[] = [
 <h2>Cuándo el mindfulness no es suficiente (y qué hacer entonces)</h2>
 
 <p>
-  El mindfulness es extraordinariamente poderoso, pero no es una panacea. No es adecuado como única intervención cuando existe un trastorno activo severo, un trauma no procesado, o un duelo complicado. En esos casos, el mindfulness se integra dentro de un tratamiento más amplio que puede incluir terapia cognitivo-conductual, EMDR, o psicoterapia de soporte.
+  El mindfulness puede ser una herramienta útil, pero no es una panacea. No suele ser suficiente como única intervención cuando existe un trastorno activo severo, un trauma no procesado o un duelo complicado. En esos casos, se integra dentro de un tratamiento más amplio que puede incluir Terapia Cognitivo Conductual, EMDR u otros enfoques clínicos.
 </p>
 
 <p>

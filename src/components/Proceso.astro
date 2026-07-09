@@ -6,20 +6,24 @@ import FloatOrb from './ui/FloatOrb.astro';
 
 const steps = [
   {
+    num: '01',
     title: 'Primer contacto',
-    text: 'Me cuentas el motivo de consulta, desde cuándo ocurre y si prefieres terapia presencial u online.',
+    text: 'Me cuentas brevemente qué te preocupa, desde cuándo ocurre y qué modalidad prefieres. No necesitas explicarlo todo: solo lo suficiente para valorar el siguiente paso.',
   },
   {
-    title: 'Evaluación inicial',
-    text: 'Recogemos información clínica relevante y definimos objetivos concretos, realistas y compartidos.',
+    num: '02',
+    title: 'Primera sesión',
+    text: 'Ordenamos el motivo de consulta, recogemos información relevante y definimos un primer objetivo de trabajo claro, realista y ajustado a tu situación.',
   },
   {
-    title: 'Intervención',
-    text: 'Trabajamos con herramientas clínicas adaptadas a tu caso: regulación emocional, pensamiento, conducta y cuerpo.',
+    num: '03',
+    title: 'Plan de trabajo',
+    text: 'Definimos prioridades y elegimos las herramientas más adecuadas para tu caso: regulación emocional, pensamiento, conducta, cuerpo, partes internas o procesamiento del trauma.',
   },
   {
-    title: 'Revisión',
-    text: 'Valoramos avances, ajustamos objetivos y cerramos el proceso cuando hay más estabilidad y autonomía.',
+    num: '04',
+    title: 'Revisión del proceso',
+    text: 'Valoramos avances, ajustamos objetivos y revisamos si el enfoque sigue siendo el adecuado. El cierre llega cuando hay más estabilidad, recursos y autonomía.',
   },
 ];
 ---
@@ -30,40 +34,39 @@ const steps = [
   <FloatOrb size={340} top="-16%" right="-10%" color="rgba(141,151,132,0.12)" blur={145} opacity={0.34} animation="float-1" />
   <FloatOrb size={240} bottom="4%" left="-8%" color="rgba(216,211,200,0.24)" blur={120} opacity={0.28} animation="float-2" />
 
-  <Container maxWidth="1180px" padding="0 clamp(1rem, 4vw, 4rem)">
+  <Container maxWidth="1080px" padding="0 clamp(1rem, 4vw, 4rem)">
     <div class="process-shell">
       <header class="process-header reveal-blur" data-delay="80">
-        <span class="process-eyebrow">Proceso</span>
-        <h2>Cómo empieza y cómo se sostiene el proceso.</h2>
+        <span class="section-eyebrow">Proceso</span>
+        <h2>Cómo empezamos a trabajar.</h2>
         <p>
-          Desde el primer contacto sabrás qué puedes esperar, qué información necesito y cómo decidimos los siguientes pasos.
+          El proceso comienza con una primera conversación para entender qué ocurre, valorar qué necesitas y decidir con claridad si conviene trabajar desde TCC, ACT, TFE, IFS, EMDR u otra combinación.
         </p>
       </header>
 
-      <div class="process-flow" aria-label="Fases del proceso terapéutico">
-        <div class="process-track" aria-hidden="true">
-          {steps.map((_, index) => (
-            <div class="process-track__item">
-              <span>0{index + 1}</span>
-            </div>
-          ))}
-        </div>
+      <div class="process-track">
+        <div class="process-line" aria-hidden="true"></div>
 
-        <div class="process-steps">
+        <div class="process-steps stagger-children">
           {steps.map((step, index) => (
-            <article class="process-step reveal-up" style={`transition-delay: ${160 + index * 70}ms`}>
-              <span class="process-step__num" aria-hidden="true">0{index + 1}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
+            <article class="process-step reveal-up" style={`transition-delay: ${160 + index * 90}ms`}>
+              <div class="process-step__node">
+                <span class="process-step__circle">{step.num}</span>
+                {index < steps.length - 1 && <span class="process-step__connector" aria-hidden="true"></span>}
+              </div>
+              <div class="process-step__body">
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
             </article>
           ))}
         </div>
       </div>
 
-      <div class="process-close reveal-up" data-delay="420">
-        <p>Si tienes dudas antes de empezar, puedes plantearlas en el primer mensaje.</p>
+      <div class="process-close reveal-up" data-delay="480">
+        <p>Si tienes dudas sobre el enfoque, la modalidad o si EMDR puede encajar en tu caso, puedes plantearlas en el primer mensaje.</p>
         <a href="#contacto" class="process-link">
-          <span>Solicitar primera sesión</span>
+          <span>Solicitar orientación inicial</span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -110,26 +113,6 @@ const steps = [
     text-align: center;
   }
 
-  .process-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.78rem;
-    color: var(--color-accent);
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-  }
-
-  .process-eyebrow::before,
-  .process-eyebrow::after {
-    content: '';
-    width: 2.35rem;
-    height: 1px;
-    background: rgba(111, 125, 103, 0.34);
-  }
-
   .process-header h2 {
     max-width: 48rem;
     margin: 1rem auto 1rem;
@@ -152,126 +135,113 @@ const steps = [
     text-wrap: pretty;
   }
 
-  .process-flow {
-    position: relative;
-    padding: var(--card-pd-sm);
-    border: 1px solid rgba(111, 125, 103, 0.14);
-    border-radius: var(--card-radius);
-    background:
-      linear-gradient(180deg, rgba(255, 253, 248, 0.72), rgba(250, 248, 242, 0.52)),
-      radial-gradient(circle at 50% 0%, rgba(223, 228, 216, 0.3), transparent 54%);
-    box-shadow: 0 1.4rem 3rem rgba(57, 54, 48, 0.045);
-  }
-
+  /* ── Timeline track ─────────────────────────────────────── */
   .process-track {
     position: relative;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-items: center;
-    margin: 0 clamp(0.25rem, 1vw, 0.7rem) clamp(1rem, 1.8vw, 1.35rem);
-    min-height: 2.8rem;
+    max-width: 920px;
+    margin: 0 auto;
   }
 
-  .process-track::before {
-    content: '';
+  .process-line {
     position: absolute;
-    left: calc(12.5% + 1.25rem);
-    right: calc(12.5% + 1.25rem);
-    top: 50%;
+    top: 2.2rem;
+    left: 12.5%;
+    right: 12.5%;
     height: 1px;
-    background: linear-gradient(90deg, rgba(111, 125, 103, 0.08), rgba(111, 125, 103, 0.34), rgba(111, 125, 103, 0.08));
-    transform: translateY(-50%);
-  }
-
-  .process-track__item {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    z-index: 1;
-  }
-
-  .process-track__item span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.35rem;
-    height: 2.35rem;
-    border: 1px solid rgba(111, 125, 103, 0.28);
-    border-radius: 999px;
-    background: #fffdf8;
-    color: var(--color-accent-deep);
-    font-family: var(--font-display);
-    font-size: var(--type-body-sm);
-    font-style: italic;
-    line-height: 1;
-    box-shadow: 0 0 0 0.45rem rgba(255, 253, 248, 0.84);
+    background: linear-gradient(90deg, transparent 0%, rgba(111,125,103,0.18) 12%, rgba(111,125,103,0.18) 88%, transparent 100%);
+    z-index: 0;
   }
 
   .process-steps {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(0.8rem, 1.4vw, 1.05rem);
+    position: relative;
+    z-index: 1;
   }
 
   .process-step {
     position: relative;
-    min-height: clamp(12.5rem, 15vw, 14.4rem);
-    overflow: hidden;
-    padding: var(--card-pd-sm);
-    border: 1px solid rgba(111, 125, 103, 0.11);
-    border-radius: var(--card-radius-sm);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(251, 248, 241, 0.9)),
-      radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.28), transparent 38%);
-    box-shadow: 0 1rem 2rem rgba(57, 54, 48, 0.045);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.1rem;
+  }
+
+  .process-step__node {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .process-step__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(111, 125, 103, 0.22);
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(251,248,241,0.85));
+    box-shadow:
+      0 0.6rem 1.2rem rgba(57, 54, 48, 0.06),
+      inset 0 1px 0 rgba(255,255,255,0.9);
+    font-family: var(--font-display);
+    font-size: var(--type-card-title);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(184, 168, 138, 0.92);
+    line-height: 1;
     transition:
       transform 0.45s var(--ease-out-expo),
       border-color 0.35s ease,
-      box-shadow 0.45s ease,
-      background 0.35s ease;
+      box-shadow 0.45s ease;
   }
 
-  .process-step::after {
+  .process-step:hover .process-step__circle {
+    transform: translateY(-3px);
+    border-color: rgba(111, 125, 103, 0.38);
+    box-shadow: 0 1rem 2rem rgba(57, 54, 48, 0.1);
+  }
+
+  .process-step__circle::after {
     content: '';
     position: absolute;
-    right: -2.8rem;
-    bottom: -3rem;
-    width: 8rem;
-    aspect-ratio: 1;
+    inset: -4px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(111, 125, 103, 0.08), transparent 68%);
-    opacity: 0.58;
-    transition: transform 0.7s var(--ease-out-expo), opacity 0.45s ease;
+    border: 1px solid rgba(111, 125, 103, 0.06);
+    animation: circle-pulse 3s ease-in-out infinite;
     pointer-events: none;
   }
-
-  .process-step:hover {
-    transform: translateY(-4px);
-    border-color: rgba(111, 125, 103, 0.24);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 246, 239, 0.96)),
-      radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.38), transparent 36%);
-    box-shadow: 0 1.4rem 2.6rem rgba(57, 54, 48, 0.07);
+  .process-step:nth-child(2) .process-step__circle::after { animation-delay: 0.5s; }
+  .process-step:nth-child(3) .process-step__circle::after { animation-delay: 1s; }
+  .process-step:nth-child(4) .process-step__circle::after { animation-delay: 1.5s; }
+  @keyframes circle-pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.12); opacity: 0; }
   }
 
-  .process-step:hover::after {
-    opacity: 0.84;
-    transform: scale(1.08);
+  .process-step__connector {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: clamp(0.8rem, 2vw, 2rem);
+    height: 1px;
+    background: linear-gradient(90deg, rgba(111, 125, 103, 0.18), rgba(111, 125, 103, 0.06));
+    transform: translateY(-50%);
   }
 
-  .process-step__num {
-    display: inline-flex;
-    margin-bottom: clamp(1.25rem, 2vw, 1.7rem);
-    color: rgba(184, 168, 138, 0.92);
-    font-family: var(--font-display);
-    font-size: var(--type-card-title-sm);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1;
+  .process-step__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 0 0.3rem;
   }
 
   .process-step h3 {
-    margin: 0 0 0.75rem;
+    margin: 0;
     color: var(--color-ink);
     font-family: var(--font-display);
     font-size: var(--type-subsection-title);
@@ -282,7 +252,6 @@ const steps = [
   }
 
   .process-step p {
-    max-width: 25ch;
     margin: 0;
     color: var(--color-text-muted);
     font-size: var(--type-body-sm);
@@ -298,6 +267,7 @@ const steps = [
     max-width: 48rem;
     margin: clamp(2rem, 4vw, 3rem) auto 0;
     text-align: center;
+    flex-wrap: wrap;
   }
 
   .process-close p {
@@ -323,8 +293,9 @@ const steps = [
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    text-decoration: none;
     box-shadow: 0 0.9rem 1.6rem rgba(86, 100, 90, 0.14);
-    transition: transform 0.45s var(--ease-out-expo), box-shadow 0.45s ease, background 0.35s ease;
+    transition: transform 0.45s var(--ease-out-expo), box-shadow 0.45s ease;
   }
 
   .process-link:hover {
@@ -340,34 +311,20 @@ const steps = [
     transform: translateX(2px);
   }
 
-  @media (max-width: 920px) {
-    .process-track,
+  @media (max-width: 960px) {
+    .process-line {
+      display: none;
+    }
     .process-steps {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.6rem 1rem;
     }
-
-    .process-track {
-      row-gap: 0.9rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .process-track::before {
+    .process-step__connector {
       display: none;
     }
-
-    .process-track__item::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      right: -50%;
-      top: 50%;
-      height: 1px;
-      background: rgba(111, 125, 103, 0.2);
-      transform: translateY(-50%);
-    }
-
-    .process-track__item:nth-child(2n)::before {
-      display: none;
+    .process-step__circle {
+      width: 4rem;
+      height: 4rem;
     }
   }
 
@@ -382,11 +339,10 @@ const steps = [
       padding: 0 4vw;
     }
 
-    .process-eyebrow {
+    .section-eyebrow {
       justify-content: flex-start;
     }
-
-    .process-eyebrow::after {
+    .section-eyebrow::after {
       display: none;
     }
 
@@ -401,39 +357,39 @@ const steps = [
       line-height: 1.65;
     }
 
-    .process-flow {
-      padding: var(--card-pd-sm);
-      border-radius: var(--card-radius-sm);
-    }
-
-    .process-track {
-      display: none;
-    }
-
     .process-steps {
-      display: grid;
       grid-template-columns: 1fr;
-      gap: 0.65rem;
+      gap: 1.4rem;
     }
 
     .process-step {
-      min-height: auto;
+      flex-direction: row;
+      align-items: flex-start;
+      text-align: left;
+      gap: 1rem;
       padding: var(--card-pd-sm);
+      border: 1px solid rgba(111, 125, 103, 0.11);
       border-radius: var(--card-radius-sm);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(251, 248, 241, 0.9)),
+        radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.28), transparent 38%);
     }
 
-    .process-step__num {
-      margin-bottom: 0.7rem;
+    .process-step__node {
+      flex-shrink: 0;
+    }
+
+    .process-step__circle {
+      width: 3.2rem;
+      height: 3.2rem;
       font-size: var(--type-body);
     }
 
     .process-step h3 {
       font-size: var(--type-card-title);
-      margin-bottom: 0.55rem;
     }
 
     .process-step p {
-      max-width: none;
       font-size: var(--type-card-body);
       line-height: 1.58;
     }
@@ -442,18 +398,17 @@ const steps = [
       display: block;
       text-align: left;
       margin-top: 1.8rem;
-      gap: 1rem;
       padding: 0 4vw;
     }
 
     .process-close p {
       font-size: var(--type-body-sm);
       line-height: 1.6;
+      margin-bottom: 1rem;
     }
 
     .process-link {
       width: 100%;
-      margin-top: 1rem;
       min-height: 2.8rem;
       font-size: var(--type-meta);
       letter-spacing: 0.16em;
@@ -461,8 +416,7 @@ const steps = [
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .process-step,
-    .process-step::after,
+    .process-step__circle,
     .process-link,
     .process-link svg {
       transition: none !important;

@@ -1,5 +1,6 @@
 ---
 import Button from './ui/Button.astro';
+import PageNumber from './ui/PageNumber.astro';
 import Container from './ui/Container.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
 import AmbientLight from './ui/AmbientLight.astro';
@@ -8,24 +9,32 @@ import FloatOrb from './ui/FloatOrb.astro';
 import portraitImage from '../assets/about.avif';
 
 const credentials = [
-  'Colegiada CM03673',
-  'TCC · ACT · TFE · Psicosomática',
-  'Ansiedad · Trauma · Malestar emocional',
+  'Psicóloga clínica colegiada',
+  'Formación oficial Nivel I en EMDR',
+  'Enfoque integrador',
+  'Presencial y online',
 ];
 
 const values = [
   {
-    title: 'Evaluación',
-    text: 'Primero delimitamos el motivo de consulta, los síntomas y el impacto en tu vida diaria.',
+    title: 'Seguridad',
+    text: 'Antes de abordar recuerdos dolorosos, construimos recursos para que el proceso sea estable y cuidadoso.',
   },
   {
-    title: 'Objetivos',
-    text: 'Definimos metas realistas para que la terapia tenga dirección y puedas revisar avances.',
+    title: 'Integración',
+    text: 'Trabajo con herramientas clínicas contrastadas para ayudarte a procesar lo vivido sin quedarte atrapado en ello.',
   },
   {
-    title: 'Seguimiento',
-    text: 'Ajustamos el trabajo según tu evolución, con herramientas que puedas aplicar fuera de consulta.',
+    title: 'Adaptación',
+    text: 'La terapia se ajusta a tu historia, tus síntomas y tus necesidades para que el acompañamiento sea más eficiente.',
   },
+];
+
+const emdrPoints = [
+  'Procesamiento seguro de experiencias dolorosas, bloqueos emocionales o eventos traumáticos que siguen afectando al presente.',
+  'Trabajo con traumas con T mayúscula, como accidentes, agresiones o catástrofes, y con traumas con t minúscula, como heridas relacionales, apego o experiencias difíciles de la infancia.',
+  'Alivio de síntomas asociados al trauma, la ansiedad, la depresión, las fobias, el duelo patológico o complicado y el Trastorno de Estrés Postraumático (TEPT).',
+  'Reestructuración cognitiva de creencias negativas sobre uno mismo hacia narrativas más adaptativas, realistas y compasivas.',
 ];
 ---
 
@@ -39,13 +48,14 @@ const values = [
     <div class="sm-shell">
       <header class="sm-header reveal-blur" data-delay="80">
         <span class="sm-eyebrow">Sobre mí</span>
-        <h2>Formación clínica, criterio profesional y trato cercano.</h2>
+        <h2>Un espacio tranquilo para procesar lo que aún pesa.</h2>
         <p>
-          Trabajo desde un enfoque integrador para adaptar la intervención a tu historia, tus síntomas y tus objetivos terapéuticos.
+          Acompañamiento psicológico cercano y respetuoso, con formación especializada en trauma y EMDR.
         </p>
       </header>
 
       <article class="sm-panel reveal-scale" data-delay="180">
+        <div class="sm-panel__mark" aria-hidden="true">L</div>
         <div class="sm-panel__visual">
           <figure class="sm-portrait">
             <img src={portraitImage.src} alt="Lucía Millán Jiménez, psicóloga clínica" width={portraitImage.width} height={portraitImage.height} sizes="(max-width: 960px) 72vw, 360px" decoding="async" loading="lazy" />
@@ -57,9 +67,13 @@ const values = [
         </div>
 
         <div class="sm-panel__content">
-          <span class="sm-label">Lucía Millán Jiménez</span>
+          <span class="sm-label">Conoce a Lucía</span>
           <p class="sm-lead">
-            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada <strong>CM03673</strong>. Atiendo terapia individual en Ciudad Real y online, especialmente en ansiedad, trauma, duelo, autoestima y malestar emocional. Combino Terapia Cognitivo-Conductual, ACT, Terapia Focalizada en la Emoción y trabajo psicosomático para construir un proceso comprensible, seguro y orientado a objetivos.
+            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada. Adapto la terapia a cada persona según su problemática, su historia y sus necesidades, integrando TCC, ACT, TFE, IFS y EMDR para que el proceso tenga estructura, seguridad y sentido clínico.
+          </p>
+
+          <p>
+            Cuento con la formación oficial de <strong>Nivel I en EMDR</strong>, avalada por la Asociación EMDR España y EMDR Europa, e impartida a través de Imaya Formación. Esta especialización me permite utilizar el modelo PISA (Procesamiento de la Información a Sistemas Adaptativos) para ayudarte a trabajar de forma segura experiencias dolorosas, bloqueos emocionales o recuerdos traumáticos que todavía interfieren en tu presente.
           </p>
 
           <ul class="sm-credentials" aria-label="Credenciales y modalidad">
@@ -68,21 +82,37 @@ const values = [
             ))}
           </ul>
 
+          <section class="sm-emdr" aria-labelledby="emdr-title">
+            <h3 id="emdr-title">Qué es el EMDR y para qué sirve</h3>
+            <p>
+              El EMDR, Desensibilización y Reprocesamiento por Movimientos Oculares, es un abordaje psicoterapéutico avalado por la Organización Mundial de la Salud para el tratamiento de las secuelas psicológicas del trauma y de experiencias de vida estresantes.
+            </p>
+            <p>
+              Se basa en el modelo PISA. Cuando una vivencia supera la capacidad de procesamiento del sistema nervioso, el recuerdo puede quedar almacenado de forma fragmentada, congelada y disfuncional. Mediante estimulación bilateral controlada, como movimientos oculares, sonidos alternos o golpecitos técnicos conocidos como tapping, el EMDR ayuda a activar el sistema natural de procesamiento para integrar la experiencia de una forma más saludable.
+            </p>
+            <ul>
+              {emdrPoints.map((point) => (
+                <li>{point}</li>
+              ))}
+            </ul>
+          </section>
+
           <div class="sm-actions">
             <Button href="#contacto" variant="solid" class="sm-button">
-              Solicitar primera sesión
+              Reserva tu primera sesión
             </Button>
-            <a href="#proceso" class="sm-link">
-              <span>Ver cómo trabajo</span>
+            <a href="#servicios" class="sm-link">
+              <span>Ver servicios</span>
               <span class="sm-link__line" aria-hidden="true"></span>
             </a>
           </div>
         </div>
       </article>
 
-      <div class="sm-values" aria-label="Forma de trabajo terapéutico">
+      <div class="sm-values" aria-label="Forma de acompañamiento">
         {values.map((value, index) => (
           <article class="sm-value reveal-up" style={`transition-delay: ${320 + index * 80}ms`}>
+            <span aria-hidden="true">0{index + 1}</span>
             <h3>{value.title}</h3>
             <p>{value.text}</p>
           </article>
@@ -90,6 +120,8 @@ const values = [
       </div>
     </div>
   </Container>
+
+  <PageNumber number="02" />
 </section>
 
 <style>
@@ -208,6 +240,20 @@ const values = [
     pointer-events: none;
   }
 
+  .sm-panel__mark {
+    position: absolute;
+    right: clamp(1.1rem, 2.4vw, 2rem);
+    top: clamp(0.7rem, 1.7vw, 1.2rem);
+    z-index: 0;
+    font-family: var(--font-display);
+    font-size: var(--type-decorative-xl);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1;
+    color: rgba(111, 125, 103, 0.035);
+    user-select: none;
+  }
+
   .sm-panel__visual,
   .sm-panel__content {
     position: relative;
@@ -271,6 +317,24 @@ const values = [
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
     overflow: hidden;
     transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s ease;
+    will-change: transform;
+  }
+
+  .sm-portrait::before,
+  .sm-portrait::after {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+  }
+  .sm-portrait::before {
+    inset: -6px;
+    border: 1px solid rgba(184, 168, 138, 0.14);
+  }
+  .sm-portrait::after {
+    inset: -10px;
+    border: 1px solid rgba(111, 125, 103, 0.07);
   }
 
   .sm-panel:hover .sm-portrait {
@@ -377,6 +441,77 @@ const values = [
     text-transform: uppercase;
   }
 
+  .sm-quote {
+    margin: clamp(1.6rem, 3vw, 2.2rem) 0 0;
+    padding: clamp(1.05rem, 2.4vw, 1.45rem) clamp(1.05rem, 2.4vw, 1.5rem);
+    border-radius: 1.1rem;
+    background:
+      linear-gradient(180deg, rgba(223, 228, 216, 0.45), rgba(255, 255, 255, 0.32));
+  }
+
+  .sm-quote p {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--type-card-title);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.45;
+    color: rgba(47, 45, 40, 0.78);
+  }
+
+  .sm-emdr {
+    margin-top: clamp(1.6rem, 3vw, 2.15rem);
+    padding: clamp(1.15rem, 2.4vw, 1.6rem);
+    border: 1px solid rgba(111, 125, 103, 0.14);
+    border-radius: 1.1rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(250, 248, 242, 0.3)),
+      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.42), transparent 34%);
+  }
+
+  .sm-emdr h3 {
+    margin: 0 0 0.75rem;
+    font-family: var(--font-display);
+    font-size: var(--type-card-title);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.18;
+    color: rgba(47, 45, 40, 0.9);
+    text-wrap: balance;
+  }
+
+  .sm-emdr p {
+    font-size: var(--type-card-body);
+    line-height: 1.72;
+  }
+
+  .sm-emdr ul {
+    display: grid;
+    gap: 0.72rem;
+    margin: 1rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sm-emdr li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: #5f5c55;
+    font-size: var(--type-card-body);
+    line-height: 1.62;
+  }
+
+  .sm-emdr li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.36rem;
+    height: 0.36rem;
+    border-radius: 999px;
+    background: rgba(111, 125, 103, 0.62);
+  }
+
   .sm-actions {
     display: flex;
     align-items: center;
@@ -388,17 +523,17 @@ const values = [
   .sm-actions :global(.sm-button.btn--solid) {
     min-height: 3.2rem;
     padding: 1rem 1.65rem;
-    border-color: rgba(111, 125, 103, 0.32);
+    border-color: #65745f;
     border-radius: 999px;
-    background: linear-gradient(135deg, #6f7d67, #56645a);
+    background: linear-gradient(135deg, #65745f, #839079);
     color: #fff;
     box-shadow:
-      0 14px 28px rgba(86, 100, 90, 0.16),
+      0 14px 28px rgba(101, 116, 95, 0.16),
       inset 0 1px 0 rgba(255, 255, 255, 0.18);
   }
 
   .sm-actions :global(.sm-button.btn--solid::before) {
-    background: linear-gradient(135deg, #3a3e36, #56614f);
+    background: linear-gradient(135deg, #34372f, #56614f);
   }
 
   .sm-link {
@@ -460,6 +595,15 @@ const values = [
       rgba(255, 253, 248, 0.86);
   }
 
+  .sm-value span {
+    display: inline-flex;
+    margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
+    font-family: var(--font-display);
+    font-size: var(--type-body);
+    font-style: italic;
+    color: rgba(111, 125, 103, 0.72);
+  }
+
   .sm-value h3 {
     margin: 0 0 0.48rem;
     font-family: var(--font-display);
@@ -502,6 +646,11 @@ const values = [
     .sm-credentials,
     .sm-actions {
       justify-content: center;
+    }
+
+    .sm-quote {
+      border-radius: 1rem;
+      background: rgba(223, 228, 216, 0.3);
     }
   }
 
@@ -628,6 +777,10 @@ const values = [
     .sm-value {
       min-height: auto;
       padding: var(--card-pd-sm);
+    }
+    .sm-value span {
+      margin-bottom: 1.1rem;
+      font-size: var(--type-body-sm);
     }
     .sm-value h3 {
       font-size: var(--type-card-title);

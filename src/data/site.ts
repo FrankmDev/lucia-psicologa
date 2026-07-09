@@ -1,9 +1,9 @@
 export const SITE = {
   url: 'https://lucia-psicologa.vercel.app',
   name: 'Lucía Millán Jiménez',
-  title: 'Lucía Millán Jiménez | Psicóloga en Ciudad Real',
+  title: 'Lucía Millán Jiménez | Psicóloga clínica',
   description:
-    'Psicóloga clínica en Ciudad Real. Terapia individual presencial y online, integradora y orientada a objetivos. Primera respuesta en 24 h.',
+    'Psicología clínica en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR.',
   email: 'luciamillanpsico@gmail.com',
   phone: '+34 722535914',
   phoneHref: '+34722535914',

@@ -59,10 +59,13 @@ const organizationSchema = {
     availableLanguage: ['Spanish', 'es'],
   },
   knowsAbout: [
-    'Terapia Cognitivo-Conductual (TCC)',
+    'Terapia Cognitivo Conductual (TCC)',
     'Terapia de Aceptación y Compromiso (ACT)',
-    'Terapia Focalizada en la Emoción (TFE)',
+    'Terapia Focalizada en Emociones (TFE)',
+    'Sistema de Familia Interna (IFS)',
     'Psicosomática',
+    'EMDR Nivel I',
+    'Procesamiento de la Información a Sistemas Adaptativos (PISA)',
     'Ansiedad',
     'Trauma',
     'Duelo',
@@ -87,6 +90,7 @@ const organizationSchema = {
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia individual presencial en Ciudad Real' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia psicológica online' } },
       { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia individual para ansiedad, duelo, autoestima y trauma' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia EMDR para trauma y experiencias estresantes' } },
     ],
   },
 };
@@ -126,7 +130,7 @@ const schemaGraph = [organizationSchema, websiteSchema, ...(Array.isArray(schema
   <meta name="twitter:image" content={imageURL} />
   <meta name="geo.region" content="ES-CM" />
   <meta name="geo.placename" content="Ciudad Real" />
-  <meta name="theme-color" content="#F5F0E8" />
+  <meta name="theme-color" content="#faf8f3" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />

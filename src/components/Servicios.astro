@@ -1,4 +1,5 @@
 ---
+import PageNumber from './ui/PageNumber.astro';
 import GrainOverlay from './ui/GrainOverlay.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 import Container from './ui/Container.astro';
@@ -8,29 +9,51 @@ const servicios = [
   {
     num: '01',
     title: 'Terapia Individual',
-    paraQuien: 'Para adultos que atraviesan ansiedad, bloqueo, tristeza persistente o dificultades de autoestima.',
-    queSeTrabaja: 'Identificación del problema, regulación emocional, patrones de pensamiento y objetivos terapéuticos.',
-    modalidad: 'Ciudad Real · Online',
-    duracion: '50 min',
-    primeraSesion: 'Evaluamos qué ocurre, desde cuándo y qué necesitas trabajar primero.',
+    desc: 'Un espacio seguro y confidencial para explorar lo que te ocurre, entender tus patrones y construir recursos emocionales. La intervención se adapta a tu problemática, tu momento vital y tus necesidades para que el proceso tenga dirección y continuidad.',
+    tags: ['Presencial', 'Online', 'A medida'],
+    duration: '50 min',
   },
   {
     num: '02',
-    title: 'Abordaje del Trauma',
-    paraQuien: 'Para personas con recuerdos, pérdidas o experiencias que siguen activando miedo, culpa o alerta corporal.',
-    queSeTrabaja: 'Trauma, duelo complicado, síntomas de estrés postraumático y estabilización del sistema nervioso.',
-    modalidad: 'Ciudad Real · Online',
-    duracion: '60–90 min',
-    primeraSesion: 'Revisamos tu historia clínica y decidimos si este abordaje es adecuado para ti.',
+    title: 'Trauma y EMDR',
+    desc: 'Acompañamiento especializado para procesar experiencias dolorosas, bloqueos emocionales o eventos traumáticos que siguen afectando tu presente. Trabajo desde el modelo PISA (Procesamiento de la Información a Sistemas Adaptativos) y la estimulación bilateral propia del EMDR cuando la evaluación clínica indica que puede ayudarte.',
+    tags: ['Trauma', 'EMDR', 'PISA'],
+    duration: '60-90 min',
   },
   {
     num: '03',
     title: 'Ansiedad y Estrés',
-    paraQuien: 'Para quien vive con preocupación constante, tensión física, crisis de ansiedad o agotamiento sostenido.',
-    queSeTrabaja: 'Detonantes, pensamientos anticipatorios, síntomas físicos, descanso y estrategias de regulación.',
-    modalidad: 'Ciudad Real · Online',
-    duracion: '50 min',
-    primeraSesion: 'Aclaramos síntomas, frecuencia e impacto para plantear un plan de trabajo realista.',
+    desc: 'Trabajo terapéutico para comprender la ansiedad, regular la activación corporal y responder de forma más flexible ante pensamientos, exigencias y situaciones que te desbordan. Combinamos herramientas prácticas con trabajo emocional de fondo para que puedas recuperar margen.',
+    tags: ['Ansiedad', 'Estrés', 'Regulación'],
+    duration: '50 min',
+  },
+];
+
+const enfoques = [
+  {
+    title: 'TCC',
+    fullName: 'Terapia Cognitivo Conductual',
+    text: 'Ayuda a identificar la relación entre pensamientos, emociones y conductas. Aporta herramientas concretas para cuestionar patrones que sostienen el malestar y practicar respuestas más ajustadas en la vida diaria.',
+  },
+  {
+    title: 'ACT',
+    fullName: 'Terapia de Aceptación y Compromiso',
+    text: 'Trabaja la relación con pensamientos y emociones difíciles sin luchar contra ellos. El objetivo es avanzar hacia una vida más coherente con tus valores, incluso cuando aparecen ansiedad, miedo o dolor.',
+  },
+  {
+    title: 'TFE',
+    fullName: 'Terapia Focalizada en Emociones',
+    text: 'Profundiza en lo que sientes para comprender necesidades, heridas y formas de protección. Es útil cuando cuesta poner palabras a la emoción o cuando se repiten patrones relacionales que generan sufrimiento.',
+  },
+  {
+    title: 'IFS',
+    fullName: 'Sistema de Familia Interna',
+    text: 'Entiende la mente como un sistema de partes internas que intentan protegerte. Permite acercarse con respeto a defensas, bloqueos o conflictos internos para comprender qué función cumplen.',
+  },
+  {
+    title: 'EMDR',
+    fullName: 'Desensibilización y Reprocesamiento por Movimientos Oculares',
+    text: 'Favorece el reprocesamiento de recuerdos o vivencias que quedaron almacenadas de forma fragmentada o congelada. Puede incluir movimientos oculares, sonidos alternos o golpecitos técnicos conocidos como tapping dentro de un marco seguro.',
   },
 ];
 
@@ -47,33 +70,33 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     <div class="services-shell">
       <header class="services-header reveal-blur" data-delay="80">
         <span class="services-eyebrow">Servicios</span>
-        <h2>Terapia individual con evaluación y objetivos claros</h2>
+        <h2>Una terapia adaptada a tu historia y a tu presente</h2>
         <p>
-          Trabajo con adultos que necesitan entender qué les ocurre, reducir síntomas y construir recursos para sostener cambios fuera de la sesión.
+          Integro distintos enfoques terapéuticos para ajustar el tratamiento a tu problemática, tu historia y tus objetivos. No trabajo con un protocolo igual para todo el mundo: elegimos las herramientas según lo que necesitas en cada momento.
         </p>
       </header>
 
       <div class="services-hero reveal-scale" data-delay="160">
         <figure class="services-hero__image">
-          <img src={servicesImage} alt="Paisaje natural con mar y luz suave" decoding="async" loading="eager" />
+          <img src={servicesImage} alt="Paisaje sereno con luz suave y mar en calma" decoding="async" loading="eager" />
           <div class="services-hero__veil"></div>
           <figcaption class="services-hero__caption">
-            <span>Proceso terapéutico</span>
-            <p>Sesiones presenciales en Ciudad Real y terapia online con el mismo encuadre clínico.</p>
+            <span>Ritmo tranquilo</span>
+            <p>Un espacio para bajar el ritmo, ordenar lo que ocurre y decidir el siguiente paso.</p>
           </figcaption>
         </figure>
 
         <article class="services-hero__panel">
-          <span class="services-label">Enfoque integrador</span>
-          <h3>Escucha clínica, estructura y herramientas aplicadas.</h3>
+          <span class="services-label">Acompañamiento clínico</span>
+          <h3>Escucha, estructura y herramientas elegidas para tu caso.</h3>
           <p>
-            Integro TCC, ACT, TFE y técnicas psicosomáticas según tu caso. La primera fase se centra en comprender el problema, priorizar objetivos y decidir cómo avanzar.
+            La terapia no tiene por qué seguir una única técnica. Según lo que necesites, combinamos trabajo cognitivo, emocional, corporal y de procesamiento del trauma para avanzar con seguridad, claridad y objetivos revisables.
           </p>
 
-          <ul class="services-pills" aria-label="Claves del proceso terapéutico">
+          <ul class="services-pills" aria-label="Claves del acompañamiento">
             <li>Presencial y online</li>
-            <li>TCC · ACT · TFE</li>
-            <li>Seguimiento entre sesiones</li>
+            <li>TCC, ACT, TFE e IFS</li>
+            <li>Trauma y EMDR</li>
           </ul>
 
           <div class="services-actions">
@@ -83,99 +106,104 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
                 <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </a>
-            <a href="#proceso" class="services-button services-button--ghost">
-              <span>Ver cómo trabajo</span>
+            <a href="#sobre-mi" class="services-button services-button--ghost">
+              <span>Conocer a Lucía</span>
             </a>
           </div>
         </article>
       </div>
 
-      <div class="services-divider" aria-hidden="true">
-        <span></span>
-      </div>
+      <section class="services-methods reveal-up" aria-labelledby="enfoques-title">
+        <div class="services-methods__intro">
+          <span class="services-label">Tipos de terapia</span>
+          <h3 id="enfoques-title">Distintos caminos para trabajar lo que te ocurre.</h3>
+          <p>
+            Elegimos el enfoque según tu situación. A veces necesitas herramientas para el día a día; otras, comprender tus emociones, trabajar partes internas o procesar una experiencia traumática de forma gradual.
+          </p>
+        </div>
 
-      <!-- Editorial chapters — full-width clinical spreads -->
-      <div class="services-list" aria-label="Servicios terapéuticos">
-        {servicios.map((s, i) => {
-          const roman = ['I', 'II', 'III'][i] ?? String(i + 1);
-          const nextRoman = ['II', 'III', ''][i] ?? '';
-          const total = String(servicios.length).padStart(2, '0');
-          return (
-            <article class="service-chapter reveal-up" style={`transition-delay: ${260 + i * 90}ms`}>
-              <header class="service-chapter__head">
-                <div class="service-chapter__index" aria-hidden="true">
-                  <span class="service-chapter__chapter">Capítulo {roman}</span>
-                  <span class="service-chapter__num">N.º 0{i + 1}<em> de {total}</em></span>
-                </div>
-                <span class="service-chapter__kicker">Modalidad terapéutica</span>
-              </header>
-
-              <div class="service-chapter__body">
-                <h3 class="service-chapter__title">{s.title}.</h3>
-
-                <div class="service-chapter__data" role="list">
-                  <article class="service-chapter__col" role="listitem">
-                    <span class="service-chapter__col-num">01</span>
-                    <h4 class="service-chapter__col-label">Para quién</h4>
-                    <p>{s.paraQuien}</p>
-                  </article>
-                  <article class="service-chapter__col" role="listitem">
-                    <span class="service-chapter__col-num">02</span>
-                    <h4 class="service-chapter__col-label">Qué se trabaja</h4>
-                    <p>{s.queSeTrabaja}</p>
-                  </article>
-                  <article class="service-chapter__col" role="listitem">
-                    <span class="service-chapter__col-num">03</span>
-                    <h4 class="service-chapter__col-label">Primera sesión</h4>
-                    <p>{s.primeraSesion}</p>
-                  </article>
-                </div>
-              </div>
-
-              <footer class="service-chapter__foot">
-                <dl class="service-chapter__meta">
-                  <div class="service-chapter__meta-item">
-                    <dt>Modalidad</dt>
-                    <dd>{s.modalidad}</dd>
-                  </div>
-                  <span class="service-chapter__meta-sep" aria-hidden="true">/</span>
-                  <div class="service-chapter__meta-item">
-                    <dt>Duración</dt>
-                    <dd>{s.duracion}</dd>
-                  </div>
-                </dl>
-
-                <a href="#contacto" class="service-chapter__cta">
-                  <span class="service-chapter__cta-text">Solicitar primera sesión</span>
-                  <span class="service-chapter__cta-arrow" aria-hidden="true">
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                      <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-              </footer>
-
-              {i < servicios.length - 1 && (
-                <div class="service-chapter__divider" aria-hidden="true">
-                  <span class="service-chapter__divider-line"></span>
-                  <span class="service-chapter__divider-mark">Fin del capítulo {roman}{nextRoman ? ` · Sigue ${nextRoman}` : ''}</span>
-                  <span class="service-chapter__divider-line"></span>
-                </div>
-              )}
+        <div class="methods-grid">
+          {enfoques.map((enfoque) => (
+            <article class="method-card">
+              <span>{enfoque.title}</span>
+              <h4>{enfoque.fullName}</h4>
+              <p>{enfoque.text}</p>
             </article>
-          );
-        })}
+          ))}
+        </div>
+      </section>
+
+      <div class="services-accordion" data-accordion role="list" aria-label="Servicios terapéuticos">
+        {servicios.map((s, i) => (
+          <div class="accordion-item" data-accordion-item role="listitem">
+            <button class="accordion-trigger" data-accordion-trigger type="button" aria-expanded="false">
+              <span class="accordion-num" aria-hidden="true">{s.num}</span>
+              <span class="accordion-title">{s.title}</span>
+              <span class="accordion-duration">{s.duration}</span>
+              <span class="accordion-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <rect x="2.5" y="2.5" width="15" height="15" rx="7.5" stroke="currentColor" stroke-width="0.8" fill="none"/>
+                  <path d="M10 6.5v7M6.5 10h7" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="accordion-body" data-accordion-body role="region">
+              <div class="accordion-content">
+                <p class="accordion-desc">{s.desc}</p>
+                <ul class="accordion-tags" aria-label="Modalidad y duración">
+                  {s.tags.map((tag) => (
+                    <li class="accordion-tag">{tag}</li>
+                  ))}
+                </ul>
+                <a href="#contacto" class="accordion-cta">
+                  <span>Solicitar orientación</span>
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <div class="services-note reveal-up" data-delay="660">
-        <span class="services-note__line" aria-hidden="true"></span>
+      <footer class="services-outro" data-outro>
         <p>
-          Si no sabes qué servicio encaja con tu caso, podemos verlo en el primer contacto y orientar el proceso desde una evaluación inicial.
+          Si necesitas combinar enfoques o ajustar el formato, lo hacemos con flexibilidad. La prioridad es que el proceso sea seguro, comprensible y ajustado a tu caso.
         </p>
-      </div>
+        <a href="#contacto" class="services-outro__cta">
+          <span>Solicitar primera sesión</span>
+          <span class="services-outro__arrow" aria-hidden="true">→</span>
+        </a>
+      </footer>
     </div>
   </Container>
+
+  <PageNumber number="03" />
 </section>
+
+<script>
+  const accordion = document.querySelector('[data-accordion]');
+  if (accordion) {
+    const items = accordion.querySelectorAll('[data-accordion-item]');
+
+    items.forEach((item) => {
+      const trigger = item.querySelector('[data-accordion-trigger]');
+      trigger.addEventListener('click', () => {
+        const isOpen = item.dataset.open === 'true';
+        items.forEach((el) => {
+          const t = el.querySelector('[data-accordion-trigger]');
+          t.setAttribute('aria-expanded', 'false');
+          delete el.dataset.open;
+        });
+        if (!isOpen) {
+          item.dataset.open = 'true';
+          trigger.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  }
+</script>
 
 <style>
   .servicios {
@@ -313,6 +341,7 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     filter: grayscale(10%) saturate(0.82) contrast(1.02) brightness(0.62);
     transform: scale(1.03);
     animation: services-image-breathe 18s ease-in-out infinite alternate;
+    will-change: transform;
   }
 
   .services-hero__veil {
@@ -394,15 +423,15 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
   }
 
   .services-hero__panel h3 {
-    max-width: 100%;
+    max-width: 16ch;
     margin: 0.9rem 0 0.95rem;
     color: var(--color-ink);
     font-family: var(--font-display);
-    font-size: clamp(1.55rem, 2.4vw, 2.2rem);
+    font-size: var(--type-panel-title);
     font-style: italic;
     font-weight: 300;
-    line-height: 1.08;
-    letter-spacing: -0.035em;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
     text-wrap: balance;
     animation: services-copy-rise 1.1s var(--ease-out-expo) both;
   }
@@ -410,7 +439,7 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
   .services-hero__panel p {
     margin: 0;
     color: var(--color-text-secondary);
-    max-width: 100%;
+    max-width: 34ch;
     font-size: var(--type-body);
     line-height: 1.82;
     text-wrap: pretty;
@@ -430,14 +459,14 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
   .services-pills li {
     display: inline-flex;
     align-items: center;
-    min-height: 1.85rem;
-    padding: 0.26rem 0.7rem;
+    min-height: 2.2rem;
+    padding: 0.34rem 0.82rem;
     border: 1px solid var(--color-line-accent);
     border-radius: 999px;
-    color: rgba(47, 45, 40, 0.7);
+    color: rgba(47, 45, 40, 0.72);
     background: rgba(255, 255, 255, 0.7);
-    font-size: var(--type-meta);
-    letter-spacing: 0.12em;
+    font-size: var(--type-caption);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     transition:
       transform 0.35s var(--ease-out-expo),
@@ -513,387 +542,310 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     transform: translateX(2px);
   }
 
-  .services-divider {
-    position: relative;
-    height: clamp(3.6rem, 5vw, 4.9rem);
-    margin: -0.1rem 0 -0.1rem;
-    overflow: hidden;
+  .services-methods {
+    display: grid;
+    grid-template-columns: minmax(18rem, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(1rem, 2vw, 1.35rem);
+    align-items: stretch;
+    margin: clamp(1.15rem, 2.4vw, 1.7rem) 0 clamp(2.8rem, 5vw, 4.6rem);
   }
 
-  .services-divider span {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0.5rem;
-    height: calc(100% - 0.8rem);
-    background:
-      radial-gradient(circle at 10% 60%, transparent 0 0.7rem, rgba(245, 242, 235, 0.94) 0.72rem 1.1rem, transparent 1.15rem),
-      radial-gradient(circle at 20% 42%, transparent 0 0.55rem, rgba(245, 242, 235, 0.98) 0.57rem 0.92rem, transparent 0.96rem),
-      radial-gradient(circle at 33% 70%, transparent 0 0.72rem, rgba(245, 242, 235, 0.98) 0.74rem 1.18rem, transparent 1.22rem),
-      radial-gradient(circle at 46% 46%, transparent 0 0.58rem, rgba(245, 242, 235, 0.98) 0.6rem 0.98rem, transparent 1.02rem),
-      radial-gradient(circle at 58% 66%, transparent 0 0.68rem, rgba(245, 242, 235, 0.98) 0.7rem 1.08rem, transparent 1.12rem),
-      radial-gradient(circle at 71% 44%, transparent 0 0.56rem, rgba(245, 242, 235, 0.98) 0.58rem 0.94rem, transparent 0.98rem),
-      radial-gradient(circle at 84% 68%, transparent 0 0.74rem, rgba(245, 242, 235, 0.98) 0.76rem 1.18rem, transparent 1.22rem),
-      linear-gradient(180deg, rgba(245, 242, 235, 0.96), rgba(239, 234, 224, 0.92));
-    filter: drop-shadow(0 0.45rem 0.9rem rgba(57, 54, 48, 0.06));
-    animation: services-divider-drift 12s ease-in-out infinite alternate;
-  }
-
-  /* ═══════════════════════════════════════════════════════════
-     CLINICAL CHAPTERS — full-width editorial spreads
-     ═══════════════════════════════════════════════════════════ */
-
-  .services-list {
+  .services-methods__intro {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-top: clamp(1rem, 2vw, 1.5rem);
-  }
-
-  .service-chapter {
-    --chapter-accent: rgba(111, 125, 103, 0.9);
-    --chapter-accent-soft: rgba(111, 125, 103, 0.06);
-    --chapter-tint: rgba(111, 125, 103, 0.025);
-
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
-    padding: clamp(2.5rem, 4.2vw, 3.8rem) 0 clamp(2.5rem, 4.2vw, 3.8rem);
-  }
-
-  .service-chapter:nth-child(1) {
-    --chapter-accent: rgba(111, 125, 103, 0.92);
-    --chapter-accent-soft: rgba(111, 125, 103, 0.07);
-    --chapter-tint: rgba(111, 125, 103, 0.028);
-  }
-  .service-chapter:nth-child(2) {
-    --chapter-accent: rgba(184, 168, 138, 0.96);
-    --chapter-accent-soft: rgba(184, 168, 138, 0.08);
-    --chapter-tint: rgba(184, 168, 138, 0.03);
-  }
-  .service-chapter:nth-child(3) {
-    --chapter-accent: rgba(138, 145, 130, 0.94);
-    --chapter-accent-soft: rgba(138, 145, 130, 0.07);
-    --chapter-tint: rgba(138, 145, 130, 0.028);
-  }
-
-  .service-chapter::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--color-line-accent) 14%, var(--color-line-accent) 86%, transparent);
-  }
-
-  .service-chapter::after {
-    content: '';
-    position: absolute;
-    inset: 0;
+    justify-content: center;
+    min-height: 100%;
+    padding: var(--card-pd-lg);
+    border-block: 1px solid rgba(111, 125, 103, 0.16);
     background:
-      radial-gradient(ellipse at 50% 50%, var(--chapter-tint), transparent 65%);
-    pointer-events: none;
-    z-index: -1;
+      radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.42), transparent 32%),
+      linear-gradient(180deg, rgba(255, 253, 248, 0.58), rgba(250, 248, 242, 0.22));
   }
 
-  .service-chapter__head {
-    display: grid;
-    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
-    align-items: end;
-    justify-content: space-between;
-    gap: 2.5rem;
-    padding-bottom: 1.4rem;
-    border-bottom: 1px solid var(--color-line-accent-soft);
-    position: relative;
-  }
-
-  .service-chapter__head::before {
-    content: '';
-    position: absolute;
-    left: -1.4rem;
-    top: -0.6rem;
-    bottom: -0.6rem;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, var(--chapter-accent), transparent);
-  }
-
-  .service-chapter__index {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .service-chapter__chapter {
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--chapter-accent);
-  }
-
-  .service-chapter__num {
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 4vw, 3.4rem);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.025em;
-    color: var(--color-ink);
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.4rem;
-  }
-
-  .service-chapter__num em {
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
-    font-style: normal;
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    color: rgba(47, 45, 40, 0.36);
-  }
-
-  .service-chapter__kicker {
-    justify-self: end;
-    align-self: end;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--chapter-accent);
-  }
-
-  .service-chapter__kicker::before {
-    content: '';
-    width: 1.75rem;
-    height: 1px;
-    background: var(--chapter-accent);
-  }
-
-  .service-chapter__body {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.4fr);
-    gap: clamp(2rem, 4vw, 3.6rem);
-    padding: clamp(2rem, 3.5vw, 2.8rem) 0 clamp(2rem, 3.5vw, 2.8rem);
-    align-items: start;
-  }
-
-  .service-chapter__title {
-    margin: 0;
-    color: var(--color-ink);
-    font-family: var(--font-display);
-    font-size: clamp(2.4rem, 4.4vw, 3.8rem);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.01;
-    letter-spacing: -0.028em;
-    text-wrap: balance;
+  .services-methods__intro h3 {
     max-width: 14ch;
-    position: relative;
+    margin: 0.9rem 0 0.95rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-panel-title);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
   }
 
-  .service-chapter__title::after {
-    content: '';
-    display: block;
-    width: 2.2rem;
-    height: 2px;
-    margin-top: 1.5rem;
-    background: var(--chapter-accent);
-  }
-
-  .service-chapter__data {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0 clamp(1.4rem, 2.5vw, 2.2rem);
-    border-top: 1px solid var(--color-line-accent-soft);
-    padding-top: 1.4rem;
-  }
-
-  .service-chapter__col {
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    border-left: 1px solid var(--color-line-accent-soft);
-    padding-left: clamp(0.85rem, 1.6vw, 1.1rem);
-    transition: border-color 0.45s ease;
-  }
-
-  .service-chapter:hover .service-chapter__col {
-    border-left-color: var(--chapter-accent);
-  }
-
-  .service-chapter__col-num {
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    color: var(--chapter-accent);
-  }
-
-  .service-chapter__col-label {
-    margin: 0;
-    font-family: var(--font-body);
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-  }
-
-  .service-chapter__col p {
+  .services-methods__intro p {
+    max-width: 38ch;
     margin: 0;
     color: var(--color-text-secondary);
-    font-size: var(--type-body-sm);
-    line-height: 1.65;
+    font-size: var(--type-body);
+    line-height: 1.78;
     text-wrap: pretty;
   }
 
-  .service-chapter__foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(1.5rem, 3vw, 2.4rem);
-    flex-wrap: wrap;
-    padding-top: 1.4rem;
-    border-top: 1px solid var(--color-line-accent-soft);
-  }
-
-  .service-chapter__meta {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.1rem;
-    flex-wrap: wrap;
-    margin: 0;
-  }
-
-  .service-chapter__meta-item {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 0.6rem;
-  }
-
-  .service-chapter__meta-item dt {
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(47, 45, 40, 0.48);
-  }
-
-  .service-chapter__meta-item dd {
-    margin: 0;
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    color: var(--color-ink);
-  }
-
-  .service-chapter__meta-sep {
-    color: rgba(47, 45, 40, 0.22);
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
-    font-size: var(--type-meta);
-  }
-
-  .service-chapter__cta {
-    display: inline-flex;
-    align-items: center;
+  .methods-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.85rem;
-    padding: 0.95rem 1.2rem 0.95rem 1.55rem;
-    border: 1px solid var(--chapter-accent);
-    border-radius: 999px;
-    background:
-      linear-gradient(180deg, rgba(255, 253, 248, 0.95), rgba(249, 246, 239, 0.88));
-    color: var(--color-ink);
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    transition:
-      transform 0.5s var(--ease-out-expo),
-      background 0.4s ease,
-      color 0.4s ease,
-      box-shadow 0.45s ease;
-    will-change: transform;
   }
 
-  .service-chapter__cta-arrow {
+  .method-card {
+    min-height: 13rem;
+    padding: clamp(1.15rem, 2.2vw, 1.55rem);
+    border: 1px solid rgba(111, 125, 103, 0.13);
+    border-radius: var(--card-radius-sm);
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.86), rgba(249, 246, 239, 0.68)),
+      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.34), transparent 34%);
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+  }
+
+  .method-card:hover {
+    transform: translateY(-0.16rem);
+    border-color: rgba(111, 125, 103, 0.24);
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(249, 246, 239, 0.78)),
+      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.48), transparent 34%);
+  }
+
+  .method-card span {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 1.6rem;
-    height: 1.6rem;
-    border: 1px solid currentColor;
-    border-radius: 50%;
-    transition: background 0.35s ease, color 0.35s ease, transform 0.5s var(--ease-out-expo);
-  }
-
-  .service-chapter__cta:hover {
-    transform: translateY(-2px);
-    background: var(--chapter-accent);
-    color: #fffdf8;
-    box-shadow: 0 1rem 2rem rgba(57, 54, 48, 0.12);
-  }
-
-  .service-chapter__cta:hover .service-chapter__cta-arrow {
-    background: #fffdf8;
-    color: var(--color-ink);
-    transform: rotate(-45deg);
-  }
-
-  .service-chapter__divider {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-    padding: 0 clamp(1rem, 3vw, 1.5rem);
-  }
-
-  .service-chapter__divider-line {
-    flex: 1;
-    height: 1px;
-    background: var(--color-line-accent);
-  }
-
-  .service-chapter__divider-mark {
-    flex-shrink: 0;
-    font-family: 'JetBrains Mono', 'SF Mono', ui-monospace, Menlo, monospace;
+    min-width: 3rem;
+    min-height: 2rem;
+    margin-bottom: 1.05rem;
+    padding: 0.2rem 0.62rem;
+    border: 1px solid rgba(111, 125, 103, 0.16);
+    border-radius: 999px;
+    color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.58);
     font-size: var(--type-meta);
     font-weight: 500;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--color-accent);
-    white-space: nowrap;
-    background: var(--color-surface);
-    padding: 0 0.85rem;
+    letter-spacing: 0.16em;
   }
 
-  .services-note {
-    max-width: 50rem;
-    margin: clamp(2.8rem, 5vw, 4.6rem) auto 0;
+  .method-card h4 {
+    margin: 0 0 0.58rem;
+    color: rgba(47, 45, 40, 0.9);
+    font-family: var(--font-display);
+    font-size: var(--type-card-title);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+
+  .method-card p {
+    margin: 0;
+    color: #5f5c55;
+    font-size: var(--type-card-body);
+    line-height: 1.62;
+    text-wrap: pretty;
+  }
+
+  /* ── Accordion ──────────────────────────────────────────── */
+  .services-accordion {
+    max-width: 64rem;
+    margin: 0 auto;
+    border-top: 1px solid rgba(111, 125, 103, 0.12);
+  }
+
+  .accordion-item {
+    position: relative;
+    border-bottom: 1px solid rgba(111, 125, 103, 0.10);
+  }
+
+  .accordion-item:first-child {
+    --accent: rgba(111, 125, 103, 0.85);
+  }
+  .accordion-item:nth-child(2) {
+    --accent: rgba(184, 168, 138, 0.95);
+  }
+  .accordion-item:nth-child(3) {
+    --accent: rgba(138, 145, 130, 0.92);
+  }
+
+  .accordion-trigger {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    gap: 0 1.2rem;
+    align-items: center;
+    width: 100%;
+    padding: 1.8rem 0.5rem 1.8rem 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: left;
+    font: inherit;
+    color: inherit;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .accordion-trigger::-moz-focus-inner {
+    border: 0;
+  }
+
+  .accordion-num {
+    grid-row: 1 / 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 1px solid rgba(111, 125, 103, 0.18);
+    border-radius: 0.4rem;
+    font-family: var(--font-display);
+    font-size: var(--type-card-body);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--accent, rgba(111, 125, 103, 0.7));
+    background: rgba(255, 253, 248, 0.6);
+    transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease;
+  }
+  .accordion-item[data-open="true"] .accordion-num {
+    border-color: var(--accent, rgba(111, 125, 103, 0.5));
+    background: var(--accent, rgba(111, 125, 103, 0.85));
+    color: #fff;
+  }
+
+  .accordion-title {
+    font-family: var(--font-display);
+    font-size: var(--type-card-title-lg);
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    transition: color 0.35s ease;
+  }
+  .accordion-item[data-open="true"] .accordion-title {
+    color: var(--accent, rgba(111, 125, 103, 0.85));
+  }
+
+  .accordion-duration {
+    font-family: var(--font-body);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(47, 45, 40, 0.35);
+    transition: color 0.35s ease;
+  }
+  .accordion-item[data-open="true"] .accordion-duration {
+    color: var(--accent, rgba(111, 125, 103, 0.7));
+  }
+
+  .accordion-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    color: rgba(111, 125, 103, 0.35);
+    transition: transform 0.5s var(--ease-out-expo), color 0.35s ease;
+  }
+  .accordion-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .accordion-icon svg path {
+    transition: d 0.4s ease, opacity 0.3s ease;
+  }
+  .accordion-item[data-open="true"] .accordion-icon {
+    transform: rotate(45deg);
+    color: var(--accent, rgba(111, 125, 103, 0.7));
+  }
+  .accordion-trigger:hover .accordion-icon {
+    color: rgba(111, 125, 103, 0.6);
+  }
+
+  .accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.55s var(--ease-out-expo);
+  }
+  .accordion-item[data-open="true"] .accordion-body {
+    grid-template-rows: 1fr;
+  }
+
+  .accordion-content {
+    overflow: hidden;
+  }
+
+  .accordion-desc {
+    max-width: 48ch;
+    margin: 0.15rem 0 0 4.4rem;
+    color: var(--color-text-secondary);
+    font-size: var(--type-body);
+    line-height: 1.82;
+    text-wrap: pretty;
+  }
+
+  .accordion-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1.15rem 0 0 4.4rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .accordion-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.85rem;
+    padding: 0.28rem 0.7rem;
+    border: 1px solid rgba(111, 125, 103, 0.14);
+    border-radius: 999px;
+    color: rgba(47, 45, 40, 0.6);
+    background: rgba(255, 255, 255, 0.6);
+    font-size: var(--type-meta);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .accordion-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 1.4rem 0 2rem 4.4rem;
+    min-height: 2.8rem;
+    padding: 0.65rem 1.2rem;
+    border: 1px solid rgba(111, 125, 103, 0.22);
+    border-radius: 999px;
+    color: rgba(47, 45, 40, 0.7);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.5);
+    transition: border-color 0.35s ease, background 0.35s ease, color 0.35s ease, transform 0.45s var(--ease-out-expo);
+  }
+  .accordion-cta:hover {
+    border-color: rgba(111, 125, 103, 0.38);
+    background: rgba(111, 125, 103, 0.06);
+    color: var(--color-accent);
+    transform: translateY(-1px);
+  }
+  .accordion-cta svg {
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+  .accordion-cta:hover svg {
+    transform: translateX(2px);
+  }
+
+  /* ── Outro ──────────────────────────────────────────────── */
+  .services-outro {
+    max-width: 46rem;
+    margin: clamp(2.8rem, 5vw, 4.8rem) auto 0;
     text-align: center;
   }
 
-  .services-note__line {
-    display: block;
-    width: 3rem;
-    height: 1px;
-    margin: 0 auto 1.15rem;
-    background: rgba(184, 168, 138, 0.52);
-  }
-
-  .services-note p {
+  .services-outro p {
     margin: 0;
     color: rgba(47, 45, 40, 0.72);
     font-family: var(--font-display);
@@ -904,94 +856,91 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     text-wrap: balance;
   }
 
+  .services-outro__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-top: 1.5rem;
+    color: rgba(47, 45, 40, 0.75);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(111, 125, 103, 0.18);
+    padding-bottom: 0.35rem;
+    transition: gap 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+  }
+  .services-outro__cta:hover {
+    gap: 1rem;
+    color: var(--color-accent);
+    border-color: rgba(111, 125, 103, 0.35);
+  }
+
+  .services-outro__arrow {
+    display: inline-block;
+    transition: transform 0.4s var(--ease-out-expo);
+  }
+  .services-outro__cta:hover .services-outro__arrow {
+    transform: translateX(3px);
+  }
+
   @media (max-width: 1100px) {
     .services-hero {
       grid-template-columns: 1fr;
     }
+
+    .services-methods {
+      grid-template-columns: 1fr;
+    }
+
+    .services-methods__intro h3,
+    .services-methods__intro p {
+      max-width: 42rem;
+    }
   }
 
-  @media (max-width: 820px) {
-    .services-header {
-      margin-bottom: 2.2rem;
-    }
-
-    .services-header h2 {
-      font-size: var(--type-section-title);
-      line-height: 0.94;
-    }
-
-    .services-hero__image {
-      min-height: 21rem;
-    }
-
-    .service-chapter {
-      padding: 2.4rem 0 2.6rem;
-    }
-
-    .service-chapter__head {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 1rem;
-    }
-
-    .service-chapter__kicker {
-      justify-self: start;
-    }
-
-    .service-chapter__head::before {
-      display: none;
-    }
-
-    .service-chapter__body {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 2rem;
-    }
-
-    .service-chapter__title {
-      max-width: none;
-      font-size: clamp(2.05rem, 5.5vw, 2.7rem);
-    }
-
-    .service-chapter__title::after {
-      width: 1.8rem;
-      margin-top: 1.1rem;
-    }
-
-    .service-chapter__data {
+  @media (max-width: 780px) {
+    .methods-grid {
       grid-template-columns: 1fr;
-      gap: 1.1rem;
     }
 
-    .service-chapter__col {
-      border-left: 0;
-      border-top: 1px solid var(--color-line-accent-soft);
-      padding-left: 0;
-      padding-top: 0.9rem;
+    .method-card {
+      min-height: auto;
     }
 
-    .service-chapter__col p {
-      max-width: none;
+    .accordion-trigger {
+      grid-template-columns: auto 1fr auto;
+      gap: 0.55rem 0.9rem;
+      padding: 1.5rem 0;
+    }
+    .accordion-duration {
+      grid-column: 2;
+      grid-row: 2;
+      justify-self: start;
+      font-size: var(--type-micro);
+      letter-spacing: 0.12em;
+      margin-top: 0.1rem;
+    }
+    .accordion-icon {
+      grid-column: 3;
+      grid-row: 1 / 3;
+    }
+    .accordion-title {
+      font-size: var(--type-card-title);
+    }
+    .accordion-desc {
+      margin-left: 0;
       font-size: var(--type-card-body);
-      line-height: 1.6;
+      line-height: 1.7;
     }
-
-    .service-chapter__foot {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 1.2rem;
+    .accordion-tags,
+    .accordion-cta {
+      margin-left: 0;
     }
-
-    .service-chapter__cta {
+    .accordion-cta {
       width: 100%;
-      justify-content: space-between;
-    }
-
-    .service-chapter__divider-mark {
-      letter-spacing: 0.2em;
-      font-size: 0.65rem;
-    }
-
-    .services-note {
-      margin-top: 2.4rem;
+      justify-content: center;
     }
   }
 
@@ -1039,12 +988,35 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     }
 
     .services-hero__panel h3 {
-      font-size: var(--type-card-title);
+      font-size: var(--type-card-title-lg);
     }
 
     .services-hero__panel p {
       font-size: var(--type-body-sm);
       line-height: 1.65;
+    }
+
+    .services-methods {
+      margin: 0.9rem 0 2.4rem;
+    }
+
+    .services-methods__intro {
+      padding: var(--card-pd-sm);
+    }
+
+    .services-methods__intro h3 {
+      max-width: none;
+      font-size: var(--type-card-title-lg);
+    }
+
+    .services-methods__intro p,
+    .method-card p {
+      font-size: var(--type-body-sm);
+      line-height: 1.65;
+    }
+
+    .method-card {
+      padding: var(--card-pd-sm);
     }
 
     .services-pills {
@@ -1064,81 +1036,64 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
       letter-spacing: 0.16em;
     }
 
-    .service-chapter {
-      padding: 1.85rem 0 2.1rem;
+    .accordion-trigger {
+      padding: 1.2rem 0;
     }
-
-    .service-chapter__num {
-      font-size: clamp(2rem, 8vw, 2.6rem);
+    .accordion-num {
+      width: 2.6rem;
+      height: 2.6rem;
+      font-size: var(--type-card-body);
     }
-
-    .service-chapter__title {
-      font-size: clamp(1.85rem, 7.2vw, 2.3rem);
+    .accordion-title {
+      font-size: var(--type-card-title-sm);
     }
-
-    .service-chapter__title::after {
-      width: 1.4rem;
-      height: 1.5px;
-      margin-top: 0.9rem;
+    .accordion-desc {
+      font-size: var(--type-card-body);
+      line-height: 1.65;
     }
-
-    .service-chapter__meta {
-      gap: 0.8rem;
+    .accordion-tag {
+      font-size: var(--type-micro);
+      letter-spacing: 0.1em;
     }
-
-    .service-chapter__cta {
-      padding: 0.85rem 1.05rem 0.85rem 1.3rem;
-      font-size: var(--type-meta);
-      letter-spacing: 0.18em;
-    }
-
-    .service-chapter__divider {
-      flex-direction: column;
-      gap: 0.65rem;
-      padding: 0 0.5rem;
-    }
-
-    .service-chapter__divider-line {
-      width: 1.5rem;
-      flex: 0 0 1.5rem;
-    }
-
-    .service-chapter__divider-mark {
-      font-size: 0.6rem;
-      letter-spacing: 0.16em;
-    }
-
-    .services-note {
-      margin-top: 2.2rem;
-    }
-
-    .services-note p {
-      font-size: var(--type-lead);
+    .accordion-cta {
+      font-size: var(--type-micro);
+      min-height: 2.4rem;
+      padding: 0.55rem 1rem;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .services-hero__image img,
-    .services-hero__panel::after,
-    .services-divider span {
+    .services-hero__panel::after {
       animation: none;
     }
 
-    .services-button,
-    .service-chapter,
-    .service-chapter__col,
-    .service-chapter__cta,
-    .service-chapter__cta-arrow,
-    .services-pills li {
+    .accordion-body {
+      transition: none;
+    }
+    .accordion-icon,
+    .accordion-cta,
+    .accordion-cta svg,
+    .services-outro__cta,
+    .services-outro__arrow {
+      transition: none;
+    }
+    .accordion-item[data-open="true"] .accordion-icon {
+      transform: none;
+    }
+    .accordion-num,
+    .accordion-title,
+    .accordion-duration {
       transition: none;
     }
 
-    .services-button:hover,
-    .service-chapter__cta:hover {
-      transform: none;
+    .services-button,
+    .services-pills li {
+      transition: none;
     }
-
-    .service-chapter__cta:hover .service-chapter__cta-arrow {
+    .services-button:hover,
+    .services-pills li:hover,
+    .method-card:hover {
       transform: none;
     }
   }
@@ -1167,17 +1122,6 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     to {
       transform: scale(1.02);
       opacity: 0.82;
-    }
-  }
-
-  @keyframes services-divider-drift {
-    from {
-      transform: translateX(-0.3rem);
-      opacity: 0.92;
-    }
-    to {
-      transform: translateX(0.3rem);
-      opacity: 1;
     }
   }
 </style>

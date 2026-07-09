@@ -35,14 +35,14 @@ const heroImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?
   <DecorativeRing size={250} bottom="10%" left="-60px" duration={25} reverse class="hide-mobile" />
 
   <div class="hero-content" data-parallax-content>
-    <Eyebrow text="Terapia individual · Ciudad Real · Online" light={true} centered={true} />
+    <Eyebrow text="Psicología clínica · Ciudad Real · Online" light={true} centered={true} />
 
     <h1 class="hero-title">
       <span class="title-line">
-        <span class="title-inner" data-split>Psicología clínica</span>
+        <span class="title-inner" data-split>Entender lo que te ocurre</span>
       </span>
       <span class="title-line title-line--accent">
-        <span class="title-inner" data-split>en Ciudad Real y online</span>
+        <span class="title-inner" data-split>Trabajarlo a tu medida</span>
         <svg class="title-underline" viewBox="0 0 200 12" preserveAspectRatio="none" aria-hidden="true">
           <path d="M2 8 Q50 2 100 6 T198 4" stroke="rgba(196,170,148,0.5)" stroke-width="2" fill="none" stroke-linecap="round" class="underline-path"/>
         </svg>
@@ -50,8 +50,8 @@ const heroImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?
     </h1>
 
     <p class="hero-tagline">
-      Terapia individual para ansiedad, trauma y malestar emocional.<br class="hide-mobile"/>
-      Un proceso clínico con evaluación, objetivos y seguimiento.
+      Terapia individual para ansiedad, trauma, duelo y malestar emocional,<br class="hide-mobile"/>
+      integrando TCC, ACT, TFE, IFS y EMDR según tu caso.
     </p>
 
     <div class="hero-credentials">
@@ -59,14 +59,14 @@ const heroImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?
         <span class="credential-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4v4c0 3.5 2.5 6.5 6 7 3.5-.5 6-3.5 6-7V4L8 1z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
         </span>
-        <span class="credential-text">Psicóloga clínica · Col. CM03673</span>
+        <span class="credential-text">Col. CM03673 · EMDR Nivel I</span>
       </div>
       <div class="credential-sep" aria-hidden="true"></div>
       <div class="credential-item">
         <span class="credential-icon" aria-hidden="true">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.2"/><path d="M5 8l2.5 2.5L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
-        <span class="credential-text">Presencial en Ciudad Real y online</span>
+        <span class="credential-text">Consulta presencial y online</span>
       </div>
     </div>
 
@@ -75,7 +75,7 @@ const heroImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?
         Solicitar primera sesión
       </Button>
       <a href="#proceso" class="btn-hero-ghost">
-        <span class="ghost-text">Ver cómo trabajo</span>
+        <span class="ghost-text">Ver cómo sería el proceso</span>
         <span class="ghost-line" aria-hidden="true"></span>
         <span class="ghost-dot" aria-hidden="true"></span>
       </a>
@@ -127,15 +127,14 @@ const heroImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 100%;
+    height: 120%;
     max-width: none;
     max-height: none;
     object-fit: cover;
     object-position: center 40%;
     filter: brightness(1.02) saturate(0.94) contrast(1.04);
-    transform: none;
-    animation: none;
-    will-change: auto;
+    will-change: transform;
+    transition: transform 0.1s linear;
   }
 
   .hero-overlay {
@@ -247,8 +246,11 @@ const heroImage = "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?
   }
   .title-line--accent .title-inner {
     animation-delay: 0.85s;
-    color: rgba(251,248,242,0.98);
     font-weight: 300;
+    background: linear-gradient(135deg, rgba(251,248,242,0.98) 40%, rgba(196,170,148,0.78) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .title-underline {
     position: absolute;

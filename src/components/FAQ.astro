@@ -6,39 +6,39 @@ import AmbientLight from './ui/AmbientLight.astro';
 
 const faqs = [
   {
-    k: 'Sesiones',
+    k: 'Duración',
     q: '¿Cuánto dura una sesión?',
-    a: 'Las sesiones individuales duran alrededor de 50 minutos. En trabajo de trauma, algunas sesiones pueden ampliarse a 60–90 minutos si tiene sentido clínico y lo acordamos previamente.',
+    a: 'Las sesiones individuales duran alrededor de 50 minutos. En trabajo de trauma o EMDR pueden ampliarse a 60–90 minutos si lo acordamos previamente y tiene sentido clínico.',
   },
   {
     k: 'Modalidad',
     q: '¿La terapia puede ser online?',
-    a: 'Sí. Atiendo terapia presencial en Ciudad Real y sesiones online para personas que prefieren o necesitan un formato a distancia. En ambos casos mantenemos encuadre, confidencialidad y seguimiento.',
+    a: 'Sí. Atiendo de forma presencial en Ciudad Real y online. En ambos casos mantenemos el mismo encuadre y seguimiento clínico.',
   },
   {
     k: 'Primera sesión',
     q: '¿Qué ocurre en la primera sesión?',
-    a: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas y definimos un primer objetivo de trabajo.',
+    a: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas, valoramos qué enfoque puede encajar mejor y definimos un primer objetivo.',
+  },
+  {
+    k: 'Enfoque',
+    q: '¿Siempre se trabaja con la misma terapia?',
+    a: 'No. Integro TCC, ACT, TFE, IFS y EMDR según tu problemática, tus recursos y el momento del proceso. La idea es adaptar la intervención a ti, no encajarte en una técnica cerrada.',
+  },
+  {
+    k: 'EMDR',
+    q: '¿El EMDR sirve para cualquier caso?',
+    a: 'No siempre. Primero evaluamos tu historia, tu estabilidad actual y tus recursos de regulación. Si EMDR no es lo más adecuado en ese momento, trabajamos con otro enfoque o preparamos el proceso antes de iniciar el reprocesamiento.',
   },
   {
     k: 'Frecuencia',
     q: '¿Con qué frecuencia se acude?',
-    a: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución, los objetivos y tu disponibilidad.',
-  },
-  {
-    k: 'Enfoque',
-    q: '¿Qué enfoque de terapia utilizas?',
-    a: 'Trabajo desde un modelo integrador que combina Terapia Cognitivo-Conductual, ACT, Terapia Focalizada en la Emoción y técnicas psicosomáticas. La intervención se adapta a tu caso, no al revés.',
-  },
-  {
-    k: 'Confidencialidad',
-    q: '¿Lo que cuente será confidencial?',
-    a: 'Sí. La información que compartas se trata con confidencialidad profesional y de acuerdo con la normativa de protección de datos.',
+    a: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución y tus circunstancias.',
   },
   {
     k: 'Contacto',
     q: '¿Cómo puedo pedir cita?',
-    a: 'Puedes escribir desde el formulario, por email o por teléfono. Respondo en un plazo máximo de 24 horas laborables para orientarte y valorar un primer hueco.',
+    a: 'Puedes escribir desde el formulario de contacto, por email o por teléfono. Te respondo para orientarte, resolver dudas iniciales y valorar un primer hueco.',
   },
 ];
 ---
@@ -49,14 +49,11 @@ const faqs = [
   <FloatOrb size={360} top="-14%" right="-10%" color="rgba(141,151,132,0.12)" blur={145} opacity={0.32} animation="float-1" />
   <FloatOrb size={240} bottom="4%" left="-8%" color="rgba(216,211,200,0.24)" blur={120} opacity={0.28} animation="float-2" />
 
-  <Container maxWidth="1180px" padding="0 clamp(1rem, 4vw, 4rem)">
+  <Container maxWidth="860px" padding="0 clamp(1rem, 4vw, 4rem)">
     <div class="faq-shell">
       <header class="faq-header reveal-blur" data-delay="80">
-        <span class="faq-eyebrow">Preguntas frecuentes</span>
-        <h2>Preguntas frecuentes antes de empezar.</h2>
-        <p>
-          Información práctica sobre duración, modalidad, primera sesión, confidencialidad y contacto.
-        </p>
+        <span class="section-eyebrow">Preguntas frecuentes</span>
+        <h2>Lo que suele preguntarse antes de empezar.</h2>
       </header>
 
       <div class="faq-panel reveal-scale" data-delay="180">
@@ -70,6 +67,7 @@ const faqs = [
                   aria-controls={`faq-answer-${i}`}
                 >
                   <div class="faq-trigger__copy">
+                    <span class="faq-number">{String(i + 1).padStart(2, '0')}</span>
                     <span class="faq-kicker">{faq.k}</span>
                     <span class="faq-question">{faq.q}</span>
                   </div>
@@ -92,16 +90,6 @@ const faqs = [
             </article>
           ))}
         </div>
-      </div>
-
-      <div class="faq-close reveal-up" data-delay="520">
-        <p>Si tu pregunta depende de tu situación concreta, puedes explicármela en el primer mensaje.</p>
-        <a href="#contacto" class="faq-close__link">
-          <span>Solicitar primera sesión</span>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
       </div>
     </div>
   </Container>
@@ -141,13 +129,13 @@ const faqs = [
 
   .faq-header {
     max-width: 50rem;
-    margin: 0 auto clamp(2.8rem, 4.6vw, 4.2rem);
+    margin: 0 auto clamp(2.4rem, 4vw, 3.4rem);
     text-align: center;
   }
 
   .faq-header h2 {
     max-width: 49rem;
-    margin: 1rem auto 1rem;
+    margin: 1rem auto 0;
     color: var(--color-ink);
     font-family: var(--font-display);
     font-size: var(--type-section-title);
@@ -158,43 +146,10 @@ const faqs = [
     text-wrap: balance;
   }
 
-  .faq-header p {
-    max-width: 39rem;
-    margin: 0 auto;
-    color: var(--color-text-secondary);
-    font-size: var(--type-body);
-    line-height: 1.74;
-    text-wrap: pretty;
-  }
-
-  .faq-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.78rem;
-    color: var(--color-accent);
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-  }
-
-  .faq-eyebrow::before,
-  .faq-eyebrow::after {
-    content: '';
-    width: 2.35rem;
-    height: 1px;
-    background: rgba(111, 125, 103, 0.34);
-  }
-
   .faq-panel {
     position: relative;
-    max-width: 54rem;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 0;
-    border-top: 1px solid rgba(111, 125, 103, 0.1);
-    border-bottom: 1px solid rgba(111, 125, 103, 0.1);
-    background: linear-gradient(180deg, rgba(255, 253, 248, 0.16), rgba(250, 248, 242, 0.08));
   }
 
   .faq-list {
@@ -204,19 +159,38 @@ const faqs = [
   .faq-item {
     border-top: 1px solid rgba(111, 125, 103, 0.085);
     transition: border-color 0.35s ease;
+    position: relative;
+    padding-left: 0;
   }
-
   .faq-item:first-child {
     border-top: 0;
+  }
+  .faq-item:hover,
+  .faq-item.open {
+    border-top-color: rgba(111, 125, 103, 0.14);
+  }
+
+  .faq-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    bottom: 50%;
+    width: 2px;
+    background: rgba(111, 125, 103, 0.18);
+    border-radius: 1px;
+    transform: translateY(-50%);
+    transition: top 0.7s var(--ease-out-expo), bottom 0.7s var(--ease-out-expo), opacity 0.5s ease;
+    opacity: 0;
+  }
+  .faq-item.open::before {
+    top: 0;
+    bottom: 0;
+    opacity: 1;
   }
 
   .faq-item h3 {
     margin: 0;
-  }
-
-  .faq-item:hover,
-  .faq-item.open {
-    border-top-color: rgba(111, 125, 103, 0.14);
   }
 
   .faq-trigger {
@@ -230,10 +204,30 @@ const faqs = [
     background: transparent;
     text-align: left;
     color: inherit;
+    cursor: pointer;
   }
 
   .faq-trigger__copy {
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .faq-number {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: var(--type-card-title);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(184, 168, 138, 0.55);
+    line-height: 1;
+    margin-bottom: 0.15rem;
+    transition: color 0.35s ease;
+  }
+  .faq-item:hover .faq-number,
+  .faq-item.open .faq-number {
+    color: rgba(184, 168, 138, 0.85);
   }
 
   .faq-kicker {
@@ -259,7 +253,6 @@ const faqs = [
     text-wrap: balance;
     transition: color 0.35s ease;
   }
-
   .faq-item:hover .faq-question,
   .faq-item.open .faq-question {
     color: var(--color-accent-deep);
@@ -273,18 +266,14 @@ const faqs = [
     height: 1.65rem;
     color: var(--color-ink);
     opacity: 0.24;
-    transition:
-      transform 0.45s var(--ease-out-expo),
-      opacity 0.35s ease,
-      color 0.35s ease;
+    flex-shrink: 0;
+    transition: transform 0.45s var(--ease-out-expo), opacity 0.35s ease, color 0.35s ease;
   }
-
   .faq-item:hover .faq-icon,
   .faq-item.open .faq-icon {
     color: var(--color-accent);
     opacity: 0.5;
   }
-
   .faq-item.open .faq-icon {
     transform: rotate(45deg);
   }
@@ -293,12 +282,10 @@ const faqs = [
     width: 100%;
     height: 100%;
   }
-
   .faq-icon-v {
     transform-origin: center;
     transition: transform 0.45s var(--ease-out-expo);
   }
-
   .faq-item.open .faq-icon-v {
     transform: scaleY(0);
   }
@@ -308,7 +295,6 @@ const faqs = [
     grid-template-rows: 0fr;
     transition: grid-template-rows 0.7s var(--ease-out-expo);
   }
-
   .faq-answer.open {
     grid-template-rows: 1fr;
   }
@@ -319,19 +305,15 @@ const faqs = [
 
   .faq-answer__body {
     max-width: 41rem;
-    padding: 0.1rem 0 1.7rem;
+    padding: 0.1rem 0 1.5rem;
     transform: translateY(10px);
     opacity: 0;
-    transition:
-      transform 0.55s var(--ease-out-expo) 0.08s,
-      opacity 0.4s ease 0.08s;
+    transition: transform 0.55s var(--ease-out-expo) 0.08s, opacity 0.4s ease 0.08s;
   }
-
   .faq-answer.open .faq-answer__body {
     transform: translateY(0);
     opacity: 1;
   }
-
   .faq-answer__body p {
     margin: 0;
     color: var(--color-text-secondary);
@@ -341,47 +323,13 @@ const faqs = [
     text-wrap: pretty;
   }
 
-  .faq-close {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.85rem;
-    margin-top: clamp(3rem, 4.8vw, 4.2rem);
-    text-align: center;
-  }
-
-  .faq-close p {
-    margin: 0;
-    color: var(--color-text-muted);
-    font-size: var(--type-body-sm);
-    line-height: 1.8;
-  }
-
-  .faq-close__link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    color: var(--color-ink);
-    font-family: var(--font-body);
-    font-size: var(--type-caption);
-    font-weight: 500;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    transition: color 0.35s ease, transform 0.35s ease;
-  }
-
-  .faq-close__link:hover {
-    color: var(--color-accent);
-    transform: translateY(-1px);
-  }
-
   @media (max-width: 768px) {
     .faq {
       padding: 4.8rem 0 5.8rem;
     }
 
     .faq-header {
-      margin-bottom: 2.2rem;
+      margin-bottom: 2rem;
       padding: 0 4vw;
     }
 
@@ -391,23 +339,13 @@ const faqs = [
       letter-spacing: -0.02em;
     }
 
-    .faq-header p {
-      font-size: var(--type-body);
-      line-height: 1.65;
-    }
-
-    .faq-eyebrow {
+    .section-eyebrow {
       gap: 0.55rem;
       letter-spacing: 0.18em;
     }
-
-    .faq-eyebrow::before,
-    .faq-eyebrow::after {
+    .section-eyebrow::before,
+    .section-eyebrow::after {
       width: 1.45rem;
-    }
-
-    .faq-panel {
-      margin: 0 0.2rem;
     }
 
     .faq-trigger {
@@ -439,27 +377,12 @@ const faqs = [
       font-size: var(--type-body-sm);
       line-height: 1.68;
     }
-
-    .faq-close {
-      margin-top: 2.4rem;
-      gap: 0.7rem;
-    }
-
-    .faq-close p {
-      font-size: var(--type-card-body);
-    }
-
-    .faq-close__link {
-      font-size: var(--type-meta);
-      letter-spacing: 0.16em;
-    }
   }
 
   @media (max-width: 480px) {
     .faq-header {
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
     }
-
     .faq-icon {
       width: 1.4rem;
       height: 1.4rem;

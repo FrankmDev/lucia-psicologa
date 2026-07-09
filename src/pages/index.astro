@@ -5,9 +5,9 @@ import Hero from '../components/Hero.astro';
 import Servicios from '../components/Servicios.astro';
 import SobreMi from '../components/SobreMi.astro';
 import Proceso from '../components/Proceso.astro';
+import BlogSection from '../components/BlogSection.astro';
 import FAQ from '../components/FAQ.astro';
 import Contacto from '../components/Contacto.astro';
-import BlogSection from '../components/BlogSection.astro';
 import Footer from '../components/Footer.astro';
 import SectionDivider from '../components/SectionDivider.astro';
 
@@ -17,9 +17,9 @@ const homeSchema = [
     '@type': 'WebPage',
     '@id': 'https://lucia-psicologa.vercel.app/#webpage',
     url: 'https://lucia-psicologa.vercel.app/',
-    name: 'Psicóloga clínica en Ciudad Real · Terapia online · Lucía Millán Jiménez',
+    name: 'Psicóloga clínica · Terapia individual · Lucía Millán Jiménez',
     description:
-      'Psicóloga clínica en Ciudad Real. Terapia individual presencial y online, integradora y orientada a objetivos. Primera respuesta en 24 h.',
+      'Psicología clínica en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR.',
     inLanguage: 'es-ES',
     isPartOf: { '@id': 'https://lucia-psicologa.vercel.app/#website' },
     about: { '@id': 'https://lucia-psicologa.vercel.app/#lucia-millan-jimenez' },
@@ -33,7 +33,7 @@ const homeSchema = [
         name: '¿Cuánto dura una sesión?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Las sesiones individuales duran alrededor de 50 minutos. En trabajo de trauma, algunas sesiones pueden ampliarse a 60–90 minutos si tiene sentido clínico y lo acordamos previamente.',
+          text: 'Las sesiones individuales duran alrededor de 50 minutos. En trabajo de trauma o EMDR pueden ampliarse a 60–90 minutos si lo acordamos previamente y tiene sentido clínico.',
         },
       },
       {
@@ -41,7 +41,7 @@ const homeSchema = [
         name: '¿La terapia puede ser online?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Sí. Atiendo terapia presencial en Ciudad Real y sesiones online para personas que prefieren o necesitan un formato a distancia. En ambos casos mantenemos encuadre, confidencialidad y seguimiento.',
+          text: 'Sí. Atiendo de forma presencial en Ciudad Real y online. En ambos casos mantenemos el mismo encuadre y seguimiento clínico.',
         },
       },
       {
@@ -49,7 +49,23 @@ const homeSchema = [
         name: '¿Qué ocurre en la primera sesión?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas y definimos un primer objetivo de trabajo.',
+          text: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas, valoramos qué enfoque puede encajar mejor y definimos un primer objetivo.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿Siempre se trabaja con la misma terapia?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No. Integro TCC, ACT, TFE, IFS y EMDR según tu problemática, tus recursos y el momento del proceso. La intervención se adapta a cada persona.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: '¿El EMDR sirve para cualquier caso?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'No siempre. Primero se evalúa la historia, la estabilidad actual y los recursos de regulación. Si EMDR no es lo más adecuado en ese momento, se trabaja con otro enfoque o se prepara el proceso antes de iniciar el reprocesamiento.',
         },
       },
       {
@@ -57,23 +73,7 @@ const homeSchema = [
         name: '¿Con qué frecuencia se acude?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución, los objetivos y tu disponibilidad.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Qué enfoque de terapia utilizas?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Trabajo desde un modelo integrador que combina Terapia Cognitivo-Conductual, ACT, Terapia Focalizada en la Emoción y técnicas psicosomáticas. La intervención se adapta a tu caso, no al revés.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Lo que cuente será confidencial?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Sí. La información que compartas se trata con confidencialidad profesional y de acuerdo con la normativa de protección de datos.',
+          text: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución y tus circunstancias.',
         },
       },
       {
@@ -81,7 +81,7 @@ const homeSchema = [
         name: '¿Cómo puedo pedir cita?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Puedes escribir desde el formulario, por email o por teléfono. Respondo en un plazo máximo de 24 horas laborables para orientarte y valorar un primer hueco.',
+          text: 'Puedes escribir desde el formulario de contacto, por email o por teléfono. Te respondo para orientarte, resolver dudas iniciales y valorar un primer hueco.',
         },
       },
     ],
@@ -90,43 +90,43 @@ const homeSchema = [
 ---
 
 <Layout
-  title="Psicóloga clínica en Ciudad Real · Terapia online · Lucía Millán Jiménez"
-  description="Psicóloga clínica en Ciudad Real. Terapia individual presencial y online, integradora y orientada a objetivos. Primera respuesta en 24 h."
+  title="Psicóloga clínica · Terapia individual · Lucía Millán Jiménez"
+  description="Psicología clínica en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR."
   schema={homeSchema}
 >
   <Navigation />
   <main>
     <Hero />
 
-    <!-- Dark hero to warm cream: organic ink bleed -->
+    <!-- Dark hero to warm cream -->
     <SectionDivider variant="ink" toColor="var(--white-warm)" />
 
     <Servicios />
 
-    <!-- White-warm to parchment: gentle wave -->
+    <!-- Cream to parchment -->
     <SectionDivider variant="wave" toColor="var(--parchment)" />
 
     <SobreMi />
 
-    <!-- Parchment to cream: soft hill -->
+    <!-- Parchment to cream -->
     <SectionDivider variant="hill" toColor="var(--cream)" />
 
     <Proceso />
 
-    <!-- Cream to white-warm: gentle wave -->
+    <!-- Cream to warm cream -->
     <SectionDivider variant="wave" toColor="var(--white-warm)" />
+
+    <BlogSection />
+
+    <!-- Cream to parchment -->
+    <SectionDivider variant="valley" toColor="var(--parchment)" />
 
     <FAQ />
 
-    <!-- White-warm to cream: valley divider -->
-    <SectionDivider variant="valley" toColor="var(--cream)" />
+    <!-- Parchment to cream -->
+    <SectionDivider variant="arch" toColor="var(--cream)" />
 
     <Contacto />
-
-    <!-- Cream to parchment: arch divider -->
-    <SectionDivider variant="arch" toColor="var(--parchment)" />
-
-    <BlogSection />
   </main>
   <Footer />
 </Layout>
