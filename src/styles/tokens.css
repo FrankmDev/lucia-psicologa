@@ -162,6 +162,7 @@
   --section-py--generous: clamp(6.5rem, 9vw, 10rem);
   --section-py--spacious: clamp(6rem, 9vw, 9.5rem);
   --section-padding-x: clamp(1rem, 4vw, 4.25rem);
+  --content-padding-x: clamp(1rem, 4vw, 2.6rem);
 
   /* Card padding scale — unified across all components */
   --card-pd-sm: clamp(1rem, 2vw, 1.5rem);
@@ -174,34 +175,34 @@
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
 
-  /* Type scale — semantic roles used by every component */
-  --type-hero: clamp(2.6rem, 7vw, 5.5rem);
-  --type-page-title: clamp(2.35rem, 5.2vw, 4.2rem);
-  --type-section-title: clamp(2.55rem, 5.8vw, 5.1rem);
-  --type-section-title-sm: clamp(2.05rem, 4vw, 3.4rem);
-  --type-panel-title: clamp(1.95rem, 3vw, 3.05rem);
-  --type-subsection-title: clamp(1.48rem, 2.2vw, 2.15rem);
-  --type-card-title-lg: clamp(1.6rem, 2.7vw, 2.45rem);
-  --type-card-title: clamp(1.22rem, 1.75vw, 1.55rem);
-  --type-card-title-sm: 1.08rem;
-  --type-kicker: clamp(1.12rem, 1.8vw, 1.45rem);
-  --type-lead: clamp(1rem, 1.3vw, 1.12rem);
+  /* Type scale — refined, harmonious scale */
+  --type-hero: clamp(2.4rem, 6vw, 4.2rem);
+  --type-page-title: clamp(2.1rem, 4.8vw, 3.4rem);
+  --type-section-title: clamp(1.9rem, 4vw, 2.95rem);
+  --type-section-title-sm: clamp(1.65rem, 3vw, 2.4rem);
+  --type-panel-title: clamp(1.5rem, 2.4vw, 2.05rem);
+  --type-subsection-title: clamp(1.35rem, 2vw, 1.85rem);
+  --type-card-title-lg: clamp(1.25rem, 1.85vw, 1.65rem);
+  --type-card-title: clamp(1.12rem, 1.5vw, 1.38rem);
+  --type-card-title-sm: 1rem;
+  --type-kicker: clamp(1.05rem, 1.2vw, 1.18rem);
+  --type-lead: clamp(1.05rem, 1.15vw, 1.15rem);
   --type-body: 1rem;
-  --type-body-sm: 0.92rem;
+  --type-body-sm: 0.95rem;
   --type-small: 0.9rem;
-  --type-card-body: 0.88rem;
-  --type-caption: 0.8rem;
-  --type-meta: max(0.64rem, 10px);
-  --type-micro: max(0.55rem, 9px);
-  --type-eyebrow: max(0.68rem, 11px);
-  --type-label: max(0.64rem, 10px);
-  --type-decorative-lg: clamp(3.4rem, 8vw, 8rem);
-  --type-decorative-xl: clamp(5.5rem, 13vw, 11rem);
+  --type-card-body: 0.95rem;
+  --type-caption: 0.85rem;
+  --type-meta: max(0.75rem, 12px);
+  --type-micro: max(0.6rem, 10px);
+  --type-eyebrow: max(0.72rem, 11px);
+  --type-label: max(0.7rem, 11px);
+  --type-decorative-lg: clamp(3rem, 7vw, 6.5rem);
+  --type-decorative-xl: clamp(4.5rem, 11vw, 9rem);
 
   /* Leading */
-  --leading-title: 1.08;
+  --leading-title: 1.1;
   --leading-copy: 1.7;
-  --leading-tight: 1.05;
+  --leading-tight: 1.08;
   --leading-comfort: 1.78;
 
   /* Spacing */

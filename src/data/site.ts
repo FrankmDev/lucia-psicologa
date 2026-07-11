@@ -1,5 +1,5 @@
 export const SITE = {
-  url: 'https://lucia-psicologa.vercel.app',
+  url: 'https://luciamillanpsicologia.es',
   name: 'Lucía Millán Jiménez',
   title: 'Lucía Millán Jiménez | Psicóloga clínica',
   description:

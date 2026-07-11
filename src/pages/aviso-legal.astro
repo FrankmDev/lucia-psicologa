@@ -12,7 +12,7 @@ import Container from '../components/ui/Container.astro';
   <Navigation />
 
   <main class="legal-page">
-    <Container maxWidth="800px" padding="0 clamp(1rem, 5vw, 3rem)">
+    <Container maxWidth="800px" padding="0 var(--content-padding-x)">
       <article class="legal-article">
         <header class="legal-header">
           <span class="legal-eyebrow">Información</span>
@@ -91,7 +91,7 @@ import Container from '../components/ui/Container.astro';
     position: relative;
     background: var(--parchment);
     padding: clamp(8rem, 14vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
-    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   .legal-article {
@@ -128,8 +128,8 @@ import Container from '../components/ui/Container.astro';
   .legal-header h1 {
     font-family: var(--font-display);
     font-size: var(--type-page-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.02em;
     color: var(--ink);
@@ -159,8 +159,8 @@ import Container from '../components/ui/Container.astro';
   .legal-section h2 {
     font-family: var(--font-display);
     font-size: var(--type-subsection-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.2;
     color: var(--ink);
     margin-bottom: 1.2rem;

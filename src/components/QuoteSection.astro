@@ -36,7 +36,7 @@ const lines = [
     <span class="quote-dot"></span>
   </div>
 
-  <Container maxWidth="1180px">
+  <Container maxWidth="1480px" padding="0 var(--content-padding-x)">
     <div class="quote-inner">
       <div class="quote-mark open" aria-hidden="true" data-parallax="0.04">&#8220;</div>
       <blockquote class="quote-text reveal-blur" data-word-reveal>
@@ -132,8 +132,8 @@ const lines = [
 
   .quote-mark {
     position: relative;
-    font-family: var(--font-display); font-style: italic; font-size: var(--type-decorative-xl);
-    font-weight: 300; color: var(--earth); line-height: 0.5; opacity: 0; user-select: none;
+    font-family: var(--font-display); font-size: var(--type-decorative-xl);
+    font-weight: 400; color: var(--earth); line-height: 0.5; opacity: 0; user-select: none;
     display: block; transition: opacity 1.2s ease, transform 1.2s var(--ease-out-expo);
     will-change: transform; text-shadow: none;
     &.open { text-align: left; margin-left: clamp(0rem, 4vw, 4rem); margin-bottom: -0.35rem; transform: translateY(30px); }
@@ -146,7 +146,7 @@ const lines = [
   }
 
   .quote-text {
-    font-family: var(--font-display); font-style: italic; font-weight: 300;
+    font-family: var(--font-display); font-weight: 400;
     font-size: var(--type-section-title-sm); line-height: 1.18; color: var(--ink); margin: 1.2rem auto;
     max-width: 1050px;
     text-wrap: balance;

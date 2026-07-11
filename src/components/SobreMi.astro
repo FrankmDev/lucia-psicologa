@@ -15,36 +15,38 @@ const credentials = [
   'Presencial y online',
 ];
 
-const values = [
+const emdrPoints = [
   {
-    title: 'Seguridad',
-    text: 'Antes de abordar recuerdos dolorosos, construimos recursos para que el proceso sea estable y cuidadoso.',
+    title: 'Procesamiento seguro',
+    text: 'Recursos de regulación antes de abordar recuerdos dolorosos.',
+    icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
   },
   {
-    title: 'Integración',
-    text: 'Trabajo con herramientas clínicas contrastadas para ayudarte a procesar lo vivido sin quedarte atrapado en ello.',
+    title: 'Trauma y heridas relacionales',
+    text: 'Traumas evidentes o heridas silenciosas, ambas merecen atención.',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
   },
   {
-    title: 'Adaptación',
-    text: 'La terapia se ajusta a tu historia, tus síntomas y tus necesidades para que el acompañamiento sea más eficiente.',
+    title: 'Alivio de síntomas',
+    text: 'Menos carga emocional asociada a recuerdos, imágenes y sensaciones.',
+    icon: 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
+  },
+  {
+    title: 'Reestructuración cognitiva',
+    text: 'Nuevas perspectivas sobre lo vivido, con menor culpa o vergüenza.',
+    icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
   },
 ];
 
-const emdrPoints = [
-  'Procesamiento seguro de experiencias dolorosas, bloqueos emocionales o eventos traumáticos que siguen afectando al presente.',
-  'Trabajo con traumas con T mayúscula, como accidentes, agresiones o catástrofes, y con traumas con t minúscula, como heridas relacionales, apego o experiencias difíciles de la infancia.',
-  'Alivio de síntomas asociados al trauma, la ansiedad, la depresión, las fobias, el duelo patológico o complicado y el Trastorno de Estrés Postraumático (TEPT).',
-  'Reestructuración cognitiva de creencias negativas sobre uno mismo hacia narrativas más adaptativas, realistas y compasivas.',
-];
 ---
 
-<section id="sobre-mi" class="sobre-mi" data-sobremi>
+<section id="sobre-mi" class="sobre-mi section--parchment-warm" data-sobremi>
   <GrainOverlay opacity={0.012} />
   <AmbientLight color="rgba(255,255,255,0.28)" />
   <FloatOrb size={420} top="-18%" right="-12%" color="rgba(141,151,132,0.14)" blur={150} animation="float-1" />
   <FloatOrb size={260} bottom="6%" left="-9%" color="rgba(216,211,200,0.28)" opacity={0.36} blur={120} animation="float-2" />
 
-  <Container maxWidth="1320px" padding="0 clamp(1rem, 4vw, 4.5rem)">
+  <Container maxWidth="1480px" padding="0 var(--content-padding-x)">
     <div class="sm-shell">
       <header class="sm-header reveal-blur" data-delay="80">
         <span class="sm-eyebrow">Sobre mí</span>
@@ -55,25 +57,23 @@ const emdrPoints = [
       </header>
 
       <article class="sm-panel reveal-scale" data-delay="180">
-        <div class="sm-panel__mark" aria-hidden="true">L</div>
         <div class="sm-panel__visual">
-          <figure class="sm-portrait">
+          <figure class="sm-portrait sm-portrait--main">
             <img src={portraitImage.src} alt="Lucía Millán Jiménez, psicóloga clínica" width={portraitImage.width} height={portraitImage.height} sizes="(max-width: 960px) 72vw, 360px" decoding="async" loading="lazy" />
             <figcaption>
               <span>Lucía Millán Jiménez</span>
             </figcaption>
           </figure>
-
         </div>
 
         <div class="sm-panel__content">
           <span class="sm-label">Conoce a Lucía</span>
           <p class="sm-lead">
-            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada. Adapto la terapia a cada persona según su problemática, su historia y sus necesidades, integrando TCC, ACT, TFE, IFS y EMDR para que el proceso tenga estructura, seguridad y sentido clínico.
+            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada con formación especializada en trauma y EMDR. Adapto la terapia a cada persona según su historia, problemática y necesidades, integrando distintos enfoques cuando encaja clínicamente.
           </p>
 
           <p>
-            Cuento con la formación oficial de <strong>Nivel I en EMDR</strong>, avalada por la Asociación EMDR España y EMDR Europa, e impartida a través de Imaya Formación. Esta especialización me permite utilizar el modelo PISA (Procesamiento de la Información a Sistemas Adaptativos) para ayudarte a trabajar de forma segura experiencias dolorosas, bloqueos emocionales o recuerdos traumáticos que todavía interfieren en tu presente.
+            Cuento con la formación oficial de <strong>Nivel I en EMDR</strong>, avalada por la Asociación EMDR España y EMDR Europa, e impartida a través de Imaya Formación. Integro el modelo PISA (Procesamiento de la Información a Sistemas Adaptativos, el modelo clínico del EMDR, sin relación con el informe educativo) para trabajar trauma, bloqueos y experiencias dolorosas mediante estimulación bilateral —una técnica que combina movimientos oculares u otros estímulos alternos para ayudar al cerebro a reprocesar el recuerdo— cuando encaja en el proceso.
           </p>
 
           <ul class="sm-credentials" aria-label="Credenciales y modalidad">
@@ -82,24 +82,11 @@ const emdrPoints = [
             ))}
           </ul>
 
-          <section class="sm-emdr" aria-labelledby="emdr-title">
-            <h3 id="emdr-title">Qué es el EMDR y para qué sirve</h3>
-            <p>
-              El EMDR, Desensibilización y Reprocesamiento por Movimientos Oculares, es un abordaje psicoterapéutico avalado por la Organización Mundial de la Salud para el tratamiento de las secuelas psicológicas del trauma y de experiencias de vida estresantes.
-            </p>
-            <p>
-              Se basa en el modelo PISA. Cuando una vivencia supera la capacidad de procesamiento del sistema nervioso, el recuerdo puede quedar almacenado de forma fragmentada, congelada y disfuncional. Mediante estimulación bilateral controlada, como movimientos oculares, sonidos alternos o golpecitos técnicos conocidos como tapping, el EMDR ayuda a activar el sistema natural de procesamiento para integrar la experiencia de una forma más saludable.
-            </p>
-            <ul>
-              {emdrPoints.map((point) => (
-                <li>{point}</li>
-              ))}
-            </ul>
-          </section>
-
           <div class="sm-actions">
+            {/* CTA unificado: "Solicitar primera sesión" en todos los CTAs principales.
+                Las tarjetas de Especialidades mantienen "Consultar enfoque" como variante intencional. */}
             <Button href="#contacto" variant="solid" class="sm-button">
-              Reserva tu primera sesión
+              Solicitar primera sesión
             </Button>
             <a href="#servicios" class="sm-link">
               <span>Ver servicios</span>
@@ -109,15 +96,62 @@ const emdrPoints = [
         </div>
       </article>
 
-      <div class="sm-values" aria-label="Forma de acompañamiento">
-        {values.map((value, index) => (
-          <article class="sm-value reveal-up" style={`transition-delay: ${320 + index * 80}ms`}>
-            <span aria-hidden="true">0{index + 1}</span>
-            <h3>{value.title}</h3>
-            <p>{value.text}</p>
-          </article>
-        ))}
+      <div class="sm-emdr reveal-up" data-delay="260">
+        <div class="sm-emdr__copy">
+          <div class="sm-emdr__intro">
+            <span class="sm-label">¿Qué es el EMDR?</span>
+            <h3>Reprocesar lo vivido para que ocupe menos.</h3>
+            <p>
+              El EMDR reprocesa experiencias "atascadas" en el sistema nervioso: recuerdos intrusivos, reacciones corporales o creencias dolorosas. No borra lo ocurrido, lo integra con menos carga emocional.
+            </p>
+            <p>
+              Se apoya en estimulación bilateral —movimientos oculares, sonidos alternos o tapping— para ayudar al cerebro a integrar lo vivido sin revivirlo con la misma intensidad.
+            </p>
+          </div>
+
+          <ul class="sm-emdr__topics" aria-label="Situaciones en las que puede ayudar el EMDR">
+            <li class="sm-emdr__topic">
+              <span class="sm-emdr__topic-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <path d="M9 12l2 2 4-4"/>
+                </svg>
+              </span>
+              <span>Trauma, TEPT y experiencias estresantes</span>
+            </li>
+            <li class="sm-emdr__topic">
+              <span class="sm-emdr__topic-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </span>
+              <span>Ansiedad, pánico y fobias</span>
+            </li>
+            <li class="sm-emdr__topic">
+              <span class="sm-emdr__topic-icon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                </svg>
+              </span>
+              <span>Duelo y heridas relacionales</span>
+            </li>
+          </ul>
+        </div>
+        <div class="sm-emdr__points">
+          {emdrPoints.map((point, index) => (
+            <article class="sm-point reveal-up" style={`transition-delay: ${340 + index * 80}ms`}>
+              <span class="sm-point__icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={point.icon} />
+                </svg>
+              </span>
+              <h4>{point.title}</h4>
+              <p>{point.text}</p>
+            </article>
+          ))}
+        </div>
       </div>
+
     </div>
   </Container>
 
@@ -130,11 +164,14 @@ const emdrPoints = [
     isolation: isolate;
     overflow: hidden;
     padding: var(--section-py) 0 calc(var(--section-py) + 0.5rem);
+  }
+
+  .section--parchment-warm {
     background:
-      radial-gradient(circle at 14% 8%, rgba(255, 255, 255, 0.95), transparent 30%),
-      radial-gradient(circle at 82% 12%, rgba(223, 228, 216, 0.58), transparent 32%),
-      radial-gradient(circle at 72% 76%, rgba(184, 168, 138, 0.11), transparent 30%),
-      linear-gradient(180deg, #fffdfa 0%, var(--color-surface-elevated) 58%, #f4f1e9 100%);
+      radial-gradient(circle at 10% 8%, rgba(255, 255, 255, 0.9), transparent 28%),
+      radial-gradient(circle at 86% 12%, rgba(223, 228, 216, 0.52), transparent 32%),
+      radial-gradient(circle at 72% 78%, rgba(184, 168, 138, 0.12), transparent 30%),
+      linear-gradient(180deg, #faf8f3 0%, #f1ece2 58%, #ebe5d8 100%);
   }
 
   .sobre-mi::before {
@@ -144,8 +181,8 @@ const emdrPoints = [
     z-index: 0;
     pointer-events: none;
     background:
-      linear-gradient(rgba(78, 74, 66, 0.01) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(78, 74, 66, 0.008) 1px, transparent 1px);
+      linear-gradient(rgba(78, 74, 66, 0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 74, 66, 0.009) 1px, transparent 1px);
     background-size: 8.5rem 8.5rem;
     mask-image: radial-gradient(circle at 50% 48%, #000 0%, transparent 72%);
   }
@@ -188,8 +225,8 @@ const emdrPoints = [
     margin: 1rem auto 1rem;
     font-family: var(--font-display);
     font-size: var(--type-section-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1;
     letter-spacing: -0.04em;
     color: var(--color-ink);
@@ -208,139 +245,56 @@ const emdrPoints = [
   .sm-panel {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(22rem, 0.78fr) minmax(0, 1.22fr);
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     gap: clamp(2rem, 4vw, 4.8rem);
     align-items: stretch;
     padding: var(--card-pd-md);
-    border-block: 1px solid rgba(111, 125, 103, 0.16);
     border-radius: var(--card-radius);
     background:
-      linear-gradient(90deg, rgba(255, 253, 248, 0.62), rgba(255, 253, 248, 0.18) 45%, transparent),
-      radial-gradient(circle at 8% 8%, rgba(223, 228, 216, 0.34), transparent 30%);
-    box-shadow: none;
+      linear-gradient(90deg, rgba(255, 253, 248, 0.72), rgba(255, 253, 248, 0.22) 55%, transparent),
+      radial-gradient(circle at 8% 8%, rgba(223, 228, 216, 0.38), transparent 30%);
+    border: 1px solid rgba(111, 125, 103, 0.12);
+    box-shadow: 0 1.4rem 3.2rem rgba(57, 54, 48, 0.045);
     overflow: hidden;
-  }
-
-  .sm-panel::before {
-    content: '';
-    position: absolute;
-    left: clamp(1.1rem, 2.4vw, 2rem);
-    right: clamp(1.1rem, 2.4vw, 2rem);
-    top: 50%;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(111, 125, 103, 0.14), transparent 62%);
-    pointer-events: none;
-  }
-
-  .sm-panel::after {
-    content: '';
-    position: absolute;
-    inset: clamp(0.55rem, 1vw, 0.8rem);
-    border-block: 1px solid rgba(184, 168, 138, 0.13);
-    pointer-events: none;
-  }
-
-  .sm-panel__mark {
-    position: absolute;
-    right: clamp(1.1rem, 2.4vw, 2rem);
-    top: clamp(0.7rem, 1.7vw, 1.2rem);
-    z-index: 0;
-    font-family: var(--font-display);
-    font-size: var(--type-decorative-xl);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1;
-    color: rgba(111, 125, 103, 0.035);
-    user-select: none;
-  }
-
-  .sm-panel__visual,
-  .sm-panel__content {
-    position: relative;
-    z-index: 1;
   }
 
   .sm-panel__visual {
     display: flex;
-    align-items: stretch;
-    justify-content: center;
-    height: 100%;
-    min-height: clamp(30rem, 38vw, 36rem);
+    flex-direction: column;
+    gap: var(--card-pd-sm);
     padding: var(--card-pd-sm);
-    overflow: visible;
+    border-radius: var(--card-radius-sm);
     background:
       radial-gradient(circle at 74% 16%, rgba(255, 255, 255, 0.55), transparent 26%),
-      linear-gradient(135deg, rgba(255, 253, 248, 0.38), transparent 42%),
+      linear-gradient(135deg, rgba(255, 253, 248, 0.42), transparent 42%),
       linear-gradient(180deg, var(--color-accent-pale), #d7decf);
     box-shadow:
-      inset 0 0 0 1px rgba(111, 125, 103, 0.12),
-      0 18px 44px rgba(57, 54, 48, 0.045);
-  }
-
-  .sm-panel__visual::after {
-    content: '';
-    position: absolute;
-    left: 12%;
-    right: 12%;
-    bottom: clamp(1.1rem, 2.4vw, 2rem);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(111, 125, 103, 0.22), transparent);
-    pointer-events: none;
-  }
-
-  .sm-panel__visual::before {
-    content: '';
-    position: absolute;
-    left: 50%;
-    top: 9%;
-    width: min(70%, 22rem);
-    aspect-ratio: 1;
-    transform: translateX(-50%);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 999px 999px 3rem 3rem;
-    pointer-events: none;
+      inset 0 0 0 1px rgba(111, 125, 103, 0.1),
+      0 18px 44px rgba(57, 54, 48, 0.04);
   }
 
   .sm-portrait {
     position: relative;
-    width: 100%;
-    max-width: none;
-    height: 100%;
-    min-height: 100%;
     margin: 0;
-    transform: none;
-    padding: 0;
     border-radius: 999px 999px 1rem 1rem;
     background: rgba(255, 253, 248, 0.42);
     box-shadow:
-      0 22px 48px rgba(76, 83, 70, 0.145),
+      0 22px 48px rgba(76, 83, 70, 0.12),
       inset 0 1px 0 rgba(255, 255, 255, 0.9);
     overflow: hidden;
     transition: transform 0.6s var(--ease-out-expo), box-shadow 0.6s ease;
     will-change: transform;
   }
 
-  .sm-portrait::before,
-  .sm-portrait::after {
-    content: '';
-    position: absolute;
-    border-radius: inherit;
-    pointer-events: none;
-    z-index: -1;
-  }
-  .sm-portrait::before {
-    inset: -6px;
-    border: 1px solid rgba(184, 168, 138, 0.14);
-  }
-  .sm-portrait::after {
-    inset: -10px;
-    border: 1px solid rgba(111, 125, 103, 0.07);
+  .sm-portrait--main {
+    flex: 1 1 auto;
+    min-height: clamp(20rem, 28vw, 26rem);
   }
 
-  .sm-panel:hover .sm-portrait {
+  .sm-portrait:hover {
     transform: translateY(-0.18rem);
     box-shadow:
-      0 26px 56px rgba(76, 83, 70, 0.16),
+      0 26px 56px rgba(76, 83, 70, 0.14),
       inset 0 1px 0 rgba(255, 255, 255, 0.92);
   }
 
@@ -373,8 +327,8 @@ const emdrPoints = [
     text-align: center;
     font-family: var(--font-display);
     font-size: var(--type-kicker);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     color: rgba(47, 45, 40, 0.9);
   }
 
@@ -404,8 +358,8 @@ const emdrPoints = [
   .sm-lead {
     font-family: var(--font-display);
     font-size: var(--type-card-title) !important;
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.52 !important;
     color: rgba(47, 45, 40, 0.9) !important;
   }
@@ -439,77 +393,6 @@ const emdrPoints = [
     letter-spacing: 0.14em;
     line-height: 1.4;
     text-transform: uppercase;
-  }
-
-  .sm-quote {
-    margin: clamp(1.6rem, 3vw, 2.2rem) 0 0;
-    padding: clamp(1.05rem, 2.4vw, 1.45rem) clamp(1.05rem, 2.4vw, 1.5rem);
-    border-radius: 1.1rem;
-    background:
-      linear-gradient(180deg, rgba(223, 228, 216, 0.45), rgba(255, 255, 255, 0.32));
-  }
-
-  .sm-quote p {
-    margin: 0;
-    font-family: var(--font-display);
-    font-size: var(--type-card-title);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.45;
-    color: rgba(47, 45, 40, 0.78);
-  }
-
-  .sm-emdr {
-    margin-top: clamp(1.6rem, 3vw, 2.15rem);
-    padding: clamp(1.15rem, 2.4vw, 1.6rem);
-    border: 1px solid rgba(111, 125, 103, 0.14);
-    border-radius: 1.1rem;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(250, 248, 242, 0.3)),
-      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.42), transparent 34%);
-  }
-
-  .sm-emdr h3 {
-    margin: 0 0 0.75rem;
-    font-family: var(--font-display);
-    font-size: var(--type-card-title);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.18;
-    color: rgba(47, 45, 40, 0.9);
-    text-wrap: balance;
-  }
-
-  .sm-emdr p {
-    font-size: var(--type-card-body);
-    line-height: 1.72;
-  }
-
-  .sm-emdr ul {
-    display: grid;
-    gap: 0.72rem;
-    margin: 1rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .sm-emdr li {
-    position: relative;
-    padding-left: 1.1rem;
-    color: #5f5c55;
-    font-size: var(--type-card-body);
-    line-height: 1.62;
-  }
-
-  .sm-emdr li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 0.36rem;
-    height: 0.36rem;
-    border-radius: 999px;
-    background: rgba(111, 125, 103, 0.62);
   }
 
   .sm-actions {
@@ -567,58 +450,152 @@ const emdrPoints = [
     background: rgba(101, 116, 95, 0.62);
   }
 
-  .sm-values {
+  /* ── EMDR block ─────────────────────────────────────────── */
+  .sm-emdr {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.85rem, 1.8vw, 1.15rem);
-    margin-top: clamp(1.05rem, 2.4vw, 1.7rem);
-  }
-
-  .sm-value {
-    min-height: 11.5rem;
-    padding: clamp(1.3rem, 2.5vw, 1.85rem);
-    border-block: 1px solid rgba(111, 125, 103, 0.16);
-    border-inline: 0;
-    border-radius: 0;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: stretch;
+    margin-top: clamp(2.2rem, 4vw, 3.4rem);
+    padding: var(--card-pd-lg);
+    border-radius: var(--card-radius);
     background:
-      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.5), transparent 38%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(250, 248, 242, 0.12));
-    box-shadow: none;
-    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+      linear-gradient(180deg, rgba(255, 253, 248, 0.74), rgba(250, 248, 242, 0.42)),
+      radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.34), transparent 30%);
+    border: 1px solid rgba(111, 125, 103, 0.1);
   }
 
-  .sm-value:hover {
-    transform: translateY(-0.18rem);
-    border-color: rgba(111, 125, 103, 0.22);
-    background:
-      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.62), transparent 38%),
-      rgba(255, 253, 248, 0.86);
+  .sm-emdr__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: clamp(1.1rem, 1.8vw, 1.5rem);
   }
 
-  .sm-value span {
-    display: inline-flex;
-    margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
+  .sm-emdr__copy .sm-label {
+    margin-bottom: 0.9rem;
+  }
+
+  .sm-emdr__copy h3 {
+    margin: 0 0 0.85rem;
     font-family: var(--font-display);
-    font-size: var(--type-body);
-    font-style: italic;
-    color: rgba(111, 125, 103, 0.72);
+    font-size: var(--type-subsection-title);
+
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    text-wrap: balance;
   }
 
-  .sm-value h3 {
-    margin: 0 0 0.48rem;
+  .sm-emdr__copy p {
+    margin: 0 0 0.9rem;
+    color: var(--color-text-secondary);
+    font-size: var(--type-body);
+    line-height: 1.8;
+    text-wrap: pretty;
+  }
+
+  .sm-emdr__copy p:last-child {
+    margin-bottom: 0;
+  }
+
+  .sm-emdr__topics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.72rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sm-emdr__topic {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.78rem 1rem;
+    border-radius: var(--card-radius-sm);
+    background: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(111, 125, 103, 0.1);
+    color: var(--color-text-secondary);
+    font-size: var(--type-card-body);
+    line-height: 1.45;
+    transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .sm-emdr__topic:hover {
+    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(111, 125, 103, 0.18);
+    transform: translateX(3px);
+  }
+
+  .sm-emdr__topic-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    color: var(--color-accent);
+    background: rgba(111, 125, 103, 0.08);
+  }
+
+  .sm-emdr__points {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  .sm-point {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.55rem;
+    padding: clamp(1rem, 1.8vw, 1.35rem);
+    border-radius: var(--card-radius-sm);
+    background: rgba(255, 255, 255, 0.58);
+    border: 1px solid rgba(111, 125, 103, 0.1);
+    transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .sm-point:hover {
+    transform: translateY(-3px);
+    border-color: rgba(111, 125, 103, 0.2);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 0.8rem 1.8rem rgba(57, 54, 48, 0.06);
+  }
+
+  .sm-point__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 0.6rem;
+    color: var(--color-accent);
+    background: rgba(111, 125, 103, 0.08);
+    border: 1px solid rgba(111, 125, 103, 0.08);
+    flex-shrink: 0;
+  }
+
+  .sm-point h4 {
+    margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-card-title);
-    font-style: italic;
-    font-weight: 300;
-    line-height: 1.1;
+
+    font-weight: 400;
+    line-height: 1.12;
     color: rgba(47, 45, 40, 0.9);
   }
 
-  .sm-value p {
+  .sm-point p {
     margin: 0;
     color: #5f5c55;
     font-size: var(--type-card-body);
-    line-height: 1.68;
+    line-height: 1.58;
+    flex: 1;
   }
 
   @media (max-width: 960px) {
@@ -628,7 +605,13 @@ const emdrPoints = [
     }
 
     .sm-panel__visual {
-      min-height: clamp(29rem, 76vw, 38rem);
+      flex-direction: row;
+      height: auto;
+    }
+
+    .sm-portrait--main {
+      min-height: clamp(22rem, 50vw, 30rem);
+      flex: 1 1 100%;
     }
 
     .sm-panel__content {
@@ -648,9 +631,27 @@ const emdrPoints = [
       justify-content: center;
     }
 
-    .sm-quote {
-      border-radius: 1rem;
-      background: rgba(223, 228, 216, 0.3);
+    .sm-emdr {
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+
+    .sm-emdr__copy {
+      text-align: center;
+      align-items: center;
+    }
+
+    .sm-emdr__copy .sm-label {
+      justify-content: center;
+    }
+
+    .sm-emdr__topics {
+      text-align: left;
+      width: min(100%, 28rem);
+    }
+
+    .sm-emdr__points {
+      grid-auto-rows: auto;
     }
   }
 
@@ -666,7 +667,6 @@ const emdrPoints = [
 
     .sm-header {
       margin-bottom: 1.8rem;
-      padding: 0 4vw;
     }
 
     .sm-header h2 {
@@ -685,24 +685,15 @@ const emdrPoints = [
       border-radius: var(--card-radius-sm);
     }
 
-    .sm-panel::before, .sm-panel::after {
-      display: none;
-    }
-
     .sm-panel__visual {
-      min-height: clamp(22rem, 95vw, 26rem);
+      flex-direction: column;
       border-radius: var(--card-radius-sm);
       padding: var(--card-pd-sm);
     }
 
-    .sm-panel__visual::before {
-      top: 7%;
-      width: min(72%, 16rem);
-    }
-
-    .sm-portrait {
-      width: 100%;
-      padding-bottom: 0;
+    .sm-portrait--main {
+      min-height: clamp(18rem, 55vw, 24rem);
+      border-radius: var(--card-radius-sm);
     }
 
     .sm-portrait figcaption {
@@ -720,6 +711,7 @@ const emdrPoints = [
 
     .sm-panel__content {
       padding: var(--card-pd-sm) 0.5rem 0.9rem;
+      text-align: left;
     }
 
     .sm-lead {
@@ -737,11 +729,15 @@ const emdrPoints = [
       gap: 0.5rem;
     }
 
+    .sm-credentials {
+      justify-content: flex-start;
+    }
+
     .sm-credentials li {
-      justify-content: center;
+      justify-content: flex-start;
       width: 100%;
       min-height: 2.4rem;
-      text-align: center;
+      text-align: left;
       font-size: var(--type-meta);
       letter-spacing: 0.12em;
     }
@@ -750,6 +746,7 @@ const emdrPoints = [
       align-items: stretch;
       flex-direction: column;
       gap: 0.8rem;
+      justify-content: flex-start;
     }
 
     .sm-actions :global(.sm-button.btn--solid) {
@@ -762,32 +759,53 @@ const emdrPoints = [
     }
 
     .sm-link {
-      justify-content: center;
+      justify-content: flex-start;
       width: 100%;
       min-height: 2.8rem;
       font-size: var(--type-meta);
       letter-spacing: 0.18em;
     }
 
-    .sm-values {
-      grid-template-columns: 1fr;
-      gap: 0.65rem;
+    .sm-emdr {
+      padding: var(--card-pd-sm);
+      border-radius: var(--card-radius-sm);
     }
 
-    .sm-value {
-      min-height: auto;
-      padding: var(--card-pd-sm);
+    .sm-emdr__copy {
+      text-align: left;
+      align-items: flex-start;
     }
-    .sm-value span {
-      margin-bottom: 1.1rem;
+
+    .sm-emdr__copy h3 {
+      font-size: var(--type-subsection-title);
+    }
+
+    .sm-emdr__copy p {
+      font-size: var(--type-body-sm);
+      line-height: 1.7;
+    }
+
+    .sm-point h4 {
+      font-size: var(--type-card-title-lg);
+    }
+
+    .sm-emdr__topics {
+      gap: 0.55rem;
+      width: 100%;
+    }
+
+    .sm-emdr__topic {
+      padding: 0.65rem 0.85rem;
       font-size: var(--type-body-sm);
     }
-    .sm-value h3 {
-      font-size: var(--type-card-title);
+
+    .sm-emdr__topic-icon {
+      width: 1.85rem;
+      height: 1.85rem;
     }
-    .sm-value p {
-      font-size: var(--type-card-body);
-      line-height: 1.62;
+
+    .sm-emdr__points {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -803,20 +821,18 @@ const emdrPoints = [
     .sm-label::before {
       width: 1.45rem;
     }
-
-    .sm-portrait {
-      width: 100%;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
     .sm-portrait,
-    .sm-value {
+    .sm-point,
+    .sm-emdr__topic {
       transition: none;
     }
 
-    .sm-panel:hover .sm-portrait,
-    .sm-value:hover {
+    .sm-portrait:hover,
+    .sm-point:hover,
+    .sm-emdr__topic:hover {
       transform: none;
     }
   }

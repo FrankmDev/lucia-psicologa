@@ -17,7 +17,7 @@ body {
 
 body {
   font-family: var(--font-body);
-  font-weight: 300;
+  font-weight: 400;
   font-size: var(--type-body);
   line-height: var(--leading-copy);
   color: var(--color-ink);
@@ -54,10 +54,10 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 /* ── Typography ───────────────────────────────────────────── */
 .type-display {
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
+  font-style: normal;
+  font-weight: 400;
   line-height: var(--leading-tight);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.015em;
 }
 
 .type-eyebrow {
@@ -72,6 +72,7 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 .type-display-upper {
   font-family: var(--font-display);
   font-weight: 400;
+  font-style: normal;
   font-size: var(--type-section-title);
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -81,8 +82,8 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 
 .type-script {
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 300;
+  font-style: normal;
+  font-weight: 400;
   font-size: var(--type-section-subtitle);
   color: var(--color-text-faint);
 }

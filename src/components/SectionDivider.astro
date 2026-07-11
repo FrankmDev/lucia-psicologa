@@ -17,6 +17,8 @@ const {
   height,
 } = Astro.props;
 
+const uid = Math.random().toString(36).slice(2, 9);
+
 const dividerPaths: Record<string, string> = {
   wave: "M0,64 C200,0 400,128 600,64 C800,0 1000,128 1200,64 L1200,128 L0,128 Z",
   ink: "M0,48 Q150,80 300,48 T600,56 T900,40 T1200,52 L1200,128 L0,128 Z",
@@ -39,41 +41,31 @@ const h = height || 'clamp(48px, 6vw, 96px)';
 >
   <svg viewBox="0 0 1200 128" preserveAspectRatio="none" class="divider-svg" data-parallax="0.02">
     <defs>
-      <filter id={`blur-${variant}`}>
-        <feGaussianBlur stdDeviation="2" />
+      <filter id={`blur-${uid}`}>
+        <feGaussianBlur stdDeviation="1.5" />
       </filter>
-      <linearGradient id={`grad-${variant}`} x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stop-color={toColor} stop-opacity="0" />
-        <stop offset="20%" stop-color={toColor} stop-opacity="1" />
-        <stop offset="80%" stop-color={toColor} stop-opacity="1" />
-        <stop offset="100%" stop-color={toColor} stop-opacity="0" />
+      <linearGradient id={`grad-${uid}`} x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color={fromColor} />
+        <stop offset="100%" stop-color={toColor} />
       </linearGradient>
     </defs>
 
-    <!-- Deep shadow layer -->
+    <!-- Base fill that matches the previous section so no transparent gap appears -->
+    <rect width="1200" height="128" fill={fromColor} class="divider-base" />
+
+    <!-- Subtle depth shadow -->
     <path
       d={path}
-      fill={toColor}
-      opacity="0.02"
-      filter={`url(#blur-${variant})`}
-      transform="translate(0, 6)"
+      fill="rgba(47, 45, 40, 0.035)"
+      filter={`url(#blur-${uid})`}
+      transform="translate(0, 5)"
       class="divider-layer divider-layer--shadow"
     />
 
-    <!-- Mid shadow layer -->
+    <!-- Main transition shape: previous color at the top, next color at the bottom -->
     <path
       d={path}
-      fill={toColor}
-      opacity="0.035"
-      filter={`url(#blur-${variant})`}
-      transform="translate(0, 2)"
-      class="divider-layer divider-layer--mid"
-    />
-
-    <!-- Main shape -->
-    <path
-      d={path}
-      fill={`url(#grad-${variant})`}
+      fill={`url(#grad-${uid})`}
       class="divider-layer divider-layer--main"
     />
 
@@ -83,13 +75,10 @@ const h = height || 'clamp(48px, 6vw, 96px)';
       fill="none"
       stroke="currentColor"
       stroke-width="0.3"
-      opacity="0.03"
+      opacity="0.04"
       class="divider-layer divider-layer--stroke"
     />
   </svg>
-
-  <!-- Organic ink wash accent -->
-  <div class="divider-wash" style={`background: ${toColor};`}></div>
 
   <!-- Floating decorative dots -->
   <div class="divider-dots" aria-hidden="true">
@@ -119,6 +108,13 @@ const h = height || 'clamp(48px, 6vw, 96px)';
     height: 100%;
     display: block;
   }
+  .divider-base {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .divider-layer {
     transition: transform 0.8s var(--ease-out-expo);
   }
@@ -126,9 +122,6 @@ const h = height || 'clamp(48px, 6vw, 96px)';
   /* Animated drift for organic feel */
   .is-animated .divider-layer--shadow {
     animation: divider-drift-1 20s ease-in-out infinite alternate;
-  }
-  .is-animated .divider-layer--mid {
-    animation: divider-drift-2 16s ease-in-out infinite alternate-reverse;
   }
   .is-animated .divider-layer--main {
     animation: divider-drift-3 24s ease-in-out infinite alternate;
@@ -138,24 +131,9 @@ const h = height || 'clamp(48px, 6vw, 96px)';
     0% { transform: translate(0, 6px); }
     100% { transform: translate(-8px, 8px); }
   }
-  @keyframes divider-drift-2 {
-    0% { transform: translate(0, 2px); }
-    100% { transform: translate(6px, 3px); }
-  }
   @keyframes divider-drift-3 {
     0% { transform: translate(0, 0); }
     100% { transform: translate(-4px, 1px); }
-  }
-
-  .divider-wash {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 60%;
-    opacity: 0.5;
-    filter: blur(20px);
-    transform: translateY(30%);
   }
 
   /* Floating dots on divider */

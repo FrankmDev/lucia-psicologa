@@ -3,12 +3,13 @@ import GrainOverlay from './ui/GrainOverlay.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
+import PageNumber from './ui/PageNumber.astro';
 import { getArticleImage, getLatestArticles } from '../data/blog';
 
 const articles = getLatestArticles(3);
 ---
 
-<section id="blog" class="blog-section" data-blog-section>
+<section id="blog" class="blog-section section--parchment" data-blog-section>
   <GrainOverlay opacity={0.014} />
   <AmbientLight color="rgba(196,170,148,0.045)" />
   <FloatOrb size={320} top="-12%" left="-8%" color="var(--sage-muted)" blur={120} animation="float-1" />
@@ -16,7 +17,7 @@ const articles = getLatestArticles(3);
 
   <div class="blog-section__wash" aria-hidden="true"></div>
 
-  <Container maxWidth="1080px">
+  <Container maxWidth="1480px" padding="0 var(--content-padding-x)">
     <header class="blog-header reveal-blur" data-delay="80">
       <span class="section-eyebrow">Lecturas</span>
       <h2>Artículos para entender lo que te ocurre con más contexto.</h2>
@@ -27,14 +28,15 @@ const articles = getLatestArticles(3);
 
     <div class="blog-grid stagger-children">
       {articles.map((article, i) => (
-        <article class={`blog-card blog-card--${i === 0 ? 'featured' : 'compact'} reveal-up`} style={`transition-delay: ${i * 120}ms`}>
+        <article class="blog-card reveal-up" style={`--card-accent: ${i === 0 ? 'var(--sage)' : i === 1 ? 'var(--gold)' : 'var(--earth-light)'}; transition-delay: ${i * 120}ms`}>
           <a href={`/blog/${article.slug}`} class="blog-card__link" aria-label={`Leer artículo: ${article.title}`}>
             <figure class="blog-card__media">
               <img
-                src={getArticleImage(article.slug, 1400, 980)}
+                src={getArticleImage(article.slug, 1200, 900)}
                 alt={`Imagen editorial para ${article.title}`}
                 loading={i === 0 ? 'eager' : 'lazy'}
                 decoding="async"
+                style={`object-position: ${i === 0 ? 'center 35%' : i === 1 ? 'center 45%' : 'center 40%'}`}
               />
               <span class="blog-card__image-scrim" aria-hidden="true"></span>
               <span class="blog-card__image-frame" aria-hidden="true"></span>
@@ -73,6 +75,8 @@ const articles = getLatestArticles(3);
       </a>
     </div>
   </Container>
+
+  <PageNumber number="04" />
 </section>
 
 <style>
@@ -81,11 +85,14 @@ const articles = getLatestArticles(3);
     isolation: isolate;
     overflow: hidden;
     padding: var(--section-py) 0 calc(var(--section-py) + 0.5rem);
+  }
+
+  .section--parchment {
     background:
-      radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.88), transparent 30%),
+      radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.92), transparent 30%),
       radial-gradient(circle at 84% 14%, rgba(223, 228, 216, 0.58), transparent 30%),
       radial-gradient(circle at 70% 76%, rgba(184, 168, 138, 0.12), transparent 32%),
-      linear-gradient(180deg, #fffdfa 0%, var(--color-surface) 58%, #f2efe8 100%);
+      linear-gradient(180deg, #fffdfa 0%, var(--color-surface-elevated) 58%, #f2efe8 100%);
   }
 
   .blog-section::before {
@@ -137,8 +144,8 @@ const articles = getLatestArticles(3);
     margin: 1rem auto 1rem;
     font-family: var(--font-display);
     font-size: var(--type-section-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1;
     letter-spacing: -0.04em;
     color: var(--color-ink);
@@ -158,8 +165,7 @@ const articles = getLatestArticles(3);
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: auto auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(1.2rem, 2vw, 1.5rem);
     align-items: stretch;
   }
@@ -168,9 +174,10 @@ const articles = getLatestArticles(3);
     position: relative;
     isolation: isolate;
     overflow: hidden;
-    border-radius: 1rem;
-    background: rgba(255, 253, 248, 0.6);
+    border-radius: var(--card-radius);
+    background: rgba(255, 253, 248, 0.78);
     border: 1px solid var(--color-line-accent-soft);
+    box-shadow: 0 0.6rem 1.6rem rgba(57, 54, 48, 0.04);
     transition:
       transform 0.5s var(--ease-out-expo),
       box-shadow 0.5s var(--ease-out-expo),
@@ -178,22 +185,9 @@ const articles = getLatestArticles(3);
   }
 
   .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 1.5rem 3rem rgba(57, 54, 48, 0.08);
-    border-color: rgba(111, 125, 103, 0.2);
-  }
-
-  .blog-card--featured {
-    --card-accent: #6f7d67;
-    grid-column: 1 / -1;
-  }
-  .blog-card--compact:nth-child(2) {
-    --card-accent: #b8a88a;
-    grid-column: span 7;
-  }
-  .blog-card--compact:nth-child(3) {
-    --card-accent: #8a9a89;
-    grid-column: span 5;
+    transform: translateY(-6px);
+    box-shadow: 0 1.5rem 3rem rgba(57, 54, 48, 0.1);
+    border-color: rgba(111, 125, 103, 0.18);
   }
 
   .blog-card__link {
@@ -207,25 +201,13 @@ const articles = getLatestArticles(3);
     text-decoration: none;
   }
 
-  .blog-card--featured .blog-card__link {
-    display: grid;
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-    min-height: clamp(18rem, 32vw, 26rem);
-  }
-
   .blog-card__media {
     position: relative;
     margin: 0;
     overflow: hidden;
     border-radius: inherit;
-  }
-
-  .blog-card--featured .blog-card__media {
-    border-radius: 1rem 0 0 1rem;
-  }
-
-  .blog-card--compact .blog-card__media {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 4 / 3;
+    flex-shrink: 0;
   }
 
   .blog-card__media img {
@@ -245,12 +227,12 @@ const articles = getLatestArticles(3);
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(180deg, transparent 40%, rgba(13,10,8,0.22) 100%);
+      linear-gradient(180deg, transparent 50%, rgba(13,10,8,0.18) 100%);
     transition: opacity 0.5s ease;
-    opacity: 0.7;
+    opacity: 0.6;
   }
   .blog-card:hover .blog-card__image-scrim {
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   .blog-card__image-frame {
@@ -261,21 +243,12 @@ const articles = getLatestArticles(3);
     pointer-events: none;
   }
 
-  .blog-card--featured .blog-card__image-frame {
-    border-radius: 1rem 0 0 1rem;
-  }
-
   .blog-card__body {
     display: flex;
     flex-direction: column;
+    flex: 1 1 auto;
     padding: clamp(1.2rem, 2vw, 1.6rem);
     gap: 0.55rem;
-  }
-
-  .blog-card--featured .blog-card__body {
-    justify-content: center;
-    padding: clamp(1.6rem, 3vw, 2.4rem);
-    gap: 0.7rem;
   }
 
   .blog-card__top {
@@ -328,7 +301,7 @@ const articles = getLatestArticles(3);
   .blog-card__title {
     margin: 0.15rem 0 0;
     font-family: var(--font-display);
-    font-size: clamp(1.15rem, 2vw, 1.45rem);
+    font-size: clamp(1.15rem, 1.6vw, 1.42rem);
     font-weight: 400;
     line-height: 1.18;
     letter-spacing: -0.01em;
@@ -341,26 +314,16 @@ const articles = getLatestArticles(3);
     color: var(--color-accent-deep);
   }
 
-  .blog-card--featured .blog-card__title {
-    font-size: clamp(1.35rem, 2.6vw, 1.85rem);
-    line-height: 1.14;
-    letter-spacing: -0.02em;
-  }
-
   .blog-card__excerpt {
     margin: 0;
     color: var(--color-text-secondary);
-    font-size: var(--type-body);
+    font-size: var(--type-body-sm);
     line-height: 1.68;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-wrap: pretty;
-  }
-
-  .blog-card--featured .blog-card__excerpt {
-    -webkit-line-clamp: 3;
   }
 
   .blog-card__footer {
@@ -446,28 +409,12 @@ const articles = getLatestArticles(3);
     transform: translateX(3px);
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 960px) {
     .blog-grid {
       grid-template-columns: 1fr;
     }
-    .blog-card--featured,
-    .blog-card--compact:nth-child(2),
-    .blog-card--compact:nth-child(3) {
-      grid-column: 1 / -1;
-    }
-    .blog-card--featured .blog-card__link {
-      grid-template-columns: 1fr;
-      min-height: auto;
-    }
-    .blog-card--featured .blog-card__media {
+    .blog-card__media {
       aspect-ratio: 16 / 9;
-      border-radius: 1rem 1rem 0 0;
-    }
-    .blog-card--featured .blog-card__image-frame {
-      border-radius: 1rem 1rem 0 0;
-    }
-    .blog-card--featured .blog-card__body {
-      padding: clamp(1.2rem, 3vw, 1.6rem);
     }
   }
 
@@ -477,7 +424,6 @@ const articles = getLatestArticles(3);
     }
     .blog-header {
       margin-bottom: 1.8rem;
-      padding: 0 4vw;
     }
     .blog-header h2 {
       font-size: var(--type-section-title-sm);
@@ -487,8 +433,8 @@ const articles = getLatestArticles(3);
       font-size: var(--type-body);
       line-height: 1.65;
     }
-    .blog-card--compact .blog-card__media {
-      aspect-ratio: 16 / 11;
+    .blog-card__media {
+      aspect-ratio: 16 / 10;
     }
     .blog-card__excerpt {
       font-size: var(--type-body-sm);

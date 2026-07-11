@@ -255,8 +255,8 @@ const dScroll = dSubtitle + 360;
     position: absolute;
     top: 0;
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     font-size: var(--type-meta);
     color: var(--taupe);
     opacity: 0;
@@ -422,10 +422,10 @@ const dScroll = dSubtitle + 360;
   .title-line {
     display: block;
     font-family: var(--font-display);
-    font-weight: 300;
-    font-style: italic;
-    font-size: var(--type-section-title-sm);
-    line-height: 1.03;
+    font-weight: 400;
+
+    font-size: clamp(1.65rem, 3vw, 2.6rem);
+    line-height: 1.05;
     color: var(--ink);
     letter-spacing: -0.03em;
     text-wrap: balance;
@@ -507,8 +507,8 @@ const dScroll = dSubtitle + 360;
      ═══════════════════════════════════════════ */
   .section-header__subtitle {
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     font-size: var(--type-lead);
     color: var(--ink-soft);
     line-height: 1.72;
@@ -676,7 +676,7 @@ const dScroll = dSubtitle + 360;
       padding: 1.85rem 0 1rem;
     }
     .title-line {
-      font-size: var(--type-section-title-sm);
+      font-size: clamp(1.5rem, 4.2vw, 2.25rem);
     }
     .section-header--hero .title-line {
       font-size: var(--type-section-title-sm);

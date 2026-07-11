@@ -28,7 +28,7 @@ const formattedDate = new Date(article.dateISO).toLocaleDateString('es-ES', {
 
 const heroImage = getArticleImage(article.slug, 1800, 1200);
 const pullQuote = article.excerpt;
-const articleURL = `https://lucia-psicologa.vercel.app/blog/${article.slug}`;
+const articleURL = `https://luciamillanpsicologia.es/blog/${article.slug}`;
 const articleSchema = [
   {
     '@context': 'https://schema.org',
@@ -47,9 +47,9 @@ const articleSchema = [
       '@type': 'Person',
       name: 'Lucía Millán Jiménez',
       jobTitle: 'Psicóloga Clínica',
-      url: 'https://lucia-psicologa.vercel.app/',
+      url: 'https://luciamillanpsicologia.es/',
     },
-    publisher: { '@id': 'https://lucia-psicologa.vercel.app/#lucia-millan-jimenez' },
+    publisher: { '@id': 'https://luciamillanpsicologia.es/#lucia-millan-jimenez' },
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': articleURL,
@@ -65,13 +65,13 @@ const articleSchema = [
         '@type': 'ListItem',
         position: 1,
         name: 'Inicio',
-        item: 'https://lucia-psicologa.vercel.app/',
+        item: 'https://luciamillanpsicologia.es/',
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Blog',
-        item: 'https://lucia-psicologa.vercel.app/blog',
+        item: 'https://luciamillanpsicologia.es/blog',
       },
       {
         '@type': 'ListItem',
@@ -294,7 +294,7 @@ const articleSchema = [
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-page-title);
-    font-style: italic;
+
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: 0;
@@ -437,8 +437,8 @@ const articleSchema = [
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-card-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.28;
     color: rgba(42,31,26,0.82);
   }
@@ -484,8 +484,8 @@ const articleSchema = [
     border-bottom: 1px solid rgba(196,170,148,0.18);
     font-family: var(--font-display);
     font-size: var(--type-subsection-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.42;
     color: var(--ink);
   }
@@ -494,7 +494,7 @@ const articleSchema = [
     margin: 4.6rem 0 1.25rem;
     font-family: var(--font-display);
     font-size: var(--type-section-title-sm);
-    font-style: italic;
+
     font-weight: 400;
     line-height: 1.02;
     letter-spacing: -0.02em;
@@ -586,8 +586,8 @@ const articleSchema = [
     margin: 0 0 1rem;
     font-family: var(--font-display);
     font-size: var(--type-subsection-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.22;
     color: var(--ink);
   }
@@ -643,7 +643,7 @@ const articleSchema = [
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-section-title-sm);
-    font-style: italic;
+
     font-weight: 400;
     line-height: 1;
     letter-spacing: 0;
@@ -678,7 +678,7 @@ const articleSchema = [
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-section-title-sm);
-    font-style: italic;
+
     font-weight: 400;
     line-height: 1;
     letter-spacing: 0;
@@ -778,7 +778,7 @@ const articleSchema = [
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-card-title);
-    font-style: italic;
+
     font-weight: 400;
     line-height: 1.15;
     letter-spacing: -0.02em;
@@ -831,7 +831,7 @@ const articleSchema = [
     .article-hero,
     .article-final-cta,
     .article-related {
-      width: min(100% - 1.5rem, 1120px);
+      width: min(calc(100% - 2 * var(--content-padding-x)), 1120px);
     }
 
     .article-breadcrumb {

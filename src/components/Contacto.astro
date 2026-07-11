@@ -3,6 +3,7 @@ import GrainOverlay from './ui/GrainOverlay.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
 import FloatOrb from './ui/FloatOrb.astro';
+import PageNumber from './ui/PageNumber.astro';
 
 const contactRoutes = [
   {
@@ -17,11 +18,7 @@ const contactRoutes = [
     href: 'tel:+34722535914',
     icon: 'M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z',
   },
-  {
-    label: 'Modalidad',
-    value: 'Presencial y online',
-    icon: 'M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zm0-18a8 8 0 110 16 8 8 0 010-16zM8 12l3 3 5-5',
-  },
+
   {
     label: 'Dirección',
     value: 'c/ Toledo, 8, 2° Planta, 13001 Ciudad Real',
@@ -31,15 +28,15 @@ const contactRoutes = [
 ];
 ---
 
-<section id="contacto" class="contacto" data-contacto>
+<section id="contacto" class="contacto section--accent-warm" data-contacto>
   <GrainOverlay opacity={0.01} />
   <AmbientLight color="rgba(255,255,255,0.18)" />
   <FloatOrb size={360} top="-18%" right="-12%" color="rgba(141,151,132,0.08)" blur={170} opacity={0.28} animation="float-1" />
   <FloatOrb size={260} bottom="2%" left="-10%" color="rgba(216,211,200,0.18)" blur={145} opacity={0.24} animation="float-2" />
 
-  <Container maxWidth="1240px" padding="0 clamp(1rem, 4vw, 4.25rem)">
+  <Container maxWidth="1480px" padding="0 var(--content-padding-x)">
     <div class="contact-shell">
-      <header class="contact-header reveal-blur" data-delay="80">
+      <header class="contact-header">
         <span class="section-eyebrow">Contacto</span>
         <h2>Empezamos con un primer mensaje.</h2>
         <p>
@@ -48,8 +45,9 @@ const contactRoutes = [
       </header>
 
       <div class="contact-layout" aria-label="Contacto y formulario">
-        <aside class="contact-info reveal-scale" data-delay="160">
+        <aside class="contact-info">
           <div class="contact-info__panel">
+            <span class="info-kicker">A tu disposición</span>
             <h3 class="contact-info__title">Datos de contacto</h3>
             <p class="contact-info__lead">
               Respondo en un plazo de 24–48 horas. Si prefieres una vía más directa, también puedes llamar o escribir por WhatsApp.
@@ -94,8 +92,7 @@ const contactRoutes = [
 
         <form
           id="contactForm"
-          class="contact-form-card reveal-scale"
-          data-delay="220"
+          class="contact-form-card"
           action="mailto:luciamillanpsico@gmail.com"
           method="POST"
           enctype="text/plain"
@@ -112,48 +109,48 @@ const contactRoutes = [
           </div>
 
           <div class="form-fields">
-            <div class="form-field">
+            <div class="contact-field">
+              <label for="nombre">Nombre</label>
               <input
                 type="text"
                 id="nombre"
                 name="nombre"
-                placeholder=" "
+                placeholder="Tu nombre"
                 autocomplete="name"
                 required
                 aria-required="true"
                 aria-describedby="nombre-hint"
               />
-              <label for="nombre">Nombre</label>
               <span id="nombre-hint" class="field-hint" role="alert">Indica tu nombre.</span>
             </div>
 
-            <div class="form-field">
+            <div class="contact-field">
+              <label for="email">Email</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                placeholder=" "
+                placeholder="tu@email.com"
                 autocomplete="email"
                 required
                 aria-required="true"
                 aria-describedby="email-hint"
               />
-              <label for="email">Email</label>
               <span id="email-hint" class="field-hint" role="alert">Necesito un email para responderte.</span>
             </div>
 
-            <div class="form-field form-field--full">
+            <div class="contact-field contact-field--full">
+              <label for="mensaje">Motivo de consulta</label>
               <textarea
                 id="mensaje"
                 name="mensaje"
-                placeholder=" "
+                placeholder="Cuéntame qué te preocupa..."
                 rows="5"
                 required
                 aria-required="true"
                 aria-describedby="mensaje-hint"
               ></textarea>
-              <label for="mensaje">Motivo de consulta</label>
-              <span id="mensaje-hint" class="field-hint" role="alert">Cuéntame qué ocurre, desde cuándo, qué modalidad prefieres y si quieres consultar por trauma o EMDR.</span>
+              <span id="mensaje-hint" class="field-hint" role="alert">Cuéntame brevemente qué te preocupa.</span>
             </div>
           </div>
 
@@ -189,6 +186,8 @@ const contactRoutes = [
       </div>
     </div>
   </Container>
+
+  <PageNumber number="05" />
 </section>
 
 <script>
@@ -246,21 +245,26 @@ const contactRoutes = [
     isolation: isolate;
     overflow: hidden;
     padding: var(--section-py) 0 calc(var(--section-py) + 0.5rem);
-    background:
-      radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.92), transparent 30%),
-      radial-gradient(circle at 82% 14%, rgba(223, 228, 216, 0.48), transparent 30%),
-      linear-gradient(180deg, var(--color-surface-elevated) 0%, var(--color-surface) 58%, #f3efe7 100%);
+    --color-error: #a34a4a;
   }
 
-  .contacto::before {
+  .section--accent-warm {
+    background:
+      radial-gradient(circle at 14% 10%, rgba(255, 255, 255, 0.72), transparent 30%),
+      radial-gradient(circle at 82% 14%, rgba(184, 168, 138, 0.22), transparent 30%),
+      radial-gradient(circle at 50% 90%, rgba(111, 125, 103, 0.1), transparent 34%),
+      linear-gradient(180deg, #e8e2d6 0%, #ded8cc 58%, #d5cfc2 100%);
+  }
+
+  .section--accent-warm::before {
     content: '';
     position: absolute;
     inset: 0;
     z-index: 0;
     pointer-events: none;
     background:
-      linear-gradient(rgba(78, 74, 66, 0.01) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(78, 74, 66, 0.008) 1px, transparent 1px);
+      linear-gradient(rgba(78, 74, 66, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 74, 66, 0.015) 1px, transparent 1px);
     background-size: 8.5rem 8.5rem;
     mask-image: radial-gradient(circle at 50% 40%, #000 0%, transparent 74%);
     opacity: 0.6;
@@ -283,8 +287,8 @@ const contactRoutes = [
     color: var(--color-ink);
     font-family: var(--font-display);
     font-size: var(--type-section-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 0.98;
     letter-spacing: -0.04em;
     text-wrap: balance;
@@ -304,7 +308,11 @@ const contactRoutes = [
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: clamp(1.5rem, 3vw, 3rem);
-    align-items: start;
+    align-items: stretch;
+  }
+
+  .contact-info {
+    height: 100%;
   }
 
   /* ── Info panel ───────────────────────────────────────── */
@@ -312,20 +320,57 @@ const contactRoutes = [
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
+    height: 100%;
     padding: var(--card-pd-lg);
-    border: 1px solid rgba(111, 125, 103, 0.12);
+    border: 1px solid rgba(111, 125, 103, 0.14);
     border-radius: var(--card-radius);
     background:
-      linear-gradient(180deg, rgba(255, 253, 248, 0.78), rgba(249, 246, 239, 0.92)),
+      linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(249, 246, 239, 0.98)),
       radial-gradient(circle at 0% 0%, rgba(223, 228, 216, 0.28), transparent 38%);
+    box-shadow: 0 1.6rem 4rem rgba(57, 54, 48, 0.08);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-info__panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background-image: radial-gradient(circle at 1px 1px, rgba(111,125,103,0.02) 1px, transparent 0);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .contact-info__panel > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .info-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--color-accent);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .info-kicker::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: rgba(111, 125, 103, 0.28);
   }
 
   .contact-info__title {
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-card-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.12;
     color: var(--color-ink);
     letter-spacing: -0.01em;
@@ -349,21 +394,24 @@ const contactRoutes = [
     display: flex;
     align-items: flex-start;
     gap: 0.85rem;
-    padding: 0.75rem 0;
+    padding: 0.75rem 0.5rem;
     border-bottom: 1px solid rgba(111, 125, 103, 0.08);
     color: inherit;
     text-decoration: none;
-    transition: background 0.3s ease;
     border-radius: 0.5rem;
     margin: 0 -0.5rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    transition: background 0.3s ease, transform 0.35s var(--ease-out-expo);
   }
   .contact-route:last-child {
     border-bottom: 0;
   }
   .contact-route:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.62);
+    transform: translateX(3px);
+  }
+  .contact-route:hover .contact-route__icon {
+    background: var(--color-accent);
+    color: var(--color-surface-white);
   }
 
   .contact-route__icon {
@@ -405,6 +453,7 @@ const contactRoutes = [
   }
 
   .contact-info__note {
+    margin-top: auto;
     padding: 1rem 1.1rem;
     border-radius: var(--card-radius-sm);
     background: rgba(111, 125, 103, 0.04);
@@ -434,12 +483,14 @@ const contactRoutes = [
     flex-direction: column;
     gap: 1.6rem;
     padding: var(--card-pd-lg);
-    border: 1px solid rgba(111, 125, 103, 0.12);
+    border: 1px solid rgba(111, 125, 103, 0.14);
     border-radius: var(--card-radius);
     background:
-      linear-gradient(180deg, rgba(255, 253, 248, 0.88), rgba(249, 246, 239, 0.96)),
-      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.24), transparent 38%);
+      linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(249, 246, 239, 0.98)),
+      radial-gradient(circle at 100% 0%, rgba(223, 228, 216, 0.28), transparent 38%);
+    box-shadow: 0 1.6rem 4rem rgba(57, 54, 48, 0.08);
     position: relative;
+    overflow: hidden;
   }
 
   .contact-form-card::before {
@@ -484,88 +535,126 @@ const contactRoutes = [
     margin: 0;
     font-family: var(--font-display);
     font-size: var(--type-card-title);
-    font-style: italic;
-    font-weight: 300;
+
+    font-weight: 400;
     line-height: 1.12;
     color: var(--color-ink);
     letter-spacing: -0.01em;
   }
 
-  .form-fields {
+  .contact-form-card .form-fields {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem 1.2rem;
+    gap: 1.45rem 1.25rem;
   }
 
-  .form-field {
+  .contact-form-card .contact-field {
     position: relative;
     display: flex;
     flex-direction: column;
+    gap: 0.55rem;
   }
 
-  .form-field--full {
+  .contact-form-card .contact-field--full {
     grid-column: 1 / -1;
   }
 
-  .form-field input,
-  .form-field textarea {
-    order: 2;
+  .contact-form-card .contact-field input,
+  .contact-form-card .contact-field textarea {
+    display: block;
+    min-width: 0;
     width: 100%;
-    padding: 1rem 0.85rem;
-    border: 1px solid rgba(111, 125, 103, 0.18);
-    border-radius: 0.65rem;
-    background: rgba(255, 255, 255, 0.72);
+    padding: 0.9rem 1.05rem;
+    border: 1px solid rgba(111, 125, 103, 0.22);
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.76);
     color: var(--color-ink);
+    caret-color: var(--color-accent);
     font-family: var(--font-body);
     font-size: var(--type-body);
     line-height: 1.5;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    transition:
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      background-color 0.35s ease,
+      transform 0.35s var(--ease-out-expo);
     outline: none;
   }
 
-  .form-field input::placeholder,
-  .form-field textarea::placeholder {
-    color: transparent;
+  .contact-form-card .contact-field textarea {
+    min-height: 140px;
+    resize: vertical;
   }
 
-  .form-field input:focus,
-  .form-field textarea:focus {
-    border-color: rgba(111, 125, 103, 0.42);
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 0 0 3px rgba(111, 125, 103, 0.08);
+  .contact-form-card .contact-field input::placeholder,
+  .contact-form-card .contact-field textarea::placeholder {
+    color: var(--color-text-faint);
+    opacity: 0.72;
+    transition: color 0.3s ease, opacity 0.3s ease;
   }
 
-  .form-field label {
-    order: 1;
-    margin-bottom: 0.35rem;
+  .contact-form-card .contact-field input:focus::placeholder,
+  .contact-form-card .contact-field textarea:focus::placeholder {
     color: var(--color-text-muted);
+    opacity: 0.48;
+  }
+
+  .contact-form-card .contact-field input:hover,
+  .contact-form-card .contact-field textarea:hover {
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(111, 125, 103, 0.3);
+  }
+
+  .contact-form-card .contact-field input:focus,
+  .contact-form-card .contact-field textarea:focus {
+    border-color: rgba(111, 125, 100, 0.55);
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 0 0 4px rgba(111, 125, 103, 0.09);
+    transform: translateY(-1px);
+  }
+
+  .contact-form-card .contact-field label {
+    position: static;
+    display: block;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
     font-size: var(--type-caption);
     font-weight: 500;
-    letter-spacing: 0.08em;
+    line-height: 1.2;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    transition: color 0.3s ease;
+    cursor: pointer;
+    opacity: 1;
+    transform: translateX(0);
+    transition: color 0.3s ease, transform 0.35s var(--ease-out-expo);
   }
 
-  .form-field input:focus + label,
-  .form-field textarea:focus + label,
-  .form-field input:not(:placeholder-shown) + label,
-  .form-field textarea:not(:placeholder-shown) + label {
-    color: var(--color-accent);
+  .contact-form-card .contact-field:focus-within label {
+    color: var(--color-accent-deep);
+    transform: translateX(0.2rem);
   }
 
-  .field-hint {
-    order: 3;
-    margin-top: 0.35rem;
+  .contact-form-card .field-hint {
+    max-height: 0;
+    margin-top: -0.55rem;
+    padding-left: 0.1rem;
+    overflow: hidden;
     color: var(--color-error);
     font-size: var(--type-micro);
     line-height: 1.4;
     opacity: 0;
     transform: translateY(-4px);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition:
+      max-height 0.3s var(--ease-out-expo),
+      margin-top 0.3s var(--ease-out-expo),
+      opacity 0.25s ease,
+      transform 0.25s ease;
   }
 
-  .form-field input:invalid:not(:placeholder-shown) ~ .field-hint,
-  .form-field textarea:invalid:not(:placeholder-shown) ~ .field-hint {
+  .contact-form-card .contact-field input:invalid:not(:placeholder-shown) ~ .field-hint,
+  .contact-form-card .contact-field textarea:invalid:not(:placeholder-shown) ~ .field-hint {
+    max-height: 2.8rem;
+    margin-top: -0.15rem;
     opacity: 1;
     transform: translateY(0);
   }
@@ -576,7 +665,8 @@ const contactRoutes = [
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
   }
 
   .form-disclaimer {
@@ -604,13 +694,13 @@ const contactRoutes = [
     letter-spacing: 0.18em;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 0.9rem 1.6rem rgba(86, 100, 90, 0.14);
+    box-shadow: 0 0.9rem 1.6rem rgba(86, 100, 90, 0.18);
     transition: transform 0.45s var(--ease-out-expo), box-shadow 0.45s ease;
   }
 
   .contact-submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 1.1rem 1.9rem rgba(86, 100, 90, 0.17);
+    box-shadow: 0 1.1rem 1.9rem rgba(86, 100, 90, 0.22);
   }
 
   .contact-submit svg {
@@ -704,7 +794,6 @@ const contactRoutes = [
 
     .contact-header {
       margin-bottom: 2rem;
-      padding: 0 4vw;
     }
 
     .contact-header h2 {
@@ -729,8 +818,22 @@ const contactRoutes = [
       padding: var(--card-pd-md);
     }
 
-    .form-fields {
+    .contact-form-card .form-fields {
       grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .contact-form-card .contact-field input,
+    .contact-form-card .contact-field textarea {
+      padding: 0.82rem 0.9rem;
+    }
+
+    .contact-form-card .contact-field textarea {
+      min-height: 120px;
+    }
+
+    .contact-form-card .contact-field label {
+      font-size: var(--type-meta);
     }
 
     .form-actions {
@@ -756,8 +859,8 @@ const contactRoutes = [
     .contact-submit,
     .contact-submit svg,
     .contact-route,
-    .form-field input,
-    .form-field textarea {
+    .contact-field input,
+    .contact-field textarea {
       transition: none;
     }
     .contact-submit:hover {

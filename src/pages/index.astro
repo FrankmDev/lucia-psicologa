@@ -15,14 +15,14 @@ const homeSchema = [
   {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://lucia-psicologa.vercel.app/#webpage',
-    url: 'https://lucia-psicologa.vercel.app/',
+    '@id': 'https://luciamillanpsicologia.es/#webpage',
+    url: 'https://luciamillanpsicologia.es/',
     name: 'Psicóloga clínica · Terapia individual · Lucía Millán Jiménez',
     description:
       'Psicología clínica en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR.',
     inLanguage: 'es-ES',
-    isPartOf: { '@id': 'https://lucia-psicologa.vercel.app/#website' },
-    about: { '@id': 'https://lucia-psicologa.vercel.app/#lucia-millan-jimenez' },
+    isPartOf: { '@id': 'https://luciamillanpsicologia.es/#website' },
+    about: { '@id': 'https://luciamillanpsicologia.es/#lucia-millan-jimenez' },
   },
   {
     '@context': 'https://schema.org',
@@ -98,33 +98,30 @@ const homeSchema = [
   <main>
     <Hero />
 
-    <!-- Dark hero to warm cream -->
-    <SectionDivider variant="ink" toColor="var(--white-warm)" />
-
     <Servicios />
 
     <!-- Cream to parchment -->
-    <SectionDivider variant="wave" toColor="var(--parchment)" />
+    <SectionDivider variant="wave" fromColor="#f2efe8" toColor="var(--parchment)" />
 
     <SobreMi />
 
     <!-- Parchment to cream -->
-    <SectionDivider variant="hill" toColor="var(--cream)" />
+    <SectionDivider variant="hill" fromColor="#ebe5d8" toColor="var(--cream)" />
 
     <Proceso />
 
-    <!-- Cream to warm cream -->
-    <SectionDivider variant="wave" toColor="var(--white-warm)" />
+    <!-- Warm cream to parchment -->
+    <SectionDivider variant="wave" fromColor="#e8e1d4" toColor="#fffdfa" />
 
     <BlogSection />
 
-    <!-- Cream to parchment -->
-    <SectionDivider variant="valley" toColor="var(--parchment)" />
+    <!-- Parchment to white-warm -->
+    <SectionDivider variant="valley" fromColor="#f2efe8" toColor="var(--white-warm)" />
 
     <FAQ />
 
-    <!-- Parchment to cream -->
-    <SectionDivider variant="arch" toColor="var(--cream)" />
+    <!-- White-warm to accent-warm -->
+    <SectionDivider variant="arch" fromColor="#f5f1ea" toColor="#e8e2d6" />
 
     <Contacto />
   </main>
