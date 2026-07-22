@@ -8,36 +8,56 @@ import AmbientLight from './ui/AmbientLight.astro';
 const enfoques = [
   {
     label: 'TCC',
-    title: 'Terapia Cognitivo Conductual',
-    text: 'Relaciona pensamientos, emociones y conducta para generar cambios concretos y sostenibles en el día a día.',
+    title: 'Terapia Cognitivo-Conductual (TCC)',
+    tagline: 'Desactivar tus reacciones automáticas y aprender nuevas formas de actuar ante las dificultades del día a día.',
+    consiste:
+      'Es una terapia profundamente práctica y de colaboración. Funciona como un entrenamiento: analizamos el "bucle" o circuito cerrado que se crea entre lo que piensas, lo que sientes y lo que terminas haciendo (por ejemplo: pensar "voy a fallar" → sentir ansiedad → evitar hacer la tarea).',
+    ayuda:
+      'Aprenderás a cuestionar y flexibilizar esos pensamientos, y a adquirir herramientas y estrategias concretas para gestionar el día a día, reducir la ansiedad y romper círculos viciosos.',
     color: '111, 125, 103',
     icon: 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
   },
   {
     label: 'ACT',
-    title: 'Terapia de Aceptación y Compromiso',
-    text: 'Trabaja aceptación, valores y flexibilidad ante lo difícil.',
+    title: 'Terapia de Aceptación y Compromiso (ACT)',
+    tagline: 'Dejar de luchar contra lo que no puedes controlar y empezar a caminar hacia lo que de verdad te importa.',
+    consiste:
+      'A diferencia de otras terapias, aquí no intentamos "eliminar" o "cambiar" los pensamientos o emociones desagradables. Aprendemos a aceptarlos y a hacerles espacio para que dejen de dominarnos.',
+    ayuda:
+      'Te ayuda a entrenar la flexibilidad mental y a descubrir cuáles son tus valores reales (lo que de verdad da sentido a tu vida). Así, podrás tomar decisiones y actuar de forma coherente con esos valores, incluso cuando sientas miedo o malestar.',
     color: '184, 168, 138',
     icon: 'M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 007.92 12.446a9 9 0 11-8.313-12.454z',
   },
   {
     label: 'TFE',
-    title: 'Terapia Focalizada en Emociones',
-    text: 'Comprende emociones y heridas vinculares. Útil si tus reacciones emocionales te desbordan.',
+    title: 'Terapia Focalizada en las Emociones (TFE)',
+    tagline: 'Utiliza tus emociones como una brújula para entender tus necesidades y sanar tus relaciones.',
+    consiste:
+      'Se basa en la idea de que las emociones no son el problema, sino la clave del cambio. En lugar de analizarlas intelectualmente, nos sumergimos en ellas en un espacio seguro para entender qué nos están queriendo decir.',
+    ayuda:
+      'Te ayuda a transformar emociones dolorosas (como la vergüenza o el miedo al abandono) en emociones sanadoras, permitiéndote construir vínculos más seguros, fuertes y conectados con los demás.',
     color: '138, 154, 137',
     icon: 'M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z',
   },
   {
     label: 'IFS',
-    title: 'Sistema de Familia Interna',
-    text: 'Explora partes internas y conflictos. Útil si una parte de ti quiere algo y otra lo boicotea.',
+    title: 'Terapia de los Sistemas de la Familia Interna (IFS)',
+    tagline: 'Hacer las paces con todas tus "partes" internas para recuperar el equilibrio y la autocompasión.',
+    consiste:
+      '¿Alguna vez has sentido que "una parte de mí quiere hacer esto, pero otra parte siente pánico"? IFS entiende que nuestra mente está formada por diferentes "partes" (como la autoexigente, la miedosa o la que busca protegerse).',
+    ayuda:
+      'En lugar de "pelear" contra los aspectos de ti que no te gustan, aprenderás a escucharlos con curiosidad y compasión. Al entender por qué actúan así y sanar sus heridas, tu "Yo central" (más sabio, calmado y adulto) toma las riendas de tu vida con armonía.',
     color: '122, 138, 138',
     icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
   },
   {
     label: 'EMDR',
-    title: 'Desensibilización y Reprocesamiento',
-    text: 'Reprocesa experiencias dolorosas mediante estimulación bilateral.',
+    title: 'EMDR (Desensibilización y Reprocesamiento por Movimientos Oculares)',
+    tagline: 'Ayuda a tu cerebro a archivar y sanar recuerdos dolorosos o traumáticos que se quedaron "atascados".',
+    consiste:
+      'Cuando vivimos experiencias muy difíciles (desde pequeños traumas cotidianos hasta eventos graves), a veces el cerebro no puede procesar esa información y el recuerdo se queda "bloqueado" con toda su carga de dolor, ansiedad o miedo. EMDR utiliza la estimulación bilateral (como movimientos oculares guiados) para activar el sistema natural de procesamiento del cerebro.',
+    ayuda:
+      'Permite que el cerebro "reprocese" ese recuerdo. No vas a olvidar lo que pasó, pero la carga emocional dolorosa desaparecerá: el recuerdo dejará de doler en el presente y pasará a ser simplemente parte de tu historia.',
     color: '168, 138, 122',
     icon: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0',
   },
@@ -59,9 +79,6 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
         <h2>Una terapia adaptada a tu historia y a tu presente</h2>
         <p>
           Integro distintos enfoques para adaptar la terapia a ti, no al revés.
-        </p>
-        <p class="services-header__note">
-          Los enfoques son las herramientas; los formatos de abajo son donde las combino según tu caso.
         </p>
       </header>
 
@@ -102,7 +119,7 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
         </article>
       </div>
 
-      <section class="services-methods spotlight-section reveal-up" aria-labelledby="enfoques-title">
+      <section id="enfoques" class="services-methods spotlight-section reveal-up" aria-labelledby="enfoques-title">
         <header class="services-methods__header">
           <span class="services-eyebrow">Enfoques</span>
           <h3 id="enfoques-title">Cinco lentes para entender lo que te ocurre.</h3>
@@ -110,25 +127,49 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
             Cada enfoque aporta una perspectiva única para comprender tu experiencia y construir cambios sostenibles.
           </p>
         </header>
-        <div class="methods-bento">
+        <div class="enfoques-list" aria-label="Enfoques terapéuticos">
           {enfoques.map((enfoque, index) => (
             <article
-              class:list={['method-card', 'reveal-up', { 'method-card--featured': index === 0 }]}
-              style={`transition-delay: ${240 + index * 60}ms`}
+              class="enfoque-item reveal-up"
+              data-enfoque-item
+              style={`--category-hue: ${enfoque.color}; transition-delay: ${240 + index * 60}ms`}
             >
-              <span class="method-card__number" aria-hidden="true">0{index + 1}</span>
-              <span class="method-card__accent" aria-hidden="true"></span>
-              <div class="method-card__band">
-                <span class="method-card__icon" aria-hidden="true">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d={enfoque.icon} />
-                  </svg>
-                </span>
-                <span class="method-card__label">{enfoque.label}</span>
-              </div>
-              <div class="method-card__body">
-                <h4>{enfoque.title}</h4>
-                <p>{enfoque.text}</p>
+              <h4 class="enfoque-item__heading">
+                <button
+                  class="enfoque-trigger"
+                  type="button"
+                  aria-expanded="false"
+                  aria-controls={`enfoque-answer-${index}`}
+                >
+                  <span class="enfoque-chip">
+                    <span class="enfoque-chip__icon" aria-hidden="true">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d={enfoque.icon} />
+                      </svg>
+                    </span>
+                    <span>{enfoque.label}</span>
+                  </span>
+                  <span class="enfoque-summary">
+                    <span class="enfoque-title">{enfoque.title}</span>
+                    <span class="enfoque-tagline"><strong>La clave:</strong> {enfoque.tagline}</span>
+                  </span>
+                  <span class="enfoque-icon" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="none" class="enfoque-icon-svg" aria-hidden="true">
+                      <rect x="2" y="9" width="16" height="2" rx="1" fill="currentColor" class="enfoque-icon-h"/>
+                      <rect x="9" y="2" width="2" height="16" rx="1" fill="currentColor" class="enfoque-icon-v"/>
+                    </svg>
+                  </span>
+                </button>
+              </h4>
+              <div id={`enfoque-answer-${index}`} class="enfoque-answer">
+                <div class="enfoque-answer__inner">
+                  <div class="enfoque-answer__body">
+                    <h5>¿En qué consiste?</h5>
+                    <p>{enfoque.consiste}</p>
+                    <h5>¿Cómo te ayuda?</h5>
+                    <p>{enfoque.ayuda}</p>
+                  </div>
+                </div>
               </div>
             </article>
           ))}
@@ -238,16 +279,6 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     font-size: var(--type-lead);
     line-height: 1.8;
     text-wrap: pretty;
-  }
-
-  .services-header__note {
-    max-width: 38rem;
-    margin: 1rem auto 0;
-    color: var(--color-text-muted);
-    font-size: var(--type-body-sm);
-    line-height: 1.7;
-    text-wrap: pretty;
-
   }
 
   .services-eyebrow {
@@ -545,229 +576,252 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     text-wrap: pretty;
   }
 
-  .methods-bento {
-    position: relative;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: 1fr;
-    gap: clamp(1rem, 1.6vw, 1.4rem);
-  }
-
-  /* ── Approach cards: archive-card aesthetic ───────────────── */
-  .method-card {
+  .enfoques-list {
     position: relative;
     display: flex;
     flex-direction: column;
-    min-height: clamp(15rem, 18vw, 18.5rem);
-    padding: clamp(1.45rem, 2.2vw, 1.95rem);
-    border: 1px solid rgba(111, 125, 103, 0.10);
-    border-radius: var(--card-radius);
-    background:
-      linear-gradient(180deg, rgba(255, 253, 248, 0.96) 0%, rgba(250, 247, 240, 0.88) 100%);
-    box-shadow:
-      0 0.5rem 1.4rem rgba(57, 54, 48, 0.03),
-      inset 0 1px 0 rgba(255, 255, 255, 0.9);
-    overflow: hidden;
-    transition:
-      transform 0.55s var(--ease-out-expo),
-      box-shadow 0.55s var(--ease-out-expo),
-      border-color 0.4s ease;
+    gap: 0.85rem;
+    max-width: 56rem;
+    margin: 0 auto;
   }
 
-  .method-card__accent {
-    position: absolute;
-    top: 0;
-    left: 1.6rem;
-    right: 1.6rem;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(111, 125, 103, 0.22), transparent);
-    opacity: 0.7;
-    transition: opacity 0.4s ease, background 0.4s ease;
-  }
-
-  .method-card__band {
+  .enfoque-item {
     position: relative;
-    z-index: 1;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.65rem;
-    margin-bottom: 1.2rem;
-    padding: 0.32rem 0.85rem 0.32rem 0.32rem;
-    border: 1px solid rgba(111, 125, 103, 0.12);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.64);
-    align-self: flex-start;
+    border: 1px solid rgba(111, 125, 103, 0.1);
+    border-radius: var(--card-radius-sm);
+    background: linear-gradient(180deg, rgba(255, 253, 248, 0.92), rgba(250, 247, 240, 0.84));
+    box-shadow: 0 0.35rem 0.9rem rgba(57, 54, 48, 0.03);
+    overflow: hidden;
     transition:
       border-color 0.4s ease,
       background 0.4s ease,
-      transform 0.45s var(--ease-out-expo);
+      box-shadow 0.4s ease,
+      transform 0.4s var(--ease-out-expo);
   }
 
-  .method-card__icon {
+  .enfoque-item:hover {
+    border-color: rgba(111, 125, 103, 0.18);
+    box-shadow: 0 0.55rem 1.2rem rgba(57, 54, 48, 0.05);
+  }
+
+  .enfoque-item.open {
+    border-color: rgba(var(--category-hue), 0.24);
+    background: linear-gradient(180deg, rgba(255, 253, 248, 0.98), rgba(252, 249, 243, 0.9));
+    box-shadow:
+      0 0.75rem 1.8rem rgba(57, 54, 48, 0.05),
+      0 0 0 1px rgba(var(--category-hue), 0.06) inset;
+    transform: translateY(-2px);
+  }
+
+  .enfoque-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, rgba(var(--category-hue), 0.55), rgba(var(--category-hue), 0.2));
+    border-radius: 0 3px 3px 0;
+    opacity: 0;
+    transform: scaleY(0.75);
+    transform-origin: center;
+    transition: opacity 0.45s ease, transform 0.5s var(--ease-out-expo);
+  }
+
+  .enfoque-item.open::before {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .enfoque-item__heading {
+    margin: 0;
+  }
+
+  .enfoque-trigger {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.85rem 1rem;
+    align-items: start;
+    padding: clamp(1.1rem, 2vw, 1.45rem) clamp(1.1rem, 2vw, 1.5rem);
+    border: 0;
+    border-radius: inherit;
+    background: transparent;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.35s ease;
+  }
+
+  .enfoque-trigger:focus-visible {
+    outline: 2px solid rgba(var(--category-hue), 0.35);
+    outline-offset: -2px;
+  }
+
+  .enfoque-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 1.8rem;
+    padding: 0.2rem 0.75rem 0.2rem 0.3rem;
+    border-radius: 999px;
+    background: rgba(var(--category-hue), 0.08);
+    border: 1px solid rgba(var(--category-hue), 0.16);
+    color: rgba(var(--category-hue), 0.92);
+    font-size: var(--type-caption);
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.35s ease, border-color 0.35s ease;
+  }
+
+  .enfoque-chip__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2.15rem;
-    height: 2.15rem;
+    width: 1.65rem;
+    height: 1.65rem;
     border-radius: 50%;
-    color: rgba(111, 125, 103, 0.9);
-    background: rgba(111, 125, 103, 0.07);
-    border: 1px solid rgba(111, 125, 103, 0.14);
-    transition:
-      transform 0.5s var(--ease-out-expo),
-      background 0.4s ease,
-      border-color 0.4s ease;
+    background: rgba(var(--category-hue), 0.1);
+    border: 1px solid rgba(var(--category-hue), 0.14);
     flex-shrink: 0;
   }
 
-  .method-card__icon svg {
-    width: 1.05rem;
-    height: 1.05rem;
+  .enfoque-chip__icon svg {
+    width: 0.85rem;
+    height: 0.85rem;
   }
 
-  .method-card__label {
-    color: rgba(111, 125, 103, 0.92);
-    font-size: var(--type-caption);
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+  .enfoque-item:hover .enfoque-chip,
+  .enfoque-item.open .enfoque-chip {
+    background: rgba(var(--category-hue), 0.14);
+    border-color: rgba(var(--category-hue), 0.28);
   }
 
-  .method-card__number {
-    position: absolute;
-    right: clamp(0.6rem, 1.2vw, 1rem);
-    bottom: clamp(-0.5rem, -0.4vw, -0.2rem);
-    font-family: var(--font-display);
-    font-size: clamp(4.2rem, 6.5vw, 6.2rem);
-
-    font-weight: 400;
-    line-height: 1;
-    color: rgba(184, 168, 138, 0.10);
-    pointer-events: none;
-    transition:
-      transform 0.6s var(--ease-out-expo),
-      color 0.45s ease;
-  }
-
-  .method-card__body {
-    position: relative;
-    z-index: 1;
-    flex: 1;
+  .enfoque-summary {
     display: flex;
     flex-direction: column;
+    gap: 0.45rem;
+    grid-column: 2;
   }
 
-  .method-card h4 {
-    margin: 0 0 0.55rem;
+  .enfoque-title {
     color: var(--color-ink);
     font-family: var(--font-display);
     font-size: var(--type-card-title);
-
     font-weight: 400;
-    line-height: 1.08;
+    line-height: 1.12;
     letter-spacing: -0.02em;
     text-wrap: balance;
   }
 
-  .method-card p {
-    margin: 0;
+  .enfoque-tagline {
     color: var(--color-text-secondary);
-    font-size: var(--type-card-body);
+    font-size: var(--type-body-sm);
     line-height: 1.62;
     text-wrap: pretty;
   }
 
-  .method-card:hover {
-    transform: translateY(-0.5rem);
-    border-color: rgba(111, 125, 103, 0.22);
-    box-shadow:
-      0 1.2rem 2.8rem rgba(57, 54, 48, 0.06),
-      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  .enfoque-tagline strong {
+    color: rgba(var(--category-hue), 0.95);
+    font-weight: 600;
   }
 
-  .method-card:hover .method-card__accent {
-    opacity: 1;
-    background: linear-gradient(90deg, transparent, rgba(184, 168, 138, 0.45), transparent);
-  }
-
-  .method-card:hover .method-card__band {
-    border-color: rgba(111, 125, 103, 0.22);
-    background: rgba(255, 255, 255, 0.85);
-    transform: translateX(0.15rem);
-  }
-
-  .method-card:hover .method-card__icon {
-    transform: scale(1.08) rotate(-5deg);
-    background: rgba(111, 125, 103, 0.13);
-    border-color: rgba(111, 125, 103, 0.24);
-  }
-
-  .method-card:hover .method-card__number {
-    transform: translateY(-0.4rem);
-    color: rgba(184, 168, 138, 0.18);
-  }
-
-  .method-card:focus-within {
-    outline: 2px solid rgba(111, 125, 103, 0.35);
-    outline-offset: 2px;
-  }
-
-  /* Featured card */
-  .method-card--featured {
-    grid-column: span 2;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 0;
-    padding: clamp(1.6rem, 2.8vw, 2.4rem);
-    background:
-      linear-gradient(135deg, rgba(255, 253, 248, 0.98) 0%, rgba(250, 247, 240, 0.9) 50%, rgba(238, 241, 234, 0.55) 100%);
-  }
-
-  .method-card--featured .method-card__band {
-    flex-direction: column;
-    justify-content: center;
+  .enfoque-icon {
+    display: inline-flex;
     align-items: center;
-    gap: 0.85rem;
-    margin: 0 1.8rem 0 0;
-    padding: 0 1.8rem 0 0;
-    border: 0;
-    border-right: 1px solid rgba(111, 125, 103, 0.12);
-    border-radius: 0;
-    background: transparent;
-    align-self: stretch;
-  }
-
-  .method-card--featured .method-card__icon {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .method-card--featured .method-card__icon svg {
-    width: 1.6rem;
-    height: 1.6rem;
-  }
-
-  .method-card--featured .method-card__number {
-    right: clamp(1rem, 2vw, 1.5rem);
-    bottom: clamp(-0.8rem, -0.6vw, -0.3rem);
-    font-size: clamp(6rem, 9vw, 8.5rem);
-    color: rgba(184, 168, 138, 0.11);
-  }
-
-  .method-card--featured .method-card__body {
-    flex: 1;
     justify-content: center;
-    max-width: 54ch;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    color: rgba(111, 125, 103, 0.4);
+    background: rgba(111, 125, 103, 0.05);
+    border: 1px solid rgba(111, 125, 103, 0.12);
+    flex-shrink: 0;
+    grid-row: 1;
+    grid-column: 3;
+    transition:
+      transform 0.45s var(--ease-out-expo),
+      color 0.35s ease,
+      background 0.35s ease,
+      border-color 0.35s ease;
   }
 
-  .method-card--featured h4 {
-    font-size: clamp(var(--type-card-title), 2.4vw, var(--type-card-title-lg));
-    margin-bottom: 0.7rem;
+  .enfoque-item:hover .enfoque-icon,
+  .enfoque-item.open .enfoque-icon {
+    color: rgba(var(--category-hue), 0.85);
+    background: rgba(var(--category-hue), 0.1);
+    border-color: rgba(var(--category-hue), 0.24);
   }
 
-  .method-card--featured p {
-    font-size: var(--type-body);
-    line-height: 1.68;
+  .enfoque-icon-svg {
+    width: 0.85rem;
+    height: 0.85rem;
+  }
+
+  .enfoque-icon-v {
+    transform-origin: center;
+    transition: transform 0.4s var(--ease-out-expo), opacity 0.3s ease;
+  }
+
+  .enfoque-item.open .enfoque-icon {
+    transform: rotate(135deg);
+  }
+
+  .enfoque-item.open .enfoque-icon-v {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  .enfoque-answer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.55s var(--ease-out-expo);
+  }
+
+  .enfoque-answer.open {
+    grid-template-rows: 1fr;
+  }
+
+  .enfoque-answer__inner {
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .enfoque-answer__body {
+    padding: 0 1.5rem 1.5rem;
+    opacity: 0;
+    transition: opacity 0.4s ease 0.12s;
+  }
+
+  .enfoque-answer.open .enfoque-answer__body {
+    opacity: 1;
+  }
+
+  .enfoque-answer__body h5 {
+    margin: 1.1rem 0 0.45rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-card-title-sm);
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .enfoque-answer__body h5:first-child {
+    margin-top: 0;
+  }
+
+  .enfoque-answer__body p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: var(--type-body-sm);
+    line-height: 1.72;
+    text-wrap: pretty;
+  }
+
+  .enfoque-answer__body p + h5 {
+    margin-top: 1.25rem;
   }
 
   .services-outro {
@@ -820,14 +874,38 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     .services-hero {
       grid-template-columns: 1fr;
     }
+  }
 
-    .methods-bento {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+  @media (max-width: 768px) {
+    .enfoque-trigger {
+      gap: 0.65rem 0.75rem;
+      padding: var(--card-pd-sm) clamp(0.9rem, 3vw, 1.2rem);
     }
 
-    .method-card--featured {
-      grid-column: span 2;
-      flex-direction: row;
+    .enfoque-chip {
+      grid-row: 1;
+      grid-column: 1 / -1;
+      justify-self: start;
+    }
+
+    .enfoque-summary {
+      grid-column: 1 / span 2;
+    }
+
+    .enfoque-title {
+      font-size: var(--type-card-title);
+      line-height: 1.14;
+    }
+
+    .enfoque-icon {
+      grid-row: 2;
+      grid-column: 3;
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+
+    .enfoque-answer__body {
+      padding: 0 1rem 1.2rem;
     }
   }
 
@@ -896,53 +974,6 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
       line-height: 1.65;
     }
 
-    .methods-bento {
-      grid-template-columns: 1fr;
-    }
-
-    .method-card h4 {
-      font-size: var(--type-card-title-lg);
-    }
-
-    .method-card,
-    .method-card--featured {
-      grid-column: auto;
-      flex-direction: column;
-      align-items: flex-start;
-      min-height: auto;
-      padding: var(--card-pd-sm);
-    }
-
-    .method-card--featured .method-card__band {
-      flex-direction: row;
-      align-self: flex-start;
-      gap: 0.65rem;
-      margin: 0 0 1.1rem;
-      padding: 0.32rem 0.85rem 0.32rem 0.32rem;
-      border: 1px solid rgba(111, 125, 103, 0.12);
-      border-right: 1px solid rgba(111, 125, 103, 0.12);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.64);
-    }
-
-    .method-card--featured .method-card__icon {
-      width: 2.15rem;
-      height: 2.15rem;
-    }
-
-    .method-card--featured .method-card__icon svg {
-      width: 1.05rem;
-      height: 1.05rem;
-    }
-
-    .method-card__number {
-      font-size: 3rem;
-    }
-
-    .method-card--featured .method-card__number {
-      font-size: 4.5rem;
-    }
-
     .services-pills {
       margin: 1.1rem 0 1.3rem;
     }
@@ -967,24 +998,19 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
       animation: none;
     }
 
-    .method-card,
-    .method-card__accent,
-    .method-card__band,
-    .method-card__icon,
-    .method-card__number,
     .services-button,
     .services-pills li,
     .services-outro__cta,
-    .services-outro__arrow {
+    .services-outro__arrow,
+    .enfoque-item,
+    .enfoque-icon {
       transition: none;
     }
 
     .services-button:hover,
     .services-pills li:hover,
-    .method-card:hover,
-    .method-card:hover .method-card__icon,
-    .method-card:hover .method-card__number,
-    .method-card:hover .method-card__band {
+    .enfoque-item:hover,
+    .enfoque-item.open {
       transform: none;
     }
   }
@@ -1016,3 +1042,27 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
     }
   }
 </style>
+
+<script>
+  document.querySelectorAll('.enfoque-trigger').forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('[data-enfoque-item]');
+      const answer = item?.querySelector('.enfoque-answer');
+      const isOpen = answer?.classList.contains('open');
+
+      document.querySelectorAll('[data-enfoque-item]').forEach((sibling) => {
+        if (sibling !== item) {
+          sibling.classList.remove('open');
+          const siblingAnswer = sibling.querySelector('.enfoque-answer');
+          siblingAnswer?.classList.remove('open');
+          const siblingTrigger = sibling.querySelector('.enfoque-trigger');
+          siblingTrigger?.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      answer?.classList.toggle('open');
+      item?.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+</script>

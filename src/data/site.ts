@@ -1,9 +1,9 @@
 export const SITE = {
   url: 'https://luciamillanpsicologia.es',
   name: 'Lucía Millán Jiménez',
-  title: 'Lucía Millán Jiménez | Psicóloga clínica',
+  title: 'Lucía Millán Jiménez | Psicóloga general sanitaria',
   description:
-    'Psicología clínica en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR.',
+    'Psicología en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR.',
   email: 'luciamillanpsico@gmail.com',
   phone: '+34 722535914',
   phoneHref: '+34722535914',
