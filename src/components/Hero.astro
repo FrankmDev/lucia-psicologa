@@ -26,6 +26,8 @@ const badges = [
     <div class="hero-vignette" aria-hidden="true"></div>
   </div>
 
+  <div class="hero-melt" aria-hidden="true"></div>
+
   <GrainOverlay animated opacity={0.025} zIndex={2} />
   <AmbientLight />
   <DustParticles count={10} />
@@ -39,8 +41,6 @@ const badges = [
 
   <DecorativeRing size={400} top="-100px" right="-100px" />
   <DecorativeRing size={250} bottom="10%" left="-60px" duration={25} reverse class="hide-mobile" />
-
-  <div class="hero-fade" aria-hidden="true"></div>
 
   <div class="hero-content" data-parallax-content>
     <Eyebrow text="Psicología clínica · Ciudad Real · Online" light={true} centered={true} />
@@ -104,15 +104,16 @@ const badges = [
 <style>
   .hero {
     --hero-edge: clamp(1.25rem, 5vw, 4.25rem);
-    --hero-fade-height: clamp(140px, 20vh, 260px);
+    --hero-scroll-reserve: clamp(3.25rem, 6vh, 4.5rem);
 
     position: relative;
     width: 100%;
     min-height: 100dvh;
     height: auto;
     padding-top: var(--site-header-height, 0px);
-    overflow: hidden;
-    contain: paint;
+    padding-bottom: var(--hero-scroll-reserve);
+    overflow-x: clip;
+    overflow-y: visible;
     background: #0d0a08;
     display: grid;
     place-items: center;
@@ -144,7 +145,14 @@ const badges = [
     inset: 0;
     background:
       radial-gradient(ellipse 70% 60% at 50% 48%, rgba(13,10,8,0.52) 0%, transparent 72%),
-      linear-gradient(180deg, rgba(13,10,8,0.54) 0%, rgba(13,10,8,0.32) 44%, rgba(13,10,8,0.48) 100%);
+      linear-gradient(
+        180deg,
+        rgba(13,10,8,0.54) 0%,
+        rgba(13,10,8,0.28) 42%,
+        rgba(13,10,8,0.34) 68%,
+        rgba(13,10,8,0.48) 84%,
+        rgba(13,10,8,0.58) 100%
+      );
     z-index: 1;
   }
   .hero-vignette {
@@ -167,51 +175,26 @@ const badges = [
       radial-gradient(ellipse 82% 70% at 50% 0%, rgba(8,6,5,0.42) 0%, transparent 74%);
   }
 
-  /* Soft melt into the next section — contained inside the 100dvh hero */
-  .hero-fade {
+  /* Barely-there fade into the next section */
+  .hero-melt {
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    height: var(--hero-fade-height);
+    height: var(--hero-melt-height);
     z-index: 2;
     pointer-events: none;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(13, 10, 8, 0) 0%,
-        rgba(13, 10, 8, 0) 34%,
-        rgba(13, 10, 8, 0.04) 48%,
-        rgba(13, 10, 8, 0.12) 60%,
-        rgba(55, 48, 42, 0.22) 72%,
-        rgba(118, 108, 97, 0.32) 82%,
-        rgba(195, 185, 172, 0.46) 90%,
-        rgba(255, 253, 250, 0.82) 96%,
-        #fffdfa 100%
-      );
-  }
-
-  @supports (backdrop-filter: blur(1px)) {
-    .hero-fade {
-      backdrop-filter: blur(24px) saturate(1.03);
-      -webkit-backdrop-filter: blur(24px) saturate(1.03);
-      mask-image: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0) 34%,
-        rgba(0, 0, 0, 0.18) 54%,
-        rgba(0, 0, 0, 0.85) 78%,
-        rgba(0, 0, 0, 1) 100%
-      );
-      -webkit-mask-image: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 0%,
-        rgba(0, 0, 0, 0) 34%,
-        rgba(0, 0, 0, 0.18) 54%,
-        rgba(0, 0, 0, 0.85) 78%,
-        rgba(0, 0, 0, 1) 100%
-      );
-    }
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 58%,
+      rgba(13, 10, 8, 0.04) 72%,
+      rgba(55, 50, 45, 0.06) 84%,
+      rgba(120, 112, 104, 0.08) 92%,
+      rgba(200, 194, 184, 0.14) 97%,
+      rgba(255, 253, 250, 0.32) 99.2%,
+      #fffdfa 100%
+    );
   }
 
   .hero-content {
@@ -447,6 +430,12 @@ const badges = [
     animation: reveal-up 1s var(--ease-out-expo) forwards;
     animation-delay: 2s;
   }
+
+  @media (min-width: 769px) {
+    .hero-therapist {
+      margin-bottom: clamp(0.75rem, 1.5vh, 1.25rem);
+    }
+  }
   .therapist-avatar {
     position: relative;
     width: 52px;
@@ -517,7 +506,7 @@ const badges = [
 
   .scroll-hint {
     position: absolute;
-    bottom: clamp(70px, 12vh, 130px);
+    bottom: clamp(1.75rem, 3.5vh, 2.75rem);
     left: 50%;
     transform: translateX(-50%);
     z-index: 3;
@@ -579,14 +568,21 @@ const badges = [
     }
   }
 
+  @media (max-width: 768px) and (min-height: 641px) {
+    .hero {
+      min-height: 100svh;
+      min-height: 100dvh;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero {
       --hero-edge: clamp(1rem, 5vw, 1.4rem);
-      --hero-fade-height: clamp(100px, 16vh, 180px);
+      --hero-scroll-reserve: 0px;
 
-      height: 100svh;
-      max-height: 100svh;
-      min-height: 0;
+      height: auto;
+      overflow-x: clip;
+      overflow-y: visible;
     }
     .hero-bg-img {
       object-position: 58% center;
@@ -669,7 +665,9 @@ const badges = [
     .btn-hero-ghost {
       font-size: 0.72rem;
       letter-spacing: 0.12em;
-      white-space: nowrap;
+      white-space: normal;
+      text-align: center;
+      line-height: 1.25;
     }
     .hero :global(.btn-hero-cta) {
       width: 100%;
@@ -741,7 +739,7 @@ const badges = [
 
   @media (max-width: 380px) {
     .hero {
-      --hero-edge: 0.9rem;
+      --hero-edge: clamp(1rem, 5vw, 1.15rem);
     }
     .hero-title { margin-bottom: 0.55rem; }
     .title-inner {
@@ -754,10 +752,16 @@ const badges = [
       line-height: 1.45;
     }
     .hero-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
       margin-bottom: 0.75rem;
     }
     .hero-badge {
-      flex: 1 1 auto;
+      flex: none;
+      width: 100%;
+      justify-content: center;
     }
     .hero-cta { gap: 0.55rem; }
     .hero :global(.btn-hero-cta),
@@ -767,22 +771,41 @@ const badges = [
     }
   }
 
-  @media (max-height: 640px) and (max-width: 768px) {
+  @media (max-height: 640px) and (max-width: 900px) {
     .hero {
       --hero-edge: clamp(0.75rem, 4vw, 1.25rem);
-      min-height: 0;
+      min-height: auto;
+      height: auto;
+      padding-bottom: clamp(1.25rem, 4vh, 2rem);
+    }
+    .hero-content {
+      padding-top: calc(var(--site-header-height, 0px) + 0.5rem);
+      padding-bottom: 0.75rem;
     }
     .hero :global(.eyebrow) { margin-bottom: 0.45rem; }
     .hero-title { margin-bottom: 0.45rem; }
-    .title-inner { font-size: clamp(1.8rem, 10vw, 2.45rem); }
+    .title-inner { font-size: clamp(1.8rem, 8vw, 2.45rem); }
     .hero-tagline {
       font-size: 0.82rem;
       margin-bottom: 0.55rem;
       line-height: 1.35;
+      max-width: 28rem;
     }
-    .hero-badges { margin-bottom: 0.55rem; }
-    .hero-badge { min-height: 1.9rem; padding: 0.28rem 0.45rem; }
+    .hero-badges {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: min(100%, 26rem);
+      margin-bottom: 0.55rem;
+    }
+    .hero-badge {
+      flex: 1 1 calc(50% - 0.35rem);
+      min-height: 1.9rem;
+      padding: 0.28rem 0.45rem;
+    }
+    .hero-cta { gap: 0.5rem; }
     .hero :global(.btn-hero-cta) { min-height: 2.55rem; }
+    .scroll-hint { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -367,6 +367,7 @@ const categoryColors: Record<string, string> = {
 
     .faq-header {
       margin-bottom: 2rem;
+      text-align: left;
     }
 
     .faq-header h2 {
@@ -383,10 +384,14 @@ const categoryColors: Record<string, string> = {
     .section-eyebrow {
       gap: 0.55rem;
       letter-spacing: 0.18em;
+      justify-content: flex-start;
     }
     .section-eyebrow::before,
     .section-eyebrow::after {
       width: 1.45rem;
+    }
+    .section-eyebrow::after {
+      display: none;
     }
 
     .faq-list {
@@ -394,6 +399,7 @@ const categoryColors: Record<string, string> = {
     }
 
     .faq-trigger {
+      grid-template-columns: minmax(0, 1fr) auto;
       gap: 0.6rem 0.75rem;
       padding: var(--card-pd-sm) clamp(0.9rem, 3vw, 1.2rem);
     }
@@ -405,14 +411,16 @@ const categoryColors: Record<string, string> = {
     }
 
     .faq-question {
-      grid-column: 1 / span 2;
+      grid-column: 1;
+      grid-row: 2;
       font-size: var(--type-card-title);
       line-height: 1.16;
     }
 
     .faq-icon {
       grid-row: 2;
-      grid-column: 3;
+      grid-column: 2;
+      align-self: start;
       width: 1.8rem;
       height: 1.8rem;
     }

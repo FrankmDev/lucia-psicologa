@@ -1,0 +1,362 @@
+---
+import Container from './ui/Container.astro';
+import GrainOverlay from './ui/GrainOverlay.astro';
+import AmbientLight from './ui/AmbientLight.astro';
+import FloatOrb from './ui/FloatOrb.astro';
+import TherapyAspectCard from './ui/TherapyAspectCard.astro';
+import { therapyAspects } from '../data/home-sections';
+
+const leftColumn = therapyAspects.slice(0, 3);
+const rightColumn = therapyAspects.slice(3);
+---
+
+<section id="que-podemos-trabajar" class="que-trabajar" aria-labelledby="que-trabajar-title">
+  <GrainOverlay opacity={0.012} />
+  <AmbientLight color="rgba(255,255,255,0.22)" />
+  <FloatOrb size={300} top="-12%" right="-8%" color="rgba(141,151,132,0.09)" blur={130} animation="float-1" />
+  <FloatOrb size={200} bottom="6%" left="-6%" color="rgba(216,211,200,0.18)" opacity={0.28} blur={100} animation="float-2" />
+
+  <Container maxWidth="1480px" padding="0 var(--content-padding-x)">
+    <div class="que-trabajar__shell">
+      <header class="que-trabajar__header reveal-blur" data-delay="80">
+        <span class="section-eyebrow">En terapia</span>
+        <h2 id="que-trabajar-title">¿Qué podemos trabajar juntos?</h2>
+        <p>
+          La terapia no consiste en darte consejos, sino en ayudarte a comprender el origen de tu malestar y trabajar para que deje de condicionar tu día a día.
+        </p>
+      </header>
+
+      <div class="que-trabajar__manifest reveal-up" data-delay="160">
+        <div class="que-trabajar__column" role="list" aria-label="Aspectos de trabajo terapéutico, primera parte">
+          {leftColumn.map((item, index) => (
+            <TherapyAspectCard
+              number={item.number}
+              label={item.label}
+              title={item.title}
+              description={item.description}
+              color={item.color}
+              delay={180 + index * 60}
+            />
+          ))}
+        </div>
+
+        <div class="que-trabajar__divider" aria-hidden="true">
+          <span class="que-trabajar__divider-mark"></span>
+        </div>
+
+        <div class="que-trabajar__column" role="list" aria-label="Aspectos de trabajo terapéutico, segunda parte">
+          {rightColumn.map((item, index) => (
+            <TherapyAspectCard
+              number={item.number}
+              label={item.label}
+              title={item.title}
+              description={item.description}
+              color={item.color}
+              delay={360 + index * 60}
+            />
+          ))}
+        </div>
+      </div>
+
+      <footer class="que-trabajar__close reveal-up" data-delay="520">
+        <blockquote class="que-trabajar__quote">
+          <p>
+            Empezamos a trabajar en tu bienestar a tu propio ritmo, con una dirección clara y revisando lo que necesitas en cada momento.
+          </p>
+        </blockquote>
+        <a href="#proceso" class="que-trabajar__cta">
+          <span>Ver cómo empezamos</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </footer>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .que-trabajar {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: var(--section-py) 0 calc(var(--section-py) + 0.5rem);
+    background:
+      radial-gradient(circle at 18% 6%, rgba(255, 255, 255, 0.82), transparent 28%),
+      radial-gradient(circle at 82% 10%, rgba(223, 228, 216, 0.45), transparent 30%),
+      linear-gradient(180deg, #f7f3ec 0%, #f2ede4 55%, #efe9e0 82%, #f5f0e8 100%);
+  }
+
+  .que-trabajar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(rgba(78, 74, 66, 0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(78, 74, 66, 0.008) 1px, transparent 1px);
+    background-size: 7rem 7rem;
+    mask-image: radial-gradient(circle at 50% 38%, #000 0%, transparent 72%);
+    opacity: 0.45;
+  }
+
+  .que-trabajar__shell {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Header ─────────────────────────────────────────────── */
+  .que-trabajar__header {
+    max-width: 58rem;
+    margin: 0 auto clamp(2.4rem, 4.5vw, 3.6rem);
+    text-align: center;
+  }
+
+  .que-trabajar__header h2 {
+    max-width: 48rem;
+    margin: 1rem auto 0.9rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-section-title);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .que-trabajar__header p {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+    font-size: var(--type-lead);
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  /* ── Two-column manifest ──────────────────────────────────── */
+  .que-trabajar__manifest {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 0 clamp(1.75rem, 3.5vw, 3rem);
+    width: 100%;
+    padding: clamp(1.75rem, 3vw, 2.6rem);
+    border: 1px solid rgba(111, 125, 103, 0.15);
+    border-radius: var(--card-radius);
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.97), rgba(249, 246, 239, 0.9)),
+      radial-gradient(circle at 6% 4%, rgba(255, 255, 255, 0.8), transparent 32%),
+      radial-gradient(circle at 94% 96%, rgba(223, 228, 216, 0.4), transparent 34%);
+    box-shadow:
+      0 1.5rem 3.2rem rgba(57, 54, 48, 0.055),
+      inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    overflow: hidden;
+  }
+
+  .que-trabajar__manifest::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      rgba(111, 125, 103, 0.02) 0%,
+      transparent 20%,
+      transparent 80%,
+      rgba(184, 168, 138, 0.02) 100%
+    );
+  }
+
+  .que-trabajar__column {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.95rem, 1.7vw, 1.2rem);
+    align-content: stretch;
+    min-width: 0;
+  }
+
+  .que-trabajar__divider {
+    position: relative;
+    z-index: 1;
+    align-self: stretch;
+    width: 1px;
+    margin: 0.25rem 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(111, 125, 103, 0.12) 8%,
+      rgba(111, 125, 103, 0.22) 50%,
+      rgba(111, 125, 103, 0.12) 92%,
+      transparent 100%
+    );
+  }
+
+  .que-trabajar__divider-mark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: rgba(111, 125, 103, 0.38);
+    box-shadow:
+      0 0 0 5px rgba(255, 253, 248, 0.95),
+      0 0 0 6px rgba(111, 125, 103, 0.09);
+  }
+
+  /* ── Footer ─────────────────────────────────────────────── */
+  .que-trabajar__close {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    margin-top: clamp(2rem, 3.5vw, 2.8rem);
+    padding: clamp(1.4rem, 2.5vw, 1.85rem) clamp(1.5rem, 2.8vw, 2rem);
+    border: 1px solid rgba(111, 125, 103, 0.1);
+    border-radius: var(--card-radius-sm);
+    background: rgba(255, 253, 248, 0.65);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    flex-wrap: wrap;
+  }
+
+  .que-trabajar__quote {
+    margin: 0;
+    flex: 1 1 20rem;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(111, 125, 103, 0.3);
+  }
+
+  .que-trabajar__quote p {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-kicker);
+    font-weight: 400;
+    line-height: 1.52;
+    text-wrap: balance;
+  }
+
+  .que-trabajar__cta {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 2.9rem;
+    padding: 0.76rem 1.3rem;
+    border: 1px solid rgba(47, 45, 40, 0.12);
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: #fbf8f1;
+    font-size: var(--type-caption);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 0.75rem 1.5rem rgba(47, 45, 40, 0.12);
+    transition:
+      transform 0.45s var(--ease-out-expo),
+      box-shadow 0.35s ease,
+      background 0.35s ease;
+  }
+
+  .que-trabajar__cta:hover {
+    background: var(--color-ink-soft);
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 1.8rem rgba(47, 45, 40, 0.15);
+  }
+
+  .que-trabajar__cta svg {
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+
+  .que-trabajar__cta:hover svg {
+    transform: translateX(2px);
+  }
+
+  @media (max-width: 900px) {
+    .que-trabajar__manifest {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: clamp(1.25rem, 2.5vw, 1.75rem);
+    }
+
+    .que-trabajar__divider {
+      display: none;
+    }
+
+    .que-trabajar__column + .que-trabajar__column {
+      margin-top: 0.85rem;
+      padding-top: 0.85rem;
+      border-top: 1px solid rgba(111, 125, 103, 0.1);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .que-trabajar {
+      padding: 4.8rem 0 5.8rem;
+    }
+
+    .que-trabajar__header {
+      margin-bottom: 1.75rem;
+      text-align: left;
+    }
+
+    .que-trabajar__header h2 {
+      font-size: var(--type-section-title-sm);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .que-trabajar__header p {
+      font-size: var(--type-body);
+      line-height: 1.65;
+    }
+
+    .que-trabajar__header .section-eyebrow::after {
+      display: none;
+    }
+
+    .que-trabajar__manifest {
+      border-radius: var(--card-radius-sm);
+    }
+
+    .que-trabajar__close {
+      flex-direction: column;
+      align-items: stretch;
+      margin-top: 1.75rem;
+      padding: var(--card-pd-sm);
+    }
+
+    .que-trabajar__quote {
+      padding-left: 0.85rem;
+    }
+
+    .que-trabajar__quote p {
+      font-size: var(--type-card-title);
+      line-height: 1.4;
+    }
+
+    .que-trabajar__cta {
+      width: 100%;
+      min-height: 2.8rem;
+      font-size: var(--type-meta);
+      letter-spacing: 0.14em;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .que-trabajar__cta,
+    .que-trabajar__cta svg {
+      transition: none;
+    }
+
+    .que-trabajar__cta:hover {
+      transform: none;
+    }
+  }
+</style>

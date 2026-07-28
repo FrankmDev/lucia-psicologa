@@ -102,10 +102,10 @@ const emdrPoints = [
             <span class="sm-label">¿Qué es el EMDR?</span>
             <h3>Reprocesar lo vivido para que ocupe menos.</h3>
             <p>
-              El EMDR reprocesa experiencias "atascadas" en el sistema nervioso: recuerdos intrusivos, reacciones corporales o creencias dolorosas. No borra lo ocurrido, lo integra con menos carga emocional.
+              El EMDR reprocesa experiencias "atascadas": recuerdos intrusivos, reacciones corporales o creencias dolorosas. No borra lo ocurrido; lo integra con menos carga emocional.
             </p>
             <p>
-              Se apoya en estimulación bilateral —movimientos oculares, sonidos alternos o tapping— para ayudar al cerebro a integrar lo vivido sin revivirlo con la misma intensidad.
+              Usa estimulación bilateral —movimientos oculares, sonidos alternos o tapping— para integrar lo vivido sin revivirlo con la misma intensidad.
             </p>
           </div>
 
@@ -655,9 +655,23 @@ const emdrPoints = [
     }
   }
 
+  @media (max-width: 768px) {
+    .sm-emdr__points {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (max-width: 720px) {
     .sobre-mi {
       padding: 4.8rem 0 5.8rem;
+    }
+
+    .sm-header {
+      text-align: left;
+    }
+
+    .sm-eyebrow::after {
+      display: none;
     }
 
     .sobre-mi::before {

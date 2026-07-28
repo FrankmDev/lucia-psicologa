@@ -1,0 +1,236 @@
+---
+interface Props {
+  number: string;
+  label: string;
+  title: string;
+  description: string;
+  color?: string;
+  delay?: number;
+}
+
+const {
+  number,
+  label,
+  title,
+  description,
+  color = '111, 125, 103',
+  delay = 0,
+} = Astro.props;
+---
+
+<article
+  class="situation-card reveal-up"
+  style={`--category-hue: ${color};${delay > 0 ? ` transition-delay: ${delay}ms;` : ''}`}
+>
+  <span class="situation-card__watermark" aria-hidden="true">{number}</span>
+  <div class="situation-card__top">
+    <span class="situation-card__index" aria-hidden="true">{number}</span>
+    <span class="situation-card__label">{label}</span>
+  </div>
+  <div class="situation-card__divider" aria-hidden="true"></div>
+  <h3 class="situation-card__title">{title}</h3>
+  <p class="situation-card__text">{description}</p>
+</article>
+
+<style>
+  .situation-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    height: 100%;
+    min-height: 100%;
+    padding: clamp(1.45rem, 2.4vw, 2rem) clamp(1.75rem, 2.8vw, 2.35rem) clamp(1.45rem, 2.4vw, 2rem) clamp(1.35rem, 2.2vw, 1.85rem);
+    border: 1px solid rgba(111, 125, 103, 0.12);
+    border-radius: var(--card-radius);
+    background:
+      linear-gradient(165deg, rgba(255, 253, 248, 0.96) 0%, rgba(251, 248, 241, 0.82) 52%, rgba(248, 244, 236, 0.68) 100%),
+      radial-gradient(circle at 100% 0%, rgba(var(--category-hue), 0.08), transparent 42%);
+    box-shadow:
+      0 0.9rem 2rem rgba(57, 54, 48, 0.04),
+      inset 0 1px 0 rgba(255, 255, 255, 0.88);
+    overflow: hidden;
+    transition:
+      transform 0.45s var(--ease-out-expo),
+      border-color 0.4s ease,
+      box-shadow 0.45s ease,
+      background 0.45s ease;
+  }
+
+  .situation-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, rgba(var(--category-hue), 0.62), rgba(var(--category-hue), 0.18));
+    opacity: 0.72;
+    transition: opacity 0.4s ease;
+  }
+
+  .situation-card::after {
+    content: '';
+    position: absolute;
+    right: -1.2rem;
+    bottom: -1.2rem;
+    width: 6.5rem;
+    aspect-ratio: 1;
+    border: 1px solid rgba(var(--category-hue), 0.1);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.42), transparent 68%);
+    pointer-events: none;
+    transition: transform 0.55s var(--ease-out-expo), opacity 0.45s ease;
+  }
+
+  .situation-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(var(--category-hue), 0.22);
+    box-shadow:
+      0 1.2rem 2.6rem rgba(57, 54, 48, 0.07),
+      0 0 0 1px rgba(var(--category-hue), 0.05) inset,
+      inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  }
+
+  .situation-card:hover::before {
+    opacity: 1;
+  }
+
+  .situation-card:hover::after {
+    transform: scale(1.06);
+    opacity: 0.9;
+  }
+
+  .situation-card__watermark {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.85rem;
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 5vw, 4.4rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: rgba(var(--category-hue), 0.07);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .situation-card__top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .situation-card__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    border: 1px solid rgba(var(--category-hue), 0.18);
+    background: rgba(var(--category-hue), 0.08);
+    font-family: var(--font-display);
+    font-size: var(--type-body-sm);
+    font-weight: 400;
+    line-height: 1;
+    color: rgba(var(--category-hue), 0.92);
+  }
+
+  .situation-card__label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.75rem;
+    padding: 0.22rem 0.72rem;
+    border-radius: 999px;
+    border: 1px solid rgba(var(--category-hue), 0.16);
+    background: rgba(var(--category-hue), 0.07);
+    color: rgba(var(--category-hue), 0.94);
+    font-size: var(--type-caption);
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .situation-card__divider {
+    position: relative;
+    z-index: 1;
+    width: 2.8rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(var(--category-hue), 0.42), rgba(var(--category-hue), 0.06));
+  }
+
+  .situation-card__title {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    width: 100%;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-subsection-title);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+
+  .situation-card__text {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    width: 100%;
+    color: var(--color-text-secondary);
+    font-size: var(--type-body-sm);
+    line-height: 1.68;
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 768px) {
+    .situation-card__title {
+      font-size: var(--type-card-title-lg);
+      line-height: 1.14;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .situation-card {
+      padding: var(--card-pd-sm);
+      border-radius: var(--card-radius-sm);
+    }
+
+    .situation-card__watermark {
+      font-size: 3rem;
+      top: 0.35rem;
+      right: 0.55rem;
+    }
+
+    .situation-card__index {
+      width: 1.75rem;
+      height: 1.75rem;
+      font-size: var(--type-meta);
+    }
+
+    .situation-card__title {
+      font-size: var(--type-card-title-lg);
+      line-height: 1.14;
+    }
+
+    .situation-card__text {
+      font-size: var(--type-card-body);
+      line-height: 1.58;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .situation-card,
+    .situation-card::after {
+      transition: none;
+    }
+
+    .situation-card:hover {
+      transform: none;
+    }
+  }
+</style>

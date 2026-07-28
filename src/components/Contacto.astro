@@ -785,6 +785,13 @@ const contactRoutes = [
     .contact-info__panel {
       padding: var(--card-pd-md);
     }
+    .form-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .form-disclaimer {
+      max-width: none;
+    }
   }
 
   @media (max-width: 640px) {
@@ -794,6 +801,7 @@ const contactRoutes = [
 
     .contact-header {
       margin-bottom: 2rem;
+      text-align: left;
     }
 
     .contact-header h2 {

@@ -418,12 +418,19 @@ const articles = getLatestArticles(3);
     }
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 640px) {
     .blog-section {
       padding: 4.8rem 0 5.8rem;
     }
     .blog-header {
       margin-bottom: 1.8rem;
+      text-align: left;
+    }
+    .blog-header .section-eyebrow {
+      justify-content: flex-start;
+    }
+    .blog-header .section-eyebrow::after {
+      display: none;
     }
     .blog-header h2 {
       font-size: var(--type-section-title-sm);

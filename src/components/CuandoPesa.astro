@@ -1,0 +1,158 @@
+---
+import NumberedEditorialCard from './ui/NumberedEditorialCard.astro';
+import { situations } from '../data/home-sections';
+---
+
+<section id="cuando-pesa" class="cuando-pesa" aria-labelledby="cuando-pesa-title">
+  <header class="cuando-pesa__header reveal-blur" data-delay="80">
+    <span class="section-eyebrow">Cuando algo pesa</span>
+    <h2 id="cuando-pesa-title">¿Sientes que la vida te pesa más de la cuenta?</h2>
+    <p>
+      Hay etapas en las que parece que podemos con todo, hasta que nos damos cuenta de que solo estamos sobreviviendo. El malestar no siempre se ve desde fuera, pero puede aparecer de distintas formas.
+    </p>
+  </header>
+
+  <div class="cuando-pesa__grid stagger-children">
+    {situations.map((item, index) => (
+      <NumberedEditorialCard
+        number={item.number}
+        label={item.label}
+        title={item.title}
+        description={item.description}
+        color={item.color}
+        delay={160 + index * 70}
+      />
+    ))}
+  </div>
+
+  <p class="cuando-pesa__close reveal-up" data-delay="480">
+    No estás exagerando. Y no tienes por qué cargar con todo esto a solas.
+  </p>
+</section>
+
+<style>
+  .cuando-pesa {
+    width: 100%;
+    margin-top: clamp(2.8rem, 5vw, 4.4rem);
+    padding: clamp(2.6rem, 4.2vw, 3.6rem) clamp(1.4rem, 2.6vw, 2.4rem);
+    border: 1px solid rgba(111, 125, 103, 0.14);
+    border-radius: var(--card-radius);
+    background:
+      linear-gradient(180deg, rgba(255, 253, 248, 0.96), rgba(249, 246, 239, 0.88)),
+      radial-gradient(circle at 8% 6%, rgba(255, 255, 255, 0.78), transparent 30%),
+      radial-gradient(circle at 92% 94%, rgba(223, 228, 216, 0.42), transparent 32%);
+    box-shadow:
+      0 1.4rem 3rem rgba(57, 54, 48, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  .cuando-pesa__header {
+    max-width: 58rem;
+    margin: 0 auto clamp(2.2rem, 4vw, 3.2rem);
+    text-align: center;
+  }
+
+  .cuando-pesa__header h2 {
+    max-width: 48rem;
+    margin: 1rem auto 1rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-section-title);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+  }
+
+  .cuando-pesa__header p {
+    max-width: 42rem;
+    margin: 0 auto;
+    color: var(--color-text-secondary);
+    font-size: var(--type-lead);
+    line-height: 1.78;
+    text-wrap: pretty;
+  }
+
+  .cuando-pesa__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 1.8vw, 1.35rem);
+    width: 100%;
+  }
+
+  .cuando-pesa__close {
+    width: 100%;
+    max-width: none;
+    margin: clamp(2.2rem, 4vw, 3rem) 0 0;
+    padding: clamp(1.35rem, 2.4vw, 1.85rem) clamp(1.4rem, 2.6vw, 2rem);
+    border: 1px solid rgba(111, 125, 103, 0.1);
+    border-radius: var(--card-radius-sm);
+    background: rgba(255, 253, 248, 0.62);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-kicker);
+    font-weight: 400;
+    line-height: 1.55;
+    text-align: center;
+    text-wrap: balance;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+
+  @media (max-width: 900px) {
+    .cuando-pesa__grid {
+      gap: 0.9rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cuando-pesa__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cuando-pesa {
+      padding: var(--card-pd-sm) var(--content-padding-x);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .cuando-pesa {
+      margin-top: 2.4rem;
+      padding: var(--card-pd-sm) 0;
+      border-radius: var(--card-radius-sm);
+    }
+
+    .cuando-pesa__header {
+      margin-bottom: 1.6rem;
+      text-align: left;
+    }
+
+    .cuando-pesa__header h2 {
+      font-size: var(--type-section-title-sm);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .cuando-pesa__header p {
+      font-size: var(--type-body);
+      line-height: 1.65;
+    }
+
+    .cuando-pesa__header .section-eyebrow::after {
+      display: none;
+    }
+
+    .cuando-pesa__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cuando-pesa__close {
+      margin-top: 1.5rem;
+      padding: var(--card-pd-sm);
+      text-align: left;
+      font-size: var(--type-card-title);
+      line-height: 1.42;
+    }
+  }
+</style>

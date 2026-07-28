@@ -728,7 +728,7 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     height: 100dvh;
     z-index: 903;
@@ -765,13 +765,15 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
     opacity: 1;
   }
 
-  /* The panel — bottom sheet, ~60% height, no scroll */
+  /* The panel — bottom sheet with scrollable inner content */
   .overlay-card {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: auto;
-    max-height: 65dvh;
+    max-height: min(88dvh, calc(100dvh - env(safe-area-inset-top, 0px) - 3.5rem));
     overflow: hidden;
     background: linear-gradient(180deg, #faf8f3 0%, #f3efe6 100%);
     border-radius: 28px 28px 0 0;
@@ -804,17 +806,22 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
   }
 
   .overlay-card__inner {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: min(80dvh, calc(100dvh - env(safe-area-inset-top, 0px) - 5.5rem));
     height: auto;
-    min-height: 48dvh;
     padding: 1.25rem clamp(1.25rem, 5vw, 2rem) max(1rem, env(safe-area-inset-bottom, 0px));
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
     position: relative;
     z-index: 2;
     gap: 0.6rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   /* Subtle paper grain texture overlay */
@@ -1246,7 +1253,10 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
   }
 
   @media (max-height: 600px) {
-    .overlay-card__inner { gap: 0.25rem; min-height: 55dvh; }
+    .overlay-card {
+      max-height: min(92dvh, calc(100dvh - env(safe-area-inset-top, 0px) - 2rem));
+    }
+    .overlay-card__inner { gap: 0.25rem; }
     .overlay-nav { gap: 0.05rem; margin-bottom: 0.3rem; }
     .overlay-services { margin-bottom: 0.3rem; }
     .overlay-footer { gap: 0.25rem; padding-top: 0.15rem; }
@@ -1254,12 +1264,11 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
 
   @media (max-height: 500px) {
     .overlay-card {
-      max-height: 85dvh;
+      max-height: min(94dvh, calc(100dvh - env(safe-area-inset-top, 0px) - 1.5rem));
     }
     .overlay-card__inner {
-      min-height: auto;
       padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
     }
     .link-label {
       font-size: clamp(1.5rem, 5vw, 1.8rem);

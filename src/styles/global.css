@@ -538,6 +538,19 @@ button { font-family: inherit; border: none; background: none; cursor: pointer; 
 ::-webkit-scrollbar-thumb { background: var(--color-text-faint); border-radius: 3px; }
 
 /* ── Responsive Base ──────────────────────────────────────── */
+@media (max-width: 640px) {
+  .section-eyebrow {
+    justify-content: flex-start;
+  }
+  .section-eyebrow::after {
+    display: none;
+  }
+  .btn-solid {
+    padding: 16px 24px;
+    letter-spacing: 0.16em;
+  }
+}
+
 @media (max-width: 768px) {
   .type-display-upper {
     letter-spacing: 0.05em;

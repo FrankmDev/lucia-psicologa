@@ -164,6 +164,9 @@
   --section-padding-x: clamp(1rem, 4vw, 4.25rem);
   --content-padding-x: clamp(1rem, 4vw, 2.6rem);
 
+  /* Hero → section melt */
+  --hero-melt-height: clamp(100px, 16vh, 180px);
+
   /* Card padding scale — unified across all components */
   --card-pd-sm: clamp(1rem, 2vw, 1.5rem);
   --card-pd-md: clamp(1.25rem, 2.8vw, 2.25rem);
@@ -227,6 +230,18 @@
   --shadow-md: 0 4px 16px rgba(47, 45, 40, 0.06);
   --shadow-lg: 0 12px 32px rgba(47, 45, 40, 0.08);
   --shadow-xl: 0 24px 48px rgba(47, 45, 40, 0.10);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --hero-melt-height: clamp(80px, 12vh, 140px);
+  }
+}
+
+@media (max-height: 640px) and (max-width: 900px) {
+  :root {
+    --hero-melt-height: clamp(64px, 10vh, 100px);
+  }
 }
 
 /* ── Shell / Navigation ─────────────────────────────────────── */
