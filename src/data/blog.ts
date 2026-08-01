@@ -57,7 +57,7 @@ export const articles: BlogArticle[] = [
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '12 min',
-    excerpt: 'Una explicación clínica y accesible sobre EMDR, trauma, regulación emocional y preparación antes de iniciar el procesamiento.',
+    excerpt: 'Una explicación profesional y accesible sobre EMDR, trauma, regulación emocional y preparación antes de iniciar el procesamiento.',
     keywords: ['terapia EMDR Ciudad Real', 'psicóloga EMDR Ciudad Real', 'tratamiento trauma Ciudad Real', 'EMDR psicología'],
     content: `
 <p class="lead">
@@ -79,12 +79,12 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Desde entonces, el EMDR ha sido investigado en numerosos estudios y cuenta con respaldo en guías clínicas internacionales para el abordaje del trauma. La <strong>Organización Mundial de la Salud (OMS)</strong> lo contempla para el tratamiento de las secuelas psicológicas del trauma y del trastorno de estrés postraumático (TEPT) cuando lo aplica un profesional formado.
+  Desde entonces, el EMDR ha sido investigado en numerosos estudios y cuenta con respaldo en guías internacionales para el abordaje del trauma. La <strong>Organización Mundial de la Salud (OMS)</strong> lo contempla para el tratamiento de las secuelas psicológicas del trauma y del trastorno de estrés postraumático (TEPT) cuando lo aplica un profesional formado.
 </p>
 
 <blockquote>
   <p>El EMDR no busca borrar lo ocurrido. Busca que el recuerdo pueda integrarse con menos carga emocional y más sensación de presente.</p>
-  <cite>— Enfoque clínico del reprocesamiento</cite>
+  <cite>— Enfoque terapéutico del reprocesamiento</cite>
 </blockquote>
 
 <h2>¿Cómo funciona el EMDR en el cerebro? Una explicación sin jerga</h2>
@@ -120,7 +120,7 @@ export const articles: BlogArticle[] = [
 <h2>¿Para qué problemas sirve el EMDR? Más de lo que imaginas</h2>
 
 <p>
-  Muchas personas asocian el EMDR exclusivamente con traumas graves: accidentes, agresiones, desastres naturales. También puede ser útil en otras experiencias estresantes o relacionales cuando la evaluación clínica indica que el recuerdo sigue activando malestar en el presente:
+  Muchas personas asocian el EMDR exclusivamente con traumas graves: accidentes, agresiones, desastres naturales. También puede ser útil en otras experiencias estresantes o relacionales cuando la evaluación profesional indica que el recuerdo sigue activando malestar en el presente:
 </p>
 
 <ul>
@@ -134,7 +134,7 @@ export const articles: BlogArticle[] = [
 </ul>
 
 <p>
-  El estrés acumulado —exámenes, oposiciones, precariedad laboral, rupturas sentimentales— puede desencadenar o reactivar recuerdos que parecían superados. El EMDR ofrece una vía estructurada para abordar esas activaciones cuando la evaluación clínica indica que es adecuado.
+  El estrés acumulado —exámenes, oposiciones, precariedad laboral, rupturas sentimentales— puede desencadenar o reactivar recuerdos que parecían superados. El EMDR ofrece una vía estructurada para abordar esas activaciones cuando la evaluación profesional indica que es adecuado.
 </p>
 
 <h2>¿Cómo es una sesión de EMDR en mi consulta?</h2>
@@ -171,13 +171,13 @@ export const articles: BlogArticle[] = [
 
 <blockquote>
   <p>Un objetivo habitual del trabajo con EMDR es que la persona pueda recordar o exponerse a estímulos asociados al trauma con menos activación física y más sensación de control.</p>
-  <cite>— Objetivo clínico frecuente en trauma</cite>
+  <cite>— Objetivo terapéutico frecuente en trauma</cite>
 </blockquote>
 
 <h2>¿Es seguro? ¿Duele? ¿Puedo empeorar?</h2>
 
 <p>
-  Estas preguntas son completamente válidas. El EMDR es seguro cuando es aplicado por un profesional formado y acreditado. No es una técnica que se aprende en un fin de semana. Requiere formación específica, supervisión clínica y compromiso ético.
+  Estas preguntas son completamente válidas. El EMDR es seguro cuando es aplicado por un profesional formado y acreditado. No es una técnica que se aprende en un fin de semana. Requiere formación específica, supervisión profesional y compromiso ético.
 </p>
 
 <p>
@@ -191,12 +191,12 @@ export const articles: BlogArticle[] = [
 <h2>EMDR: por qué cada vez más personas lo eligen</h2>
 
 <p>
-  En los últimos años, el EMDR ha ganado visibilidad. Universidades y equipos clínicos han incluido formaciones en terapias basadas en la evidencia, y cada vez más profesionales de la salud mental se especializan en este enfoque. Los motivos de esta tendencia son claros:
+  En los últimos años, el EMDR ha ganado visibilidad. Universidades y equipos sanitarios han incluido formaciones en terapias basadas en la evidencia, y cada vez más profesionales de la salud mental se especializan en este enfoque. Los motivos de esta tendencia son claros:
 </p>
 
 <ul>
   <li><strong>Trabajo focalizado:</strong> permite abordar recuerdos o escenas concretas dentro de un plan terapéutico más amplio.</li>
-  <li><strong>Evidencia clínica:</strong> cuenta con investigación y guías internacionales que respaldan su uso en trauma cuando lo aplica un profesional formado.</li>
+  <li><strong>Evidencia científica:</strong> cuenta con investigación y guías internacionales que respaldan su uso en trauma cuando lo aplica un profesional formado.</li>
   <li><strong>No requiere verbalización detallada:</strong> no es necesario contar cada detalle del trauma. El cerebro procesa la información sin necesidad de revivirla en voz alta.</li>
   <li><strong>Abordaje integral:</strong> trabaja simultáneamente con la mente, el cuerpo y las emociones.</li>
   <li><strong>Durabilidad:</strong> los cambios suelen mantenerse en el tiempo porque el recuerdo se ha reprocesado, no solo gestionado.</li>
@@ -268,7 +268,7 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  Como <strong>psicóloga especialista en duelo</strong>, trabajo con personas que han perdido a un padre, una madre, un hijo, una pareja o un amigo. También con pérdidas no reconocidas socialmente: la muerte de una mascota, el aborto, la ruptura de una relación significativa, la pérdida de salud o el abandono forzoso de un país. Todas son pérdidas reales y pueden necesitar atención clínica.
+  Como <strong>psicóloga especialista en duelo</strong>, trabajo con personas que han perdido a un padre, una madre, un hijo, una pareja o un amigo. También con pérdidas no reconocidas socialmente: la muerte de una mascota, el aborto, la ruptura de una relación significativa, la pérdida de salud o el abandono forzoso de un país. Todas son pérdidas reales y pueden necesitar atención psicológica.
 </p>
 
 <h2>El mito de las "fases del duelo": por qué Kübler-Ross no dijo lo que crees</h2>
@@ -343,7 +343,7 @@ export const articles: BlogArticle[] = [
 <h3>6. Te identificas con el "duelo prolongado"</h3>
 
 <p>
-  La OMS y la APA han reconocido recientemente el <strong>trastorno de duelo prolongado</strong> como una condición clínica. Se caracteriza por una intensa nostalgia y preocupación por la persona fallecida, junto con una dificultad severa para aceptar la muerte y reinvertirse en la vida, durante más de seis meses. No es debilidad. Es una condición tratable.
+  La OMS y la APA han reconocido recientemente el <strong>trastorno de duelo prolongado</strong> como una condición reconocida. Se caracteriza por una intensa nostalgia y preocupación por la persona fallecida, junto con una dificultad severa para aceptar la muerte y reinvertirse en la vida, durante más de seis meses. No es debilidad. Es una condición tratable.
 </p>
 
 <h2>Cómo se trabaja el duelo desde la terapia</h2>
@@ -378,7 +378,7 @@ export const articles: BlogArticle[] = [
 
 <blockquote>
   <p>En duelo, el objetivo no es borrar la ausencia, sino poder recordar, sentir y reorganizar la vida sin que el dolor paralice todas las áreas importantes.</p>
-  <cite>— Objetivo clínico frecuente en duelo</cite>
+  <cite>— Objetivo terapéutico frecuente en duelo</cite>
 </blockquote>
 
 <h2>Pérdidas no reconocidas: cuando el duelo es invisible</h2>
@@ -435,11 +435,11 @@ export const articles: BlogArticle[] = [
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
     readTime: '11 min',
-    excerpt: 'Una mirada clínica al mindfulness como herramienta de regulación emocional, con límites, usos y ejemplos prácticos.',
+    excerpt: 'Una mirada profesional al mindfulness como herramienta de regulación emocional, con límites, usos y ejemplos prácticos.',
     keywords: ['mindfulness Ciudad Real', 'regulación emocional Ciudad Real', 'psicóloga mindfulness Ciudad Real', 'técnicas regulación emocional'],
     content: `
 <p class="lead">
-  Muchas personas buscan mindfulness cuando sienten que viven desbordadas: taquicardias antes de exámenes o reuniones, insomnio, irritabilidad o dificultad para desconectar. A veces han probado aplicaciones de meditación o ejercicios sueltos, pero necesitan una guía más ajustada a su situación clínica.
+  Muchas personas buscan mindfulness cuando sienten que viven desbordadas: taquicardias antes de exámenes o reuniones, insomnio, irritabilidad o dificultad para desconectar. A veces han probado aplicaciones de meditación o ejercicios sueltos, pero necesitan una guía más ajustada a su situación emocional.
 </p>
 
 <p>
@@ -505,7 +505,7 @@ export const articles: BlogArticle[] = [
 <h2>Las cinco técnicas de regulación emocional que enseño en mi consulta</h2>
 
 <p>
-  Cada persona necesita un repertorio personalizado. No existe una técnica universal. En mi práctica clínica, evalúo tu perfil emocional, tu historia y tu contexto vital para diseñar un plan de entrenamiento a medida. Estas son las cinco técnicas centrales:
+  Cada persona necesita un repertorio personalizado. No existe una técnica universal. En mi práctica profesional, evalúo tu perfil emocional, tu historia y tu contexto vital para diseñar un plan de entrenamiento a medida. Estas son las cinco técnicas centrales:
 </p>
 
 <h3>1. Respiración diafragmática consciente (la base de todo)</h3>
@@ -573,7 +573,7 @@ export const articles: BlogArticle[] = [
 
 <blockquote>
   <p>Un objetivo habitual del entrenamiento no es eliminar la ansiedad, sino reconocer sus señales, aplicar una técnica concreta y poder actuar sin quedar bloqueado por la intensidad del síntoma.</p>
-  <cite>— Objetivo clínico frecuente en regulación emocional</cite>
+  <cite>— Objetivo terapéutico frecuente en regulación emocional</cite>
 </blockquote>
 
 <h2>Mindfulness adaptado a la vida real</h2>
@@ -593,7 +593,7 @@ export const articles: BlogArticle[] = [
 <h2>¿Cuánto tiempo hace falta para notar cambios?</h2>
 
 <p>
-  Los estudios clínicos indican que los primeros cambios significativos aparecen tras <strong>ocho semanas</strong> de práctica regular (20-30 minutos diarios). Pero en mi experiencia clínica, muchas personas notan mejorías antes: mejor sueño desde la primera semana, menor reactividad emocional desde la tercera, mayor claridad mental desde la quinta.
+  Los estudios científicos indican que los primeros cambios significativos aparecen tras <strong>ocho semanas</strong> de práctica regular (20-30 minutos diarios). Pero en mi experiencia profesional, muchas personas notan mejorías antes: mejor sueño desde la primera semana, menor reactividad emocional desde la tercera, mayor claridad mental desde la quinta.
 </p>
 
 <p>
@@ -603,7 +603,7 @@ export const articles: BlogArticle[] = [
 <h2>Cuándo el mindfulness no es suficiente (y qué hacer entonces)</h2>
 
 <p>
-  El mindfulness puede ser una herramienta útil, pero no es una panacea. No suele ser suficiente como única intervención cuando existe un trastorno activo severo, un trauma no procesado o un duelo complicado. En esos casos, se integra dentro de un tratamiento más amplio que puede incluir Terapia Cognitivo Conductual, EMDR u otros enfoques clínicos.
+  El mindfulness puede ser una herramienta útil, pero no es una panacea. No suele ser suficiente como única intervención cuando existe un trastorno activo severo, un trauma no procesado o un duelo complicado. En esos casos, se integra dentro de un tratamiento más amplio que puede incluir Terapia Cognitivo Conductual, EMDR u otros enfoques terapéuticos.
 </p>
 
 <p>
@@ -747,13 +747,13 @@ export const articles: BlogArticle[] = [
 </p>
 
 <p>
-  En consulta no hay juicios ni diagnósticos precipitados. La terapia que practico es conversacional, activa y colaborativa: trabajamos con información clínica, objetivos compartidos y revisiones periódicas.
+  En consulta no hay juicios ni diagnósticos precipitados. La terapia que practico es conversacional, activa y colaborativa: trabajamos con información profesional, objetivos compartidos y revisiones periódicas.
 </p>
 
 <h2>¿Cómo es ir al psicólogo? Tu primera consulta paso a paso</h2>
 
 <p>
-  La primera sesión dura aproximadamente entre cincuenta minutos y una hora. No es un interrogatorio. Es una conversación. Y como toda conversación que merece la pena, empieza por lo básico: quién eres, qué te ha traído aquí y qué esperas del proceso.
+  Todas las sesiones duran 60 minutos. No es un interrogatorio. Es una conversación. Y como toda conversación que merece la pena, empieza por lo básico: quién eres, qué te ha traído aquí y qué esperas del proceso.
 </p>
 
 <h3>Antes de entrar: qué llevar y qué dejar</h3>

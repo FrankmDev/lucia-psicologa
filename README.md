@@ -1,80 +1,46 @@
-# Lucía — Psicóloga en Granada
+# Lucía Millán Jiménez — Psicología
 
-Landing page profesional para Lucía, psicóloga colegiada en Granada especializada en ansiedad, duelo, autoestima, relaciones de pareja, terapia EMDR y mindfulness.
+Sitio estático de Lucía Millán Jiménez, psicóloga general sanitaria en Ciudad Real, construido con Astro.
 
-## Diseño "Organic Editorial"
+## Stack
 
-Esta landing page sigue el concepto de diseño **"Organic Editorial"** — una revista de bienestar de autor, no una clínica. Características principales:
-
-- **Tipografía expresiva**: Playfair Display (serif elegante) + DM Sans (humanista moderna)
-- **Paleta cálida**: Slate azul-gris (#4A5568) + Mint suave (#81D8D0) sobre fondo blanco cálido (#FAFAF8)
-- **Layout asimétrico**: Texto que rompe el grid, elementos flotantes sin contenedor
-- **Detalles orgánicos**: Líneas SVG curvas, formas inspiradas en el cerebro/corazón del logo
-- **Grain overlay sutil**: Textura de ruido CSS para evitar el aspecto digital puro
-- **Cursor personalizado**: Círculo mint que sigue el mouse con movimiento suave
-- **Animaciones staggered**: Entrada de texto línea por línea con delays
-
-## Estructura de la Página
-
-1. **Hero** — Pantalla completa con titular expresivo y forma decorativa orgánica
-2. **Sobre Mí** — Layout partido con foto en clip-path orgánico y pull quote destacado
-3. **Especialidades** — Lista horizontal con separadores finos y efectos hover
-4. **Cómo Funciona** — Proceso en 3 pasos con línea conectora curva
-5. **Testimonios** — Carrusel horizontal con fondo oscuro (único momento dark)
-6. **FAQ** — Acordeón minimalista con signo + que rota a ×
-7. **Contacto** — Formulario editorial con inputs de borde inferior únicamente
-8. **Footer** — Minimalista con gradiente de borde superior
-
-## Stack Tecnológico
-
-- **Framework**: [Astro](https://astro.build/) v6.1.6
-- **Estilos**: Tailwind CSS v4 con @apply para clases recurrentes
-- **Tipografías**: Google Fonts (Playfair Display + DM Sans)
-- **Animaciones**: CSS @keyframes + IntersectionObserver para scroll reveal
-- **Iconos**: SVG hand-drawn style personalizados
+- Astro 7 con salida estática.
+- TypeScript en modo estricto y validación con `astro check`.
+- CSS nativo, estilos encapsulados por componente y tokens globales.
+- Fuentes autoalojadas mediante la API de fuentes de Astro.
+- Imágenes locales optimizadas con `astro:assets`.
+- Bun como único gestor de paquetes.
 
 ## Comandos
 
 ```bash
-# Instalar dependencias
-npm install
-
-# Servidor de desarrollo
-npm run dev
-
-# Build para producción
-npm run build
-
-# Preview del build
-npm run preview
+bun install       # Instalar dependencias
+bun run dev       # Servidor de desarrollo
+bun run check     # Validar Astro y TypeScript
+bun run build     # Generar el sitio en dist/
+bun run qa        # Ejecutar tipos, build y validación del HTML generado
+bun run preview   # Previsualizar el build
 ```
 
-## SEO & Accesibilidad
+## Estructura
 
-- Meta descripción optimizada
-- Schema.org ProfessionalService
-- Enlaces de navegación interna
-- Estados focus visibles
-- Contraste de color accesible
-- Estructura semántica HTML5
+```text
+src/
+├── assets/       # Imágenes y vídeo procesados por Astro
+├── components/   # Secciones de página y componentes compartidos
+│   └── ui/       # Primitivas visuales reutilizables
+├── data/         # Contenido estructurado y datos globales
+├── layouts/      # Layout principal y layout de páginas legales
+├── pages/        # Rutas de Astro
+└── styles/       # Tokens y estilos globales
+scripts/           # Validaciones automatizadas del build
+```
 
-## Personalización
+Las rutas principales se generan desde `src/pages/`. La portada compone sus secciones en `src/pages/index.astro`; el blog obtiene sus artículos de `src/data/blog.ts`; y los datos de contacto compartidos se mantienen en `src/data/site.ts`.
 
-Para actualizar el contenido, edita los archivos en `/src/components/`:
+## Convenciones
 
-- `Hero.astro` — Titular principal y CTA
-- `SobreMi.astro` — Biografía y foto
-- `Especialidades.astro` — Lista de servicios
-- `ComoFunciona.astro` — Proceso de trabajo
-- `Testimonios.astro` — Citas de clientes
-- `FAQ.astro` — Preguntas frecuentes
-- `Contacto.astro` — Formulario e info de contacto
-
-## Créditos
-
-Diseño y desarrollo con concepto "Organic Editorial" para transmitir calma, calidez y profesionalidad en el contexto de la psicología.
-
----
-
-*Vault-Tec is not responsible for any unforeseen website awesomeness.*
-# lucia-psicologa
+- Mantener los assets importados dentro de `src/assets/` para que Astro pueda optimizarlos.
+- Reservar `public/` para archivos que deban conservar una URL pública estable.
+- Centralizar datos compartidos antes de repetirlos en componentes.
+- Ejecutar `bun run qa` antes de publicar.

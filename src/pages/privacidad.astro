@@ -1,273 +1,85 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
-import Container from '../components/ui/Container.astro';
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { SITE } from '../data/site';
 ---
 
-<Layout
+<LegalLayout
   title="Política de Privacidad | Lucía Millán Jiménez"
-  description="Política de privacidad del sitio web de Lucía Millán Jiménez, psicóloga clínica en Ciudad Real."
+  description="Política de privacidad del sitio web de Lucía Millán Jiménez, psicóloga general sanitaria en Ciudad Real."
+  eyebrow="Protección de datos"
+  heading="Política de Privacidad"
+  lead="Información sobre el tratamiento de tus datos personales y cómo ejercer tus derechos."
 >
-  <Navigation />
+  <section class="legal-section">
+    <h2>1. Responsable del tratamiento</h2>
+    <ul>
+      <li><strong>Responsable:</strong> {SITE.name}</li>
+      <li><strong>Número de colegiada:</strong> {SITE.license}</li>
+      <li><strong>Correo electrónico:</strong> {SITE.email}</li>
+      <li><strong>Teléfono:</strong> {SITE.phoneDisplay}</li>
+      <li><strong>Dirección:</strong> {SITE.address.display}</li>
+    </ul>
+    <p>Esta política informa sobre cómo se tratan los datos personales recibidos a través de este sitio web, formularios de contacto, correo electrónico, teléfono u otros canales de comunicación profesional.</p>
+  </section>
 
-  <main class="legal-page">
-    <Container maxWidth="800px" padding="0 var(--content-padding-x)">
-      <article class="legal-article">
-        <header class="legal-header">
-          <span class="legal-eyebrow">Protección de datos</span>
-          <h1>Política de Privacidad</h1>
-          <p class="legal-lead">Información sobre el tratamiento de tus datos personales y cómo ejercer tus derechos.</p>
-        </header>
+  <section class="legal-section">
+    <h2>2. Datos que recogemos</h2>
+    <p>A través del formulario de contacto o de los enlaces de email y teléfono se tratan únicamente los datos necesarios para atender tu solicitud: nombre, correo electrónico, teléfono si lo facilitas, contenido del mensaje y cualquier información que decidas incluir voluntariamente.</p>
+    <p>Se recomienda no enviar información muy sensible sobre tu salud a través del formulario o del primer correo. La información necesaria para la valoración psicológica se recogerá, cuando proceda, en un contexto profesional adecuado y con las garantías de confidencialidad correspondientes.</p>
+    <p>El sitio puede generar datos técnicos básicos de navegación necesarios para su funcionamiento, seguridad y mantenimiento, como dirección IP, fecha y hora de acceso, navegador o sistema operativo, tratados por el proveedor de alojamiento.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>1. Responsable del tratamiento</h2>
-          <ul>
-            <li><strong>Responsable:</strong> Lucía Millán Jiménez</li>
-            <li><strong>Número de colegiada:</strong> CM03673</li>
-            <li><strong>Correo electrónico:</strong> luciamillanpsico@gmail.com</li>
-            <li><strong>Teléfono:</strong> 722535914</li>
-            <li><strong>Dirección:</strong> c/ Toledo, 8, 2° Planta, 13001, Ciudad Real</li>
-          </ul>
-          <p>Esta política informa sobre cómo se tratan los datos personales recibidos a través de este sitio web, formularios de contacto, correo electrónico, teléfono u otros canales de comunicación profesional.</p>
-        </section>
+  <section class="legal-section">
+    <h2>3. Finalidad del tratamiento</h2>
+    <p>Tus datos personales se utilizan exclusivamente para:</p>
+    <ul>
+      <li>Responder a tus consultas y solicitudes de información.</li>
+      <li>Gestionar la reserva de citas y el seguimiento terapéutico.</li>
+      <li>Enviar comunicaciones relacionadas con los servicios contratados.</li>
+      <li>Cumplir obligaciones legales, deontológicas y profesionales aplicables.</li>
+      <li>Mantener la seguridad, disponibilidad y correcto funcionamiento del sitio web.</li>
+    </ul>
+    <p>No se utilizan tus datos para enviar comunicaciones comerciales no solicitadas ni se elaboran perfiles comerciales a partir de la información recibida.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>2. Datos que recogemos</h2>
-          <p>A través del formulario de contacto o de los enlaces de email y teléfono se tratan únicamente los datos necesarios para atender tu solicitud: nombre, correo electrónico, teléfono si lo facilitas, contenido del mensaje y cualquier información que decidas incluir voluntariamente.</p>
-          <p>Se recomienda no enviar información clínica especialmente sensible a través del formulario o del primer correo. La información necesaria para la valoración psicológica se recogerá, cuando proceda, en un contexto profesional adecuado y con las garantías de confidencialidad correspondientes.</p>
-          <p>El sitio puede generar datos técnicos básicos de navegación necesarios para su funcionamiento, seguridad y mantenimiento, como dirección IP, fecha y hora de acceso, navegador o sistema operativo, tratados por el proveedor de alojamiento.</p>
-        </section>
+  <section class="legal-section">
+    <h2>4. Legitimación</h2>
+    <p>La base legal para responder a consultas enviadas por el sitio web es el consentimiento de la persona interesada y la aplicación de medidas precontractuales solicitadas por ella. Si se inicia una relación profesional, la base jurídica será la prestación del servicio acordado y el cumplimiento de las obligaciones legales y deontológicas aplicables.</p>
+    <p>El tratamiento de datos técnicos necesarios para la seguridad y mantenimiento del sitio se basa en el interés legítimo de mantener la página disponible, segura y correctamente operativa.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>3. Finalidad del tratamiento</h2>
-          <p>Tus datos personales se utilizan exclusivamente para:</p>
-          <ul>
-            <li>Responder a tus consultas y solicitudes de información.</li>
-            <li>Gestionar la reserva de citas y el seguimiento terapéutico.</li>
-            <li>Enviar comunicaciones relacionadas con los servicios contratados.</li>
-            <li>Cumplir obligaciones legales, deontológicas y profesionales aplicables.</li>
-            <li>Mantener la seguridad, disponibilidad y correcto funcionamiento del sitio web.</li>
-          </ul>
-          <p>No se utilizan tus datos para enviar comunicaciones comerciales no solicitadas ni se elaboran perfiles comerciales a partir de la información recibida.</p>
-        </section>
+  <section class="legal-section">
+    <h2>5. Confidencialidad y secreto profesional</h2>
+    <p>Como psicóloga general sanitaria colegiada, me rige el <strong>deber de secreto profesional</strong> y el Código Deontológico de la profesión. Toda la información compartida durante el proceso terapéutico se trata con la máxima confidencialidad y seguridad.</p>
+    <p>En el caso de menores de edad o situaciones que impliquen un riesgo inminente para la integridad física o psicológica, se actuará conforme a lo establecido por la normativa vigente.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>4. Legitimación</h2>
-          <p>La base legal para responder a consultas enviadas por el sitio web es el consentimiento de la persona interesada y la aplicación de medidas precontractuales solicitadas por ella. Si se inicia una relación profesional, la base jurídica será la prestación del servicio acordado y el cumplimiento de las obligaciones legales y deontológicas aplicables.</p>
-          <p>El tratamiento de datos técnicos necesarios para la seguridad y mantenimiento del sitio se basa en el interés legítimo de mantener la página disponible, segura y correctamente operativa.</p>
-        </section>
+  <section class="legal-section">
+    <h2>6. Conservación de los datos</h2>
+    <p>Los datos de contacto se conservarán durante el tiempo necesario para atender tu solicitud y, posteriormente, durante los plazos legalmente establecidos para acreditar la atención prestada o responder a posibles responsabilidades.</p>
+    <p>Los datos relacionados con un proceso terapéutico, si llega a iniciarse, se conservarán conforme a la normativa sanitaria, civil, fiscal y deontológica aplicable en cada momento.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>5. Confidencialidad y secreto profesional</h2>
-          <p>Como psicóloga colegiada, me rige el <strong>deber de secreto profesional</strong> y el Código Deontológico de la profesión. Toda la información compartida durante el proceso terapéutico se trata con la máxima confidencialidad y seguridad.</p>
-          <p>En el caso de menores de edad o situaciones que impliquen un riesgo inminente para la integridad física o psicológica, se actuará conforme a lo establecido por la normativa vigente.</p>
-        </section>
+  <section class="legal-section">
+    <h2>7. Comunicación de datos a terceros</h2>
+    <p>No se cederán datos personales a terceros salvo obligación legal, autorización expresa de la persona interesada o cuando sea necesario para la prestación de servicios auxiliares estrictamente vinculados al funcionamiento del sitio web y la gestión profesional.</p>
+    <p>El sitio está alojado en Vercel, por lo que pueden intervenir proveedores tecnológicos que actúan como encargados del tratamiento o prestadores de servicios de infraestructura. En caso de que existan transferencias internacionales de datos, se realizarán conforme a las garantías previstas por el RGPD.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>6. Conservación de los datos</h2>
-          <p>Los datos de contacto se conservarán durante el tiempo necesario para atender tu solicitud y, posteriormente, durante los plazos legalmente establecidos para acreditar la atención prestada o responder a posibles responsabilidades.</p>
-          <p>Los datos relacionados con un proceso terapéutico, si llega a iniciarse, se conservarán conforme a la normativa sanitaria, civil, fiscal y deontológica aplicable en cada momento.</p>
-        </section>
+  <section class="legal-section">
+    <h2>8. Tus derechos</h2>
+    <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento, portabilidad y a no ser objeto de decisiones individuales automatizadas enviando un correo electrónico a <strong>{SITE.email}</strong>, indicando claramente el derecho que deseas ejercer y aportando la información necesaria para verificar tu identidad.</p>
+    <p>También tienes derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong> si consideras que el tratamiento de tus datos vulnera la normativa.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>7. Comunicación de datos a terceros</h2>
-          <p>No se cederán datos personales a terceros salvo obligación legal, autorización expresa de la persona interesada o cuando sea necesario para la prestación de servicios auxiliares estrictamente vinculados al funcionamiento del sitio web y la gestión profesional.</p>
-          <p>El sitio está alojado en Vercel, por lo que pueden intervenir proveedores tecnológicos que actúan como encargados del tratamiento o prestadores de servicios de infraestructura. En caso de que existan transferencias internacionales de datos, se realizarán conforme a las garantías previstas por el RGPD.</p>
-        </section>
+  <section class="legal-section">
+    <h2>9. Seguridad</h2>
+    <p>Se han adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, teniendo en cuenta el estado de la tecnología, la naturaleza de los datos y los riesgos a los que están expuestos.</p>
+  </section>
 
-        <section class="legal-section">
-          <h2>8. Tus derechos</h2>
-          <p>Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento, portabilidad y a no ser objeto de decisiones individuales automatizadas enviando un correo electrónico a <strong>luciamillanpsico@gmail.com</strong>, indicando claramente el derecho que deseas ejercer y aportando la información necesaria para verificar tu identidad.</p>
-          <p>También tienes derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong> si consideras que el tratamiento de tus datos vulnera la normativa.</p>
-        </section>
-
-        <section class="legal-section">
-          <h2>9. Seguridad</h2>
-          <p>Se han adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de los datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, teniendo en cuenta el estado de la tecnología, la naturaleza de los datos y los riesgos a los que están expuestos.</p>
-        </section>
-
-        <section class="legal-section">
-          <h2>10. Cambios en esta política</h2>
-          <p>Esta política puede actualizarse para adaptarse a cambios normativos, técnicos o profesionales. La versión vigente será siempre la publicada en esta página.</p>
-          <p><strong>Última actualización:</strong> 12 de junio de 2026.</p>
-        </section>
-      </article>
-    </Container>
-  </main>
-
-  <Footer />
-</Layout>
-
-<style>
-  .legal-page {
-    position: relative;
-    background: var(--parchment);
-    padding: clamp(8rem, 14vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
-    min-height: 100dvh;
-  }
-
-  .legal-article {
-    position: relative;
-    z-index: 2;
-  }
-
-  .legal-header {
-    text-align: center;
-    margin-bottom: clamp(3rem, 5vw, 4.5rem);
-  }
-
-  .legal-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.78rem;
-    color: var(--sage-dark);
-    font-size: var(--type-meta);
-    font-weight: 500;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .legal-eyebrow::before,
-  .legal-eyebrow::after {
-    content: '';
-    width: 2.35rem;
-    height: 1px;
-    background: rgba(111, 125, 103, 0.28);
-  }
-
-  .legal-header h1 {
-    font-family: var(--font-display);
-    font-size: var(--type-page-title);
-
-    font-weight: 400;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin-bottom: 1rem;
-  }
-
-  .legal-lead {
-    max-width: 42ch;
-    margin: 0 auto;
-    color: var(--taupe);
-    font-size: var(--type-body);
-    line-height: 1.7;
-  }
-
-  .legal-section {
-    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
-    padding-bottom: clamp(2rem, 3vw, 2.8rem);
-    border-bottom: 1px solid var(--line);
-  }
-
-  .legal-section:last-child {
-    border-bottom: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  .legal-section h2 {
-    font-family: var(--font-display);
-    font-size: var(--type-subsection-title);
-
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--ink);
-    margin-bottom: 1.2rem;
-  }
-
-  .legal-section p {
-    color: var(--ink-soft);
-    font-size: var(--type-body-sm);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-
-  .legal-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 1rem;
-    display: grid;
-    gap: 0.6rem;
-  }
-
-  .legal-section li {
-    color: var(--ink-soft);
-    font-size: var(--type-body-sm);
-    line-height: 1.7;
-    padding-left: 1.2rem;
-    position: relative;
-  }
-
-  .legal-section li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.65rem;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--sage-dark);
-    opacity: 0.5;
-  }
-
-  .legal-section strong {
-    color: var(--ink);
-    font-weight: 500;
-  }
-
-  @media (max-width: 768px) {
-    .legal-page {
-      padding: 7rem 0 5rem;
-    }
-    .legal-header {
-      text-align: left;
-      margin-bottom: 2.5rem;
-    }
-    .legal-eyebrow {
-      justify-content: flex-start;
-    }
-    .legal-eyebrow::after {
-      display: none;
-    }
-    .legal-header h1 {
-      font-size: var(--type-page-title);
-      line-height: 1.05;
-      letter-spacing: -0.015em;
-    }
-    .legal-lead {
-      font-size: var(--type-body);
-      line-height: 1.6;
-      margin: 0;
-    }
-    .legal-section {
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-    }
-    .legal-section h2 {
-      font-size: var(--type-card-title);
-      margin-bottom: 1rem;
-    }
-    .legal-section p,
-    .legal-section li {
-      font-size: var(--type-small);
-      line-height: 1.7;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .legal-page {
-      padding: 6.5rem 0 4.5rem;
-    }
-    .legal-eyebrow {
-      gap: 0.55rem;
-      letter-spacing: 0.18em;
-    }
-    .legal-eyebrow::before {
-      width: 1.45rem;
-    }
-  }
-</style>
+  <section class="legal-section">
+    <h2>10. Cambios en esta política</h2>
+    <p>Esta política puede actualizarse para adaptarse a cambios normativos, técnicos o profesionales. La versión vigente será siempre la publicada en esta página.</p>
+    <p><strong>Última actualización:</strong> 12 de junio de 2026.</p>
+  </section>
+</LegalLayout>

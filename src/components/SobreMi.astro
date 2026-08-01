@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Button from './ui/Button.astro';
 import PageNumber from './ui/PageNumber.astro';
 import Container from './ui/Container.astro';
@@ -9,8 +10,8 @@ import FloatOrb from './ui/FloatOrb.astro';
 import portraitImage from '../assets/about.avif';
 
 const credentials = [
-  'Psicóloga clínica colegiada',
-  'Formación oficial Nivel I en EMDR',
+  'Psicóloga general sanitaria colegiada',
+  'Formación básica EMDR Nivel I',
   'Enfoque integrador',
   'Presencial y online',
 ];
@@ -20,21 +21,25 @@ const emdrPoints = [
     title: 'Procesamiento seguro',
     text: 'Recursos de regulación antes de abordar recuerdos dolorosos.',
     icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+    badges: ['Estabilización', 'Regulación'],
   },
   {
     title: 'Trauma y heridas relacionales',
     text: 'Traumas evidentes o heridas silenciosas, ambas merecen atención.',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
+    badges: ['Trauma', 'TEPT'],
   },
   {
     title: 'Alivio de síntomas',
     text: 'Menos carga emocional asociada a recuerdos, imágenes y sensaciones.',
     icon: 'M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z',
+    badges: ['Ansiedad', 'Fobias'],
   },
   {
     title: 'Reestructuración cognitiva',
     text: 'Nuevas perspectivas sobre lo vivido, con menor culpa o vergüenza.',
     icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+    badges: ['Integración', 'Perspectiva'],
   },
 ];
 
@@ -52,14 +57,22 @@ const emdrPoints = [
         <span class="sm-eyebrow">Sobre mí</span>
         <h2>Un espacio tranquilo para procesar lo que aún pesa.</h2>
         <p>
-          Acompañamiento psicológico cercano y respetuoso, con formación especializada en trauma y EMDR.
+          Acompañamiento psicológico cercano y respetuoso, con formación especializada en trauma y EMDR. Un espacio para explorar lo que te ocurre con calma, sin prisas ni juicios.
         </p>
       </header>
 
       <article class="sm-panel reveal-scale" data-delay="180">
         <div class="sm-panel__visual">
           <figure class="sm-portrait sm-portrait--main">
-            <img src={portraitImage.src} alt="Lucía Millán Jiménez, psicóloga clínica" width={portraitImage.width} height={portraitImage.height} sizes="(max-width: 960px) 72vw, 360px" decoding="async" loading="lazy" />
+            <Image
+              src={portraitImage}
+              alt="Lucía Millán Jiménez, psicóloga general sanitaria"
+              widths={[320, 480, 640, 800]}
+              sizes="(max-width: 960px) 72vw, 360px"
+              format="avif"
+              decoding="async"
+              loading="lazy"
+            />
             <figcaption>
               <span>Lucía Millán Jiménez</span>
             </figcaption>
@@ -69,11 +82,11 @@ const emdrPoints = [
         <div class="sm-panel__content">
           <span class="sm-label">Conoce a Lucía</span>
           <p class="sm-lead">
-            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga clínica colegiada con formación especializada en trauma y EMDR. Adapto la terapia a cada persona según su historia, problemática y necesidades, integrando distintos enfoques cuando encaja clínicamente.
+            Soy <strong>Lucía Millán Jiménez</strong>, psicóloga general sanitaria colegiada. Tengo el <strong>Grado de Psicología</strong> en la Universidad de Educación a Distancia (<strong>UNED</strong>) y el <strong>Máster de Psicología General Sanitaria</strong> en la Universidad Internacional de La Rioja (<strong>UNIR</strong>). Atiendo en Ciudad Real y también de forma online.
           </p>
 
           <p>
-            Cuento con la formación oficial de <strong>Nivel I en EMDR</strong>, avalada por la Asociación EMDR España y EMDR Europa, e impartida a través de Imaya Formación. Integro el modelo PISA (Procesamiento de la Información a Sistemas Adaptativos, el modelo clínico del EMDR, sin relación con el informe educativo) para trabajar trauma, bloqueos y experiencias dolorosas mediante estimulación bilateral —una técnica que combina movimientos oculares u otros estímulos alternos para ayudar al cerebro a reprocesar el recuerdo— cuando encaja en el proceso.
+            A lo largo de estos años he ido formándome en diferentes enfoques psicológicos porque creo que es importante, ya que no existen dos procesos iguales y cada persona o situación pueden requerir herramientas diferentes, y eso hace que me pueda adaptar a la problemática de cada persona de forma individualizada. Mi objetivo es que encuentres un espacio seguro donde poder hablar de lo que te preocupa y avanzar a tu ritmo.
           </p>
 
           <ul class="sm-credentials" aria-label="Credenciales y modalidad">
@@ -83,8 +96,6 @@ const emdrPoints = [
           </ul>
 
           <div class="sm-actions">
-            {/* CTA unificado: "Solicitar primera sesión" en todos los CTAs principales.
-                Las tarjetas de Especialidades mantienen "Consultar enfoque" como variante intencional. */}
             <Button href="#contacto" variant="solid" class="sm-button">
               Solicitar primera sesión
             </Button>
@@ -102,10 +113,13 @@ const emdrPoints = [
             <span class="sm-label">¿Qué es el EMDR?</span>
             <h3>Reprocesar lo vivido para que ocupe menos.</h3>
             <p>
-              El EMDR reprocesa experiencias "atascadas": recuerdos intrusivos, reacciones corporales o creencias dolorosas. No borra lo ocurrido; lo integra con menos carga emocional.
+              Cuento con la formación básica de <strong>EMDR Nivel I</strong>, avalada por la Asociación EMDR España y EMDR Europa, e impartida a través de Imaya Formación.
             </p>
             <p>
-              Usa estimulación bilateral —movimientos oculares, sonidos alternos o tapping— para integrar lo vivido sin revivirlo con la misma intensidad.
+              El EMDR se fundamenta en el modelo <strong>PAI</strong>, o Procesamiento Adaptativo de la Información. Este modelo sostiene que el cerebro tiene una capacidad innata para procesar y sanar las experiencias vividas. Sin embargo, cuando una situación resulta especialmente traumática o estresante, este sistema puede bloquearse y hacer que el recuerdo quede almacenado de forma disfuncional.
+            </p>
+            <p>
+              Este abordaje cuenta con una amplia evidencia científica en el tratamiento de experiencias traumáticas. Ayuda a que los recuerdos difíciles puedan procesarse e integrarse con una menor intensidad emocional, sin necesidad de revivirlos con la misma fuerza.
             </p>
           </div>
 
@@ -139,7 +153,9 @@ const emdrPoints = [
         </div>
         <div class="sm-emdr__points">
           {emdrPoints.map((point, index) => (
-            <article class="sm-point reveal-up" style={`transition-delay: ${340 + index * 80}ms`}>
+            <article class={`sm-point reveal-up sm-point--slot-${index + 1}`} style={`transition-delay: ${340 + index * 80}ms`}>
+              <span class="sm-point__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span class="sm-point__glow" aria-hidden="true"></span>
               <span class="sm-point__icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d={point.icon} />
@@ -147,8 +163,18 @@ const emdrPoints = [
               </span>
               <h4>{point.title}</h4>
               <p>{point.text}</p>
+              <div class="sm-point__footer">
+                <span class="sm-point__rule" aria-hidden="true"></span>
+                <ul class="sm-point__badges" aria-label={`Aspectos de ${point.title}`}>
+                  {point.badges.map((badge) => (
+                    <li>{badge}</li>
+                  ))}
+                </ul>
+              </div>
             </article>
           ))}
+
+          <div class="sm-points-junction" aria-hidden="true"></div>
         </div>
       </div>
 
@@ -542,22 +568,115 @@ const emdrPoints = [
   }
 
   .sm-emdr__points {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-auto-rows: 1fr;
-    gap: clamp(0.75rem, 1.5vw, 1rem);
+    grid-template-columns: minmax(0, 1fr) clamp(1.1rem, 2vw, 1.65rem) minmax(0, 1fr);
+    grid-template-rows: 1fr clamp(1.1rem, 2vw, 1.65rem) 1fr;
+    gap: 0;
+    height: 100%;
+  }
+
+  .sm-point--slot-1 {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .sm-point--slot-2 {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .sm-point--slot-3 {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .sm-point--slot-4 {
+    grid-column: 3;
+    grid-row: 3;
+  }
+
+  .sm-points-junction {
+    grid-column: 2;
+    grid-row: 2;
+    position: relative;
+    pointer-events: none;
+  }
+
+  .sm-points-junction::before,
+  .sm-points-junction::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .sm-points-junction::before {
+    width: 1px;
+    height: 78%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(111, 125, 103, 0.1) 36%,
+      rgba(111, 125, 103, 0.14) 50%,
+      rgba(111, 125, 103, 0.1) 64%,
+      transparent 100%
+    );
+  }
+
+  .sm-points-junction::after {
+    width: 78%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(111, 125, 103, 0.1) 36%,
+      rgba(111, 125, 103, 0.14) 50%,
+      rgba(111, 125, 103, 0.1) 64%,
+      transparent 100%
+    );
   }
 
   .sm-point {
+    position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 0.55rem;
     padding: clamp(1rem, 1.8vw, 1.35rem);
     border-radius: var(--card-radius-sm);
     background: rgba(255, 255, 255, 0.58);
     border: 1px solid rgba(111, 125, 103, 0.1);
+    overflow: hidden;
     transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .sm-point__index {
+    position: absolute;
+    top: 0.72rem;
+    right: 0.85rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 2vw, 1.75rem);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(111, 125, 103, 0.14);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .sm-point__glow {
+    position: absolute;
+    top: -28%;
+    right: -18%;
+    width: 7.5rem;
+    height: 7.5rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(223, 228, 216, 0.42), transparent 68%);
+    pointer-events: none;
+    opacity: 0.7;
+    transition: opacity 0.35s ease, transform 0.35s ease;
   }
 
   .sm-point:hover {
@@ -565,6 +684,15 @@ const emdrPoints = [
     border-color: rgba(111, 125, 103, 0.2);
     background: rgba(255, 255, 255, 0.82);
     box-shadow: 0 0.8rem 1.8rem rgba(57, 54, 48, 0.06);
+  }
+
+  .sm-point:hover .sm-point__glow {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  .sm-point:hover .sm-point__index {
+    color: rgba(111, 125, 103, 0.22);
   }
 
   .sm-point__icon {
@@ -595,7 +723,53 @@ const emdrPoints = [
     color: #5f5c55;
     font-size: var(--type-card-body);
     line-height: 1.58;
-    flex: 1;
+  }
+
+  .sm-point__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.62rem;
+    margin-top: auto;
+    padding-top: 0.35rem;
+  }
+
+  .sm-point__rule {
+    display: block;
+    width: 2.1rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(111, 125, 103, 0.34), transparent);
+  }
+
+  .sm-point__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.38rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sm-point__badges li {
+    display: inline-flex;
+    align-items: center;
+    min-height: 1.65rem;
+    padding: 0.14rem 0.58rem;
+    border-radius: 999px;
+    background: rgba(111, 125, 103, 0.07);
+    border: 1px solid rgba(111, 125, 103, 0.14);
+    color: #65745f;
+    font-size: var(--type-micro);
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    line-height: 1.3;
+    text-transform: uppercase;
+    transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+  }
+
+  .sm-point:hover .sm-point__badges li {
+    background: rgba(111, 125, 103, 0.11);
+    border-color: rgba(111, 125, 103, 0.22);
+    color: #56614f;
   }
 
   @media (max-width: 960px) {
@@ -651,7 +825,21 @@ const emdrPoints = [
     }
 
     .sm-emdr__points {
-      grid-auto-rows: auto;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: auto;
+      gap: clamp(0.75rem, 1.5vw, 1rem);
+    }
+
+    .sm-point--slot-1,
+    .sm-point--slot-2,
+    .sm-point--slot-3,
+    .sm-point--slot-4 {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .sm-points-junction {
+      display: none;
     }
   }
 

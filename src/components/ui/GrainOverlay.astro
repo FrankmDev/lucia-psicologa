@@ -40,4 +40,11 @@ const { opacity = 0.025, blur = 0, zIndex = 0, animated = false } = Astro.props;
     80% { transform: translate(0.5%, 1%) scale(1.01); }
     90% { transform: translate(-1%, -0.5%) scale(1.02); }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .grain-overlay--animated {
+      animation: none;
+      will-change: auto;
+    }
+  }
 </style>

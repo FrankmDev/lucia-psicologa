@@ -136,6 +136,16 @@ const h = height || 'clamp(48px, 6vw, 96px)';
     100% { transform: translate(-4px, 1px); }
   }
 
+  @keyframes float-gentle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(0.5deg); }
+  }
+
+  @keyframes float-gentle-reverse {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-0.5deg); }
+  }
+
   /* Floating dots on divider */
   .divider-dots {
     position: absolute;
@@ -179,5 +189,12 @@ const h = height || 'clamp(48px, 6vw, 96px)';
   }
   .section-divider--organic {
     height: clamp(56px, 7vw, 104px) !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .is-animated .divider-layer,
+    .divider-dot {
+      animation: none;
+    }
   }
 </style>

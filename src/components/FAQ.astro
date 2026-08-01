@@ -8,17 +8,17 @@ const faqs = [
   {
     k: 'Duración',
     q: '¿Cuánto dura una sesión?',
-    a: 'Las sesiones individuales duran alrededor de 50 minutos. En trabajo de trauma o EMDR pueden ampliarse a 60–90 minutos si lo acordamos previamente y tiene sentido clínico.',
+    a: 'Todas las sesiones individuales duran 60 minutos.',
   },
   {
     k: 'Modalidad',
     q: '¿La terapia puede ser online?',
-    a: 'Sí. Atiendo de forma presencial en Ciudad Real y online. En ambos casos mantenemos el mismo encuadre y seguimiento clínico.',
+    a: 'Sí. Atiendo de forma presencial en Ciudad Real y online. En ambos casos mantenemos el mismo encuadre y seguimiento terapéutico.',
   },
   {
     k: 'Primera sesión',
     q: '¿Qué ocurre en la primera sesión?',
-    a: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas, valoramos qué enfoque puede encajar mejor y definimos un primer objetivo.',
+    a: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas, valoramos qué enfoque puede encajar mejor y definimos un primer objetivo. Todas las sesiones duran 60 minutos.',
   },
   {
     k: 'Enfoque',
@@ -74,6 +74,7 @@ const categoryColors: Record<string, string> = {
               <h3>
                 <button
                   class="faq-trigger"
+                  type="button"
                   aria-expanded="false"
                   aria-controls={`faq-answer-${i}`}
                 >

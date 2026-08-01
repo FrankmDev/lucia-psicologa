@@ -46,7 +46,7 @@ const articleSchema = [
     author: {
       '@type': 'Person',
       name: 'Lucía Millán Jiménez',
-      jobTitle: 'Psicóloga Clínica',
+      jobTitle: 'Psicóloga general sanitaria',
       url: 'https://luciamillanpsicologia.es/',
     },
     publisher: { '@id': 'https://luciamillanpsicologia.es/#lucia-millan-jimenez' },
@@ -134,7 +134,7 @@ const articleSchema = [
 
         <figure class="article-hero__media" data-article-image>
           <img src={heroImage} alt={`Imagen principal para ${article.title}`} width="1800" height="1200" loading="eager" decoding="async" />
-          <figcaption>{article.categoryLabel} &middot; Lectura clínica</figcaption>
+          <figcaption>{article.categoryLabel} &middot; Lectura profesional</figcaption>
         </figure>
       </header>
 
@@ -185,7 +185,7 @@ const articleSchema = [
               {related.map(relatedArticle => (
                 <a href={`/blog/${relatedArticle.slug}`} class="related-card">
                   <figure>
-                    <img src={getArticleImage(relatedArticle.slug, 1200, 900)} alt={`Imagen editorial para ${relatedArticle.title}`} loading="lazy" decoding="async" />
+                    <img src={getArticleImage(relatedArticle.slug, 1200, 900)} alt={`Imagen editorial para ${relatedArticle.title}`} width="1200" height="900" loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <span>{relatedArticle.categoryLabel} / {relatedArticle.readTime}</span>
@@ -205,9 +205,9 @@ const articleSchema = [
 </Layout>
 
 <script>
-  const page = document.querySelector('[data-article-page]');
-  const image = document.querySelector('[data-article-image]');
-  const content = document.querySelector('[data-article-content]');
+  const page = document.querySelector<HTMLElement>('[data-article-page]');
+  const image = document.querySelector<HTMLElement>('[data-article-image]');
+  const content = document.querySelector<HTMLElement>('[data-article-content]');
 
   if (page && image && content) {
     const targets = [...content.querySelectorAll('h2, blockquote, .lead, ul')];

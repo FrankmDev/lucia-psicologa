@@ -12,7 +12,7 @@ const blogSchema = {
   url: 'https://luciamillanpsicologia.es/blog',
   name: 'Blog de psicología en Ciudad Real',
   description:
-    'Artículos sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escritos desde una perspectiva clínica y accesible.',
+    'Artículos sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escritos desde una perspectiva profesional y accesible.',
   inLanguage: 'es-ES',
   isPartOf: { '@id': 'https://luciamillanpsicologia.es/#website' },
   mainEntity: {
@@ -29,7 +29,7 @@ const blogSchema = {
 
 <Layout
   title="Blog | Lucía Millán Jiménez | Psicología en Ciudad Real"
-  description="Artículos sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escritos desde una perspectiva clínica y accesible."
+  description="Artículos sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escritos desde una perspectiva profesional y accesible."
   schema={blogSchema}
 >
   <Navigation />
@@ -47,7 +47,7 @@ const blogSchema = {
         <span class="title-word title-word--accent">la consulta</span>
       </h1>
       <p class="blog-page__subtitle reveal">
-        Artículos sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escritos desde una perspectiva clínica y accesible.
+        Artículos sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escritos desde una perspectiva profesional y accesible.
       </p>
     </header>
 
@@ -62,7 +62,9 @@ const blogSchema = {
                 <img
                   src={getArticleImage(article.slug, 1200, 900)}
                   alt={`Imagen editorial para ${article.title}`}
-                  loading={i < 3 ? 'eager' : 'lazy'}
+                  width="1200"
+                  height="900"
+                  loading={i === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                 />
                 <span class="blog-grid-card__image-scrim" aria-hidden="true"></span>

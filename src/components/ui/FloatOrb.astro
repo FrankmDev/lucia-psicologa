@@ -80,4 +80,11 @@ const animClass = `float-orb--${animation}`;
       display: none;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .float-orb {
+      animation: none;
+      will-change: auto;
+    }
+  }
 </style>

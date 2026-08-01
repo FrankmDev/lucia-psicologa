@@ -1,0 +1,233 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Container from '../components/ui/Container.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  lead: string;
+  compactLists?: boolean;
+  styledLinks?: boolean;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  heading,
+  lead,
+  compactLists = false,
+  styledLinks = false,
+} = Astro.props;
+---
+
+<Layout {title} {description}>
+  <Navigation />
+
+  <main class="legal-page">
+    <Container maxWidth="800px" padding="0 var(--content-padding-x)">
+      <article class:list={['legal-article', { 'compact-lists': compactLists, 'styled-links': styledLinks }]}>
+        <header class="legal-header">
+          <span class="legal-eyebrow">{eyebrow}</span>
+          <h1>{heading}</h1>
+          <p class="legal-lead">{lead}</p>
+        </header>
+
+        <slot />
+      </article>
+    </Container>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page {
+    position: relative;
+    background: var(--parchment);
+    padding: clamp(8rem, 14vw, 12rem) 0 clamp(6rem, 10vw, 9rem);
+    min-height: 100dvh;
+  }
+
+  .legal-article {
+    position: relative;
+    z-index: 2;
+  }
+
+  .legal-header {
+    text-align: center;
+    margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .legal-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.78rem;
+    color: var(--sage-dark);
+    font-size: var(--type-meta);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .legal-eyebrow::before,
+  .legal-eyebrow::after {
+    content: '';
+    width: 2.35rem;
+    height: 1px;
+    background: rgba(111, 125, 103, 0.28);
+  }
+
+  .legal-header h1 {
+    font-family: var(--font-display);
+    font-size: var(--type-page-title);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .legal-lead {
+    max-width: 42ch;
+    margin: 0 auto;
+    color: var(--taupe);
+    font-size: var(--type-body);
+    line-height: 1.7;
+  }
+
+  :global(.legal-section) {
+    margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2rem, 3vw, 2.8rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  :global(.legal-section:last-child) {
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  :global(.legal-section h2) {
+    font-family: var(--font-display);
+    font-size: var(--type-subsection-title);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+
+  :global(.legal-section p) {
+    color: var(--ink-soft);
+    font-size: var(--type-body-sm);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  :global(.legal-section ul) {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .legal-article.compact-lists :global(.legal-section ul) {
+    margin: 0;
+  }
+
+  :global(.legal-section li) {
+    color: var(--ink-soft);
+    font-size: var(--type-body-sm);
+    line-height: 1.7;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  :global(.legal-section li::before) {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--sage-dark);
+    opacity: 0.5;
+  }
+
+  :global(.legal-section strong) {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .legal-article.styled-links :global(.legal-section a) {
+    color: var(--earth);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(107, 125, 106, 0.35);
+    transition: text-decoration-color 0.3s ease;
+  }
+
+  .legal-article.styled-links :global(.legal-section a:hover) {
+    text-decoration-color: var(--earth);
+  }
+
+  @media (max-width: 768px) {
+    .legal-page {
+      padding: 7rem 0 5rem;
+    }
+    .legal-header {
+      text-align: left;
+      margin-bottom: 2.5rem;
+    }
+    .legal-eyebrow {
+      justify-content: flex-start;
+    }
+    .legal-eyebrow::after {
+      display: none;
+    }
+    .legal-header h1 {
+      font-size: var(--type-page-title);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+    }
+    .legal-lead {
+      font-size: var(--type-body);
+      line-height: 1.6;
+      margin: 0;
+    }
+    :global(.legal-section) {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+    }
+    :global(.legal-section h2) {
+      font-size: var(--type-card-title);
+      margin-bottom: 1rem;
+    }
+    :global(.legal-section p),
+    :global(.legal-section li) {
+      font-size: var(--type-small);
+      line-height: 1.7;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .legal-page {
+      padding: 6.5rem 0 4.5rem;
+    }
+    .legal-eyebrow {
+      gap: 0.55rem;
+      letter-spacing: 0.18em;
+    }
+    .legal-eyebrow::before {
+      width: 1.45rem;
+    }
+  }
+</style>

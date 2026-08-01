@@ -22,7 +22,7 @@ const articles = getLatestArticles(3);
       <span class="section-eyebrow">Lecturas</span>
       <h2>Artículos para entender lo que te ocurre con más contexto.</h2>
       <p>
-        Información sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escrita con criterio clínico y lenguaje claro.
+        Información sobre ansiedad, trauma, EMDR, duelo, autoestima y regulación emocional escrita con criterio profesional y lenguaje claro.
       </p>
     </header>
 
@@ -34,7 +34,9 @@ const articles = getLatestArticles(3);
               <img
                 src={getArticleImage(article.slug, 1200, 900)}
                 alt={`Imagen editorial para ${article.title}`}
-                loading={i === 0 ? 'eager' : 'lazy'}
+                width="1200"
+                height="900"
+                loading="lazy"
                 decoding="async"
                 style={`object-position: ${i === 0 ? 'center 35%' : i === 1 ? 'center 45%' : 'center 40%'}`}
               />

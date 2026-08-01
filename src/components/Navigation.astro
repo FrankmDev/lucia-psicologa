@@ -1,4 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+import logoDark from '../assets/logo-dark.webp';
+import logoWhite from '../assets/logo-white.webp';
+import { SITE } from '../data/site';
+
 const isHome = Astro.url.pathname === '/';
 const isBlog = Astro.url.pathname.startsWith('/blog');
 
@@ -19,8 +24,8 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
 
     <!-- Logo -->
     <a href={isHome ? '#inicio' : '/'} class="nav-mark" aria-label="Inicio" data-nav-reveal>
-      <img src="/logo-white.webp" alt="" class="mark-logo mark-logo--dark" width="auto" height="32" />
-      <img src="/logo-dark.webp" alt="" class="mark-logo mark-logo--light" width="auto" height="32" />
+      <Image src={logoWhite} alt="" class="mark-logo mark-logo--dark" width={64} height={64} loading="eager" />
+      <Image src={logoDark} alt="" class="mark-logo mark-logo--light" width={64} height={64} loading="eager" />
     </a>
 
     <!-- Desktop Links -->
@@ -44,7 +49,7 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
     </a>
 
     <!-- Mobile Trigger -->
-    <button class="nav-trigger" id="menuTrigger" aria-label="Abrir menú" aria-expanded="false" data-nav-reveal>
+    <button type="button" class="nav-trigger" id="menuTrigger" aria-label="Abrir menú" aria-expanded="false" data-nav-reveal>
       <span class="trigger-line"></span>
       <span class="trigger-line"></span>
       <span class="trigger-line"></span>
@@ -57,7 +62,7 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
   </div>
 
     <!-- Mobile Overlay -->
-  <div class="nav-overlay" id="menuOverlay" aria-hidden="true">
+  <div class="nav-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Menú principal" aria-hidden="true" inert>
     <div class="overlay-backdrop" aria-hidden="true"></div>
 
     <div class="overlay-card">
@@ -134,9 +139,9 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
             </svg>
           </a>
           <div class="overlay-meta">
-            <span class="meta-item">luciamillanpsico@gmail.com</span>
+            <span class="meta-item">{SITE.email}</span>
             <span class="meta-sep">·</span>
-            <span class="meta-item">722535914</span>
+            <span class="meta-item">{SITE.phoneHref.replace('+34', '')}</span>
           </div>
         </div>
       </div>
@@ -145,15 +150,16 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
 </header>
 
 <script>
-  const trigger = document.getElementById('menuTrigger');
-  const overlay = document.getElementById('menuOverlay');
-  const navLinks = overlay.querySelectorAll('.overlay-link');
-  const navRoot = document.getElementById('navRoot');
-  const navDesktopLinks = document.querySelectorAll('[data-nav-link]');
-  const hairlineFill = document.getElementById('hairlineFill');
+  const trigger = document.querySelector<HTMLButtonElement>('#menuTrigger')!;
+  const overlay = document.querySelector<HTMLElement>('#menuOverlay')!;
+  const navLinks = overlay.querySelectorAll<HTMLAnchorElement>('.overlay-link');
+  const navRoot = document.querySelector<HTMLElement>('#navRoot')!;
+  const navDesktopLinks = document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]');
+  const hairlineFill = document.querySelector<HTMLElement>('#hairlineFill');
 
   // Menu toggle
   function openMenu() {
+    overlay.removeAttribute('inert');
     overlay.classList.add('open');
     trigger.classList.add('open');
     trigger.setAttribute('aria-expanded', 'true');
@@ -161,25 +167,28 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     navRoot.classList.add('menu-open');
+    requestAnimationFrame(() => navLinks[0]?.focus());
   }
-  function closeMenu() {
+  function closeMenu(restoreFocus = false) {
     overlay.classList.remove('open');
     trigger.classList.remove('open');
     trigger.setAttribute('aria-expanded', 'false');
     trigger.setAttribute('aria-label', 'Abrir menú');
     overlay.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('inert', '');
     document.body.style.overflow = '';
     navRoot.classList.remove('menu-open');
+    if (restoreFocus) trigger.focus();
   }
   trigger.addEventListener('click', () => {
     overlay.classList.contains('open') ? closeMenu() : openMenu();
   });
-  navLinks.forEach(l => l.addEventListener('click', closeMenu));
+  navLinks.forEach(l => l.addEventListener('click', () => closeMenu()));
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu(true);
   });
   overlay.addEventListener('click', (e) => {
-    if (e.target === overlay || e.target.classList.contains('overlay-backdrop')) closeMenu();
+    if (e.target === overlay || (e.target instanceof Element && e.target.classList.contains('overlay-backdrop'))) closeMenu();
   });
 
   // ── Smart hide / show on scroll direction ──────────────────
@@ -228,7 +237,9 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
 
   // Active section tracking
   const sections = ['#inicio', '#sobre-mi', '#servicios', '#proceso', '#blog', '#contacto'];
-  const sectionElements = sections.map(s => document.querySelector(s)).filter(Boolean);
+  const sectionElements = sections
+    .map((selector) => document.querySelector<HTMLElement>(selector))
+    .filter((section): section is HTMLElement => section !== null);
 
   function updateActiveLink() {
     const scrollPos = window.scrollY + 200;
@@ -247,8 +258,14 @@ const resolveHref = (href: string) => (isHome ? href : `/${href}`);
   updateActiveLink();
 
   // Entrance reveal
-  const revealEls = document.querySelectorAll('[data-nav-reveal]');
+  const revealEls = document.querySelectorAll<HTMLElement>('[data-nav-reveal]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   revealEls.forEach((el, i) => {
+    if (reduceMotion) {
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      return;
+    }
     el.style.opacity = '0';
     el.style.transform = 'translateY(12px)';
     const delay = parseFloat(el.style.transitionDelay) || (i * 60);

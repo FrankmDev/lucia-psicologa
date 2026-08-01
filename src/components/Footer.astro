@@ -5,6 +5,7 @@ import FloatOrb from './ui/FloatOrb.astro';
 import InkBlob from './ui/InkBlob.astro';
 import BotanicalSVG from './ui/BotanicalSVG.astro';
 import DustParticles from './ui/DustParticles.astro';
+import { SITE } from '../data/site';
 
 const currentYear = new Date().getFullYear();
 const isHomePath = Astro.url.pathname === '/';
@@ -13,30 +14,30 @@ const resolveHref = (href: string) => (isHomePath ? href : `/${href}`);
 const socialLinks = [
   {
     label: 'Instagram',
-    href: 'https://www.instagram.com/luciamillanpsico/',
+    href: SITE.social[0],
     icon: 'M8 3C5.24 3 3 5.24 3 8v8c0 2.76 2.24 5 5 5h8c2.76 0 5-2.24 5-5V8c0-2.76-2.24-5-5-5H8zm0 1.5h8c1.93 0 3.5 1.57 3.5 3.5v8c0 1.93-1.57 3.5-3.5 3.5H8c-1.93 0-3.5-1.57-3.5-3.5V8c0-1.93 1.57-3.5 3.5-3.5zm9.5 2a1 1 0 100 2 1 1 0 000-2zm-5 1.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 1.5a3 3 0 110 6 3 3 0 010-6z',
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/luc%C3%ADa-mill%C3%A1n-jim%C3%A9nez-304258389/',
+    href: SITE.social[1],
     icon: 'M4.5 3C3.67 3 3 3.67 3 4.5S3.67 6 4.5 6 6 5.33 6 4.5 5.33 3 4.5 3zM3 7.5h3V18H3V7.5zm5.5 0h2.9v1.4h.04c.4-.76 1.4-1.4 2.9-1.4 3.1 0 3.66 2.04 3.66 4.7V18h-3v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V18h-3V7.5z',
   },
   {
     label: 'WhatsApp',
-    href: 'https://wa.me/34722535914',
+    href: SITE.whatsappHref,
     icon: 'M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.35 5L2 22l5.09-1.33A9.96 9.96 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18c-1.64 0-3.17-.48-4.46-1.3l-.32-.2-3.02.79.8-2.94-.2-.33A8.01 8.01 0 014 12c0-4.41 3.59-8 8-8s8 3.59 8 8-3.59 8-8 8zm4.24-5.52c-.23-.12-1.37-.68-1.58-.75-.21-.08-.36-.12-.51.12-.15.23-.59.75-.72.9-.13.15-.27.17-.5.06-.23-.12-.97-.36-1.85-1.14-.68-.6-1.14-1.35-1.27-1.58-.13-.23-.01-.36.1-.48.1-.1.23-.27.34-.4.11-.13.15-.23.23-.38.08-.15.04-.28-.02-.4-.06-.12-.51-1.23-.7-1.68-.18-.44-.37-.38-.51-.39l-.43-.01c-.15 0-.4.06-.61.28-.21.23-.8.78-.8 1.9s.82 2.2.93 2.35c.12.15 1.62 2.47 3.92 3.46.55.24.97.38 1.31.49.55.17 1.05.15 1.44.09.44-.06 1.37-.56 1.56-1.1.2-.54.2-1 .14-1.1-.06-.1-.23-.16-.46-.27z',
   },
 ];
 
 const extraLinks = [
-  { label: 'Doctoralia', href: 'https://www.doctoralia.es/lucia-millan-jimenez/psicologo/ciudad-real' },
+  { label: 'Doctoralia', href: SITE.social[2] },
   { label: 'Google', href: 'https://www.google.com/maps/search/?api=1&query=Luc%C3%ADa+Mill%C3%A1n+Jim%C3%A9nez+Psic%C3%B3loga+Ciudad+Real' },
 ];
 
 const contactItems = [
-  { label: 'Email', value: 'luciamillanpsico@gmail.com', href: 'mailto:luciamillanpsico@gmail.com' },
-  { label: 'Teléfono', value: '722 53 59 14', href: 'tel:+34722535914' },
-  { label: 'Dirección', value: 'c/ Toledo, 8, 2° Planta', href: 'https://www.google.com/maps/search/?api=1&query=Calle+Toledo+8+Ciudad+Real' },
+  { label: 'Email', value: SITE.email, href: `mailto:${SITE.email}` },
+  { label: 'Teléfono', value: SITE.phoneDisplay, href: `tel:${SITE.phoneHref}` },
+  { label: 'Dirección', value: SITE.address.streetAddress, href: SITE.mapsHref },
   { label: 'Horario', value: 'Lun — Vie, 9:00 — 20:00' },
 ];
 
@@ -82,7 +83,7 @@ const navLinks = [
     <div class="footer-identity reveal-up" data-delay="100">
       <a href={isHomePath ? '#inicio' : '/'} class="footer-mark" aria-label="Inicio">
         <span class="footer-mark__name">Lucía Millán Jiménez</span>
-        <span class="footer-mark__role">Psicología clínica · Ciudad Real</span>
+        <span class="footer-mark__role">Psicología general sanitaria · Ciudad Real</span>
       </a>
       <p class="footer-tagline">Acompañamiento psicológico para entender lo que te ocurre y trabajarlo con un enfoque adaptado a tu caso.</p>
     </div>
@@ -158,7 +159,7 @@ const navLinks = [
 
     <!-- Bottom bar -->
     <div class="footer-bottom reveal-up" data-delay="500">
-      <span class="copy-text">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga Clínica</span>
+      <span class="copy-text">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga general sanitaria</span>
       <div class="legal-row">
         <a href="/aviso-legal" class="legal-link">Aviso legal</a>
         <span class="legal-sep">·</span>
@@ -171,7 +172,7 @@ const navLinks = [
   </div>
 
   <!-- Back to top -->
-  <button class="back-top" id="backTop" aria-label="Volver arriba">
+  <button type="button" class="back-top" id="backTop" aria-label="Volver arriba">
     <svg class="back-top-progress" viewBox="0 0 44 44" aria-hidden="true">
       <circle class="progress-track" cx="22" cy="22" r="20" fill="none" stroke="rgba(196,170,148,0.1)" stroke-width="1.5"/>
       <circle class="progress-ring" cx="22" cy="22" r="20" fill="none" stroke="rgba(196,170,148,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="125.6"/>
@@ -186,14 +187,16 @@ const navLinks = [
 
 <script>
   (function() {
-    const footer = document.getElementById('siteFooter');
-    const spacer = document.getElementById('footerSpacer');
+    const footer = document.querySelector<HTMLElement>('#siteFooter');
+    const spacer = document.querySelector<HTMLElement>('#footerSpacer');
     if (!footer || !spacer) return;
+    const footerElement = footer;
+    const spacerElement = spacer;
 
     function updateSpacer() {
       requestAnimationFrame(() => {
-        const height = footer.getBoundingClientRect().height;
-        spacer.style.height = height + 'px';
+        const height = footerElement.getBoundingClientRect().height;
+        spacerElement.style.height = height + 'px';
       });
     }
 
@@ -203,25 +206,27 @@ const navLinks = [
     document.fonts.ready.then(updateSpacer);
     setTimeout(updateSpacer, 100);
 
-    const btn = document.getElementById('backTop');
+    const btn = document.querySelector<HTMLButtonElement>('#backTop');
     if (btn) {
       btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        window.scrollTo({ top: 0, behavior });
       });
     }
 
-    const progressRing = footer.querySelector('.progress-ring');
+    const progressRing = footer.querySelector<SVGCircleElement>('.progress-ring');
     if (progressRing) {
+      const ring = progressRing;
       const circumference = 2 * Math.PI * 20;
-      progressRing.style.strokeDasharray = circumference;
-      progressRing.style.strokeDashoffset = circumference;
+      ring.style.strokeDasharray = String(circumference);
+      ring.style.strokeDashoffset = String(circumference);
 
       function setProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const progress = docHeight > 0 ? scrollTop / docHeight : 0;
         const offset = circumference - (progress * circumference);
-        progressRing.style.strokeDashoffset = offset;
+        ring.style.strokeDashoffset = String(offset);
       }
       window.addEventListener('scroll', setProgress, { passive: true });
       setProgress();

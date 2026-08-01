@@ -4,25 +4,29 @@ import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 import PageNumber from './ui/PageNumber.astro';
+import { SITE } from '../data/site';
+
+const mailtoHref = `mailto:${SITE.email}`;
+const telHref = `tel:${SITE.phoneHref}`;
 
 const contactRoutes = [
   {
     label: 'Email',
-    value: 'luciamillanpsico@gmail.com',
-    href: 'mailto:luciamillanpsico@gmail.com',
+    value: SITE.email,
+    href: mailtoHref,
     icon: 'M3 8l2.8 2.8c1.4 1.4 3.6 1.4 5 0l2.8-2.8M3 8V6a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V8z',
   },
   {
     label: 'Teléfono',
-    value: '722 53 59 14',
-    href: 'tel:+34722535914',
+    value: SITE.phoneDisplay,
+    href: telHref,
     icon: 'M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z',
   },
 
   {
     label: 'Dirección',
-    value: 'c/ Toledo, 8, 2° Planta, 13001 Ciudad Real',
-    href: 'https://www.google.com/maps/search/?api=1&query=Calle+Toledo+8+Ciudad+Real',
+    value: SITE.address.display,
+    href: SITE.mapsHref,
     icon: 'M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0zM12 7a3 3 0 100 6 3 3 0 000-6z',
   },
 ];
@@ -93,13 +97,13 @@ const contactRoutes = [
         <form
           id="contactForm"
           class="contact-form-card"
-          action="mailto:luciamillanpsico@gmail.com"
+          action={mailtoHref}
           method="POST"
           enctype="text/plain"
         >
           <noscript>
             <div class="form-noscript">
-              <p>Puedes escribirme directamente a <a href="mailto:luciamillanpsico@gmail.com">luciamillanpsico@gmail.com</a> o llamar al <a href="tel:+34722535914">722 53 59 14</a>.</p>
+              <p>Puedes escribirme directamente a <a href={mailtoHref}>{SITE.email}</a> o llamar al <a href={telHref}>{SITE.phoneDisplay}</a>.</p>
             </div>
           </noscript>
 
@@ -155,7 +159,7 @@ const contactRoutes = [
           </div>
 
           <div class="form-actions">
-            <p class="form-disclaimer">Tus datos se tratan con confidencialidad profesional. Evita incluir información clínica muy sensible en el primer mensaje.</p>
+            <p class="form-disclaimer">Tus datos se tratan con confidencialidad profesional. Evita incluir información muy sensible sobre tu salud en el primer mensaje.</p>
             <button type="submit" class="contact-submit" id="contactSubmit">
               <span class="submit-text">Enviar mensaje inicial</span>
               <span class="submit-loading" aria-hidden="true">Abriendo correo...</span>
@@ -172,14 +176,14 @@ const contactRoutes = [
                 <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/>
                 <path d="M5 8l2.5 2.5L11 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              El navegador abrirá tu cliente de correo. Si no se abre, escríbeme a <a href="mailto:luciamillanpsico@gmail.com">luciamillanpsico@gmail.com</a>.
+              El navegador abrirá tu cliente de correo. Si no se abre, escríbeme a <a href={mailtoHref}>{SITE.email}</a>.
             </p>
             <p class="feedback-error">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/>
                 <path d="M8 5v3M8 10.5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
               </svg>
-              Algo no ha funcionado. Escríbeme directamente a <a href="mailto:luciamillanpsico@gmail.com">luciamillanpsico@gmail.com</a>.
+              Algo no ha funcionado. Escríbeme directamente a <a href={mailtoHref}>{SITE.email}</a>.
             </p>
           </div>
         </form>
@@ -192,9 +196,9 @@ const contactRoutes = [
 
 <script>
   (function() {
-    const form = document.getElementById('contactForm');
-    const submitBtn = document.getElementById('contactSubmit');
-    const feedback = document.getElementById('formFeedback');
+    const form = document.querySelector<HTMLFormElement>('#contactForm');
+    const submitBtn = document.querySelector<HTMLButtonElement>('#contactSubmit');
+    const feedback = document.querySelector<HTMLElement>('#formFeedback');
     if (!form || !submitBtn || !feedback) return;
 
     const action = form.getAttribute('action') || '';

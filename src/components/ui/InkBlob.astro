@@ -75,4 +75,11 @@ const animClass = `ink-blob--${animation}`;
       opacity: 0.03;
     }
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ink-blob {
+      animation: none;
+      will-change: auto;
+    }
+  }
 </style>

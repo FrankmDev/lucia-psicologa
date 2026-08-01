@@ -5,9 +5,10 @@ interface Props {
   opacity?: number;
   width?: number;
   class?: string;
+  style?: string;
 }
 
-const { variant = 'left', color = 'var(--earth)', opacity = 0.07, width = 90, class: className = '' } = Astro.props;
+const { variant = 'left', color = 'var(--earth)', opacity = 0.07, width = 90, class: className = '', style = '' } = Astro.props;
 
 const paths = {
   right: [
@@ -35,7 +36,7 @@ const position = variant === 'right'
   viewBox={variant === 'right' ? '0 0 120 300' : '0 0 80 200'}
   fill="none"
   aria-hidden="true"
-  style={`width: ${width}px; ${Object.entries(position).map(([k,v]) => `${k}:${v}`).join(';')}`}
+  style={`width: ${width}px; ${Object.entries(position).map(([k,v]) => `${k}:${v}`).join(';')}; ${style}`}
 >
   <g stroke={color} stroke-width="0.7" stroke-linecap="round" fill="none" opacity={opacity}>
     {paths[variant].map(d => <path d={d} />)}
@@ -58,6 +59,12 @@ const position = variant === 'right'
   @media (max-width: 768px) {
     .botanical-svg {
       display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .botanical-svg {
+      animation: none;
     }
   }
 </style>

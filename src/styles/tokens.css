@@ -175,8 +175,8 @@
   --card-radius-sm: clamp(0.85rem, 1.4vw, 1.2rem);
 
   /* Typography */
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-display: var(--font-cormorant-garamond);
+  --font-body: var(--font-dm-sans);
 
   /* Type scale — refined, harmonious scale */
   --type-hero: clamp(2.4rem, 6vw, 4.2rem);

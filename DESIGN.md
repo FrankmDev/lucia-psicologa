@@ -1,6 +1,6 @@
 ---
-name: "Lucía — Psicóloga Clínica"
-description: "Landing page profesional para psicología clínica con enfoque Organic Editorial."
+name: "Lucía — Psicóloga general sanitaria"
+description: "Landing page profesional para psicología general sanitaria con enfoque Organic Editorial."
 colors:
   cream: "#F5F0E8"
   cream-warm: "#EDE7DC"
@@ -90,15 +90,15 @@ components:
     padding: "0.5rem 0.9rem"
 ---
 
-# Design System: Lucía — Psicóloga Clínica
+# Design System: Lucía — Psicóloga general sanitaria
 
 ## 1. Overview
 
 **Creative North Star: "The Editorial Sanctuary"**
 
-Una revista de bienestar de autor, no una clínica fría. Este sistema visual transmite calma, calidez y profesionalidad a través de una paleta orgánica, tipografía editorial con carácter, y detalles táctiles que evocan un espacio de escucha. La densidad es generosa pero nunca abrumadora; cada sección respira.
+Una revista de bienestar de autor, no un consultorio frío. Este sistema visual transmite calma, calidez y profesionalidad a través de una paleta orgánica, tipografía editorial con carácter, y detalles táctiles que evocan un espacio de escucha. La densidad es generosa pero nunca abrumadora; cada sección respira.
 
-El sistema rechaza explícitamente el estilo clínico/institucional (blanco puro, azul corporativo, iconografía médica), el estilo SaaS genérico (hero-metric, gradientes de acento, cards idénticas), y el estilo "AI default" de 2026 (fondos crema sin criterio, tipografía sans universal). La calidez no es un extra, es un requisito.
+El sistema rechaza explícitamente el estilo institucional frío (blanco puro, azul corporativo, iconografía médica), el estilo SaaS genérico (hero-metric, gradientes de acento, cards idénticas), y el estilo "AI default" de 2026 (fondos crema sin criterio, tipografía sans universal). La calidez no es un extra, es un requisito.
 
 **Key Characteristics:**
 - Paleta orgánica earth + sage + mint sobre fondos cálidos, nunca fríos.
@@ -223,4 +223,4 @@ El sistema usa una estrategia híbrida: **tonal layering como base, sombras como
 - **Don't** usar tipografía sans-serif en títulos de display. El contraste serif/sans es el eje tipográfico del sistema.
 - **Don't** usar sombras oscuras duras (rgba(0,0,0,0.3) o mayores). Las sombras deben ser difusas, casi imperceptibles.
 - **Don't** usar fondos crema/beige sin criterio como el "AI default" de 2026. La calidez aquí es intencional, no un default de entrenamiento.
-- **Don't** usar iconografía médica o clínica (cruces, estetoscopios, batas blancas). La iconografía es orgánica, minimalista, y SVG hand-drawn.
+- **Don't** usar iconografía médica hospitalaria (cruces, estetoscopios, batas blancas). La iconografía es orgánica, minimalista, y SVG hand-drawn.
