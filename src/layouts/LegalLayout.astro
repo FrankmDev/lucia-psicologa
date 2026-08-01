@@ -3,6 +3,7 @@ import Layout from './Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 import Container from '../components/ui/Container.astro';
+import { buildBreadcrumbSchema } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -23,9 +24,21 @@ const {
   compactLists = false,
   styledLinks = false,
 } = Astro.props;
+const canonical = Astro.url.pathname;
+const canonicalURL = new URL(canonical, Astro.site).href;
+const breadcrumbSchema = buildBreadcrumbSchema(canonicalURL, [
+  { name: 'Inicio', path: '/' },
+  { name: heading, path: canonical },
+]);
 ---
 
-<Layout {title} {description}>
+<Layout
+  {title}
+  {description}
+  {canonical}
+  pageSchema={{ breadcrumb: { '@id': `${canonicalURL}#breadcrumb` } }}
+  schema={breadcrumbSchema}
+>
   <Navigation />
 
   <main class="legal-page">

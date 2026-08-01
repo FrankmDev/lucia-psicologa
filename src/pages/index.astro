@@ -11,88 +11,30 @@ import FAQ from '../components/FAQ.astro';
 import Contacto from '../components/Contacto.astro';
 import Footer from '../components/Footer.astro';
 import SectionDivider from '../components/SectionDivider.astro';
+import { FAQS } from '../data/faq';
 
-const homeSchema = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': 'https://luciamillanpsicologia.es/#webpage',
-    url: 'https://luciamillanpsicologia.es/',
-    name: 'Psicóloga general sanitaria · Terapia individual · Lucía Millán Jiménez',
-    description:
-      'Psicología general sanitaria en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR.',
-    inLanguage: 'es-ES',
-    isPartOf: { '@id': 'https://luciamillanpsicologia.es/#website' },
-    about: { '@id': 'https://luciamillanpsicologia.es/#lucia-millan-jimenez' },
-  },
-  {
+const homeSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: [
-      {
+    '@id': 'https://luciamillanpsicologia.es/#preguntas-frecuentes',
+    mainEntity: FAQS.map((faq) => ({
         '@type': 'Question',
-        name: '¿Cuánto dura una sesión?',
+        name: faq.question,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Todas las sesiones individuales duran 60 minutos.',
+          text: faq.answer,
         },
-      },
-      {
-        '@type': 'Question',
-        name: '¿La terapia puede ser online?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Sí. Atiendo de forma presencial en Ciudad Real y online. En ambos casos mantenemos el mismo encuadre y seguimiento terapéutico.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Qué ocurre en la primera sesión?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas, valoramos qué enfoque puede encajar mejor y definimos un primer objetivo. Todas las sesiones duran 60 minutos.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Siempre se trabaja con la misma terapia?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No. Integro TCC, ACT, TFE, IFS y EMDR según tu problemática, tus recursos y el momento del proceso. La intervención se adapta a cada persona.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿El EMDR sirve para cualquier caso?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'No siempre. Primero se evalúa la historia, la estabilidad actual y los recursos de regulación. Si EMDR no es lo más adecuado en ese momento, se trabaja con otro enfoque o se prepara el proceso antes de iniciar el reprocesamiento.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Con qué frecuencia se acude?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución y tus circunstancias.',
-        },
-      },
-      {
-        '@type': 'Question',
-        name: '¿Cómo puedo pedir cita?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Puedes escribir desde el formulario de contacto, por email o por teléfono. Te respondo para orientarte, resolver dudas iniciales y valorar un primer hueco.',
-        },
-      },
-    ],
-  },
-];
+      })),
+};
 ---
 
 <Layout
-  title="Psicóloga general sanitaria · Terapia individual · Lucía Millán Jiménez"
-  description="Psicología general sanitaria en Ciudad Real. Terapia individual presencial y online para ansiedad, trauma, duelo y malestar emocional, con enfoque integrador y formación en EMDR."
+  title="Psicóloga en Ciudad Real y online | Lucía Millán"
+  description="Psicóloga general sanitaria en Ciudad Real y online. Terapia individual para ansiedad, trauma, duelo y autoestima. Solicita una primera sesión."
+  pageSchema={{
+    about: { '@id': 'https://luciamillanpsicologia.es/#lucia-millan-jimenez' },
+    mainEntity: { '@id': 'https://luciamillanpsicologia.es/#preguntas-frecuentes' },
+  }}
   schema={homeSchema}
 >
   <Navigation />

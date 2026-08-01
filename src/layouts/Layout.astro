@@ -1,7 +1,9 @@
 ---
-import { Font } from 'astro:assets';
+import { Font, getImage } from 'astro:assets';
 import '../styles/global.css';
 import { SITE } from '../data/site';
+import defaultSocialImage from '../assets/heroImage.avif';
+import { buildBaseSchema, buildSchemaGraph, normalizePath, SCHEMA_IDS } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -9,8 +11,16 @@ interface Props {
   keywords?: string[];
   canonical?: string;
   image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   type?: 'website' | 'article';
+  pageType?: 'WebPage' | 'CollectionPage' | 'AboutPage' | 'ContactPage';
   noindex?: boolean;
+  publishedTime?: string;
+  modifiedTime?: string;
+  section?: string;
+  pageSchema?: Record<string, unknown>;
   schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -19,92 +29,62 @@ const {
   description = SITE.description,
   keywords = [],
   canonical,
-  image = '/favicon.jpg',
+  image,
+  imageAlt = 'Lucía Millán Jiménez, psicóloga general sanitaria en Ciudad Real',
+  imageWidth,
+  imageHeight,
   type = 'website',
+  pageType = 'WebPage',
   noindex = false,
+  publishedTime,
+  modifiedTime,
+  section,
+  pageSchema = {},
   schema,
 } = Astro.props;
 const siteURL = Astro.site || SITE.url;
-const canonicalURL = new URL(canonical || Astro.url.pathname, siteURL);
-const imageURL = new URL(image, siteURL);
-const organizationSchema = {
-  '@context': 'https://schema.org',
-  '@type': ['ProfessionalService', 'LocalBusiness'],
-  '@id': `${SITE.url}/#lucia-millan-jimenez`,
-  name: SITE.name,
-  url: SITE.url,
-  inLanguage: 'es-ES',
-  image: new URL('/logo-dark.webp', siteURL).href,
-  email: SITE.email,
-  telephone: SITE.phone,
-  identifier: SITE.license,
-  priceRange: '€€',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: SITE.address.streetAddress,
-    postalCode: SITE.address.postalCode,
-    addressLocality: SITE.address.addressLocality,
-    addressRegion: SITE.address.addressRegion,
-    addressCountry: SITE.address.addressCountry,
+const canonicalPath = normalizePath(canonical || Astro.url.pathname);
+const canonicalURL = new URL(canonicalPath, `${siteURL}/`).href;
+const generatedDefaultImage = await getImage({
+  src: defaultSocialImage,
+  width: 1200,
+  height: 630,
+  format: 'jpg',
+  quality: 82,
+});
+const imageURL = new URL(image || generatedDefaultImage.src, `${siteURL}/`).href;
+const socialImageWidth = imageWidth || (image ? undefined : 1200);
+const socialImageHeight = imageHeight || (image ? undefined : 630);
+const robotsContent = noindex
+  ? 'noindex, follow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+const defaultPageSchema = {
+  '@type': pageType,
+  '@id': `${canonicalURL}#webpage`,
+  url: canonicalURL,
+  name: title,
+  description,
+  inLanguage: SITE.locale,
+  isPartOf: { '@id': SCHEMA_IDS.website },
+  publisher: { '@id': SCHEMA_IDS.practice },
+  ...(publishedTime ? { datePublished: publishedTime } : {}),
+  ...(modifiedTime ? { dateModified: modifiedTime } : {}),
+  primaryImageOfPage: {
+    '@type': 'ImageObject',
+    url: imageURL,
+    ...(socialImageWidth ? { width: socialImageWidth } : {}),
+    ...(socialImageHeight ? { height: socialImageHeight } : {}),
   },
-  areaServed: [
-    { '@type': 'City', name: 'Ciudad Real' },
-    { '@type': 'Country', name: 'España' },
-  ],
-  contactPoint: {
-    '@type': 'ContactPoint',
-    telephone: SITE.phone,
-    email: SITE.email,
-    contactType: 'Solicitud de primera sesión',
-    areaServed: 'ES',
-    availableLanguage: ['Spanish', 'es'],
-  },
-  knowsAbout: [
-    'Terapia Cognitivo Conductual (TCC)',
-    'Terapia de Aceptación y Compromiso (ACT)',
-    'Terapia Focalizada en Emociones (TFE)',
-    'Sistema de Familia Interna (IFS)',
-    'Psicosomática',
-    'EMDR Nivel I',
-    'Procesamiento de la Información a Sistemas Adaptativos (PISA)',
-    'Ansiedad',
-    'Trauma',
-    'Duelo',
-    'Autoestima',
-    'Terapia individual',
-    'Terapia online',
-    'EMDR',
-  ],
-  sameAs: SITE.social,
-  openingHoursSpecification: [
-    {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-      opens: '09:00',
-      closes: '20:00',
-    },
-  ],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Servicios de psicología',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia individual presencial en Ciudad Real' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia psicológica online' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia individual para ansiedad, duelo, autoestima y trauma' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Terapia EMDR para trauma y experiencias estresantes' } },
-    ],
-  },
+  ...pageSchema,
 };
-const websiteSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  '@id': `${SITE.url}/#website`,
-  name: SITE.title,
-  url: SITE.url,
-  inLanguage: 'es-ES',
-  publisher: { '@id': `${SITE.url}/#lucia-millan-jimenez` },
-};
-const schemaGraph = [organizationSchema, websiteSchema, ...(Array.isArray(schema) ? schema : schema ? [schema] : [])];
+const extraSchema = Array.isArray(schema) ? schema : schema ? [schema] : [];
+const schemaGraph = buildSchemaGraph([
+  ...buildBaseSchema(imageURL),
+  defaultPageSchema,
+  ...extraSchema,
+]);
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
+const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
 ---
 
 <!DOCTYPE html>
@@ -114,19 +94,34 @@ const schemaGraph = [organizationSchema, websiteSchema, ...(Array.isArray(schema
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'} />
+  <meta name="robots" content={robotsContent} />
+  <meta name="googlebot" content={robotsContent} />
   {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
   <link rel="canonical" href={canonicalURL} />
+  <link rel="alternate" hreflang="es-ES" href={canonicalURL} />
+  <link rel="alternate" type="application/rss+xml" title="Blog de Lucía Millán Psicología" href={`${SITE.url}/rss.xml`} />
+  <meta name="author" content={SITE.name} />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+  {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:type" content={type} />
   <meta property="og:url" content={canonicalURL} />
-  <meta property="og:site_name" content={SITE.title} />
+  <meta property="og:site_name" content={SITE.businessName} />
   <meta property="og:locale" content="es_ES" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
-  <meta name="twitter:image:alt" content="Lucía Millán Jiménez, psicóloga general sanitaria en Ciudad Real" />
+  <meta property="og:image:secure_url" content={imageURL} />
+  <meta property="og:image:alt" content={imageAlt} />
+  {socialImageWidth && <meta property="og:image:width" content={String(socialImageWidth)} />}
+  {socialImageHeight && <meta property="og:image:height" content={String(socialImageHeight)} />}
+  {type === 'article' && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+  {type === 'article' && modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+  {type === 'article' && section && <meta property="article:section" content={section} />}
+  {type === 'article' && <meta property="article:author" content={SITE.name} />}
+  <meta name="twitter:image:alt" content={imageAlt} />
   <meta property="og:image" content={imageURL} />
   <meta name="twitter:image" content={imageURL} />
   <meta name="geo.region" content="ES-CM" />
@@ -134,8 +129,10 @@ const schemaGraph = [organizationSchema, websiteSchema, ...(Array.isArray(schema
   <meta name="theme-color" content="#faf8f3" />
   <Font cssVariable="--font-cormorant-garamond" />
   <Font cssVariable="--font-dm-sans" />
-  <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
-  <script is:inline type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@graph': schemaGraph })} />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.jpg" />
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
 </head>
 <body>
   <div class="page-grain" aria-hidden="true"></div>

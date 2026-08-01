@@ -11,6 +11,8 @@ import InkBlob from '../../components/ui/InkBlob.astro';
 import BotanicalSVG from '../../components/ui/BotanicalSVG.astro';
 import Container from '../../components/ui/Container.astro';
 import { articles, getArticleImage, getRelatedArticles } from '../../data/blog';
+import { SITE } from '../../data/site';
+import { buildBreadcrumbSchema, SCHEMA_IDS } from '../../lib/seo';
 
 export const getStaticPaths = (() => articles.map(article => ({
     params: { slug: article.slug },
@@ -25,66 +27,74 @@ const formattedDate = new Date(article.dateISO).toLocaleDateString('es-ES', {
   month: 'long',
   day: 'numeric',
 });
+const formattedModifiedDate = new Date(article.modifiedISO).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 
 const heroImage = getArticleImage(article.slug, 1800, 1200);
 const pullQuote = article.excerpt;
 const articleURL = `https://luciamillanpsicologia.es/blog/${article.slug}`;
+const articleId = `${articleURL}#articulo`;
+const wordCount = article.content
+  .replace(/<[^>]+>/g, ' ')
+  .replace(/\s+/g, ' ')
+  .trim()
+  .split(' ')
+  .filter(Boolean).length;
 const articleSchema = [
   {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
+    '@id': articleId,
     headline: article.title,
     description: article.metaDescription,
-    image: {
-      '@type': 'ImageObject',
-      url: heroImage,
-      width: 1800,
-      height: 1200,
-    },
+    image: [
+      getArticleImage(article.slug, 1200, 1200),
+      getArticleImage(article.slug, 1200, 900),
+      getArticleImage(article.slug, 1200, 675),
+    ],
     datePublished: article.dateISO,
-    dateModified: article.dateISO,
-    author: {
-      '@type': 'Person',
-      name: 'Lucía Millán Jiménez',
-      jobTitle: 'Psicóloga general sanitaria',
-      url: 'https://luciamillanpsicologia.es/',
-    },
-    publisher: { '@id': 'https://luciamillanpsicologia.es/#lucia-millan-jimenez' },
+    dateModified: article.modifiedISO,
+    author: { '@id': SCHEMA_IDS.person },
+    publisher: { '@id': SCHEMA_IDS.practice },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': articleURL,
+      '@id': `${articleURL}#webpage`,
     },
-    inLanguage: 'es-ES',
+    inLanguage: SITE.locale,
+    articleSection: article.categoryLabel,
+    wordCount,
+    isAccessibleForFree: true,
     keywords: article.keywords.join(', '),
+    citation: article.sources.map((source) => source.url),
   },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Inicio',
-        item: 'https://luciamillanpsicologia.es/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Blog',
-        item: 'https://luciamillanpsicologia.es/blog',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: article.title,
-        item: articleURL,
-      },
-    ],
-  },
+  buildBreadcrumbSchema(articleURL, [
+    { name: 'Inicio', path: '/' },
+    { name: 'Blog', path: '/blog' },
+    { name: article.title, path: `/blog/${article.slug}` },
+  ]),
 ];
 ---
 
-<Layout title={article.metaTitle} description={article.metaDescription} keywords={article.keywords} image={heroImage} type="article" schema={articleSchema}>
+<Layout
+  title={article.metaTitle}
+  description={article.metaDescription}
+  keywords={article.keywords}
+  image={heroImage}
+  imageAlt={article.imageAlt}
+  imageWidth={1800}
+  imageHeight={1200}
+  type="article"
+  publishedTime={article.dateISO}
+  modifiedTime={article.modifiedISO}
+  section={article.categoryLabel}
+  pageSchema={{
+    mainEntity: { '@id': articleId },
+    breadcrumb: { '@id': `${articleURL}#breadcrumb` },
+  }}
+  schema={articleSchema}
+>
   <Navigation />
 
   <main class="article-page" data-article-page>
@@ -111,7 +121,9 @@ const articleSchema = [
           <div class="article-hero__meta">
             <span>{article.categoryLabel}</span>
             <span aria-hidden="true">/</span>
-            <time datetime={article.dateISO}>{formattedDate}</time>
+            <span>Publicado <time datetime={article.dateISO}>{formattedDate}</time></span>
+            <span aria-hidden="true">/</span>
+            <span>Actualizado <time datetime={article.modifiedISO}>{formattedModifiedDate}</time></span>
             <span aria-hidden="true">/</span>
             <span>{article.readTime}</span>
           </div>
@@ -133,7 +145,7 @@ const articleSchema = [
         </Container>
 
         <figure class="article-hero__media" data-article-image>
-          <img src={heroImage} alt={`Imagen principal para ${article.title}`} width="1800" height="1200" loading="eager" decoding="async" />
+          <img src={heroImage} alt={article.imageAlt} width="1800" height="1200" loading="eager" decoding="async" fetchpriority="high" />
           <figcaption>{article.categoryLabel} &middot; Lectura profesional</figcaption>
         </figure>
       </header>
@@ -145,11 +157,37 @@ const articleSchema = [
             <div class="article-aside" aria-label="Resumen del artículo">
               <div class="article-aside__panel">
                 <p>{pullQuote}</p>
+                <div class="article-byline">
+                  <span>Escrito por</span>
+                  <a href="/#sobre-mi">{SITE.name}</a>
+                  <small>Psicóloga general sanitaria · Colegiada {SITE.license}</small>
+                </div>
                 <a href="/#contacto" class="article-aside__link">Solicitar orientación</a>
               </div>
             </div>
 
-            <div class="article-content" data-article-content set:html={article.content} />
+            <div class="article-main">
+              <div class="article-content" data-article-content set:html={article.content} />
+
+              <aside class="article-editorial-note" aria-label="Nota sobre este contenido">
+                <strong>Información sanitaria divulgativa.</strong>
+                <p>Este artículo no sustituye una evaluación psicológica, un diagnóstico ni una intervención adaptada a tu situación. Si existe riesgo inmediato o una emergencia, llama al 112 o acude a urgencias.</p>
+              </aside>
+
+              <section class="article-sources" aria-labelledby="sources-heading">
+                <h2 id="sources-heading">Fuentes y referencias</h2>
+                <ul>
+                  {article.sources.map((source) => (
+                    <li>
+                      <a href={source.url} target="_blank" rel="noopener noreferrer">
+                        <span>{source.title}</span>
+                        <small>{source.publisher}</small>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            </div>
           </div>
         </Container>
       </section>
@@ -185,7 +223,7 @@ const articleSchema = [
               {related.map(relatedArticle => (
                 <a href={`/blog/${relatedArticle.slug}`} class="related-card">
                   <figure>
-                    <img src={getArticleImage(relatedArticle.slug, 1200, 900)} alt={`Imagen editorial para ${relatedArticle.title}`} width="1200" height="900" loading="lazy" decoding="async" />
+                    <img src={getArticleImage(relatedArticle.slug, 1200, 900)} alt={relatedArticle.imageAlt} width="1200" height="900" loading="lazy" decoding="async" />
                   </figure>
                   <div>
                     <span>{relatedArticle.categoryLabel} / {relatedArticle.readTime}</span>
@@ -443,6 +481,32 @@ const articleSchema = [
     color: rgba(42,31,26,0.82);
   }
 
+  .article-byline {
+    display: grid;
+    justify-items: start;
+    gap: 0.15rem;
+    margin-top: 1.35rem;
+    font-size: var(--type-meta);
+    color: rgba(122,101,88,0.74);
+  }
+
+  .article-byline > span {
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .article-byline a {
+    color: var(--ink);
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-color: rgba(122,101,88,0.28);
+    text-underline-offset: 3px;
+  }
+
+  .article-byline small {
+    font-size: var(--type-caption);
+  }
+
   .article-aside__link {
     display: inline-flex;
     margin-top: 1.2rem;
@@ -461,6 +525,10 @@ const articleSchema = [
   }
 
   /* ===== ARTICLE CONTENT ===== */
+  .article-main {
+    min-width: 0;
+  }
+
   .article-content {
     min-width: 0;
     font-family: var(--font-body);
@@ -617,6 +685,78 @@ const articleSchema = [
   .article-content ul.is-visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .article-editorial-note {
+    margin-top: 3.5rem;
+    padding: 1.35rem 1.5rem;
+    border: 1px solid rgba(196,170,148,0.2);
+    border-left: 3px solid rgba(107,125,106,0.55);
+    border-radius: 4px;
+    background: rgba(255,253,249,0.48);
+    color: var(--ink-soft);
+  }
+
+  .article-editorial-note strong {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+    font-size: var(--type-body);
+    font-weight: 500;
+  }
+
+  .article-editorial-note p {
+    margin: 0;
+    font-size: var(--type-small);
+    line-height: 1.65;
+  }
+
+  .article-sources {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(196,170,148,0.2);
+  }
+
+  .article-sources h2 {
+    margin: 0 0 1.1rem;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: var(--type-card-title-lg);
+    font-weight: 400;
+  }
+
+  .article-sources ul {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .article-sources a {
+    display: grid;
+    gap: 0.2rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(196,170,148,0.16);
+    border-radius: 4px;
+    background: rgba(255,253,249,0.36);
+    color: var(--ink-soft);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .article-sources a:hover {
+    border-color: rgba(107,125,106,0.35);
+    background: rgba(255,253,249,0.68);
+  }
+
+  .article-sources span {
+    font-size: var(--type-small);
+    line-height: 1.45;
+  }
+
+  .article-sources small {
+    color: var(--taupe-dark);
+    font-size: var(--type-caption);
   }
 
   /* ===== FINAL CTA ===== */
@@ -900,6 +1040,10 @@ const articleSchema = [
       font-size: var(--type-kicker);
     }
 
+    .article-byline {
+      margin-top: 1rem;
+    }
+
     .article-content {
       font-size: var(--type-body);
       line-height: 1.75;
@@ -937,6 +1081,11 @@ const articleSchema = [
 
     .article-content li {
       padding: 0.85rem 0.85rem 0.85rem 1.1rem;
+    }
+
+    .article-editorial-note,
+    .article-sources a {
+      padding: 1rem;
     }
 
     .article-final-cta {

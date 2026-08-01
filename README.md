@@ -38,6 +38,17 @@ scripts/           # Validaciones automatizadas del build
 
 Las rutas principales se generan desde `src/pages/`. La portada compone sus secciones en `src/pages/index.astro`; el blog obtiene sus artículos de `src/data/blog.ts`; y los datos de contacto compartidos se mantienen en `src/data/site.ts`.
 
+## SEO e indexación
+
+- `src/layouts/Layout.astro` centraliza title, description, canonical, robots, Open Graph, Twitter y JSON-LD.
+- `src/data/site.ts` contiene la entidad profesional y el inventario de rutas indexables.
+- `src/pages/sitemap.xml.ts` genera el sitemap con canonicals y fechas de modificación reales.
+- `src/pages/rss.xml.ts` publica el feed del blog.
+- `public/robots.txt` declara el sitemap y `public/llms.txt` resume el contenido para sistemas de respuesta.
+- `bun run qa` comprueba metadatos únicos, H1, canonicals, robots, JSON-LD, enlaces internos y correspondencia completa con el sitemap.
+
+Para verificar el dominio, copia `.env.example` a `.env` y añade los tokens facilitados por Google Search Console y Bing Webmaster Tools. El layout solo publica las etiquetas de verificación cuando existe un valor real. Después del despliegue, registra `https://luciamillanpsicologia.es/sitemap.xml` en ambas herramientas y solicita la inspección de la portada, `/blog` y los artículos prioritarios.
+
 ## Convenciones
 
 - Mantener los assets importados dentro de `src/assets/` para que Astro pueda optimizarlos.

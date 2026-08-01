@@ -11,10 +11,10 @@ const links = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Proceso', href: '#proceso' },
-  { label: 'Blog', href: isHome ? '#blog' : 'blog' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contacto', href: '#contacto' },
 ];
-const resolveHref = (href: string) => (isHome ? href : `/${href}`);
+const resolveHref = (href: string) => href.startsWith('/') ? href : (isHome ? href : `/${href}`);
 ---
 
 <header class="nav-root" id="navRoot">

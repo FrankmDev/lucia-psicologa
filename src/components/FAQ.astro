@@ -3,44 +3,7 @@ import GrainOverlay from './ui/GrainOverlay.astro';
 import FloatOrb from './ui/FloatOrb.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
-
-const faqs = [
-  {
-    k: 'Duración',
-    q: '¿Cuánto dura una sesión?',
-    a: 'Todas las sesiones individuales duran 60 minutos.',
-  },
-  {
-    k: 'Modalidad',
-    q: '¿La terapia puede ser online?',
-    a: 'Sí. Atiendo de forma presencial en Ciudad Real y online. En ambos casos mantenemos el mismo encuadre y seguimiento terapéutico.',
-  },
-  {
-    k: 'Primera sesión',
-    q: '¿Qué ocurre en la primera sesión?',
-    a: 'Revisamos el motivo de consulta, desde cuándo ocurre, cómo afecta a tu vida y qué esperas de la terapia. También resolvemos dudas, valoramos qué enfoque puede encajar mejor y definimos un primer objetivo. Todas las sesiones duran 60 minutos.',
-  },
-  {
-    k: 'Enfoque',
-    q: '¿Siempre se trabaja con la misma terapia?',
-    a: 'No. Integro TCC, ACT, TFE, IFS y EMDR según tu problemática, tus recursos y el momento del proceso. La idea es adaptar la intervención a ti, no encajarte en una técnica cerrada.',
-  },
-  {
-    k: 'EMDR',
-    q: '¿El EMDR sirve para cualquier caso?',
-    a: 'No siempre. Primero evaluamos tu historia, tu estabilidad actual y tus recursos de regulación. Si EMDR no es lo más adecuado en ese momento, trabajamos con otro enfoque o preparamos el proceso antes de iniciar el reprocesamiento.',
-  },
-  {
-    k: 'Frecuencia',
-    q: '¿Con qué frecuencia se acude?',
-    a: 'Lo habitual es empezar con una sesión semanal. Después podemos ajustar la frecuencia según la evolución y tus circunstancias.',
-  },
-  {
-    k: 'Contacto',
-    q: '¿Cómo puedo pedir cita?',
-    a: 'Puedes escribir desde el formulario de contacto, por email o por teléfono. Te respondo para orientarte, resolver dudas iniciales y valorar un primer hueco.',
-  },
-];
+import { FAQS } from '../data/faq';
 
 const categoryColors: Record<string, string> = {
   'Duración': '122, 138, 122',
@@ -53,7 +16,7 @@ const categoryColors: Record<string, string> = {
 };
 ---
 
-<section id="faq" class="faq section--white-warm" data-faq>
+<section id="preguntas-frecuentes" class="faq section--white-warm" data-faq>
   <GrainOverlay opacity={0.012} />
   <AmbientLight color="rgba(255,255,255,0.24)" />
   <FloatOrb size={360} top="-14%" right="-10%" color="rgba(141,151,132,0.12)" blur={145} opacity={0.32} animation="float-1" />
@@ -69,8 +32,8 @@ const categoryColors: Record<string, string> = {
 
       <div class="faq-panel reveal-scale" data-delay="180">
         <div class="faq-list" aria-label="Preguntas frecuentes">
-          {faqs.map((faq, i) => (
-            <article class="faq-item reveal-up" data-faq-item style={`--category-hue: ${categoryColors[faq.k] || '111, 125, 103'}; transition-delay: ${220 + i * 55}ms`}>
+          {FAQS.map((faq, i) => (
+            <article class="faq-item reveal-up" data-faq-item style={`--category-hue: ${categoryColors[faq.category] || '111, 125, 103'}; transition-delay: ${220 + i * 55}ms`}>
               <h3>
                 <button
                   class="faq-trigger"
@@ -78,8 +41,8 @@ const categoryColors: Record<string, string> = {
                   aria-expanded="false"
                   aria-controls={`faq-answer-${i}`}
                 >
-                  <span class="faq-chip">{faq.k}</span>
-                  <span class="faq-question">{faq.q}</span>
+                  <span class="faq-chip">{faq.category}</span>
+                  <span class="faq-question">{faq.question}</span>
                   <span class="faq-icon" aria-hidden="true">
                     <svg viewBox="0 0 20 20" fill="none" class="faq-icon-svg" aria-hidden="true">
                       <rect x="2" y="9" width="16" height="2" rx="1" fill="currentColor" class="faq-icon-h"/>
@@ -92,7 +55,7 @@ const categoryColors: Record<string, string> = {
               <div id={`faq-answer-${i}`} class="faq-answer">
                 <div class="faq-answer__inner">
                   <div class="faq-answer__body">
-                    <p>{faq.a}</p>
+                    <p>{faq.answer}</p>
                   </div>
                 </div>
               </div>

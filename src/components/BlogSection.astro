@@ -33,7 +33,7 @@ const articles = getLatestArticles(3);
             <figure class="blog-card__media">
               <img
                 src={getArticleImage(article.slug, 1200, 900)}
-                alt={`Imagen editorial para ${article.title}`}
+                alt={article.imageAlt}
                 width="1200"
                 height="900"
                 loading="lazy"

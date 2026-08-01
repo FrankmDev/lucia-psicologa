@@ -15,10 +15,17 @@ export interface BlogArticle {
   categoryLabel: string;
   date: string;
   dateISO: string;
+  modifiedISO: string;
   readTime: string;
   excerpt: string;
+  imageAlt: string;
   content: string;
   keywords: string[];
+  sources: Array<{
+    title: string;
+    publisher: string;
+    url: string;
+  }>;
 }
 
 const articleImageUrls: Record<string, string> = {
@@ -40,7 +47,7 @@ export function getArticleImage(slug: string, width = 1400, height = 980): strin
   const fallback =
     'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&auto=format&fit=crop&crop=entropy';
 
-  return `${articleImageUrls[slug] ?? fallback}&w=${width}&h=${height}`;
+  return `${articleImageUrls[slug] ?? fallback}&w=${width}&h=${height}&fit=crop&fm=webp`;
 }
 
 export const articles: BlogArticle[] = [
@@ -56,9 +63,23 @@ export const articles: BlogArticle[] = [
     categoryLabel: 'Trauma',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
+    modifiedISO: '2026-08-01',
     readTime: '12 min',
     excerpt: 'Una explicación profesional y accesible sobre EMDR, trauma, regulación emocional y preparación antes de iniciar el procesamiento.',
+    imageAlt: 'Bosque iluminado entre la niebla, imagen asociada al procesamiento del trauma',
     keywords: ['terapia EMDR Ciudad Real', 'psicóloga EMDR Ciudad Real', 'tratamiento trauma Ciudad Real', 'EMDR psicología'],
+    sources: [
+      {
+        title: 'Trastorno de estrés postraumático: tratamiento y EMDR',
+        publisher: 'Organización Mundial de la Salud',
+        url: 'https://www.who.int/news-room/fact-sheets/detail/post-traumatic-stress-disorder',
+      },
+      {
+        title: 'Intervenciones psicológicas para adultos con TEPT',
+        publisher: 'Organización Mundial de la Salud, mhGAP',
+        url: 'https://www.who.int/teams/mental-health-and-substance-use/treatment-care/mental-health-gap-action-programme/evidence-centre/conditions-related-to-stress/posttraumatic-stress-disorder-%28ptsd%29--psychological-interventions---adults',
+      },
+    ],
     content: `
 <p class="lead">
   A veces una experiencia del pasado sigue activándose en el presente: una imagen, una sensación corporal, una reacción intensa o una evitación que limita la vida diaria. No siempre se vive como un recuerdo claro. A veces aparece como ansiedad, hipervigilancia, bloqueo o dificultad para confiar.
@@ -249,15 +270,29 @@ export const articles: BlogArticle[] = [
   {
     slug: 'duelo-perdida-ciudad-real',
     title: 'Afrontar el duelo cuando el dolor no pasa',
-    metaTitle: 'Psicóloga especialista en duelo en Ciudad Real | Terapia individual',
+    metaTitle: 'Duelo en Ciudad Real | Cuándo pedir ayuda psicológica',
     metaDescription: 'Señales de duelo complicado, cuándo pedir ayuda psicológica y cómo puede trabajarse una pérdida en terapia individual.',
     category: 'duelo',
     categoryLabel: 'Duelo',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
+    modifiedISO: '2026-08-01',
     readTime: '14 min',
     excerpt: 'No todo duelo sigue el mismo recorrido. Revisamos señales de bloqueo, duelo complicado y formas de trabajarlo en terapia.',
+    imageAlt: 'Paisaje de montaña junto a un lago, imagen asociada al proceso de duelo',
     keywords: ['psicóloga duelo Ciudad Real', 'ayuda duelo Ciudad Real', 'terapia pérdida Ciudad Real', 'duelo complicado tratamiento'],
+    sources: [
+      {
+        title: 'Descripciones clínicas y requisitos diagnósticos de la CIE-11',
+        publisher: 'Organización Mundial de la Salud',
+        url: 'https://www.who.int/publications/i/item/9789240077263',
+      },
+      {
+        title: 'Orientación sobre salud mental tras experiencias traumáticas y pérdidas',
+        publisher: 'Organización Mundial de la Salud',
+        url: 'https://www.who.int/news-room/detail/06-08-2013-who-releases-guidance-on-mental-health-care-after-trauma',
+      },
+    ],
     content: `
 <p class="lead">
   Muchas personas llegan a terapia con una sensación difícil de explicar: ha pasado tiempo desde la pérdida, el entorno espera que estén mejor, pero por dentro el dolor sigue ocupando demasiado. Puede aparecer insomnio, irritabilidad, vacío, culpa o una sensación persistente de bloqueo.
@@ -428,15 +463,24 @@ export const articles: BlogArticle[] = [
   {
     slug: 'mindfulness-regulacion-ciudad-real',
     title: 'Mindfulness y regulación emocional',
-    metaTitle: 'Mindfulness y regulación emocional | Psicología en Ciudad Real',
+    metaTitle: 'Mindfulness en Ciudad Real | Regulación emocional',
     metaDescription: 'Qué aporta el mindfulness a la regulación emocional, cuándo puede ayudar y cuándo conviene integrarlo dentro de un proceso terapéutico.',
     category: 'bienestar',
     categoryLabel: 'Bienestar',
     date: '11 de mayo de 2025',
     dateISO: '2025-05-11',
+    modifiedISO: '2026-08-01',
     readTime: '11 min',
     excerpt: 'Una mirada profesional al mindfulness como herramienta de regulación emocional, con límites, usos y ejemplos prácticos.',
+    imageAlt: 'Mar en calma visto desde la orilla, imagen asociada a la atención plena',
     keywords: ['mindfulness Ciudad Real', 'regulación emocional Ciudad Real', 'psicóloga mindfulness Ciudad Real', 'técnicas regulación emocional'],
+    sources: [
+      {
+        title: 'Meditación y mindfulness: eficacia y seguridad',
+        publisher: 'National Center for Complementary and Integrative Health',
+        url: 'https://www.nccih.nih.gov/health/meditation-and-mindfulness-effectiveness-and-safety',
+      },
+    ],
     content: `
 <p class="lead">
   Muchas personas buscan mindfulness cuando sienten que viven desbordadas: taquicardias antes de exámenes o reuniones, insomnio, irritabilidad o dificultad para desconectar. A veces han probado aplicaciones de meditación o ejercicios sueltos, pero necesitan una guía más ajustada a su situación emocional.
@@ -644,9 +688,18 @@ export const articles: BlogArticle[] = [
     categoryLabel: 'Ansiedad',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
+    modifiedISO: '2026-08-01',
     readTime: '10 min',
     excerpt: 'Señales frecuentes de ansiedad, criterios para pedir ayuda y cómo puede abordarse en un proceso de terapia individual.',
+    imageAlt: 'Campo abierto al amanecer, imagen asociada a reconocer y afrontar la ansiedad',
     keywords: ['psicóloga en Ciudad Real', 'ansiedad Ciudad Real', 'ayuda psicológica Ciudad Real'],
+    sources: [
+      {
+        title: 'Trastornos de ansiedad: síntomas, factores y tratamiento',
+        publisher: 'Organización Mundial de la Salud',
+        url: 'https://www.who.int/es/news-room/fact-sheets/detail/anxiety-disorders',
+      },
+    ],
     content: `
 <p class="lead">
   Una duda frecuente en consulta es distinguir entre ansiedad, agotamiento y una etapa exigente. La persona puede llevar meses durmiendo mal, con el estómago revuelto antes de compromisos importantes y una sensación permanente de urgencia. Desde fuera, todo parece normal; por dentro, el malestar empieza a ocupar demasiado.
@@ -728,9 +781,23 @@ export const articles: BlogArticle[] = [
     categoryLabel: 'Terapia',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
+    modifiedISO: '2026-08-01',
     readTime: '9 min',
     excerpt: 'Qué puedes esperar en una primera sesión: motivo de consulta, dudas frecuentes, objetivos iniciales y siguientes pasos.',
+    imageAlt: 'Camino entre un paisaje natural, imagen asociada al inicio de la terapia',
     keywords: ['terapia psicológica Ciudad Real', 'primera consulta psicólogo Ciudad Real', 'cómo es ir al psicólogo'],
+    sources: [
+      {
+        title: 'Código Deontológico del Psicólogo',
+        publisher: 'Consejo General de la Psicología de España',
+        url: 'https://www.cop.es/index.php?page=CodigoDeontologico',
+      },
+      {
+        title: 'Qué ocurre en una primera cita de terapia psicológica',
+        publisher: 'NHS Talking Therapies',
+        url: 'https://www.talkworks.dpt.nhs.uk/about-us/what-to-expect-at-your-first-appointment',
+      },
+    ],
     content: `
 <p class="lead">
   La puerta de mi consulta se abre casi siempre con la misma mezcla de emociones. Algunas personas llegan con los ojos enrojecidos de haber llorado en el coche. Otras con una sonrisa nerviosa que intenta disimular el temblor de las manos. Hay quien entra hablando sin parar para no dejar lugar al silencio, y quien apenas puede articular palabra. Todas estas formas de llegar son válidas. Todas son bienvenidas. Y todas comparten algo: alguien ha decidido que ya no quiere seguir así.
@@ -816,9 +883,18 @@ export const articles: BlogArticle[] = [
     categoryLabel: 'Autoestima',
     date: '24 de abril de 2025',
     dateISO: '2025-04-24',
+    modifiedISO: '2026-08-01',
     readTime: '11 min',
     excerpt: 'Qué es la autoestima, cómo se manifiesta cuando está dañada y qué se trabaja en terapia para construir una relación más justa contigo.',
+    imageAlt: 'Flores silvestres con luz suave, imagen asociada al cuidado de la autoestima',
     keywords: ['psicóloga Ciudad Real autoestima', 'bienestar emocional Ciudad Real', 'terapia autoestima Ciudad Real'],
+    sources: [
+      {
+        title: 'Definición de autoestima',
+        publisher: 'APA Dictionary of Psychology',
+        url: 'https://dictionary.apa.org/self-esteem',
+      },
+    ],
     content: `
 <p class="lead">
   Hace unos meses, una persona de veintiocho años se sentó frente a mí en mi consulta y dijo algo que resume lo que escucho con demasiada frecuencia: "Sé que debería quererme más, pero no sé cómo". Llevaba años repitiéndose frases que había leído en libros de autoayuda y publicaciones motivacionales. Se esforzaba por pensar positivo. Se obligaba a mirarse al espejo y decirse que era válida. Pero por las mañanas, cuando sonaba el despertador, seguía sintiendo el mismo vacío. El mismo peso. La misma sensación de no ser suficiente.

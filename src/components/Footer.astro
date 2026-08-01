@@ -9,7 +9,7 @@ import { SITE } from '../data/site';
 
 const currentYear = new Date().getFullYear();
 const isHomePath = Astro.url.pathname === '/';
-const resolveHref = (href: string) => (isHomePath ? href : `/${href}`);
+const resolveHref = (href: string) => href.startsWith('/') ? href : (isHomePath ? href : `/${href}`);
 
 const socialLinks = [
   {
@@ -45,7 +45,7 @@ const navLinks = [
   { label: 'Servicios', href: '#servicios' },
   { label: 'Sobre mí', href: '#sobre-mi' },
   { label: 'Proceso', href: '#proceso' },
-  { label: 'Blog', href: '#blog' },
+  { label: 'Blog', href: '/blog' },
   { label: 'Contacto', href: '#contacto' },
 ];
 ---

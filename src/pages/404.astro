@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import Container from '../components/ui/Container.astro';
+---
+
+<Layout
+  title="Página no encontrada | Lucía Millán Psicología"
+  description="La página que buscas no existe o ha cambiado de dirección. Vuelve al inicio o consulta el blog de psicología."
+  canonical="/404"
+  noindex
+>
+  <Navigation />
+  <main class="not-found">
+    <Container maxWidth="760px">
+      <p class="not-found__code" aria-hidden="true">404</p>
+      <h1>Esta página no está disponible.</h1>
+      <p>Puede que el enlace haya cambiado o que la dirección no sea correcta. Puedes volver al inicio o seguir leyendo el blog.</p>
+      <div class="not-found__actions">
+        <a href="/" class="not-found__primary">Volver al inicio</a>
+        <a href="/blog" class="not-found__secondary">Ver artículos</a>
+      </div>
+    </Container>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .not-found {
+    min-height: 75dvh;
+    display: grid;
+    place-items: center;
+    padding: 10rem var(--content-padding-x) 7rem;
+    text-align: center;
+    background: var(--parchment);
+  }
+  .not-found__code {
+    margin: 0 0 0.5rem;
+    color: var(--sage-dark);
+    font-size: var(--type-meta);
+    letter-spacing: 0.35em;
+  }
+  h1 {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: var(--type-page-title);
+    font-weight: 400;
+    line-height: 1.05;
+  }
+  .not-found > :global(.container) > p:not(.not-found__code) {
+    max-width: 52ch;
+    margin: 1.25rem auto 0;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+  .not-found__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  .not-found__actions a {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 1.2rem;
+    border: 1px solid var(--sage-dark);
+    border-radius: 999px;
+    font-size: var(--type-meta);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .not-found__primary {
+    color: var(--white-warm);
+    background: var(--sage-dark);
+  }
+  .not-found__secondary {
+    color: var(--sage-dark);
+  }
+</style>
