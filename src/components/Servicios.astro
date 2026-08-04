@@ -65,7 +65,11 @@ const enfoques = [
   },
 ];
 
-const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1800&auto=format&fit=crop';
+const servicesImageBase = 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&auto=format&fit=crop&fm=webp';
+const getServicesImage = (width: number) => `${servicesImageBase}&w=${width}&h=${Math.round(width / 1.5)}`;
+const servicesImageSrcSet = [640, 960, 1200, 1800]
+  .map((width) => `${getServicesImage(width)} ${width}w`)
+  .join(', ');
 ---
 
 <section id="servicios" class="servicios section--cream">
@@ -86,7 +90,16 @@ const servicesImage = 'https://images.unsplash.com/photo-1507525428034-b723cf961
 
       <div class="services-hero reveal-scale" data-delay="160">
         <figure class="services-hero__image">
-          <img src={servicesImage} alt="Paisaje sereno con luz suave y mar en calma" width="1800" height="1200" decoding="async" loading="lazy" />
+          <img
+            src={getServicesImage(1200)}
+            srcset={servicesImageSrcSet}
+            sizes="(max-width: 1100px) 90vw, 55vw"
+            alt="Paisaje sereno con luz suave y mar en calma"
+            width="1800"
+            height="1200"
+            decoding="async"
+            loading="lazy"
+          />
           <div class="services-hero__veil"></div>
           <figcaption class="services-hero__caption">
             <span>Ritmo tranquilo</span>

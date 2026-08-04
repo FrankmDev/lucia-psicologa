@@ -21,6 +21,7 @@ interface Props {
   section?: string;
   pageSchema?: Record<string, unknown>;
   schema?: Record<string, unknown> | Record<string, unknown>[];
+  preconnectUnsplash?: boolean;
 }
 
 const {
@@ -39,6 +40,7 @@ const {
   section,
   pageSchema = {},
   schema,
+  preconnectUnsplash = false,
 } = Astro.props;
 const siteURL = Astro.site || SITE.url;
 const canonicalPath = normalizePath(canonical || Astro.url.pathname);
@@ -96,7 +98,9 @@ const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
   <meta name="googlebot" content={robotsContent} />
   <link rel="canonical" href={canonicalURL} />
   <link rel="alternate" hreflang="es-ES" href={canonicalURL} />
+  <link rel="sitemap" type="application/xml" href={`${SITE.url}/sitemap.xml`} />
   <link rel="alternate" type="application/rss+xml" title="Blog de Lucía Millán Psicología" href={`${SITE.url}/rss.xml`} />
+  {preconnectUnsplash && <link rel="preconnect" href="https://images.unsplash.com" crossorigin="anonymous" />}
   <meta name="author" content={SITE.name} />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   {googleVerification && <meta name="google-site-verification" content={googleVerification} />}

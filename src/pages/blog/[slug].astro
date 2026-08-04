@@ -10,7 +10,7 @@ import FloatOrb from '../../components/ui/FloatOrb.astro';
 import InkBlob from '../../components/ui/InkBlob.astro';
 import BotanicalSVG from '../../components/ui/BotanicalSVG.astro';
 import Container from '../../components/ui/Container.astro';
-import { articles, getArticleImage, getRelatedArticles } from '../../data/blog';
+import { articles, getArticleImage, getArticleImageSrcSet, getRelatedArticles } from '../../data/blog';
 import { SITE } from '../../data/site';
 import { buildBreadcrumbSchema, SCHEMA_IDS } from '../../lib/seo';
 
@@ -93,6 +93,7 @@ const articleSchema = [
     breadcrumb: { '@id': `${articleURL}#breadcrumb` },
   }}
   schema={articleSchema}
+  preconnectUnsplash
 >
   <Navigation />
 
@@ -144,7 +145,17 @@ const articleSchema = [
         </Container>
 
         <figure class="article-hero__media" data-article-image>
-          <img src={heroImage} alt={article.imageAlt} width="1800" height="1200" loading="eager" decoding="async" fetchpriority="high" />
+          <img
+            src={getArticleImage(article.slug, 1200, 800)}
+            srcset={getArticleImageSrcSet(article.slug, [720, 1120, 1600, 1800], 3 / 2)}
+            sizes="(max-width: 640px) 90vw, 1120px"
+            alt={article.imageAlt}
+            width="1800"
+            height="1200"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
           <figcaption>{article.categoryLabel} &middot; Lectura profesional</figcaption>
         </figure>
       </header>
@@ -222,7 +233,16 @@ const articleSchema = [
               {related.map(relatedArticle => (
                 <a href={`/blog/${relatedArticle.slug}`} class="related-card">
                   <figure>
-                    <img src={getArticleImage(relatedArticle.slug, 1200, 900)} alt={relatedArticle.imageAlt} width="1200" height="900" loading="lazy" decoding="async" />
+                    <img
+                      src={getArticleImage(relatedArticle.slug, 800, 600)}
+                      srcset={getArticleImageSrcSet(relatedArticle.slug, [480, 800, 1200])}
+                      sizes="(max-width: 640px) 90vw, 390px"
+                      alt={relatedArticle.imageAlt}
+                      width="1200"
+                      height="900"
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </figure>
                   <div>
                     <span>{relatedArticle.categoryLabel} / {relatedArticle.readTime}</span>

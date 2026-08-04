@@ -4,7 +4,7 @@ import FloatOrb from './ui/FloatOrb.astro';
 import Container from './ui/Container.astro';
 import AmbientLight from './ui/AmbientLight.astro';
 import PageNumber from './ui/PageNumber.astro';
-import { getArticleImage, getLatestArticles } from '../data/blog';
+import { getArticleImage, getArticleImageSrcSet, getLatestArticles } from '../data/blog';
 
 const articles = getLatestArticles(3);
 ---
@@ -32,7 +32,9 @@ const articles = getLatestArticles(3);
           <a href={`/blog/${article.slug}`} class="blog-card__link" aria-label={`Leer artículo: ${article.title}`}>
             <figure class="blog-card__media">
               <img
-                src={getArticleImage(article.slug, 1200, 900)}
+                src={getArticleImage(article.slug, 800, 600)}
+                srcset={getArticleImageSrcSet(article.slug, [480, 800, 1200])}
+                sizes="(max-width: 960px) 90vw, 30vw"
                 alt={article.imageAlt}
                 width="1200"
                 height="900"

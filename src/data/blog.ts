@@ -47,7 +47,17 @@ export function getArticleImage(slug: string, width = 1400, height = 980): strin
   const fallback =
     'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&auto=format&fit=crop&crop=entropy';
 
-  return `${articleImageUrls[slug] ?? fallback}&w=${width}&h=${height}&fit=crop&fm=webp`;
+  return `${articleImageUrls[slug] ?? fallback}&w=${width}&h=${height}&fm=webp`;
+}
+
+export function getArticleImageSrcSet(
+  slug: string,
+  widths: number[],
+  aspectRatio = 4 / 3,
+): string {
+  return widths
+    .map((width) => `${getArticleImage(slug, width, Math.round(width / aspectRatio))} ${width}w`)
+    .join(', ');
 }
 
 export const articles: BlogArticle[] = [

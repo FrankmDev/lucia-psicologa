@@ -107,6 +107,9 @@ for (const file of htmlFiles) {
   if (!html.includes(`rel="apple-touch-icon" href="${expectedAppleTouchIcon}" sizes="180x180"`)) {
     issues.push(`${route}: falta el icono de marca para Apple`);
   }
+  if (!html.includes('rel="sitemap" type="application/xml" href="https://luciamillanpsicologia.es/sitemap.xml"')) {
+    issues.push(`${route}: falta el enlace de descubrimiento al sitemap canónico`);
+  }
 
   for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     try {
@@ -177,6 +180,9 @@ for (const file of htmlFiles) {
     if (!/\swidth="\d+"/.test(image) || !/\sheight="\d+"/.test(image)) {
       issues.push(`${route}: imagen sin dimensiones explícitas`);
     }
+    if (image.includes('images.unsplash.com') && (!/\ssrcset="[^"]+"/.test(image) || !/\ssizes="[^"]+"/.test(image))) {
+      issues.push(`${route}: imagen remota de Unsplash sin srcset o sizes responsivos`);
+    }
   }
 
   for (const match of html.matchAll(/<button\b[^>]*>/g)) {
@@ -230,6 +236,9 @@ if (!fs.existsSync(sitemapPath)) {
   for (const [, url, lastmod] of sitemapEntries) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(lastmod) || Number.isNaN(Date.parse(`${lastmod}T00:00:00Z`))) {
       issues.push(`sitemap.xml: lastmod no válida para ${url}: ${lastmod}`);
+    }
+    if (Date.parse(`${lastmod}T00:00:00Z`) > Date.now()) {
+      issues.push(`sitemap.xml: lastmod futura para ${url}: ${lastmod}`);
     }
   }
 }

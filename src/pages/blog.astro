@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
-import { getArticleImage, getSortedArticles } from '../data/blog';
+import { getArticleImage, getArticleImageSrcSet, getSortedArticles } from '../data/blog';
 import { buildBreadcrumbSchema } from '../lib/seo';
 
 const sortedArticles = getSortedArticles();
@@ -33,6 +33,7 @@ const breadcrumbSchema = buildBreadcrumbSchema('https://luciamillanpsicologia.es
     breadcrumb: { '@id': 'https://luciamillanpsicologia.es/blog#breadcrumb' },
   }}
   schema={[articleListSchema, breadcrumbSchema]}
+  preconnectUnsplash
 >
   <Navigation />
 
@@ -62,12 +63,15 @@ const breadcrumbSchema = buildBreadcrumbSchema('https://luciamillanpsicologia.es
               <!-- Image -->
               <figure class="blog-grid-card__media">
                 <img
-                  src={getArticleImage(article.slug, 1200, 900)}
+                  src={getArticleImage(article.slug, 800, 600)}
+                  srcset={getArticleImageSrcSet(article.slug, [480, 800, 1200])}
+                  sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 350px"
                   alt={article.imageAlt}
                   width="1200"
                   height="900"
                   loading={i === 0 ? 'eager' : 'lazy'}
                   decoding="async"
+                  fetchpriority={i === 0 ? 'high' : undefined}
                 />
                 <span class="blog-grid-card__image-scrim" aria-hidden="true"></span>
                 <!-- Number watermark -->

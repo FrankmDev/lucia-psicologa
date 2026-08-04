@@ -159,7 +159,10 @@ const navLinks = [
 
     <!-- Bottom bar -->
     <div class="footer-bottom reveal-up" data-delay="500">
-      <span class="copy-text">&copy; {currentYear} Lucía Millán Jiménez · Psicóloga general sanitaria</span>
+      <span class="copy-text">
+        &copy; {currentYear} Lucía Millán Jiménez ·
+        <a href="https://frnq.studio/" class="developer-link" target="_blank" rel="noopener noreferrer">Desarrollada por FRN.Q</a>
+      </span>
       <div class="legal-row">
         <a href="/aviso-legal" class="legal-link">Aviso legal</a>
         <span class="legal-sep">·</span>
@@ -565,6 +568,15 @@ const navLinks = [
   }
   .copy-text {
     letter-spacing: 0.04em;
+  }
+  .developer-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+  .developer-link:hover,
+  .developer-link:focus-visible {
+    color: rgba(245, 240, 232, 0.78);
   }
   .legal-row {
     display: flex;
