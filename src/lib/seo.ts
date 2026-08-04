@@ -40,13 +40,18 @@ export function buildBaseSchema(defaultImage: string): SchemaNode[] {
   };
 
   const practice: SchemaNode = {
-    '@type': ['ProfessionalService', 'LocalBusiness'],
+    '@type': 'ProfessionalService',
     '@id': SCHEMA_IDS.practice,
     name: SITE.businessName,
     alternateName: SITE.name,
     description: SITE.description,
     url: SITE.url,
-    logo: `${SITE.url}/favicon.jpg`,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE.url}/favicon.png`,
+      width: 512,
+      height: 512,
+    },
     image: defaultImage,
     email: SITE.email,
     telephone: SITE.phone,

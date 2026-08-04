@@ -29,6 +29,9 @@ const issues = [];
 const canonicalRoutes = new Map();
 const pageTitles = new Map();
 const pageDescriptions = new Map();
+const internalLinkTargets = new Set();
+const expectedFavicon = '/favicon.png';
+const expectedAppleTouchIcon = '/apple-touch-icon.png';
 
 function decodeHtml(value) {
   return value
@@ -55,6 +58,7 @@ for (const file of htmlFiles) {
   const robots = collectMatches(html, /<meta\s+name="robots"\s+content="([^"]+)"\s*\/?>/g);
   const h1Count = (html.match(/<h1\b/g) || []).length;
   const isIndexable = robots.length === 1 && !robots[0].includes('noindex');
+  const schemaTypes = new Set();
 
   if (duplicateIds.length > 0) {
     issues.push(`${route}: IDs duplicados: ${duplicateIds.join(', ')}`);
@@ -97,11 +101,23 @@ for (const file of htmlFiles) {
     if (!html.includes(`property="${property}"`)) issues.push(`${route}: falta ${property}`);
   }
 
+  if (!html.includes(`rel="icon" type="image/png" href="${expectedFavicon}" sizes="512x512"`)) {
+    issues.push(`${route}: falta el favicon de marca PNG de 512x512`);
+  }
+  if (!html.includes(`rel="apple-touch-icon" href="${expectedAppleTouchIcon}" sizes="180x180"`)) {
+    issues.push(`${route}: falta el icono de marca para Apple`);
+  }
+
   for (const match of html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
     try {
       const data = JSON.parse(match[1]);
       if (data['@context'] !== 'https://schema.org' || !Array.isArray(data['@graph'])) {
         issues.push(`${route}: el JSON-LD no contiene un grafo schema.org válido`);
+      } else {
+        for (const node of data['@graph']) {
+          const types = Array.isArray(node['@type']) ? node['@type'] : [node['@type']];
+          types.filter(Boolean).forEach((type) => schemaTypes.add(type));
+        }
       }
     } catch {
       issues.push(`${route}: JSON-LD no parseable`);
@@ -110,6 +126,18 @@ for (const file of htmlFiles) {
 
   if (!html.includes('type="application/ld+json"')) {
     issues.push(`${route}: falta JSON-LD`);
+  }
+  if (!schemaTypes.has('Person') || !schemaTypes.has('ProfessionalService') || !schemaTypes.has('WebSite')) {
+    issues.push(`${route}: faltan entidades base Person, ProfessionalService o WebSite`);
+  }
+  if (route.startsWith('/blog/') && !schemaTypes.has('BlogPosting')) {
+    issues.push(`${route}: falta schema BlogPosting`);
+  }
+  if (route === '/blog' && !schemaTypes.has('ItemList')) {
+    issues.push(`${route}: falta schema ItemList`);
+  }
+  if ((route === '/blog' || route.startsWith('/blog/') || ['/aviso-legal', '/privacidad', '/cookies'].includes(route)) && !schemaTypes.has('BreadcrumbList')) {
+    issues.push(`${route}: falta schema BreadcrumbList`);
   }
 
   for (const match of html.matchAll(/<(?:a|link|script|img|source|video)\b[^>]*?\s(?:href|src|poster)="([^"]+)"/g)) {
@@ -120,6 +148,13 @@ for (const file of htmlFiles) {
     if (!fs.existsSync(resolveOutputPath(resolvedPath))) {
       issues.push(`${route}: recurso o enlace no resuelto: ${value}`);
     }
+  }
+
+  for (const match of html.matchAll(/<a\b[^>]*?\shref="([^"]+)"/g)) {
+    const value = match[1];
+    if (!value.startsWith('/')) continue;
+    const targetPath = value.split(/[?#]/)[0] || '/';
+    internalLinkTargets.add(targetPath !== '/' ? targetPath.replace(/\/$/, '') : '/');
   }
 
   for (const match of html.matchAll(/<[^>]+\ssrcset="([^"]+)"/g)) {
@@ -163,12 +198,20 @@ for (const file of htmlFiles) {
   }
 }
 
+for (const [canonical, page] of canonicalRoutes) {
+  const canonicalPath = new URL(canonical).pathname;
+  if (page.isIndexable && canonicalPath !== '/' && !internalLinkTargets.has(canonicalPath)) {
+    issues.push(`${page.route}: página indexable huérfana, sin enlaces internos rastreables`);
+  }
+}
+
 const sitemapPath = path.join(distDirectory, 'sitemap.xml');
 if (!fs.existsSync(sitemapPath)) {
   issues.push('No se ha generado sitemap.xml');
 } else {
   const sitemap = fs.readFileSync(sitemapPath, 'utf8');
   const sitemapUrls = new Set(collectMatches(sitemap, /<loc>([^<]+)<\/loc>/g));
+  const sitemapEntries = [...sitemap.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>\s*<\/url>/g)];
   const expectedUrls = new Set(
     [...canonicalRoutes.entries()]
       .filter(([, page]) => page.isIndexable)
@@ -181,19 +224,61 @@ if (!fs.existsSync(sitemapPath)) {
   for (const url of sitemapUrls) {
     if (!expectedUrls.has(url)) issues.push(`sitemap.xml: URL sin página indexable equivalente ${url}`);
   }
+  if (sitemapEntries.length !== sitemapUrls.size) {
+    issues.push('sitemap.xml: cada URL debe tener una fecha lastmod válida');
+  }
+  for (const [, url, lastmod] of sitemapEntries) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(lastmod) || Number.isNaN(Date.parse(`${lastmod}T00:00:00Z`))) {
+      issues.push(`sitemap.xml: lastmod no válida para ${url}: ${lastmod}`);
+    }
+  }
 }
 
 const robotsPath = path.join(distDirectory, 'robots.txt');
 const rssPath = path.join(distDirectory, 'rss.xml');
 const llmsPath = path.join(distDirectory, 'llms.txt');
-if (!fs.existsSync(robotsPath) || !fs.readFileSync(robotsPath, 'utf8').includes('https://luciamillanpsicologia.es/sitemap.xml')) {
+const faviconPath = path.join(distDirectory, expectedFavicon.slice(1));
+const appleTouchIconPath = path.join(distDirectory, expectedAppleTouchIcon.slice(1));
+const robotsText = fs.existsSync(robotsPath) ? fs.readFileSync(robotsPath, 'utf8') : '';
+if (!robotsText.includes('https://luciamillanpsicologia.es/sitemap.xml')) {
   issues.push('robots.txt no referencia el sitemap canónico');
+}
+if (!robotsText.includes('User-agent: *') || !robotsText.includes('Allow: /') || /(^|\n)Disallow:/i.test(robotsText)) {
+  issues.push('robots.txt no permite explícitamente el rastreo completo');
 }
 if (!fs.existsSync(rssPath) || !fs.readFileSync(rssPath, 'utf8').includes('<rss version="2.0"')) {
   issues.push('No se ha generado un feed RSS válido');
 }
 if (!fs.existsSync(llmsPath)) {
   issues.push('No se ha generado llms.txt');
+}
+if (!fs.existsSync(faviconPath)) {
+  issues.push('No se ha generado el favicon de marca');
+}
+if (!fs.existsSync(appleTouchIconPath)) {
+  issues.push('No se ha generado el icono de marca para Apple');
+}
+function readPngDimensions(file) {
+  const buffer = fs.readFileSync(file);
+  if (buffer.toString('ascii', 1, 4) !== 'PNG') return null;
+  return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+}
+if (fs.existsSync(faviconPath)) {
+  const dimensions = readPngDimensions(faviconPath);
+  if (!dimensions || dimensions.width !== 512 || dimensions.height !== 512) {
+    issues.push('El favicon debe ser PNG cuadrado de 512x512');
+  }
+}
+if (fs.existsSync(appleTouchIconPath)) {
+  const dimensions = readPngDimensions(appleTouchIconPath);
+  if (!dimensions || dimensions.width !== 180 || dimensions.height !== 180) {
+    issues.push('El icono para Apple debe ser PNG cuadrado de 180x180');
+  }
+}
+for (const obsoleteAsset of ['favicon.ico', 'favicon.svg', 'favicon.jpg', 'logo-dark.webp', 'logo-white.webp']) {
+  if (fs.existsSync(path.join(distDirectory, obsoleteAsset))) {
+    issues.push(`Asset público obsoleto o duplicado: ${obsoleteAsset}`);
+  }
 }
 
 if (issues.length > 0) {

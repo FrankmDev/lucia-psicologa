@@ -8,7 +8,6 @@ import { buildBaseSchema, buildSchemaGraph, normalizePath, SCHEMA_IDS } from '..
 interface Props {
   title: string;
   description?: string;
-  keywords?: string[];
   canonical?: string;
   image?: string;
   imageAlt?: string;
@@ -27,7 +26,6 @@ interface Props {
 const {
   title,
   description = SITE.description,
-  keywords = [],
   canonical,
   image,
   imageAlt = 'Lucía Millán Jiménez, psicóloga general sanitaria en Ciudad Real',
@@ -96,7 +94,6 @@ const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
   <meta name="description" content={description} />
   <meta name="robots" content={robotsContent} />
   <meta name="googlebot" content={robotsContent} />
-  {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
   <link rel="canonical" href={canonicalURL} />
   <link rel="alternate" hreflang="es-ES" href={canonicalURL} />
   <link rel="alternate" type="application/rss+xml" title="Blog de Lucía Millán Psicología" href={`${SITE.url}/rss.xml`} />
@@ -129,9 +126,8 @@ const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION;
   <meta name="theme-color" content="#faf8f3" />
   <Font cssVariable="--font-cormorant-garamond" />
   <Font cssVariable="--font-dm-sans" />
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/favicon.jpg" />
+  <link rel="icon" type="image/png" href="/favicon.png" sizes="512x512" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
 </head>
 <body>
